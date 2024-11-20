@@ -8,7 +8,7 @@ namespace SkillTraining.Wiring {
   public class Wishes {
     [WishCommand(Regex = "SkillTraining(:.+)?")]
     public static void Handle(Match match) {
-      Output.Log($"Wish received: {match.Groups[1]}");
+      Output.DebugLog($"Wish received: {match.Groups[1]}");
       switch (match.Groups[1].Value) {
         default: Output.Alert(Req.Player.GetPointTracker().ToString()); break;
       }

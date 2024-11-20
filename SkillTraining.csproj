@@ -133,4 +133,7 @@
 		<Reference Include="$(QudLibPath)/UnityMultiSelectDropdown.dll" />
 		<Reference Include="$(QudLibPath)/Unity.Timeline.dll" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Constants\" />
+	</ItemGroup>
 </Project>

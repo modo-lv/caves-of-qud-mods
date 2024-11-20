@@ -8,12 +8,12 @@ namespace SkillTraining {
   public class Mod : IPlayerMutator {
     [CallAfterGameLoaded]
     public static void OnGameLoaded() {
-      Output.Log($"Game loaded, ensuring that [{nameof(PointTracker)}] part is attached to [{Req.Player}]...");
+      Output.DebugLog($"Game loaded, ensuring that [{nameof(PointTracker)}] part is attached to [{Req.Player}]...");
       Req.Player.RequirePart<PointTracker>();
     }
     
     public void mutate(GameObject player) {
-      Output.Log($"New game started, attaching [{nameof(PointTracker)}] part to [{player}]...");
+      Output.DebugLog($"New game started, attaching [{nameof(PointTracker)}] part to [{player}]...");
       player.RequirePart<PointTracker>();
     }
   }

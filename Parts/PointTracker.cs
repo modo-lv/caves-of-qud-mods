@@ -23,16 +23,26 @@ namespace SkillTraining.Parts {
       if (!this._Points.ContainsKey(skill))
         this._Points[skill] = 0;
       this._Points[skill] += points;
-      Output.Log($"Training points for [{skill}] increased by {points} to {this.Points[skill]} total.");
+      Output.DebugLog($"Training points for [{skill}] increased by {points} to {this.Points[skill]} total.");
       this._OnPointUpdate();
     }
 
-
+    /// <summary>Called by the game whenever the part is created and attached to an object.</summary>
+    /// <remarks>
+    /// Will not be called on load game if the player already has this attached, has to be first-time creation.
+    /// </remarks>
     public override void AddedAfterCreation() {
       base.AddedAfterCreation();
-      Output.Log($"[{nameof(PointTracker)}] part created and added to [{this.ParentObject}].");
+      Output.DebugLog($"[{nameof(PointTracker)}] part created and added to [{this.ParentObject}].");
     }
 
+    public override Boolean WantEvent(Int32 id, Int32 cascade) => base.WantEvent(id, cascade)
+                                                                  || id == BeforeMeleeAttackEvent.ID;
+
+    public override Boolean HandleEvent(BeforeMeleeAttackEvent ev) {
+      ev.Target.RequirePart<MeleeAttackTracker>();
+      return base.HandleEvent(ev);
+    }
 
     public override String ToString() {
       var list =
