@@ -1,0 +1,1 @@
+robocopy . "c:\users\martin\AppData\LocalLow\Freehold Games\CavesOfQud\Mods\SkillTraining" *.cs /s /purge
