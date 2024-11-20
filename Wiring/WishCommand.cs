@@ -10,7 +10,7 @@ namespace SkillTraining.Wiring {
     public static void Handle(Match match) {
       Output.DebugLog($"Wish received: {match.Groups[1]}");
       switch (match.Groups[1].Value) {
-        default: Output.Alert(Req.Player.GetPointTracker().ToString()); break;
+        default: Output.Alert(Req.PointTracker.ToString()); break;
       }
     }
   }
