@@ -14,9 +14,9 @@ namespace SkillTraining.Parts {
     [SerializeField] protected readonly IDictionary<String, Decimal> _Points = new Dictionary<String, Decimal>();
     protected void _OnPointUpdate() { this.Points = new ReadOnlyDictionary<String, Decimal>(this._Points); }
 
-    
+
     public PointTracker() { this._OnPointUpdate(); }
-    
+
 
     /// <summary>Increases training point value for a skill.</summary>
     public void AddPoints(String skill, Decimal points) {
@@ -35,9 +35,14 @@ namespace SkillTraining.Parts {
 
 
     public override String ToString() {
-      return this.Points
-        .Select(entry => $"\t{entry.Key}: {entry.Value}")
-        .Aggregate((a, b) => $"{a}\n{b}");
+      var list =
+        this.Points
+          .Select(entry => $"\t {entry.Key}: {entry.Value}")
+          .Unless(it => it.IsNullOrEmpty())
+          ?.Aggregate((a, b) => $"{a}\n{b}")
+        ?? "  (none)";
+
+      return $"Skill training points:\n{list}";
     }
   }
 }
