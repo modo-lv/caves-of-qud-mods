@@ -29,24 +29,14 @@ namespace SkillTraining.Parts {
     /// Handle getting hit (before any damage calculations) and increase the training points accordingly.
     /// </summary>
     public override Boolean HandleEvent(DefendMeleeHitEvent ev) {
-      var skill = "";
-      var weaponCount = 0;
-
-      if (ev.Attacker == The.Player) {
-        skill = ev.Weapon.GetWeaponSkill();
-        if (The.Player.HasSkill(skill))
-          return base.HandleEvent(ev);
-        The.Player.ForeachEquippedObject(obj => {
-          if (obj.EquippedOn().ThisPartWeapon() != null)
-            weaponCount++;
-        });
+      var skill = ev.Weapon.GetWeaponSkill();
+      if (ev.Attacker != The.Player || The.Player.HasSkill(skill) || !ev.Weapon.IsEquippedInMainHand()) {
+        return base.HandleEvent(ev);
       }
 
-      if (ev.Weapon.EquippedOn().ThisPartWeapon() != null && weaponCount > 0) {
-        var points = Math.Round(new Decimal(1) / 5 / weaponCount, 2);
-        Output.DebugLog($"Hit on [{this.ParentObject}] with 1 of {weaponCount} equipped weapon(s).");
-        Req.PointTracker.AddPoints(skill, points);
-      } else { Output.DebugLog("Attack without equipped weapons, no training points to award."); }
+      Output.DebugLog($"Successful hit on [{ev.Defender}] with [{ev.Weapon}] equipped in the main hand.");
+      var points = Math.Round(new Decimal(1) / 10, 2);
+      Req.PointTracker.AddPoints(skill, points);
 
       return base.HandleEvent(ev);
     }
