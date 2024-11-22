@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using HarmonyLib;
 using Modo.SkillTraining.Constants;
 using Modo.SkillTraining.Internal;
 using Modo.SkillTraining.Wiring;
@@ -33,13 +34,28 @@ namespace Modo.SkillTraining.Parts {
       if (ev.Attacker != The.Player
           || percentage < 1
           || The.Player.HasSkill(skill)
-          || !ev.Weapon.IsEquippedInMainHand()) {
+          // Only equipped weapons train skills
+          || ev.Weapon.EquippedOn().ThisPartWeapon() == null) {
         return base.HandleEvent(ev);
       }
 
       Output.DebugLog($"Successful hit on [{ev.Defender}] with [{ev.Weapon}] equipped in the main hand.");
-      var points = Math.Round(percentage / new Decimal(100), 2);
-      Req.PointTracker.AddPoints(skill, points);
+      var amount = Math.Round(percentage / new Decimal(100), 2);
+      var singleWeapon = true;
+      The.Player.ForeachEquippedObject(obj => {
+        if (singleWeapon && obj.EquippedOn().ThisPartWeapon() != null && !obj.IsEquippedOnPrimary())
+          singleWeapon = false;
+      });
+
+      // Main hand weapon skill
+      if (ev.Weapon.IsEquippedInMainHand())
+        Req.PointTracker.AddPoints(skill, amount);
+      // Single / offhand weapon
+      if (singleWeapon) {
+        Req.PointTracker.AddPoints(SkillClasses.SingleWeaponFighting, amount / 2);
+      } else if (!ev.Weapon.IsEquippedOnPrimary()) {
+        Req.PointTracker.AddPoints(SkillClasses.MultiweaponFighting, amount * 2);
+      }
 
       return base.HandleEvent(ev);
     }
@@ -63,8 +79,7 @@ namespace Modo.SkillTraining.Parts {
         where SkillFactory.Factory.SkillList[skill.SkillName()].Cost <= Req.PointTracker.Points[skill]
         select skill
       ).ToList().ForEach(skill => {
-        Output.Alert(
-          $"You have unlocked the {{{{Y|{skill.SkillName()}}}}} skill tree through practical training!");
+        Output.Alert($"You have unlocked {{{{Y|{skill.SkillName()}}}}} through practical training!");
         Req.PointTracker.RemoveSkill(skill);
         Req.Player.GetPart<Skills>().AddSkill(skill);
         Output.Log($"[{skill}] added to [{Req.Player}], training points removed.");

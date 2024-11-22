@@ -27,9 +27,7 @@ namespace Modo.SkillTraining.Parts {
       if (!this._Points.ContainsKey(skill))
         this._Points[skill] = 0;
       this._Points[skill] += amount;
-      Output.DebugLog(
-        $"Training points for [{skill.SkillName()}] increased by {amount} to {this.Points[skill]} total."
-      );
+      Output.DebugLog($"[{skill.SkillName()}] + {amount} = {this.Points[skill]}");
       this._OnPointUpdate();
     }
 
@@ -64,7 +62,7 @@ namespace Modo.SkillTraining.Parts {
       var list =
         this.Points
           .Select(entry => {
-            var total = SkillFactory.Factory.SkillList[entry.Key.SkillName()].Cost; 
+            var total = SkillFactory.Factory.SkillList[entry.Key.SkillName()].Cost;
             return $"\t {SkillFactory.GetSkillOrPowerName(entry.Key)}: " +
                    $"{{{{Y|{entry.Value}}}}} / {total}";
           })

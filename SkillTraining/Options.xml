@@ -13,7 +13,7 @@
             ○  {{W|50}}: 0.5 points per hit.
             ○ {{W|100}}: 1 point per hit.
             
-            Affects skills: {{Y|Axe}}, {{Y|Cudgel}}, {{Y|Long Blade}}, {{Y|Short Blade}}, {{Y|Single Weapon Fighting}}, and {{Y|Multiweapon Fighting}} (doubled).
+            Affects skills: {{Y|Axe}}, {{Y|Cudgel}}, {{Y|Long Blade}}, {{Y|Short Blade}}, {{Y|Single Weapon Fighting}} (halved), and {{Y|Multiweapon Fighting}} (doubled).
         </helptext>
     </option>
 </options>
