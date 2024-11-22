@@ -1,7 +1,7 @@
 ﻿using System;
 using XRL.World.Skills;
 
-namespace SkillTraining.Utils {
+namespace SkillTraining.Internal {
   public static class Skills {
     /// <summary>
     /// Gets the display name (<c>"Long Blades"</c>) of a skill class (<c>"LongBlades"</c>).

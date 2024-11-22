@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using SkillTraining.Constants;
-using SkillTraining.Utils;
-using UnityEngine;
+using SkillTraining.Internal;
 using XRL;
 using XRL.World;
 using XRL.World.Skills;
@@ -12,9 +10,9 @@ using GameObject = XRL.World.GameObject;
 using Skills = XRL.World.Parts.Skills;
 
 namespace SkillTraining.Parts {
-  /// <summary> Tracks melee attacks for purposes of skill training point accrual. </summary>
+  /// <summary>Tracks melee attacks for purposes of weapon skill point calculations.</summary>
   /// <remarks>
-  /// Temporarily attached to the target at the start of the player's melee attack, to track whether
+  /// Temporarily attached to the target at the start of the player's melee attack, and removed afterward.
   /// </remarks>
   public class MeleeAttackTracker : IPart {
     public override void AddedAfterCreation() {

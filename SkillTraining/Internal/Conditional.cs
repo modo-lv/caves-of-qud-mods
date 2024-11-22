@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SkillTraining.Utils {
+namespace SkillTraining.Internal {
   public static class Conditional {
     /// <summary>
     /// Return <paramref name="value"/> if <paramref name="predicate"/> returns <c>false</c>,

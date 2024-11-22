@@ -1,5 +1,5 @@
 ﻿using System.Text.RegularExpressions;
-using SkillTraining.Utils;
+using SkillTraining.Internal;
 using XRL.Wish;
 
 namespace SkillTraining.Wiring {

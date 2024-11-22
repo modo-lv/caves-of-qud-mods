@@ -1,5 +1,5 @@
-﻿using SkillTraining.Parts;
-using SkillTraining.Utils;
+﻿using SkillTraining.Internal;
+using SkillTraining.Parts;
 using XRL;
 using XRL.World;
 

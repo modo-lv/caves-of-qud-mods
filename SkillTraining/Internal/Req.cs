@@ -3,7 +3,7 @@ using SkillTraining.Parts;
 using XRL;
 using XRL.World;
 
-namespace SkillTraining.Utils {
+namespace SkillTraining.Internal {
   /// <summary>
   /// Wrappers with better error messages for accessing nullable, but required properties. 
   /// </summary>
