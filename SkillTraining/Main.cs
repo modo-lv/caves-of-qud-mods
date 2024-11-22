@@ -1,9 +1,9 @@
-﻿using SkillTraining.Internal;
-using SkillTraining.Parts;
+﻿using Modo.SkillTraining.Internal;
+using Modo.SkillTraining.Parts;
 using XRL;
 using XRL.World;
 
-namespace SkillTraining {
+namespace Modo.SkillTraining {
   /// <summary>Main "entry point" for the mod functionality.</summary>
   /// <remarks>Attaches the <see cref="PointTracker"/> part to the player object.</remarks>
   [HasCallAfterGameLoaded] [PlayerMutator]

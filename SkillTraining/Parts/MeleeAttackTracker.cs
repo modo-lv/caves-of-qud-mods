@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
-using SkillTraining.Constants;
-using SkillTraining.Internal;
-using SkillTraining.Wiring;
+using Modo.SkillTraining.Constants;
+using Modo.SkillTraining.Internal;
+using Modo.SkillTraining.Wiring;
 using XRL;
 using XRL.World;
 using XRL.World.Skills;
@@ -10,7 +10,7 @@ using Event = XRL.World.Event;
 using GameObject = XRL.World.GameObject;
 using Skills = XRL.World.Parts.Skills;
 
-namespace SkillTraining.Parts {
+namespace Modo.SkillTraining.Parts {
   /// <summary>Tracks melee attacks for purposes of weapon skill point calculations.</summary>
   /// <remarks>
   /// Temporarily attached to the target at the start of the player's melee attack, and removed afterward.

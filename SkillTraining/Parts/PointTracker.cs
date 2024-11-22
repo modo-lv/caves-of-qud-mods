@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using SkillTraining.Internal;
+using Modo.SkillTraining.Internal;
 using UnityEngine;
 using XRL.World;
 using XRL.World.Skills;
 
-namespace SkillTraining.Parts {
+namespace Modo.SkillTraining.Parts {
   /// <summary> Main component that tracks training points for each trainable skill. </summary>
   public class PointTracker : IPart {
 

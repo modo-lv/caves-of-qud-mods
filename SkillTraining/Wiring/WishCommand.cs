@@ -1,8 +1,8 @@
 ﻿using System.Text.RegularExpressions;
-using SkillTraining.Internal;
+using Modo.SkillTraining.Internal;
 using XRL.Wish;
 
-namespace SkillTraining.Wiring {
+namespace Modo.SkillTraining.Wiring {
 
   [HasWishCommand]
   public class Wishes {

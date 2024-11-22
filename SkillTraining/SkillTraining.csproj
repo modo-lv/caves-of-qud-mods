@@ -9,6 +9,8 @@
 		<QudLibPath>C:/games/Steam/steamapps/common/Caves of Qud/CoQ_Data/Managed</QudLibPath>
 		<DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
 		<Nullable>enable</Nullable>
+		<AssemblyName>Modo.SkillTraining</AssemblyName>
+		<RootNamespace>Modo.SkillTraining</RootNamespace>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Include="$(QudLibPath)/0Harmony.dll" />
