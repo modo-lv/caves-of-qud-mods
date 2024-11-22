@@ -1,6 +1,7 @@
 ﻿using System;
 using Modo.SkillTraining.Constants;
 using Modo.SkillTraining.Internal;
+using Modo.SkillTraining.Wiring;
 using XRL;
 using XRL.World;
 
@@ -14,20 +15,21 @@ namespace Modo.SkillTraining.Parts {
     public override void Register(GameObject obj, IEventRegistrar reg) {
       obj.RegisterPartEvent(this, EventNames.BeforeThrown);
       obj.RegisterPartEvent(this, EventNames.TakeDamage);
-
       base.Register(obj, reg);
     }
 
     public override Boolean FireEvent(Event ev) {
       if (ev.ID == EventNames.BeforeThrown) {
+        // Attack this tracker to the target creature, to detect when it gets hit.
         var target = ev.GetParameter("ApparentTarget") as GameObject;
         if (target?.IsCreature == true) {
           target.RequirePart<ThrownAttackTracker>();
         }
       } else if (ev.ID == EventNames.TakeDamage || ev.GetParameter("Attacker") == Req.Player) {
+        // Taking damage means the hit was successful.
         Output.DebugLog($"Thrown hit on [{ev.GetParameter("Defender")}] successful.");
-        // Taking damage means the hit was successful
-        Req.Player.RequirePart<PointTracker>().AddPoints(SkillClasses.DeftThrowing, 100);
+        Req.Player.RequirePart<PointTracker>()
+          .AddPoints(SkillClasses.DeftThrowing, ModOptions.ThrownTrainingPercentage);
       }
 
       return base.FireEvent(ev);
