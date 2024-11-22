@@ -2,6 +2,7 @@
 using System.Linq;
 using SkillTraining.Constants;
 using SkillTraining.Internal;
+using SkillTraining.Wiring;
 using XRL;
 using XRL.World;
 using XRL.World.Skills;
@@ -28,12 +29,16 @@ namespace SkillTraining.Parts {
     /// </summary>
     public override Boolean HandleEvent(DefendMeleeHitEvent ev) {
       var skill = ev.Weapon.GetWeaponSkill();
-      if (ev.Attacker != The.Player || The.Player.HasSkill(skill) || !ev.Weapon.IsEquippedInMainHand()) {
+      var percentage = ModOptions.WeaponTrainingPercentage;
+      if (ev.Attacker != The.Player
+          || percentage < 1
+          || The.Player.HasSkill(skill)
+          || !ev.Weapon.IsEquippedInMainHand()) {
         return base.HandleEvent(ev);
       }
 
       Output.DebugLog($"Successful hit on [{ev.Defender}] with [{ev.Weapon}] equipped in the main hand.");
-      var points = Math.Round(new Decimal(1) / 10, 2);
+      var points = Math.Round(percentage / new Decimal(100), 2);
       Req.PointTracker.AddPoints(skill, points);
 
       return base.HandleEvent(ev);
