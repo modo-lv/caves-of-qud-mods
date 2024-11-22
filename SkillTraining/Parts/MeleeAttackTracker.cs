@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
 using Modo.SkillTraining.Constants;
@@ -29,13 +30,15 @@ namespace Modo.SkillTraining.Parts {
     /// Handle getting hit (before any damage calculations) and increase the training points accordingly.
     /// </summary>
     public override Boolean HandleEvent(DefendMeleeHitEvent ev) {
-      var skill = ev.Weapon.GetWeaponSkill();
-      var percentage = ModOptions.WeaponTrainingPercentage;
-      if (ev.Attacker != The.Player
+      var skill = 
+        SkillFactory.Factory.SkillByClass.GetValueOrDefault(ev.Weapon.GetWeaponSkill())?.Class;
+      var percentage = ModOptions.MeleeTrainingPercentage;
+      if (ev.Attacker != Req.Player
+          || skill == null
           || percentage < 1
-          || The.Player.HasSkill(skill)
+          || Req.Player.HasSkill(skill)
           // Only equipped weapons train skills
-          || ev.Weapon.EquippedOn().ThisPartWeapon() == null) {
+          || ev.Weapon.EquippedOn()?.ThisPartWeapon() == null) {
         return base.HandleEvent(ev);
       }
 
@@ -58,34 +61,6 @@ namespace Modo.SkillTraining.Parts {
       }
 
       return base.HandleEvent(ev);
-    }
-
-    public override void Register(GameObject obj, IEventRegistrar registrar) {
-      base.Register(obj, registrar);
-      obj.RegisterPartEvent(this, EventNames.DefenderAfterAttack);
-    }
-
-    public override Boolean FireEvent(Event ev) {
-      if (ev.ID != EventNames.DefenderAfterAttack)
-        return base.FireEvent(ev);
-
-      Output.DebugLog($"Removing [{nameof(MeleeAttackTracker)}] from [{this.ParentObject}]...");
-      this.ParentObject.RemovePart<MeleeAttackTracker>();
-
-      (
-        from entry in Req.Player.RequirePart<PointTracker>().Points
-        select entry.Key
-        into skill
-        where SkillFactory.Factory.SkillList[skill.SkillName()].Cost <= Req.PointTracker.Points[skill]
-        select skill
-      ).ToList().ForEach(skill => {
-        Output.Alert($"You have unlocked {{{{Y|{skill.SkillName()}}}}} through practical training!");
-        Req.PointTracker.RemoveSkill(skill);
-        Req.Player.GetPart<Skills>().AddSkill(skill);
-        Output.Log($"[{skill}] added to [{Req.Player}], training points removed.");
-      });
-
-      return base.FireEvent(ev);
     }
   }
 }

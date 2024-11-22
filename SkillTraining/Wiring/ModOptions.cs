@@ -3,7 +3,9 @@ using XRL.UI;
 
 namespace Modo.SkillTraining.Wiring {
   public static class ModOptions {
-    public static Int32 WeaponTrainingPercentage =>
-      Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_WeaponTrainingPercentage"));
+    public static Int32 MeleeTrainingPercentage =>
+      Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_MeleeTrainingPercentage"));
+    public static Int32 ThrownTrainingPercentage =>
+      Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_ThrownTrainingPercentage"));
   }
 }

@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using AiUnity.Common.Extensions;
 using Modo.SkillTraining.Internal;
 using UnityEngine;
 using XRL.World;
+using XRL.World.Anatomy;
 using XRL.World.Skills;
+using Skills = XRL.World.Parts.Skills;
 
 namespace Modo.SkillTraining.Parts {
   /// <summary> Main component that tracks training points for each trainable skill. </summary>
@@ -16,18 +19,31 @@ namespace Modo.SkillTraining.Parts {
     /// <inheritdoc cref="Points"/>
     [SerializeField]
     protected readonly IDictionary<String, Decimal> _Points = new Dictionary<String, Decimal>();
-    protected void _OnPointUpdate() { this.Points = new ReadOnlyDictionary<String, Decimal>(this._Points); }
+    protected void _OnPointUpdate() {
+      this.Points = new ReadOnlyDictionary<String, Decimal>(this._Points);
+    }
 
 
     public PointTracker() { this._OnPointUpdate(); }
 
 
     /// <summary>Increases training point value for a skill.</summary>
-    public void AddPoints(String skill, Decimal amount) {
-      if (!this._Points.ContainsKey(skill))
-        this._Points[skill] = 0;
-      this._Points[skill] += amount;
-      Output.DebugLog($"[{skill.SkillName()}] + {amount} = {this.Points[skill]}");
+    public void AddPoints(String skillClass, Decimal amount) {
+      if (!this._Points.ContainsKey(skillClass))
+        this._Points[skillClass] = 0;
+      this._Points[skillClass] += amount;
+      
+      Output.DebugLog($"[{skillClass.SkillName()}] + {amount} = {this.Points[skillClass]}");
+      (
+        from entry in Req.Player.RequirePart<PointTracker>().Points
+        where SkillUtils.SkillOrPower(entry.Key)!.Cost <= entry.Value 
+        select entry.Key
+      ).ToList().ForEach(skill => {
+        Output.Alert($"You have unlocked {{{{Y|{skill.SkillName()}}}}} through practical training!");
+        Req.PointTracker.RemoveSkill(skill);
+        Req.Player.GetPart<Skills>().AddSkill(skill);
+        Output.Log($"[{skill}] added to [{Req.Player}], training points removed.");
+      });
       this._OnPointUpdate();
     }
 
@@ -49,12 +65,20 @@ namespace Modo.SkillTraining.Parts {
 
     public override Boolean WantEvent(Int32 id, Int32 cascade) =>
       base.WantEvent(id, cascade)
-      || id == BeforeMeleeAttackEvent.ID;
+      || id == BeforeMeleeAttackEvent.ID
+      || id == EquipperEquippedEvent.ID;
 
     public override Boolean HandleEvent(BeforeMeleeAttackEvent ev) {
       // Attach the melee tracker to the target creature.
       if (ev.Target.IsCreature)
         ev.Target.RequirePart<MeleeAttackTracker>();
+      return base.HandleEvent(ev);
+    }
+
+    public override Boolean HandleEvent(EquipperEquippedEvent ev) {
+      if (ev.Item.IsEquippedAsThrownWeapon()) {
+        ev.Item.RequirePart<ThrownAttackTracker>();
+      }
       return base.HandleEvent(ev);
     }
 
