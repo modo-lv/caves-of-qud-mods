@@ -66,15 +66,24 @@ namespace Modo.SkillTraining.Parts {
     public override Boolean WantEvent(Int32 id, Int32 cascade) =>
       base.WantEvent(id, cascade)
       || id == BeforeMeleeAttackEvent.ID
+      || id == BeforeFireMissileWeaponsEvent.ID
       || id == EquipperEquippedEvent.ID;
 
+    /// <summary>Melee weapon attack tracking.</summary>
     public override Boolean HandleEvent(BeforeMeleeAttackEvent ev) {
-      // Attach the melee tracker to the target creature.
       if (ev.Target.IsCreature)
         ev.Target.RequirePart<MeleeAttackTracker>();
       return base.HandleEvent(ev);
     }
 
+    /// <summary>Missile weapon attack tracking.</summary>
+    public override Boolean HandleEvent(BeforeFireMissileWeaponsEvent ev) {
+      if (ev.ApparentTarget?.IsCreature == true)
+        ev.ApparentTarget.RequirePart<MissileAttackTracker>();
+      return base.HandleEvent(ev);
+    }
+
+    /// <summary>Thrown weapon attack tracking.</summary>
     public override Boolean HandleEvent(EquipperEquippedEvent ev) {
       if (ev.Item.IsEquippedAsThrownWeapon()) {
         ev.Item.RequirePart<ThrownAttackTracker>();

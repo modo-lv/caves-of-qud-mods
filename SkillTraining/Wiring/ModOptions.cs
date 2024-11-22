@@ -7,5 +7,7 @@ namespace Modo.SkillTraining.Wiring {
       Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_MeleeTrainingPercentage"));
     public static Int32 ThrownTrainingPercentage =>
       Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_ThrownTrainingPercentage"));
+    public static Int32 MissileTrainingPercentage =>
+      Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_MissileTrainingPercentage"));
   }
 }

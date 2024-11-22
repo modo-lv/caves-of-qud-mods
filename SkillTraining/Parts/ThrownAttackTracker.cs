@@ -25,11 +25,15 @@ namespace Modo.SkillTraining.Parts {
         if (target?.IsCreature == true) {
           target.RequirePart<ThrownAttackTracker>();
         }
-      } else if (ev.ID == EventNames.TakeDamage || ev.GetParameter("Attacker") == Req.Player) {
+      } else if (ev.ID == EventNames.TakeDamage
+                 || ev.GetParameter("Attacker") == Req.Player
+                 || (ev.GetParameter("Defender") as GameObject)?.IsCreature == true) {
         // Taking damage means the hit was successful.
         Output.DebugLog($"Thrown hit on [{ev.GetParameter("Defender")}] successful.");
-        Req.Player.RequirePart<PointTracker>()
-          .AddPoints(SkillClasses.DeftThrowing, ModOptions.ThrownTrainingPercentage);
+        Req.Player.RequirePart<PointTracker>().AddPoints(
+          SkillClasses.DeftThrowing,
+          ModOptions.ThrownTrainingPercentage / new Decimal(100)
+        );
       }
 
       return base.FireEvent(ev);

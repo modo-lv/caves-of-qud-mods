@@ -7,13 +7,13 @@
             Controls how much skill training happens on each successful melee weapon hit.
             
             The value is a percentage:
-            ○   {{W|0}}: training disabled.
-            ○   {{W|1}}: 0.01 points per hit.
-            ○  {{W|10}}: 0.1 points per hit (default).
-            ○  {{W|50}}: 0.5 points per hit.
-            ○ {{W|100}}: 1 point per hit.
+            ○ {{W|  0}}: training disabled.
+            ○ {{W|  1}}: 0.01 points per hit.
+            ○ {{W| 10}}: 0.10 points per hit (default).
+            ○ {{W| 50}}: 0.50 points per hit.
+            ○ {{W|100}}: 1.00 point per hit.
             
-            Affects skills: {{Y|Axe}}, {{Y|Cudgel}}, {{Y|Long Blade}}, {{Y|Short Blade}}, {{Y|Single Weapon Fighting}} (halved), and {{Y|Multiweapon Fighting}} (doubled).
+            Trained skills: {{Y|Axe}}, {{Y|Cudgel}}, {{Y|Long Blade}}, {{Y|Short Blade}}, {{Y|Single Weapon Fighting}} (halved), and {{Y|Multiweapon Fighting}} (doubled).
         </helptext>
     </option>
     
@@ -24,13 +24,30 @@
             Controls how much skill training happens on each successful thrown weapon hit.
             
             The value is a percentage:
-            ○   {{W|0}}: training disabled.
-            ○   {{W|1}}: 0.01 points per hit.
-            ○  {{W|25}}: 0.25 points per hit (default).
-            ○  {{W|50}}: 0.5 points per hit.
-            ○ {{W|100}}: 1 point per hit.
+            ○ {{W|  0}}: training disabled.
+            ○ {{W|  1}}: 0.01 points per hit.
+            ○ {{W| 25}}: 0.25 points per hit (default).
+            ○ {{W| 50}}: 0.50 points per hit.
+            ○ {{W|100}}: 1.00 point per hit.
             
-            Affects skills: {{Y|Deft Throwing}}.
+            Trained skills: {{Y|Deft Throwing}}.
+        </helptext>
+    </option>
+    
+    <option ID="Option_Modo_SkillTraining_MissileTrainingPercentage"
+            DisplayText="Missile weapon training percentage"
+            Category="Mod: Skill Training" Type="Slider" Default="25" Min="0" Max="100" Increment="1">
+        <helptext>
+            Controls how much skill training happens on each successful missile weapon hit.
+            
+            The value is a percentage:
+            ○ {{W|  0}}: training disabled.
+            ○ {{W|  1}}: 0.01 points per hit.
+            ○ {{W| 25}}: 0.25 points per hit (default).
+            ○ {{W| 50}}: 0.50 points per hit.
+            ○ {{W|100}}: 1.00 point per hit.
+            
+            Trained skills: {{Y|Bow and Rifle}}, {{Y|Heavy Weapon}}, and {{Y|Pistol}}.
         </helptext>
     </option>
 </options>

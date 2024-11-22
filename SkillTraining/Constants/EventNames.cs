@@ -8,7 +8,7 @@ namespace Modo.SkillTraining.Constants {
     /// <summary>Fired on the thrown weapon at the start of throwing it.</summary>
     public const String BeforeThrown = "BeforeThrown";
     
-    /// <summary>Fired on the defender when a thrown weapon hits.</summary>
+    /// <summary>Fired on the defender when an attack hits.</summary>
     public const String TakeDamage = "TakeDamage";
   }
 }
