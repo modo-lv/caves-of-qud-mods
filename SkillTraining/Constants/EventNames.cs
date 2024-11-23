@@ -10,5 +10,8 @@ namespace Modo.SkillTraining.Constants {
     
     /// <summary>Fired on the defender when an attack hits.</summary>
     public const String TakeDamage = "TakeDamage";
+
+    /// <summary>Fired on the player after successfully cooking and eating a meal.</summary>
+    public const String CookedAt = "CookedAt";
   }
 }

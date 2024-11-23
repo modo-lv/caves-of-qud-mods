@@ -9,6 +9,9 @@ namespace Modo.SkillTraining.Constants {
     // Bow and rifle tree
     public const String BowAndRifle = "Rifles";
     
+    // Cooking tree
+    public const String CookingAndGathering = "CookingAndGathering";
+    
     // Cudgel tree
     public const String Cudgel = "Cudgel";
     

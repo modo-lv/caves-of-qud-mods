@@ -13,5 +13,8 @@ namespace Modo.SkillTraining.Wiring {
     public static Decimal MissileTrainingRate =>
       Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_MissileTrainingPercentage"))
         .AsPercentage();
+    public static Decimal CookingTrainingRate =>
+      Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_CookingTrainingPercentage"))
+        .AsPercentage();
   }
 }

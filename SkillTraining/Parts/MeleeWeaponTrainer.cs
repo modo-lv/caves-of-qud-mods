@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using Modo.SkillTraining.Constants;
 using Modo.SkillTraining.Internal;
 using Modo.SkillTraining.Wiring;
 using Wintellect.PowerCollections;
 using XRL;
 using XRL.World;
-using XRL.World.Skills;
 
 namespace Modo.SkillTraining.Parts {
   /// <summary>Trains melee weapon skills.</summary>

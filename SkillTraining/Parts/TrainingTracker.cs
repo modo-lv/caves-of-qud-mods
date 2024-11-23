@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using Modo.SkillTraining.Constants;
 using Modo.SkillTraining.Internal;
-using UnityEngine;
 using Wintellect.PowerCollections;
 using XRL.World;
 using XRL.World.Skills;
@@ -21,6 +19,7 @@ namespace Modo.SkillTraining.Parts {
       BeforeMeleeAttackEvent.ID,
       EquipperEquippedEvent.ID,
       BeforeFireMissileWeaponsEvent.ID,
+      GetCookingActionsEvent.ID,
     };
 
     public override void FinalizeRead(SerializationReader Reader) {
@@ -31,6 +30,7 @@ namespace Modo.SkillTraining.Parts {
           { SkillClasses.Axe, 0 },
           { SkillClasses.BowAndRifle, 0 },
           { SkillClasses.Cudgel, 0 },
+          { SkillClasses.CookingAndGathering, 0 },
           { SkillClasses.DeftThrowing, 0 },
           { SkillClasses.HeavyWeapons, 0 },
           { SkillClasses.LongBlade, 0 },
@@ -64,12 +64,20 @@ namespace Modo.SkillTraining.Parts {
       return base.HandleEvent(ev);
     }
 
+    /// <summary>Cooking training.</summary>
+    public override Boolean HandleEvent(GetCookingActionsEvent ev) {
+      if (ev.Actor.IsPlayer())
+        Req.Player.RequirePart<CookingTracker>();
+      return base.HandleEvent(ev);
+    }
+
 
     /// <summary>Increases training point value for a skill.</summary>
     public void AddPoints(String skillClass, Decimal amount) {
-      if (!this.Points.ContainsKey(skillClass))
-        this.Points[skillClass] = 0;
-      this.Points[skillClass] += amount;
+      if (!Req.Player.HasSkill(skillClass)) {
+        this.Points.TryAdd(skillClass, 0);
+        this.Points[skillClass] += amount;
+      }
 
       Output.DebugLog($"[{skillClass.SkillName()}] + {amount} = {this.Points[skillClass]}");
       (
@@ -97,6 +105,7 @@ namespace Modo.SkillTraining.Parts {
     public override String ToString() {
       var list =
         this.Points
+          .OrderBy(e => e.Key)
           .Select(entry => {
             var name = $"○ {SkillFactory.GetSkillOrPowerName(entry.Key)} ";
             var value = "{{Y|" + $"{entry.Value:##0.00;;0}" + "}}";
