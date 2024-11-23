@@ -67,15 +67,15 @@ namespace Modo.SkillTraining.Parts {
     public void AddPoints(String skillClass, Decimal amount) {
       var skill = SkillUtils.SkillOrPower(skillClass);
       if (amount > 0
-          && !Req.Player.HasSkill(skillClass)
-          && skill.Cost > this.Points[skillClass]) {
+          && !Req.Player.HasSkill(skillClass)) {
         this.Points.TryAdd(skillClass, 0);
-        this.Points[skillClass] += amount;
+        if (amount > skill.Cost)
+          this.Points[skillClass] = amount;
+        else
+          this.Points[skillClass] += amount;
         Output.DebugLog($"[{skillClass.SkillName()}] + {amount} = {this.Points[skillClass]}");
       }
 
-      if (this.Points[skillClass] > skill.Cost)
-        this.Points[skillClass] = skill.Cost;
 
       (
         from entry in Req.Player.RequirePart<TrainingTracker>().Points
@@ -90,7 +90,7 @@ namespace Modo.SkillTraining.Parts {
         if (!canUnlock)
           return;
 
-        Output.Alert($"You have unlocked {{{{Y|{unlocked.SkillName()}}}}} through practical training!");
+        Output.Alert("{{Y|" + unlocked.SkillName() + "}} skill unlocked through practical training!");
         Req.Player.GetPart<Skills>().AddSkill(unlocked);
         Output.Log($"[{unlocked}] added to [{Req.Player}].");
         this.ResetPoints(unlocked);

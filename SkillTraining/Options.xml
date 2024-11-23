@@ -1,19 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <options>
     <option ID="Option_Modo_SkillTraining_CookingTrainingPercentage"
-            DisplayText="Cooking training percentage"
+            DisplayText="Cooking and Gathering training percentage"
             Category="Mod: Skill Training" Type="Slider" Default="33" Min="0" Max="100" Increment="1">
         <helptext>
-            Controls how much skill training happens every time you cook and eat a meal (doubled for tasty meals).
+            Percentage of a training point awarded each time {{Y|Cooking and Gathering}} skill is trained.
 
-            The value is a percentage:
-            ○ {{k|00}}{{W|0}}: training disabled.
-            ○ {{k|00}}{{W|1}}: 0.01 points per meal.
-            ○ {{k|0}}{{W|33}}: 0.33 points per meal (default).
-            ○ {{k|0}}{{W|50}}: 0.50 points per meal.
-            ○ {{W|100}}: 1.00 point per meal.
-
-            Trained skills: {{Y|Cooking and Gathering}}.
+            Default: {{W|33}} (0.33 point per meal).
         </helptext>
     </option>
 
@@ -21,16 +14,9 @@
             DisplayText="Customs and Culture training percentage"
             Category="Mod: Skill Training" Type="Slider" Default="100" Min="0" Max="100" Increment="1">
         <helptext>
-            Controls how much skill training happens every time you gain reputation from a water ritual.
+            Percentage of a training point awarded each time {{Y|Customs and Culture}} skill is trained.
 
-            The value is a percentage:
-            ○ {{k|00}}{{W|0}}: training disabled.
-            ○ {{k|00}}{{W|1}}: 0.01 points per reputation gain.
-            ○ {{k|0}}{{W|25}}: 0.25 points per reputation gain.
-            ○ {{k|0}}{{W|50}}: 0.50 points per reputation gain.
-            ○ {{W|100}}: 1.00 point per reputation gain (default).
-
-            Trained skills: {{Y|Customs and Folklore}}.
+            Default: {{W|100}} (1.00 point per water ritual).
         </helptext>
     </option>
 
@@ -38,16 +24,9 @@
             DisplayText="Melee weapon training percentage"
             Category="Mod: Skill Training" Type="Slider" Default="10" Min="0" Max="100" Increment="1">
         <helptext>
-            Controls how much skill training happens on each successful melee weapon hit.
-            
-            The value is a percentage:
-            ○ {{k|00}}{{W|0}}: training disabled.
-            ○ {{k|00}}{{W|1}}: 0.01 points per hit.
-            ○ {{k|0}}{{W|10}}: 0.10 points per hit (default).
-            ○ {{k|0}}{{W|50}}: 0.50 points per hit.
-            ○ {{W|100}}: 1.00 point per hit.
-            
-            Trained skills: {{Y|Axe}}, {{Y|Cudgel}}, {{Y|Long Blade}}, {{Y|Short Blade}}, {{Y|Single Weapon Fighting}} (halved), and {{Y|Multiweapon Fighting}} (doubled).
+            Percentage of a training point awarded each time {{Y|Axe}}, {{Y|Cudgel}}, {{Y|Long Blade}}, or {{Y|Short Blade}} skill is trained. For {{Y|Single Weapon Fighting}} the percentage is halved, and {{Y|Multiweapon Fighting}} it is doubled.
+
+            Default: {{W|10}} (0.10 points per hit).
         </helptext>
     </option>
     
@@ -55,33 +34,29 @@
             DisplayText="Missile weapon training percentage"
             Category="Mod: Skill Training" Type="Slider" Default="25" Min="0" Max="100" Increment="1">
         <helptext>
-            Controls how much skill training happens on each successful missile weapon hit.
+            Percentage of a training point awarded each time {{Y|Bow and Rifle}}, {{Y|Heavy Weapon}}, or {{Y|Pistol}} skill is trained.
+
+            Default: {{W|25}} (0.25 points per hit).
+        </helptext>
+    </option>
+
+    <option ID="Option_Modo_SkillTraining_PhysicTrainingPercentage"
+            DisplayText="Physic training percentage"
+            Category="Mod: Skill Training" Type="Slider" Default="100" Min="0" Max="100" Increment="1">
+        <helptext>
+            Percentage of a training point awarded each time {{Y|Physic}} skill is trained.
             
-            The value is a percentage:
-            ○ {{k|00}}{{W|0}}: training disabled.
-            ○ {{k|00}}{{W|1}}: 0.01 points per hit.
-            ○ {{k|0}}{{W|25}}: 0.25 points per hit (default).
-            ○ {{k|0}}{{W|50}}: 0.50 points per hit.
-            ○ {{W|100}}: 1.00 point per hit.
-            
-            Trained skills: {{Y|Bow and Rifle}}, {{Y|Heavy Weapon}}, and {{Y|Pistol}}.
+            Default: {{W|100}} (1.00 point per bandage).
         </helptext>
     </option>
 
     <option ID="Option_Modo_SkillTraining_ThrownTrainingPercentage"
-            DisplayText="Thrown weapon training percentage"
+            DisplayText="Deft Throwing training percentage"
             Category="Mod: Skill Training" Type="Slider" Default="25" Min="0" Max="100" Increment="1">
         <helptext>
-            Controls how much skill training happens on each successful thrown weapon hit.
+            Percentage of a training point awarded each time {{Y|Deft Throwing}} skill is trained.
 
-            The value is a percentage:
-            ○ {{k|00}}{{W|0}}: training disabled.
-            ○ {{k|00}}{{W|1}}: 0.01 points per hit.
-            ○ {{k|0}}{{W|25}}: 0.25 points per hit (default).
-            ○ {{k|0}}{{W|50}}: 0.50 points per hit.
-            ○ {{W|100}}: 1.00 point per hit.
-
-            Trained skills: {{Y|Deft Throwing}}.
+            Default: {{W|25}} (0.25 points per hit).
         </helptext>
     </option>
 

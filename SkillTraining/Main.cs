@@ -10,19 +10,17 @@ namespace Modo.SkillTraining {
   public class Main : IPlayerMutator {
     [CallAfterGameLoaded]
     public static void OnGameLoaded() {
-      Output.DebugLog(
-        $"Game loaded, ensuring that [{nameof(TrainingTracker)}] is attached to [{Req.Player}]..."
-      );
-      Req.Player.RequirePart<TrainingTracker>();
+      Output.DebugLog($"Game loaded, ensuring that training parts are attached to [{Req.Player}]...");
       Req.Player.RequirePart<CookingTrainer>();
       Req.Player.RequirePart<CustomsTrainer>();
+      Req.Player.RequirePart<TrainingTracker>();
     }
 
     public void mutate(GameObject player) {
-      Output.DebugLog($"New game started, attaching [{nameof(TrainingTracker)}] to [{player}]...");
-      player.RequirePart<TrainingTracker>();
+      Output.DebugLog($"New game started, attaching training parts to [{player}]...");
       player.RequirePart<CookingTrainer>();
       player.RequirePart<CustomsTrainer>();
+      player.RequirePart<TrainingTracker>();
     }
   }
 }
