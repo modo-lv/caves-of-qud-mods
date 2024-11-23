@@ -18,6 +18,9 @@ namespace Modo.SkillTraining.Constants {
 
     // Cudgel tree
     public const String Cudgel = "Cudgel";
+    
+    // Endurance tree
+    public const String Swimming = "Endurance_Swimming";
 
     // Heavy Weapon tree
     public const String HeavyWeapons = "HeavyWeapons";

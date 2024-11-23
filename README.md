@@ -60,9 +60,18 @@ A missile weapon skill training increases every time you attack an enemy, if all
 Successfully applying bandages to bleeding wounds trains [Physic](https://wiki.cavesofqud.com/wiki/Physic) skill.
 
 
+## Swimming
+
+Swimming in deep water automatically trains [Swimming](https://wiki.cavesofqud.com/wiki/Swimming) skill.
+
+Note that this is an individual skill (a "power"), rather than a skill tree -- unlocking it will not automatically make the rest of the [Endurance](https://wiki.cavesofqud.com/wiki/Endurance) tree available.
+
+
 ## Thrown weapons
 
-Successfully hitting an enemy in combat trains [Deft Throwing](https://wiki.cavesofqud.com/wiki/Deft_Throwing) skill. Note that this is an individual skill (a "power"), rather than a skill tree -- unlocking it will not automatically make the rest of the [Tactics](https://wiki.cavesofqud.com/wiki/Tactics) tree available.
+Successfully hitting an enemy in combat trains [Deft Throwing](https://wiki.cavesofqud.com/wiki/Deft_Throwing) skill.
+
+Note that this is an individual skill (a "power"), rather than a skill tree -- unlocking it will not automatically make the rest of the [Tactics](https://wiki.cavesofqud.com/wiki/Tactics) tree available.
 
 Training increases every time you throw something at an enemy, if all the following are true:
 * The target is successfully hit (with or without damage).

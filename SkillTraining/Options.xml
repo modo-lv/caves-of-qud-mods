@@ -22,11 +22,11 @@
 
     <option ID="Option_Modo_SkillTraining_MeleeTrainingPercentage"
             DisplayText="Melee weapon training percentage"
-            Category="Mod: Skill Training" Type="Slider" Default="5" Min="0" Max="100" Increment="1">
+            Category="Mod: Skill Training" Type="Slider" Default="15" Min="0" Max="100" Increment="1">
         <helptext>
             Percentage of a training point awarded each time {{Y|Axe}}, {{Y|Cudgel}}, {{Y|Long Blade}}, or {{Y|Short Blade}} skill is trained. For {{Y|Single Weapon Fighting}} the percentage is halved, and {{Y|Multiweapon Fighting}} it is doubled.
 
-            Default: {{W|5}} (0.5 points per hit).
+            Default: {{W|15}} (0.15 points per hit).
         </helptext>
     </option>
     
@@ -47,6 +47,16 @@
             Percentage of a training point awarded each time {{Y|Physic}} skill is trained.
             
             Default: {{W|100}} (1 point per bandage).
+        </helptext>
+    </option>
+
+    <option ID="Option_Modo_SkillTraining_SwimmingTrainingPercentage"
+            DisplayText="Swimming training percentage"
+            Category="Mod: Skill Training" Type="Slider" Default="15" Min="0" Max="100" Increment="1">
+        <helptext>
+            Percentage of a training point awarded each time {{Y|Swimming}} skill is trained.
+            
+            Default: {{W|15}} (0.15 points per swim move).
         </helptext>
     </option>
 
