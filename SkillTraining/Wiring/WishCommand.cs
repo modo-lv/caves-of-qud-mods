@@ -15,19 +15,19 @@ namespace Modo.SkillTraining.Wiring {
       var choice = 0;
       while (true) {
         choice = Popup.PickOption(
-          Title: "Skill Training mod menu",
+          Title: "Skill Training menu",
           AllowEscape: true,
           DefaultSelected: choice,
           Options: new[] {
-            "Training progress",
-            "Untrain a skill",
-            "Unlearn a skill (lose skill points)",
-            "Unlearn a skill (refund skill points)",
+            "Overview",
+            "Modify skill training >",
+            "Unlearn skills (lose skill points) >",
+            "Unlearn skills (refund skill points) >",
           }
         );
         switch (choice) {
           case 0: Overview(); break;
-          case 1: Untrain(); break;
+          case 1: ModifyTraining(); break;
           case 2: Unlearn(false); break;
           case 3: Unlearn(true); break;
           default: return;
@@ -84,20 +84,16 @@ namespace Modo.SkillTraining.Wiring {
       );
     }
 
-    public static void Untrain() {
+    public static void ModifyTraining() {
       var choice = 0;
       while (true) {
         var list = Req.TrainingTracker.Points
-          .Where(it => it.Value > 0)
+          .Where(it => !Req.Player.HasSkill(it.Key))
           .ToList();
 
-        var intro = "Choose a skill to lose all training points for.";
-        if (list.Count < 1)
-          intro = "No skills trained.";
-
         choice = Popup.PickOption(
-          Title: "Untrain a skill",
-          Intro: intro,
+          Title: "Modify skill training",
+          Intro: "Training points can only be modified for skills that haven't been unlocked yet.",
           Options: list
             .Select(it => "{{Y|" + it.Key.SkillName() + "}}" + $" [{it.Value} tp]")
             .ToList(),
@@ -107,19 +103,29 @@ namespace Modo.SkillTraining.Wiring {
         if (choice == -1)
           break;
         var target = list[choice];
-        var confirm = Popup.ShowYesNo(
-          Message: "You will lose all {{Y|" + target.Value + "}} training points for " +
-                   "the {{Y|" + target.Key.SkillName() + "}} skill. Are you sure?",
-          defaultResult: DialogResult.No
+        var newValueInput = Popup.AskString(
+          Message: "Training points for {{Y|" + target.Key + "}} (unlocked skills will remain at 0):",
+          Default: $"{target.Value}",
+          MaxLength: 6,
+          RestrictChars: "0123456789."
         );
-        if (confirm != DialogResult.Yes)
+        if (newValueInput == $"{target.Value}" || newValueInput.IsNullOrEmpty())
           continue;
 
-        Req.TrainingTracker.ResetPoints(target.Key);
-        Output.Alert("{{Y|" + target.Key.SkillName() + "}} unlearned.");
-        if (choice == list.Count - 1) {
-          choice--;
+        if (!Decimal.TryParse(newValueInput, out var newValue)) {
+          Output.Alert("Failed to convert {{W|" + newValueInput + "}} to a decimal number.");
+          continue;
         }
+
+        Output.Message(
+          "Setting {{Y|" + target.Key.SkillName() + "}} skill training points to " +
+          "{{W|" + newValue + "}}..."
+        );
+
+        if (newValue > target.Value)
+          Req.TrainingTracker.AddPoints(target.Key, newValue - target.Value);
+        else
+          Req.TrainingTracker.Points[target.Key] = newValue;
       }
     }
 
