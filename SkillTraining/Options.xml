@@ -4,7 +4,7 @@
             DisplayText="Cooking training percentage"
             Category="Mod: Skill Training" Type="Slider" Default="33" Min="0" Max="100" Increment="1">
         <helptext>
-            Controls how much skill training happens every time you cook and eat a meal.
+            Controls how much skill training happens every time you cook and eat a meal (doubled for tasty meals).
 
             The value is a percentage:
             ○ {{k|00}}{{W|0}}: training disabled.

@@ -18,7 +18,6 @@ namespace Modo.SkillTraining.Parts {
       BeforeMeleeAttackEvent.ID,
       EquipperEquippedEvent.ID,
       BeforeFireMissileWeaponsEvent.ID,
-      GetCookingActionsEvent.ID,
     };
 
     public override void FinalizeRead(SerializationReader reader) {
@@ -63,14 +62,6 @@ namespace Modo.SkillTraining.Parts {
         ev.ApparentTarget.RequirePart<MissileAttackTrainer>();
       return base.HandleEvent(ev);
     }
-
-    /// <summary>Cooking training.</summary>
-    public override Boolean HandleEvent(GetCookingActionsEvent ev) {
-      if (ev.Actor.IsPlayer())
-        Req.Player.RequirePart<CookingTracker>();
-      return base.HandleEvent(ev);
-    }
-
 
     /// <summary>Increases training point value for a skill.</summary>
     public void AddPoints(String skillClass, Decimal amount) {

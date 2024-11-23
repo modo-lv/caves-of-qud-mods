@@ -56,4 +56,4 @@ Training increases every time you throw something at an enemy, if all the follow
 
 ## Cooking
 
-Cooking meal trains the [Cooking and Gathering](https://wiki.cavesofqud.com/wiki/Cooking_and_Gathering) skill. 
+Cooking meal trains the [Cooking and Gathering](https://wiki.cavesofqud.com/wiki/Cooking_and_Gathering) skill. "Tasty" meals double the point increase.

@@ -14,12 +14,14 @@ namespace Modo.SkillTraining {
         $"Game loaded, ensuring that [{nameof(TrainingTracker)}] is attached to [{Req.Player}]..."
       );
       Req.Player.RequirePart<TrainingTracker>();
+      Req.Player.RequirePart<CookingTrainer>();
       Req.Player.RequirePart<CustomsTrainer>();
     }
 
     public void mutate(GameObject player) {
       Output.DebugLog($"New game started, attaching [{nameof(TrainingTracker)}] to [{player}]...");
       player.RequirePart<TrainingTracker>();
+      player.RequirePart<CookingTrainer>();
       player.RequirePart<CustomsTrainer>();
     }
   }
