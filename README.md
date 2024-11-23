@@ -55,6 +55,11 @@ A missile weapon skill training increases every time you attack an enemy, if all
 * The target is the one originally aimed at (hitting something else by accident doesn't count).
 
 
+## Physic
+
+Successfully applying bandages to bleeding wounds trains [Physic](https://wiki.cavesofqud.com/wiki/Physic) skill.
+
+
 ## Thrown weapons
 
 Successfully hitting an enemy in combat trains [Deft Throwing](https://wiki.cavesofqud.com/wiki/Deft_Throwing) skill. Note that this is an individual skill (a "power"), rather than a skill tree -- unlocking it will not automatically make the rest of the [Tactics](https://wiki.cavesofqud.com/wiki/Tactics) tree available.
@@ -63,6 +68,7 @@ Training increases every time you throw something at an enemy, if all the follow
 * The target is successfully hit (with or without damage).
 * The target is a creature (throwing at walls and trees doesn't count).
 * The target is the one originally aimed at (hitting something else by accident doesn't count).
+
 
 ## Wayfaring
 
