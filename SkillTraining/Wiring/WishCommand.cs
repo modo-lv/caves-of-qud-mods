@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
+using System.Text;
 using Modo.SkillTraining.Internal;
 using XRL.UI;
 using XRL.Wish;
+using XRL.World.Parts;
 using XRL.World.Skills;
 
 namespace Modo.SkillTraining.Wiring {
@@ -24,7 +26,7 @@ namespace Modo.SkillTraining.Wiring {
           }
         );
         switch (choice) {
-          case 0: Output.Alert(Req.TrainingTracker.ToString()); break;
+          case 0: Overview(); break;
           case 1: Untrain(); break;
           case 2: Unlearn(false); break;
           case 3: Unlearn(true); break;
@@ -33,8 +35,91 @@ namespace Modo.SkillTraining.Wiring {
       }
     }
 
-    public static void Untrain() {
+    public static void Overview() {
+      var output = Req.TrainingTracker.Points
+        .OrderBy(e => e.Key)
+        .Select(entry => {
+          var cost = SkillUtils.SkillOrPower(entry.Key)!.Cost;
+          var active = !Req.Player.HasSkill(entry.Key);
+          var sb = new StringBuilder();
+          var color = active ? "&y" : "&K";
+          sb.Append($"{color}○ {SkillFactory.GetSkillOrPowerName(entry.Key)} ".PadRight(30, '-'));
 
+          // Current points
+          sb.Append(" ");
+          var value = $"{(active ? "&Y" : "&K")}{entry.Value:##0.00;;0}{color}";
+          var pad = 10;
+          if (entry.Value == 0) {
+            sb.Append("{{k|000.0}}" + value);
+          } else if (value.Length < pad) {
+            sb.Append("{{k|" + ("}}" + value).PadLeft(pad + 2, '0'));
+          } else {
+            sb.Append(value);
+          }
+
+          sb.Append(" /");
+
+          // Cost
+          sb.Append(" ");
+          value = $"{color}{cost}";
+          pad = 5;
+          if (value.Length < pad)
+            sb.Append("{{k|" + ("}}" + value).PadLeft(pad + 2, '0'));
+          else {
+            sb.Append(value);
+          }
+
+          Output.DebugLog(sb.ToString());
+          return sb.ToString();
+        })
+        .Aggregate((a, b) => $"{a}\n{b}");
+
+      // Regular `Show` doesn't display the title, so use a "choice" without any options instead. 
+      Popup.PickOption(
+        Title: "Skill training progress",
+        Intro: output,
+        Options: new List<String>(0),
+        AllowEscape: true
+      );
+    }
+
+    public static void Untrain() {
+      var choice = 0;
+      while (true) {
+        var list = Req.TrainingTracker.Points
+          .Where(it => it.Value > 0)
+          .ToList();
+
+        var intro = "Choose a skill to lose all training points for.";
+        if (list.Count < 1)
+          intro = "No skills trained.";
+
+        choice = Popup.PickOption(
+          Title: "Untrain a skill",
+          Intro: intro,
+          Options: list
+            .Select(it => "{{Y|" + it.Key.SkillName() + "}}" + $" [{it.Value} tp]")
+            .ToList(),
+          DefaultSelected: choice,
+          AllowEscape: true
+        );
+        if (choice == -1)
+          break;
+        var target = list[choice];
+        var confirm = Popup.ShowYesNo(
+          Message: "You will lose all {{Y|" + target.Value + "}} training points for " +
+                   "the {{Y|" + target.Key.SkillName() + "}} skill. Are you sure?",
+          defaultResult: DialogResult.No
+        );
+        if (confirm != DialogResult.Yes)
+          continue;
+
+        Req.TrainingTracker.ResetPoints(target.Key);
+        Output.Alert("{{Y|" + target.Key.SkillName() + "}} unlearned.");
+        if (choice == list.Count - 1) {
+          choice--;
+        }
+      }
     }
 
     public static void Unlearn(Boolean refund) {

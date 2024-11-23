@@ -84,59 +84,18 @@ namespace Modo.SkillTraining.Parts {
         from entry in Req.Player.RequirePart<TrainingTracker>().Points
         where SkillUtils.SkillOrPower(entry.Key)!.Cost <= entry.Value
         select entry.Key
-      ).ToList().ForEach(skill => {
-        Output.Alert($"You have unlocked {{{{Y|{skill.SkillName()}}}}} through practical training!");
-        Req.Player.GetPart<Skills>().AddSkill(skill);
-        Output.Log($"[{skill}] added to [{Req.Player}], training points removed.");
+      ).ToList().ForEach(unlocked => {
+        Output.Alert($"You have unlocked {{{{Y|{unlocked.SkillName()}}}}} through practical training!");
+        Req.Player.GetPart<Skills>().AddSkill(unlocked);
+        Output.Log($"[{unlocked}] added to [{Req.Player}].");
+        this.ResetPoints(unlocked);
       });
     }
 
-    /// <summary>Outputs the current training point overview, formatted for in-game display.</summary>
-    public override String ToString() {
-      var list =
-        this.Points
-          .OrderBy(e => e.Key)
-          .Select(entry => {
-            var cost = SkillUtils.SkillOrPower(entry.Key)!.Cost;
-            var active = entry.Value < cost;
-            var sb = new StringBuilder();
-            sb.Append(active ? "&y" : "&K");
-            sb.Append($"○ {SkillFactory.GetSkillOrPowerName(entry.Key)} ".PadRight(34, '-'));
-
-            // Current points
-            sb.Append(" ");
-            var value = $"{entry.Value:##0.00}";
-            var pad = 6;
-            if (active) {
-              value = "{{Y|" + value + "}}";
-              pad += 6;
-            }
-            if (entry.Value == 0) {
-              sb.Append("{{k|000.0}}{{Y|0}}");
-            } else if (value.Length < pad) {
-              sb.Append("{{k|" + ("}}" + value).PadLeft(pad + 2, '0'));
-            } else {
-              sb.Append(value);
-            }
-
-            sb.Append(" /");
-
-            // Cost
-            sb.Append(" ");
-            value = cost.ToString();
-            pad = 3;
-            if (value.Length < pad)
-              sb.Append("{{k|" + ("}}" + value).PadLeft(pad + 2, '0'));
-            else {
-              sb.Append(value);
-            }
-
-            Output.DebugLog(sb.ToString());
-            return sb.ToString();
-          })
-          .Aggregate((a, b) => $"{a}\n{b}");
-
-      return $"{{{{C|Skill training points}}}}\n\n{list}";
+    /// <summary>Reset training points back to 0.</summary>
+    public void ResetPoints(String skillClass) {
+      this.Points[skillClass] = 0;
+      Output.Log($"[{skillClass}] training reset to 0.");
     }
   }
 }

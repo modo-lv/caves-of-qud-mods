@@ -4,7 +4,7 @@ This is a mod for [Caves of Qud](https://www.cavesofqud.com) that allows unlocki
 
 The main goal of this mod is to add a little bit of realism and some benefit to engaging with aspects of the game that aren't part of your build trajectory.
 
-# Details
+# Features
 
 * In-game actions that train certain skills increase a special training point value every time it is performed (see below for more details). When the training point value reaches or exceeds the value of the corresponding skill, that skill is automatically unlocked.
 * Most training targets "base" skills that unlock a whole skill tree (and in most cases also the first skill in the tree, if it has 0 cost).
@@ -12,9 +12,11 @@ The main goal of this mod is to add a little bit of realism and some benefit to 
 * Each of the following categories has its own rate of training (how quickly the skill can be unlocked), configurable in mod's options.
 
 
-## Wish commands
+## Wish command
 
-* `SkillTraining`: Show the accumulated training points.
+Wish for `SkillTraining` to display the mod's main menu, where you can:
+* See and reset training point progress for each trainable skill.
+* Unlearn known skills, with or without refunding the skill points.
 
 
 ## Melee weapons
