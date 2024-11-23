@@ -6,7 +6,14 @@ using XRL;
 using XRL.World;
 
 namespace Modo.SkillTraining.Parts {
+  /// <summary>Trains thrown weapon skill.</summary>
+  /// <remarks>
+  /// Gets attached to the throwing weapon to listen to its thrown event, and when that triggers,
+  /// attach to the target object to validate successful hits and increase training as appropriate.
+  /// </remarks>
   public class ThrownAttackTracker : ModPart {
+    public GameObject? Weapon;
+    
     public override void Register(GameObject obj, IEventRegistrar reg) {
       obj.RegisterPartEvent(this, EventNames.BeforeThrown);
       obj.RegisterPartEvent(this, EventNames.TakeDamage);
@@ -14,21 +21,21 @@ namespace Modo.SkillTraining.Parts {
     }
 
     public override Boolean FireEvent(Event ev) {
-      if (ev.ID == EventNames.BeforeThrown) {
-        // Attack this tracker to the target creature, to detect when it gets hit.
-        var target = ev.GetParameter("ApparentTarget") as GameObject;
-        if (target?.IsCreature == true) {
-          target.RequirePart<ThrownAttackTracker>();
+      switch (ev.ID) {
+        case EventNames.BeforeThrown: {
+          // Attack this tracker to the target creature, to detect when it gets hit.
+          var target = ev.GetParameter("ApparentTarget") as GameObject;
+          if (target?.IsCreature == true)
+            target.RequirePart<ThrownAttackTracker>().Weapon = this.ParentObject;
+          break;
         }
-      } else if (ev.ID == EventNames.TakeDamage
-                 || ev.GetParameter("Attacker") == Req.Player
-                 || (ev.GetParameter("Defender") as GameObject)?.IsCreature == true) {
-        // Taking damage means the hit was successful.
-        Output.DebugLog($"Thrown hit on [{ev.GetParameter("Defender")}] successful.");
-        Req.Player.RequirePart<PointTracker>().AddPoints(
-          SkillClasses.DeftThrowing,
-          ModOptions.ThrownTrainingPercentage / new Decimal(100)
-        );
+        case EventNames.TakeDamage // Taking damage means the hit was successful.
+          when ModOptions.ThrownTrainingRate > 0
+               && ev.GetParameter("Attacker") == Req.Player
+               && (ev.GetParameter("Defender") as GameObject)?.IsCreature == true:
+          Output.DebugLog($"[{ev.GetParameter("Defender")}] hit with [{this.Weapon}].");
+          Req.TrainingTracker.AddPoints(SkillClasses.DeftThrowing, ModOptions.ThrownTrainingRate);
+          break;
       }
 
       return base.FireEvent(ev);

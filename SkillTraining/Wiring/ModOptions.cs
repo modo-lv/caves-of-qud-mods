@@ -1,13 +1,17 @@
 ﻿using System;
+using Modo.SkillTraining.Internal;
 using XRL.UI;
 
 namespace Modo.SkillTraining.Wiring {
   public static class ModOptions {
-    public static Int32 MeleeTrainingPercentage =>
-      Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_MeleeTrainingPercentage"));
-    public static Int32 ThrownTrainingPercentage =>
-      Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_ThrownTrainingPercentage"));
-    public static Int32 MissileTrainingPercentage =>
-      Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_MissileTrainingPercentage"));
+    public static Decimal MeleeTrainingRate =>
+      Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_MeleeTrainingPercentage"))
+        .AsPercentage();
+    public static Decimal ThrownTrainingRate =>
+      Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_ThrownTrainingPercentage"))
+        .AsPercentage();
+    public static Decimal MissileTrainingRate =>
+      Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_MissileTrainingPercentage"))
+        .AsPercentage();
   }
 }

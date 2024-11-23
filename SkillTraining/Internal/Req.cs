@@ -11,12 +11,12 @@ namespace Modo.SkillTraining.Internal {
     public static GameObject Player => The.Player
                                        ?? throw new NullReferenceException("[The.Player] is null");
 
-    public static PointTracker PointTracker {
+    public static TrainingTracker TrainingTracker {
       get {
-        Player.TryGetPart<PointTracker>(out var part);
+        Player.TryGetPart<TrainingTracker>(out var part);
         return part
                ?? throw new NullReferenceException(
-                 $"[{Player}] does not have [{nameof(Parts.PointTracker)}] part."
+                 $"[{Player}] does not have [{nameof(Parts.TrainingTracker)}] part."
                );
       }
     }
