@@ -60,4 +60,14 @@
         </helptext>
     </option>
 
+    <option ID="Option_Modo_SkillTraining_WayfaringTrainingPercentage"
+            DisplayText="Wayfaring training percentage"
+            Category="Mod: Skill Training" Type="Slider" Default="15" Min="0" Max="100" Increment="1">
+        <helptext>
+            Percentage of a training point awarded each time {{Y|Wayfaring}} skill is trained. Recovering from being lost is equivalent to 5 training events.
+
+            Default: {{W|15}} (0.15 points per 300 turns on the world map, 0.75 points for regaining your bearings).
+        </helptext>
+    </option>
+
 </options>

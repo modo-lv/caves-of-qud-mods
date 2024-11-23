@@ -22,5 +22,8 @@ namespace Modo.SkillTraining.Wiring {
     public static Decimal PhysicTrainingRate =>
       Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_PhysicTrainingPercentage"))
         .AsPercentage();
+    public static Decimal WayfaringTrainingRate =>
+      Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_WayfaringTrainingPercentage"))
+        .AsPercentage();
   }
 }

@@ -20,6 +20,15 @@ Wish (`Ctrl+W` by default) for `SkillTraining` to display the mod's main menu, w
 * Skill unlocks only happen at the moment of training. For example, if you have fully trained a skill, but it hasn't unlocked because of an attribute requirement, you will need to train again after meeting the requirement to trigger the unlock.
 
 
+## Customs and Folklore
+
+[Customs and Folklore] is trained whenever you gain reputation from a water ritual. Note that unlocking it requires at least 19 Intelligence. It can still be trained, but will only unlock once the requirement is met. 
+
+## Cooking
+
+Cooking meal trains the [Cooking and Gathering](https://wiki.cavesofqud.com/wiki/Cooking_and_Gathering) skill. "Tasty" meals double the point increase.
+
+
 ## Melee weapons
 
 Using melee weapons in combat can train their corresponding base skills ([Axe](https://wiki.cavesofqud.com/wiki/Axe), [Cudgel](https://wiki.cavesofqud.com/wiki/Cudgel), [Short Blade](https://wiki.cavesofqud.com/wiki/Short_Blade) or [Long Blade](https://wiki.cavesofqud.com/wiki/Long_Blade)), as well as single or multi weapon fighting.
@@ -34,6 +43,7 @@ A melee weapon skill training increases every time you attack an enemy, if all t
 Single/multi weapon fighting:
 * If the attacking weapon is the only one equipped, [Single Weapon Fighting](https://wiki.cavesofqud.com/wiki/Single_Weapon_Fighting) will also be trained, at **half** the rate of the weapon skill.
 * If the attacking weapon is equipped in an off-hand, it won't train its weapon skill, but will train [Multiweapon Fighting](https://wiki.cavesofqud.com/wiki/Multiweapon_Fighting) at **double** the rate of the weapon skill training.
+
 
 ## Missile weapons
 
@@ -54,12 +64,6 @@ Training increases every time you throw something at an enemy, if all the follow
 * The target is a creature (throwing at walls and trees doesn't count).
 * The target is the one originally aimed at (hitting something else by accident doesn't count).
 
+## Wayfaring
 
-## Cooking
-
-Cooking meal trains the [Cooking and Gathering](https://wiki.cavesofqud.com/wiki/Cooking_and_Gathering) skill. "Tasty" meals double the point increase.
-
-
-## Customs and Folklore
-
-[Customs and Folklore] is trained whenever you gain reputation from a water ritual. Note that unlocking it requires at least 19 Intelligence. It can still be trained, but will only unlock once the requirement is met. 
+[Wayfaring](https://wiki.cavesofqud.com/wiki/Wayfaring) skill is trained whenever you take a step on the world map. The training is increased every 300 turns (<=1 step on the world map, depending on terrain), and regaining your bearings after getting lost adds training point value 5 times the normal rate. 

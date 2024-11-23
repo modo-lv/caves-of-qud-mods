@@ -37,7 +37,7 @@ namespace Modo.SkillTraining.Wiring {
 
     public static void Overview() {
       var output = Req.TrainingTracker.Points
-        .OrderBy(e => e.Key)
+        .OrderBy(e => e.Key.SkillName())
         .Select(entry => {
           var cost = SkillUtils.SkillOrPower(entry.Key)!.Cost;
           var locked = !Req.Player.HasSkill(entry.Key);

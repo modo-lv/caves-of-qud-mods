@@ -14,6 +14,7 @@ namespace Modo.SkillTraining {
       Req.Player.RequirePart<CookingTrainer>();
       Req.Player.RequirePart<CustomsTrainer>();
       Req.Player.RequirePart<TrainingTracker>();
+      Req.Player.RequirePart<WayfaringTrainer>();
     }
 
     public void mutate(GameObject player) {
@@ -21,6 +22,7 @@ namespace Modo.SkillTraining {
       player.RequirePart<CookingTrainer>();
       player.RequirePart<CustomsTrainer>();
       player.RequirePart<TrainingTracker>();
+      player.RequirePart<WayfaringTrainer>();
     }
   }
 }

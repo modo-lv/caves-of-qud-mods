@@ -12,35 +12,27 @@ namespace Modo.SkillTraining.Parts {
   [Serializable]
   public class TrainingTracker : ModPart {
     /// <inheritdoc cref="Points"/>
-    public Dictionary<String, Decimal> Points = null!;
+    public Dictionary<String, Decimal> Points = new Dictionary<String, Decimal> {
+      { SkillClasses.Axe, 0 },
+      { SkillClasses.BowAndRifle, 0 },
+      { SkillClasses.Cudgel, 0 },
+      { SkillClasses.CookingAndGathering, 0 },
+      { SkillClasses.CustomsAndFolklore, 0 },
+      { SkillClasses.DeftThrowing, 0 },
+      { SkillClasses.HeavyWeapons, 0 },
+      { SkillClasses.LongBlade, 0 },
+      { SkillClasses.MultiweaponFighting, 0 },
+      { SkillClasses.Pistol, 0 },
+      { SkillClasses.ShortBlade, 0 },
+      { SkillClasses.SingleWeaponFighting, 0 },
+      { SkillClasses.Wayfaring, 0 },
+    };
 
     public override Set<Int32> WantEventIds => new Set<Int32> {
       BeforeMeleeAttackEvent.ID,
       EquipperEquippedEvent.ID,
       BeforeFireMissileWeaponsEvent.ID,
     };
-
-    public override void FinalizeRead(SerializationReader reader) {
-      base.FinalizeRead(reader);
-      if (this.Points.IsNullOrEmpty()) {
-        Output.DebugLog("No training points loaded, starting from scratch.");
-        this.Points = new Dictionary<String, Decimal> {
-          { SkillClasses.Axe, 0 },
-          { SkillClasses.BowAndRifle, 0 },
-          { SkillClasses.Cudgel, 0 },
-          { SkillClasses.CookingAndGathering, 0 },
-          { SkillClasses.CustomsAndFolklore, 0 },
-          { SkillClasses.DeftThrowing, 0 },
-          { SkillClasses.HeavyWeapons, 0 },
-          { SkillClasses.LongBlade, 0 },
-          { SkillClasses.MultiweaponFighting, 0 },
-          { SkillClasses.Pistol, 0 },
-          { SkillClasses.ShortBlade, 0 },
-          { SkillClasses.SingleWeaponFighting, 0 },
-        };
-      }
-    }
-
 
     /// <summary>Melee weapon attack training.</summary>
     public override Boolean HandleEvent(BeforeMeleeAttackEvent ev) {
@@ -66,8 +58,7 @@ namespace Modo.SkillTraining.Parts {
     /// <summary>Increases training point value for a skill.</summary>
     public void AddPoints(String skillClass, Decimal amount) {
       var skill = SkillUtils.SkillOrPower(skillClass);
-      if (amount > 0
-          && !Req.Player.HasSkill(skillClass)) {
+      if (amount > 0 && !Req.Player.HasSkill(skillClass)) {
         this.Points.TryAdd(skillClass, 0);
         if (amount > skill.Cost)
           this.Points[skillClass] = amount;
@@ -75,7 +66,6 @@ namespace Modo.SkillTraining.Parts {
           this.Points[skillClass] += amount;
         Output.DebugLog($"[{skillClass.SkillName()}] + {amount} = {this.Points[skillClass]}");
       }
-
 
       (
         from entry in Req.Player.RequirePart<TrainingTracker>().Points

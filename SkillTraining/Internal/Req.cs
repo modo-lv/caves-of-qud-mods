@@ -8,8 +8,9 @@ namespace Modo.SkillTraining.Internal {
   /// Wrappers with better error messages for accessing nullable, but required properties. 
   /// </summary>
   public static class Req {
-    public static GameObject Player => The.Player
-                                       ?? throw new NullReferenceException("[The.Player] is null");
+    public static GameObject Player =>
+      The.Player
+      ?? throw new NullReferenceException("[The.Player] is null");
 
     public static TrainingTracker TrainingTracker {
       get {
