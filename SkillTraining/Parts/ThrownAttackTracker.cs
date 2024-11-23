@@ -30,7 +30,7 @@ namespace Modo.SkillTraining.Parts {
           break;
         }
         case EventNames.TakeDamage // Taking damage means the hit was successful.
-          when ModOptions.ThrownTrainingRate > 0
+          when !Req.Player.HasSkill(SkillClasses.DeftThrowing)
                && ev.GetParameter("Attacker") == Req.Player
                && (ev.GetParameter("Defender") as GameObject)?.IsCreature == true:
           Output.DebugLog($"[{ev.GetParameter("Defender")}] hit with [{this.Weapon}].");

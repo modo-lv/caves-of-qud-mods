@@ -20,7 +20,7 @@ namespace Modo.SkillTraining.Parts {
         skillClass = SkillClasses.BowAndRifle;
       var skill = SkillUtils.SkillByClass(skillClass)?.Class;
 
-      if (ModOptions.MissileTrainingRate <= 0
+      if (Req.Player.HasSkill(skill)
           || skill == null
           || !ev.Defender.IsCreature
           || !ev.Attacker.IsPlayer()

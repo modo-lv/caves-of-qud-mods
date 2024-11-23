@@ -20,11 +20,8 @@ namespace Modo.SkillTraining.Parts {
     public override Boolean HandleEvent(DefendMeleeHitEvent ev) {
       var skill = SkillUtils.SkillOrPower(ev.Weapon.GetWeaponSkill())?.Class;
 
-      if (Req.Player.HasSkill(skill)) {
-        Req.TrainingTracker.RemoveSkill(skill);
-        return base.HandleEvent(ev);
-      }
       if (ev.Attacker != Req.Player
+          || Req.Player.HasSkill(skill)
           || skill == null
           || ModOptions.MeleeTrainingRate <= 0
           // Only equipped weapons train skills
