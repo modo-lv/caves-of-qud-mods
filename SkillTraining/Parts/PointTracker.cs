@@ -12,7 +12,7 @@ using Skills = XRL.World.Parts.Skills;
 
 namespace Modo.SkillTraining.Parts {
   /// <summary> Main component that tracks training points for each trainable skill. </summary>
-  public class PointTracker : IPart {
+  public class PointTracker : ModPart {
 
     /// <summary>Player's training points in each skill.</summary>
     public IReadOnlyDictionary<String, Decimal> Points { get; protected set; } = null!;
@@ -51,16 +51,6 @@ namespace Modo.SkillTraining.Parts {
     public void RemoveSkill(String skill) {
       this._Points.Remove(skill);
       this._OnPointUpdate();
-    }
-
-    /// <summary>Called by the game whenever the part is created and attached to an object.</summary>
-    /// <remarks>
-    /// Will not be called on game load if the player already had this part when it was saved,
-    /// only first-time instantiations trigger this.
-    /// </remarks>
-    public override void AddedAfterCreation() {
-      base.AddedAfterCreation();
-      Output.DebugLog($"[{nameof(PointTracker)}] part created and added to [{this.ParentObject}].");
     }
 
     public override Boolean WantEvent(Int32 id, Int32 cascade) =>

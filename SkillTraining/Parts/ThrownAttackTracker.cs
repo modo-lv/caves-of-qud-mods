@@ -6,12 +6,7 @@ using XRL;
 using XRL.World;
 
 namespace Modo.SkillTraining.Parts {
-  public class ThrownAttackTracker : IPart {
-    public override void AddedAfterCreation() {
-      base.AddedAfterCreation();
-      Output.DebugLog($"[{nameof(ThrownAttackTracker)}] created and added to [{this.ParentObject}].");
-    }
-
+  public class ThrownAttackTracker : ModPart {
     public override void Register(GameObject obj, IEventRegistrar reg) {
       obj.RegisterPartEvent(this, EventNames.BeforeThrown);
       obj.RegisterPartEvent(this, EventNames.TakeDamage);

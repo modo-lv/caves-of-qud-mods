@@ -17,12 +17,7 @@ namespace Modo.SkillTraining.Parts {
   /// <remarks>
   /// Temporarily attached to the target at the start of the player's melee attack, and removed afterward.
   /// </remarks>
-  public class MeleeAttackTracker : IPart {
-    public override void AddedAfterCreation() {
-      base.AddedAfterCreation();
-      Output.DebugLog($"New [{nameof(MeleeAttackTracker)}] attached to [{this.ParentObject}].");
-    }
-
+  public class MeleeAttackTracker : ModPart {
     public override Boolean WantEvent(Int32 id, Int32 cascade) => base.WantEvent(id, cascade)
                                                                   || id == DefendMeleeHitEvent.ID;
 

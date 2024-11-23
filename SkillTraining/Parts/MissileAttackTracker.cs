@@ -8,12 +8,7 @@ using XRL.World.Parts;
 using XRL.World.Skills;
 
 namespace Modo.SkillTraining.Parts {
-  public class MissileAttackTracker : IPart {
-    public override void AddedAfterCreation() {
-      base.AddedAfterCreation();
-      Output.DebugLog($"[{nameof(MissileAttackTracker)}] created and added to [{this.ParentObject}].");
-    }
-
+  public class MissileAttackTracker : ModPart {
     public override Boolean WantEvent(Int32 id, Int32 cascade) =>
       base.WantEvent(id, cascade)
       || id == DefenderMissileHitEvent.ID;
