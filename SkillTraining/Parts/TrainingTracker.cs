@@ -65,16 +65,31 @@ namespace Modo.SkillTraining.Parts {
 
     /// <summary>Increases training point value for a skill.</summary>
     public void AddPoints(String skillClass, Decimal amount) {
-      if (amount > 0 && !Req.Player.HasSkill(skillClass)) {
+      var skill = SkillUtils.SkillOrPower(skillClass);
+      if (amount > 0
+          && !Req.Player.HasSkill(skillClass)
+          && skill.Cost > this.Points[skillClass]) {
         this.Points.TryAdd(skillClass, 0);
         this.Points[skillClass] += amount;
         Output.DebugLog($"[{skillClass.SkillName()}] + {amount} = {this.Points[skillClass]}");
       }
+
+      if (this.Points[skillClass] > skill.Cost)
+        this.Points[skillClass] = skill.Cost;
+
       (
         from entry in Req.Player.RequirePart<TrainingTracker>().Points
         where SkillUtils.SkillOrPower(entry.Key)!.Cost <= entry.Value
         select entry.Key
       ).ToList().ForEach(unlocked => {
+        var canUnlock = true;
+        // Special case - Tactful has a minimum stat requirement
+        if (unlocked == SkillClasses.CustomsAndFolklore) {
+          canUnlock = SkillUtils.PowerByClass(SkillClasses.Tactful)!.MeetsAttributeMinimum(Req.Player);
+        }
+        if (!canUnlock)
+          return;
+
         Output.Alert($"You have unlocked {{{{Y|{unlocked.SkillName()}}}}} through practical training!");
         Req.Player.GetPart<Skills>().AddSkill(unlocked);
         Output.Log($"[{unlocked}] added to [{Req.Player}].");

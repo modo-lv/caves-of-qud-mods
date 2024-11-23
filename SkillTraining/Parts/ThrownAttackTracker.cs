@@ -23,7 +23,7 @@ namespace Modo.SkillTraining.Parts {
     public override Boolean FireEvent(Event ev) {
       switch (ev.ID) {
         case EventNames.BeforeThrown: {
-          // Attack this tracker to the target creature, to detect when it gets hit.
+          // Attach this tracker to the target creature, to detect when it gets hit.
           var target = ev.GetParameter("ApparentTarget") as GameObject;
           if (target?.IsCreature == true)
             target.RequirePart<ThrownAttackTracker>().Weapon = this.ParentObject;

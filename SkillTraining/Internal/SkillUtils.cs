@@ -24,7 +24,8 @@ namespace Modo.SkillTraining.Internal {
       SkillFactory.Factory.PowersByClass.GetValueOrDefault(className);
 
     /// <summary>Fetch the data for a skill/power.</summary>
-    public static IBaseSkillEntry? SkillOrPower(String className) =>
-      (IBaseSkillEntry?) SkillByClass(className) ?? PowerByClass(className);
+    public static IBaseSkillEntry SkillOrPower(String className) =>
+      (IBaseSkillEntry?) SkillByClass(className) ?? PowerByClass(className)
+      ?? throw new ArgumentException($"Could not find any skill by class name [{className}].");
   }
 }

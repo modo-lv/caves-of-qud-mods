@@ -4,19 +4,20 @@ This is a mod for [Caves of Qud](https://www.cavesofqud.com) that allows unlocki
 
 The main goal of this mod is to add a little bit of realism and some benefit to engaging with aspects of the game that aren't part of your build trajectory.
 
-# Features
+# Mod menu
+
+Wish (`Ctrl+W` by default) for `SkillTraining` to display the mod's main menu, where you can:
+* See and reset training point progress for each trainable skill.
+* Unlearn known skills, with or without refunding the skill points.
+
+
+# In detail
 
 * In-game actions that train certain skills increase a special training point value every time it is performed (see below for more details). When the training point value reaches or exceeds the value of the corresponding skill, that skill is automatically unlocked.
 * Most training targets "base" skills that unlock a whole skill tree (and in most cases also the first skill in the tree, if it has 0 cost).
 * Skill points and training points are completely independent of each other. Training a skill does not make it cheaper to purchase with points, nor do any spent or unspent skill points affect the practical training.
 * Each of the following categories has its own rate of training (how quickly the skill can be unlocked), configurable in mod's options.
-
-
-## Wish command
-
-Wish for `SkillTraining` to display the mod's main menu, where you can:
-* See and reset training point progress for each trainable skill.
-* Unlearn known skills, with or without refunding the skill points.
+* Skill unlocks only happen at the moment of training. For example, if you have fully trained a skill, but it hasn't unlocked because of an attribute requirement, you will need to train again after meeting the requirement to trigger the unlock.
 
 
 ## Melee weapons
@@ -46,7 +47,7 @@ A missile weapon skill training increases every time you attack an enemy, if all
 
 ## Thrown weapons
 
-Successfully hitting an enemy in combat trains [Deft Throwing](https://wiki.cavesofqud.com/wiki/Deft_Throwing) skill. Note that de is an individual skill (a "power"), rather than a skill tree -- unlocking it will not automatically make the rest of the [Tactics](https://wiki.cavesofqud.com/wiki/Tactics) tree available.
+Successfully hitting an enemy in combat trains [Deft Throwing](https://wiki.cavesofqud.com/wiki/Deft_Throwing) skill. Note that this is an individual skill (a "power"), rather than a skill tree -- unlocking it will not automatically make the rest of the [Tactics](https://wiki.cavesofqud.com/wiki/Tactics) tree available.
 
 Training increases every time you throw something at an enemy, if all the following are true:
 * The target is successfully hit (with or without damage).
@@ -57,3 +58,8 @@ Training increases every time you throw something at an enemy, if all the follow
 ## Cooking
 
 Cooking meal trains the [Cooking and Gathering](https://wiki.cavesofqud.com/wiki/Cooking_and_Gathering) skill. "Tasty" meals double the point increase.
+
+
+## Customs and Folklore
+
+[Customs and Folklore] is trained whenever you gain reputation from a water ritual. Note that unlocking it requires at least 19 Intelligence. It can still be trained, but will only unlock once the requirement is met. 

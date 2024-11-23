@@ -14,6 +14,7 @@ namespace Modo.SkillTraining.Constants {
 
     // Customs and folklore tree
     public const String CustomsAndFolklore = "Customs";
+    public const String Tactful = "Customs_Tactful";
 
     // Cudgel tree
     public const String Cudgel = "Cudgel";

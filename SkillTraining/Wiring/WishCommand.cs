@@ -40,14 +40,15 @@ namespace Modo.SkillTraining.Wiring {
         .OrderBy(e => e.Key)
         .Select(entry => {
           var cost = SkillUtils.SkillOrPower(entry.Key)!.Cost;
-          var active = !Req.Player.HasSkill(entry.Key);
+          var locked = !Req.Player.HasSkill(entry.Key);
+          var trained = locked && entry.Value >= cost;
           var sb = new StringBuilder();
-          var color = active ? "&y" : "&K";
+          var color = locked ? (trained ? "&G" : "&y") : "&K";
           sb.Append($"{color}○ {SkillFactory.GetSkillOrPowerName(entry.Key)} ".PadRight(30, '-'));
 
           // Current points
           sb.Append(" ");
-          var value = $"{(active ? "&Y" : "&K")}{entry.Value:##0.00;;0}{color}";
+          var value = $"{(locked ? (trained ? "&G" : "&Y") : "&K")}{entry.Value:##0.00;;0}{color}";
           var pad = 10;
           if (entry.Value == 0) {
             sb.Append("{{k|000.0}}" + value);
