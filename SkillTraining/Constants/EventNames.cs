@@ -13,5 +13,8 @@ namespace Modo.SkillTraining.Constants {
 
     /// <summary>Fired on the player after successfully cooking and eating a meal.</summary>
     public const String CookedAt = "CookedAt";
+
+    /// <summary>Fired on the player after a reputation change has occured.</summary>
+    public const String ReputationChanged = "ReputationChanged";
   }
 }

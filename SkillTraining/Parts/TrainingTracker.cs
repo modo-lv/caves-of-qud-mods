@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Modo.SkillTraining.Constants;
 using Modo.SkillTraining.Internal;
 using Wintellect.PowerCollections;
 using XRL.World;
-using XRL.World.Skills;
 using Skills = XRL.World.Parts.Skills;
 
 namespace Modo.SkillTraining.Parts {
@@ -23,8 +21,8 @@ namespace Modo.SkillTraining.Parts {
       GetCookingActionsEvent.ID,
     };
 
-    public override void FinalizeRead(SerializationReader Reader) {
-      base.FinalizeRead(Reader);
+    public override void FinalizeRead(SerializationReader reader) {
+      base.FinalizeRead(reader);
       if (this.Points.IsNullOrEmpty()) {
         Output.DebugLog("No training points loaded, starting from scratch.");
         this.Points = new Dictionary<String, Decimal> {
@@ -32,6 +30,7 @@ namespace Modo.SkillTraining.Parts {
           { SkillClasses.BowAndRifle, 0 },
           { SkillClasses.Cudgel, 0 },
           { SkillClasses.CookingAndGathering, 0 },
+          { SkillClasses.CustomsAndFolklore, 0 },
           { SkillClasses.DeftThrowing, 0 },
           { SkillClasses.HeavyWeapons, 0 },
           { SkillClasses.LongBlade, 0 },

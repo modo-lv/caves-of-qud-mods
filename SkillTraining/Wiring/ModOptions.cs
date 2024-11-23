@@ -4,6 +4,12 @@ using XRL.UI;
 
 namespace Modo.SkillTraining.Wiring {
   public static class ModOptions {
+    public static Decimal CookingTrainingRate =>
+      Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_CookingTrainingPercentage"))
+        .AsPercentage();
+    public static Decimal CustomsTrainingRate =>
+      Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_CustomsTrainingPercentage"))
+        .AsPercentage();
     public static Decimal MeleeTrainingRate =>
       Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_MeleeTrainingPercentage"))
         .AsPercentage();
@@ -12,9 +18,6 @@ namespace Modo.SkillTraining.Wiring {
         .AsPercentage();
     public static Decimal MissileTrainingRate =>
       Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_MissileTrainingPercentage"))
-        .AsPercentage();
-    public static Decimal CookingTrainingRate =>
-      Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_CookingTrainingPercentage"))
         .AsPercentage();
   }
 }
