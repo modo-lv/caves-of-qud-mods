@@ -16,5 +16,8 @@ namespace Modo.SkillTraining.Constants {
 
     /// <summary>Fired on the player after a reputation change has occured.</summary>
     public const String ReputationChanged = "ReputationChanged";
+
+    /// <summary>Fired on the player when moving items from inventory to trader or container.</summary>
+    public const String CommandRemoveObject = "CommandRemoveObject";
   }
 }

@@ -67,6 +67,13 @@ Swimming in deep water automatically trains [Swimming](https://wiki.cavesofqud.c
 Note that this is an individual skill (a "power"), rather than a skill tree -- unlocking it will not automatically make the rest of the [Endurance](https://wiki.cavesofqud.com/wiki/Endurance) tree available.
 
 
+## Snake Oiler
+
+Every completed trade trains [Snake Oiler](https://wiki.cavesofqud.com/wiki/Snake_Oiler) 
+
+Note that this is an individual skill (a "power"), rather than a skill tree -- unlocking it will not automatically make the rest of the [Persuasion](https://wiki.cavesofqud.com/wiki/Persuasion) tree available.
+
+
 ## Thrown weapons
 
 Successfully hitting an enemy in combat trains [Deft Throwing](https://wiki.cavesofqud.com/wiki/Deft_Throwing) skill.

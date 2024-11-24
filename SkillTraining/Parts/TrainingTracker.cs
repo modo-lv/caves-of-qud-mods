@@ -25,6 +25,8 @@ namespace Modo.SkillTraining.Parts {
       { SkillClasses.Pistol, 0 },
       { SkillClasses.ShortBlade, 0 },
       { SkillClasses.SingleWeaponFighting, 0 },
+      { SkillClasses.SnakeOiler, 0 },
+      { SkillClasses.Swimming, 0 },
       { SkillClasses.Wayfaring, 0 },
     };
 

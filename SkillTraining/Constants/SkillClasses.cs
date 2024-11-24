@@ -30,6 +30,9 @@ namespace Modo.SkillTraining.Constants {
 
     // Long Blade tree
     public const String LongBlade = "LongBlades";
+    
+    // Persuasion tree
+    public const String SnakeOiler = "Persuasion_SnakeOiler";
 
     // Pistol tree
     public const String Pistol = "Pistol";
