@@ -1,7 +1,7 @@
 ﻿using System;
 using HarmonyLib;
-using Modo.SkillTraining.Constants;
-using Modo.SkillTraining.Internal;
+using Modo.SkillTraining.Data;
+using Modo.SkillTraining.Utils;
 using Modo.SkillTraining.Wiring;
 using XRL.World.Parts;
 // ReSharper disable UnusedType.Global
@@ -19,7 +19,7 @@ namespace Modo.SkillTraining.Trainers {
       if (!__result)
         return;
       Output.DebugLog("Bandage applied.");
-      Main.PointTracker.AddPoints(SkillClasses.Physic, Settings.PhysicTrainingRate);
+      Main.PointTracker.AddPoints(SkillClasses.Physic, ModOptions.PhysicTrainingRate);
     }
   }
 }

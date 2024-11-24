@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Modo.SkillTraining.Internal;
+using Modo.SkillTraining.Utils;
 using XRL.UI;
 using XRL.Wish;
 using XRL.World.Parts;

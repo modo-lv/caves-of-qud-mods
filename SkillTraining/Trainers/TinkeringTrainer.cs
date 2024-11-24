@@ -1,6 +1,6 @@
 ﻿using System;
-using Modo.SkillTraining.Constants;
-using Modo.SkillTraining.Internal;
+using Modo.SkillTraining.Data;
+using Modo.SkillTraining.Utils;
 using Modo.SkillTraining.Wiring;
 using Wintellect.PowerCollections;
 using XRL.World;
@@ -13,7 +13,7 @@ namespace Modo.SkillTraining.Trainers {
 
     public override Boolean HandleEvent(ExamineSuccessEvent ev) {
       if (ev.Actor.IsPlayer()) {
-        Main.PointTracker.AddPoints(SkillClasses.Tinkering, Settings.TinkeringTrainingRate);
+        Main.PointTracker.AddPoints(SkillClasses.Tinkering, ModOptions.TinkeringTrainingRate);
       } 
       return base.HandleEvent(ev);
     }

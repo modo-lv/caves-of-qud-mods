@@ -1,6 +1,6 @@
 ﻿using System;
-using Modo.SkillTraining.Constants;
-using Modo.SkillTraining.Internal;
+using Modo.SkillTraining.Data;
+using Modo.SkillTraining.Utils;
 using Modo.SkillTraining.Wiring;
 using XRL;
 using XRL.World;
@@ -18,7 +18,7 @@ namespace Modo.SkillTraining.Trainers {
         return base.FireEvent(ev);
 
       Output.DebugLog("Water ritual reputation change.");
-      Main.PointTracker.AddPoints(SkillClasses.CustomsAndFolklore, Settings.CustomsTrainingRate);
+      Main.PointTracker.AddPoints(SkillClasses.CustomsAndFolklore, ModOptions.CustomsTrainingRate);
       return base.FireEvent(ev);
     }
   }

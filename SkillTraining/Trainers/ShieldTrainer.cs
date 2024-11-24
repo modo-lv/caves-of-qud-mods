@@ -1,6 +1,6 @@
 ﻿using System;
-using Modo.SkillTraining.Constants;
-using Modo.SkillTraining.Internal;
+using Modo.SkillTraining.Data;
+using Modo.SkillTraining.Utils;
 using Modo.SkillTraining.Wiring;
 using Wintellect.PowerCollections;
 using XRL.World;
@@ -13,7 +13,7 @@ namespace Modo.SkillTraining.Trainers {
 
     public override Boolean HandleEvent(AfterShieldBlockEvent ev) {
       if (ev.Defender.IsPlayer()) {
-        Main.PointTracker.AddPoints(SkillClasses.Shield, Settings.ShieldOilerTrainingRate);
+        Main.PointTracker.AddPoints(SkillClasses.Shield, ModOptions.ShieldOilerTrainingRate);
       }
       return base.HandleEvent(ev);
     }

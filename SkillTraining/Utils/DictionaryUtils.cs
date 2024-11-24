@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Modo.SkillTraining.Internal {
+namespace Modo.SkillTraining.Utils {
   public static class DictionaryUtils {
     public static TValue? GetOr<TKey, TValue>(
       this IDictionary<TKey, TValue> dictionary,

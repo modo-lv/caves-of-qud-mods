@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Modo.SkillTraining.Internal {
+namespace Modo.SkillTraining.Utils {
   public static class Conditional {
     /// <summary>
     /// Return <paramref name="value"/> if <paramref name="predicate"/> returns <c>true</c>,

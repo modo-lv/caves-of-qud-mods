@@ -1,6 +1,6 @@
 ﻿using System;
-using Modo.SkillTraining.Constants;
-using Modo.SkillTraining.Internal;
+using Modo.SkillTraining.Data;
+using Modo.SkillTraining.Utils;
 using Modo.SkillTraining.Wiring;
 using Wintellect.PowerCollections;
 using XRL.World;
@@ -20,7 +20,7 @@ namespace Modo.SkillTraining.Trainers {
       if (ev.Object.IsPlayer()
           && !Main.Player.HasSkill(SkillClasses.Swimming)
           && Main.Player.HasEffect<Swimming>()) {
-        Main.PointTracker.AddPoints(SkillClasses.Swimming, Settings.SwimmingTrainingRate);
+        Main.PointTracker.AddPoints(SkillClasses.Swimming, ModOptions.SwimmingTrainingRate);
       }
       return base.HandleEvent(ev);
     }

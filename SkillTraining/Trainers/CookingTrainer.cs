@@ -1,7 +1,7 @@
 ﻿using System;
 using HarmonyLib;
-using Modo.SkillTraining.Constants;
-using Modo.SkillTraining.Internal;
+using Modo.SkillTraining.Data;
+using Modo.SkillTraining.Utils;
 using Modo.SkillTraining.Wiring;
 using Wintellect.PowerCollections;
 using XRL;

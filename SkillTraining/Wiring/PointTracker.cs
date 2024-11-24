@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AiUnity.Common.Extensions;
-using Modo.SkillTraining.Constants;
-using Modo.SkillTraining.Internal;
+using Modo.SkillTraining.Data;
 using Modo.SkillTraining.Trainers;
-using Modo.SkillTraining.Wiring;
+using Modo.SkillTraining.Utils;
 using Wintellect.PowerCollections;
 using XRL.World;
 using Skills = XRL.World.Parts.Skills;
 
-namespace Modo.SkillTraining {
+namespace Modo.SkillTraining.Wiring {
   /// <summary>Main component that tracks training points for trainable skills.</summary>
   [Serializable] public class PointTracker : ModPart {
     /// <inheritdoc cref="Points"/>
@@ -65,7 +63,7 @@ namespace Modo.SkillTraining {
 
     /// <summary>Increases training points for a player action.</summary>
     public void TrainingAction(PlayerAction action) {
-      switch (Settings.TrainingEnabled) {
+      switch (ModOptions.TrainingEnabled) {
         case true when this._disabledLogged:
           this._disabledLogged = false;
           break;
@@ -81,7 +79,7 @@ namespace Modo.SkillTraining {
       }
 
       Output.DebugLog($"Player action: [{action}].");
-      var training = Constants.TrainingAction.Data.GetOr(action, () =>
+      var training = Data.TrainingAction.Data.GetOr(action, () =>
         throw new Exception($"No training data for player action [{action}].")
       );
       var amount = training.DefaultAmount; // TODO

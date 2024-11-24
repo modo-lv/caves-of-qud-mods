@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Modo.SkillTraining.Internal {
+namespace Modo.SkillTraining.Utils {
   public static class DecimalUtils {
     /// <summary>
     /// Interprets an integer as percentage points out of 100, and converts it to the corresponding decimal.

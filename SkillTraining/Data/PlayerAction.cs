@@ -1,4 +1,4 @@
-﻿namespace Modo.SkillTraining.Constants {
+﻿namespace Modo.SkillTraining.Data {
   public enum PlayerAction {
     Cook,
     CookTasty,

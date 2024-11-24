@@ -1,6 +1,6 @@
 ﻿using System;
-using Modo.SkillTraining.Constants;
-using Modo.SkillTraining.Internal;
+using Modo.SkillTraining.Data;
+using Modo.SkillTraining.Utils;
 using Modo.SkillTraining.Wiring;
 using XRL;
 using XRL.World;
@@ -34,7 +34,7 @@ namespace Modo.SkillTraining.Trainers {
                && ev.GetParameter("Attacker") == Main.Player
                && (ev.GetParameter("Defender") as GameObject)?.IsCreature == true:
           Output.DebugLog($"[{ev.GetParameter("Defender")}] hit with [{this.Weapon}].");
-          Main.PointTracker.AddPoints(SkillClasses.DeftThrowing, Settings.ThrownTrainingRate);
+          Main.PointTracker.AddPoints(SkillClasses.DeftThrowing, ModOptions.ThrownTrainingRate);
           break;
       }
 

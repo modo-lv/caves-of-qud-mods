@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using static Modo.SkillTraining.Constants.PlayerAction;
-using static Modo.SkillTraining.Constants.SkillClasses;
+using static Modo.SkillTraining.Data.PlayerAction;
+using static Modo.SkillTraining.Data.SkillClasses;
 
-namespace Modo.SkillTraining.Constants {
+namespace Modo.SkillTraining.Data {
   public struct TrainingAction {
-    public String SkillClass;
-    public Decimal DefaultAmount;
+    public readonly String SkillClass;
+    public readonly Decimal DefaultAmount;
 
     public TrainingAction(String skillClass, Decimal defaultAmount) {
       this.SkillClass = skillClass;

@@ -1,9 +1,8 @@
 ﻿using System;
-using Modo.SkillTraining.Internal;
 using Wintellect.PowerCollections;
 using XRL.World;
 
-namespace Modo.SkillTraining.Wiring {
+namespace Modo.SkillTraining.Utils {
   public abstract class ModPart : IPart {
     /// <summary>
     /// Outputs a debug log message whenever a new instance of this part is attached to a game object.

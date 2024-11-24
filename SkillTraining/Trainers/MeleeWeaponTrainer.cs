@@ -1,6 +1,6 @@
 ﻿using System;
-using Modo.SkillTraining.Constants;
-using Modo.SkillTraining.Internal;
+using Modo.SkillTraining.Data;
+using Modo.SkillTraining.Utils;
 using Modo.SkillTraining.Wiring;
 using Wintellect.PowerCollections;
 using XRL;
@@ -23,7 +23,7 @@ namespace Modo.SkillTraining.Trainers {
       if (ev.Attacker != Main.Player
           || Main.Player.HasSkill(skill)
           || skill == null
-          || Settings.MeleeTrainingRate <= 0
+          || ModOptions.MeleeTrainingRate <= 0
           // Only equipped weapons train skills
           || ev.Weapon.EquippedOn()?.ThisPartWeapon() == null) {
         return base.HandleEvent(ev);
@@ -38,17 +38,17 @@ namespace Modo.SkillTraining.Trainers {
 
       // Main hand weapon skill
       if (ev.Weapon.IsEquippedInMainHand())
-        Main.PointTracker.AddPoints(skill, Settings.MeleeTrainingRate);
+        Main.PointTracker.AddPoints(skill, ModOptions.MeleeTrainingRate);
       // Single / offhand weapon
       if (singleWeapon) {
         Main.PointTracker.AddPoints(
           SkillClasses.SingleWeaponFighting,
-          Math.Max(new Decimal(0.01), Math.Round(Settings.MeleeTrainingRate / 2, 2))
+          Math.Max(new Decimal(0.01), Math.Round(ModOptions.MeleeTrainingRate / 2, 2))
         );
       } else if (!ev.Weapon.IsEquippedOnPrimary()) {
         Main.PointTracker.AddPoints(
           SkillClasses.MultiweaponFighting,
-          Math.Round(Settings.MeleeTrainingRate * 2, 2)
+          Math.Round(ModOptions.MeleeTrainingRate * 2, 2)
         );
       }
 

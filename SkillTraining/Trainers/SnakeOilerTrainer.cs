@@ -1,6 +1,6 @@
 ﻿using System;
-using Modo.SkillTraining.Constants;
-using Modo.SkillTraining.Internal;
+using Modo.SkillTraining.Data;
+using Modo.SkillTraining.Utils;
 using Modo.SkillTraining.Wiring;
 using XRL;
 using XRL.UI;
@@ -18,7 +18,7 @@ namespace Modo.SkillTraining.Trainers {
         return base.FireEvent(ev);
       
       Output.DebugLog("Successful trade.");
-      Main.PointTracker.AddPoints(SkillClasses.SnakeOiler, Settings.SnakeOilerTrainingRate);
+      Main.PointTracker.AddPoints(SkillClasses.SnakeOiler, ModOptions.SnakeOilerTrainingRate);
       return base.FireEvent(ev);
     }
   }

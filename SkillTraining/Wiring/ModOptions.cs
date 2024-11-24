@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using Modo.SkillTraining.Constants;
-using Modo.SkillTraining.Internal;
+using Modo.SkillTraining.Data;
+using Modo.SkillTraining.Utils;
 using XRL.UI;
 
 namespace Modo.SkillTraining.Wiring {
   /// <summary>
   /// Global mod options, configured in the game's main Options screen and applying to all characters.
   /// </summary>
-  public static class Settings {
+  public static class ModOptions {
     public static Boolean TrainingEnabled =>
       Options.GetOption("Option_Modo_SkillTraining_Enabled")?.EqualsNoCase("yes") ?? false;
 

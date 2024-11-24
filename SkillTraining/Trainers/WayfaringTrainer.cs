@@ -1,6 +1,6 @@
 ﻿using System;
-using Modo.SkillTraining.Constants;
-using Modo.SkillTraining.Internal;
+using Modo.SkillTraining.Data;
+using Modo.SkillTraining.Utils;
 using Modo.SkillTraining.Wiring;
 using Wintellect.PowerCollections;
 using XRL.World;
@@ -19,7 +19,7 @@ namespace Modo.SkillTraining.Trainers {
       if (ev.Effect.GetEffectType() == new Lost().GetEffectType()) {
         Main.PointTracker.AddPoints(
           SkillClasses.Wayfaring,
-          Settings.WayfaringTrainingRate * 5
+          ModOptions.WayfaringTrainingRate * 5
         );
       }
       return base.HandleEvent(ev);
@@ -30,7 +30,7 @@ namespace Modo.SkillTraining.Trainers {
         this._turnsRemaining--;
         if (this._turnsRemaining == 0) {
           this._turnsRemaining = 300;
-          Main.PointTracker.AddPoints(SkillClasses.Wayfaring, Settings.WayfaringTrainingRate);
+          Main.PointTracker.AddPoints(SkillClasses.Wayfaring, ModOptions.WayfaringTrainingRate);
         }
       }
       return base.HandleEvent(ev);

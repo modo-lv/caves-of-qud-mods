@@ -1,6 +1,6 @@
 ﻿using System;
-using Modo.SkillTraining.Constants;
-using Modo.SkillTraining.Internal;
+using Modo.SkillTraining.Data;
+using Modo.SkillTraining.Utils;
 using Modo.SkillTraining.Wiring;
 using Wintellect.PowerCollections;
 using XRL.World;
@@ -29,7 +29,7 @@ namespace Modo.SkillTraining.Trainers {
       }
 
       Output.DebugLog($"[{this.ParentObject}] hit with [{ev.Launcher}].");
-      Main.PointTracker.AddPoints(skill, Settings.MissileTrainingRate);
+      Main.PointTracker.AddPoints(skill, ModOptions.MissileTrainingRate);
 
       return base.HandleEvent(ev);
     }

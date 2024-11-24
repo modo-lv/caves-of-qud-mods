@@ -1,6 +1,6 @@
 ﻿using System;
-using Modo.SkillTraining.Internal;
 using Modo.SkillTraining.Trainers;
+using Modo.SkillTraining.Utils;
 using Modo.SkillTraining.Wiring;
 using XRL;
 using XRL.World;
@@ -11,7 +11,8 @@ namespace Modo.SkillTraining {
   [HasCallAfterGameLoaded][PlayerMutator]
   public class Main : IPlayerMutator {
     /// <summary>A non-null reference to the main player body.</summary>
-    public static GameObject Player => The.Player ?? throw new NullReferenceException("[The.Player] is null");
+    public static GameObject Player => 
+      The.Player ?? throw new NullReferenceException("[The.Player] is null.");
 
     /// <summary>Training point tracker for the player.</summary>
     public static PointTracker PointTracker => Player.RequirePart<PointTracker>();
@@ -20,6 +21,8 @@ namespace Modo.SkillTraining {
     [CallAfterGameLoaded]
     public static void OnGameLoaded() {
       Output.DebugLog($"Game loaded, ensuring that training parts are attached to [{Player}]...");
+      Player.RequirePart<PointTracker>();
+      
       Player.RequirePart<CookingTrainer>();
       Player.RequirePart<CustomsTrainer>();
       Player.RequirePart<PointTracker>();
@@ -32,6 +35,8 @@ namespace Modo.SkillTraining {
 
     public void mutate(GameObject player) {
       Output.DebugLog($"New game started, attaching training parts to [{player}]...");
+      Player.RequirePart<PointTracker>();
+
       player.RequirePart<CookingTrainer>();
       player.RequirePart<CustomsTrainer>();
       player.RequirePart<PointTracker>();
