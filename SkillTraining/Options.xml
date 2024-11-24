@@ -80,6 +80,16 @@
         </helptext>
     </option>
 
+    <option ID="Option_Modo_SkillTraining_TinkeringTrainingPercentage"
+            DisplayText="Tinkering training percentage"
+            Category="Mod: Skill Training" Type="Slider" Default="50" Min="0" Max="100" Increment="1">
+        <helptext>
+            Percentage of a training point awarded each time {{Y|Tinkering}} skill is trained.
+
+            Default: {{W|50}} (0.5 points per successful examination).
+        </helptext>
+    </option>
+
     <option ID="Option_Modo_SkillTraining_ThrownTrainingPercentage"
             DisplayText="Deft Throwing training percentage"
             Category="Mod: Skill Training" Type="Slider" Default="25" Min="0" Max="100" Increment="1">

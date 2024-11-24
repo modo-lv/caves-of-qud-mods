@@ -52,6 +52,9 @@ namespace Modo.SkillTraining.Constants {
     // Tactics tree
     public const String DeftThrowing = "Tactics_Throwing";
     
+    // Tinkering tree
+    public const String Tinkering = "Tinkering";
+    
     // Wayfaring tree
     public const String Wayfaring = "Survival";
   }

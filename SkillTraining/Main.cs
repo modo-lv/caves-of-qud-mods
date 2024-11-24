@@ -17,6 +17,7 @@ namespace Modo.SkillTraining {
       Req.Player.RequirePart<ShieldTrainer>();
       Req.Player.RequirePart<SnakeOilerTrainer>();
       Req.Player.RequirePart<SwimmingTrainer>();
+      Req.Player.RequirePart<TinkeringTrainer>();
       Req.Player.RequirePart<WayfaringTrainer>();
     }
 
@@ -28,6 +29,7 @@ namespace Modo.SkillTraining {
       player.RequirePart<ShieldTrainer>();
       player.RequirePart<SnakeOilerTrainer>();
       player.RequirePart<SwimmingTrainer>();
+      player.RequirePart<TinkeringTrainer>();
       player.RequirePart<WayfaringTrainer>();
     }
   }
