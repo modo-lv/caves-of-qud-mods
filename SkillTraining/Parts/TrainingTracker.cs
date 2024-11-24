@@ -23,6 +23,7 @@ namespace Modo.SkillTraining.Parts {
       { SkillClasses.LongBlade, 0 },
       { SkillClasses.MultiweaponFighting, 0 },
       { SkillClasses.Pistol, 0 },
+      { SkillClasses.Shield, 0 },
       { SkillClasses.ShortBlade, 0 },
       { SkillClasses.SingleWeaponFighting, 0 },
       { SkillClasses.SnakeOiler, 0 },

@@ -60,6 +60,11 @@ A missile weapon skill training increases every time you attack an enemy, if all
 Successfully applying bandages to bleeding wounds trains [Physic](https://wiki.cavesofqud.com/wiki/Physic) skill.
 
 
+## Shield
+
+Blocking an attack with shield trains the [Shield](https://wiki.cavesofqud.com/wiki/Shield) skill.
+
+
 ## Swimming
 
 Swimming in deep water automatically trains [Swimming](https://wiki.cavesofqud.com/wiki/Swimming) skill.

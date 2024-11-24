@@ -40,6 +40,9 @@ namespace Modo.SkillTraining.Constants {
     // Physic tree
     public const String Physic = "Physic";
 
+    // Shield tree
+    public const String Shield = "Shield";
+
     // Short Blade tree
     public const String ShortBlade = "ShortBlades";
 
