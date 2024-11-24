@@ -4,6 +4,9 @@ using XRL.UI;
 
 namespace Modo.SkillTraining.Wiring {
   public static class ModOptions {
+    public static Boolean TrainingEnabled =>
+      Options.GetOption("Option_Modo_SkillTraining_Enabled")?.EqualsNoCase("yes") ?? false;
+    
     public static Decimal CookingTrainingRate =>
       Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_CookingTrainingPercentage"))
         .AsPercentage();

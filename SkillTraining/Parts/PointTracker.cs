@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Modo.SkillTraining.Constants;
 using Modo.SkillTraining.Internal;
+using Modo.SkillTraining.Wiring;
 using Wintellect.PowerCollections;
 using XRL.World;
 using Skills = XRL.World.Parts.Skills;
@@ -29,6 +30,8 @@ namespace Modo.SkillTraining.Parts {
       { SkillClasses.Swimming, 0 },
       { SkillClasses.Wayfaring, 0 },
     };
+
+    private Boolean _disabledLogged = false;
 
     public override Set<Int32> WantEventIds => new Set<Int32> {
       BeforeMeleeAttackEvent.ID,
@@ -59,6 +62,21 @@ namespace Modo.SkillTraining.Parts {
 
     /// <summary>Increases training point value for a skill.</summary>
     public void AddPoints(String skillClass, Decimal amount) {
+      switch (ModOptions.TrainingEnabled) {
+        case true when this._disabledLogged:
+          this._disabledLogged = false;
+          break;
+        case false when this._disabledLogged:
+          return;
+        case false: {
+          Output.Log(
+            "Skill training has been disabled in game options, no points will be earned or skills unlocked."
+          );
+          this._disabledLogged = true;
+          return;
+        }
+      }
+
       var skill = SkillUtils.SkillOrPower(skillClass);
       if (amount > 0 && !Req.Player.HasSkill(skillClass)) {
         this.Points.TryAdd(skillClass, 0);
