@@ -43,7 +43,7 @@ namespace Modo.SkillTraining.Parts {
       if (singleWeapon) {
         Req.TrainingTracker.AddPoints(
           SkillClasses.SingleWeaponFighting,
-          Math.Round(ModOptions.MeleeTrainingRate / 2, 2)
+          Math.Max(new Decimal(0.01), Math.Round(ModOptions.MeleeTrainingRate / 2, 2))
         );
       } else if (!ev.Weapon.IsEquippedOnPrimary()) {
         Req.TrainingTracker.AddPoints(
