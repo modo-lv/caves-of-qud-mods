@@ -4,34 +4,23 @@ This is a mod for [Caves of Qud](https://www.cavesofqud.com) that allows unlocki
 
 The main goal of this mod is to add a little bit of realism and some benefit to engaging with aspects of the game that aren't part of your build trajectory.
 
-# Mod menu
+## Mod menu
 
 Wish (`Ctrl+W` by default) for `SkillTraining` to display the mod's main menu, where you can:
-* See and reset training point progress for each trainable skill.
+* See and modify training point progress for each trainable skill.
 * Unlearn known skills, with or without refunding the skill points.
 
+# Details
 
-# In detail
-
-* In-game actions that train certain skills increase a special training point value every time it is performed (see below for more details). When the training point value reaches or exceeds the value of the corresponding skill, that skill is automatically unlocked.
-* Most training targets "base" skills that unlock a whole skill tree (and in most cases also the first skill in the tree, if it has 0 cost).
-* Skill points and training points are completely independent of each other. Training a skill does not make it cheaper to purchase with points, nor do any spent or unspent skill points affect the practical training.
-* Each of the following categories has its own rate of training (how quickly the skill can be unlocked), configurable in mod's options.
-* Skill unlocks only happen at the moment of training. For example, if you have fully trained a skill, but it hasn't unlocked because of an attribute requirement, you will need to train again after meeting the requirement to trigger the unlock.
-
-
-## Customs and Folklore
-
-[Customs and Folklore] is trained whenever you gain reputation from a water ritual. Note that unlocking it requires at least 19 Intelligence. It can still be trained, but will only unlock once the requirement is met. 
-
-## Cooking
-
-Cooking meal trains the [Cooking and Gathering](https://wiki.cavesofqud.com/wiki/Cooking_and_Gathering) skill. "Tasty" meals double the point increase.
-
+* In-game actions that train certain skills increase a special training point value every time they are performed. When the training point value reaches or exceeds the cost of the corresponding skill, that skill is automatically unlocked.
+  * If the skill has an attribute requirement, it won't be unlocked until that requirement is met and  another training event has occured after that.
+* (Most) training targets "base" skills that unlock a whole skill category (including the initial 0-point skill, if present).
+  * There is no training for [Acrobatics](https://wiki.cavesofqud.com/wiki/Acrobatics), [Endurance](https://wiki.cavesofqud.com/wiki/Endurance), [Self-discipline](https://wiki.cavesofqud.com/wiki/Self-discipline) and [Tactics](https://wiki.cavesofqud.com/wiki/Tactics) trees; only individual skills [Swimming](https://wiki.cavesofqud.com/wiki/Swimming) and [Deft Throwing](https://wiki.cavesofqud.com/wiki/Deft_Throwing) can be trained.
+* Skill points and training points are completely independent of each other. Training a skill does not make it cheaper to purchase with points, nor does spending skill points affect the practical training in any other skill.
 
 ## Melee weapons
 
-Using melee weapons in combat can train their corresponding base skills ([Axe](https://wiki.cavesofqud.com/wiki/Axe), [Cudgel](https://wiki.cavesofqud.com/wiki/Cudgel), [Short Blade](https://wiki.cavesofqud.com/wiki/Short_Blade) or [Long Blade](https://wiki.cavesofqud.com/wiki/Long_Blade)), as well as single or multi weapon fighting.
+Using melee weapons in combat trains their corresponding base skills ([Axe](https://wiki.cavesofqud.com/wiki/Axe), [Cudgel](https://wiki.cavesofqud.com/wiki/Cudgel), [Short Blade](https://wiki.cavesofqud.com/wiki/Short_Blade) or [Long Blade](https://wiki.cavesofqud.com/wiki/Long_Blade)).
 
 A melee weapon skill training increases every time you attack an enemy, if all the following are true:
 * The target is successfully hit (with or without damage).
@@ -40,9 +29,24 @@ A melee weapon skill training increases every time you attack an enemy, if all t
 * The weapon is in the main hand (off-hand weapons don't train weapon skills).
 * The attacking weapon has an associated skill to train (whips will not train anything).
 
-Single/multi weapon fighting:
-* If the attacking weapon is the only one equipped, [Single Weapon Fighting](https://wiki.cavesofqud.com/wiki/Single_Weapon_Fighting) will also be trained, at **half** the rate of the weapon skill.
-* If the attacking weapon is equipped in an off-hand, it won't train its weapon skill, but will train [Multiweapon Fighting](https://wiki.cavesofqud.com/wiki/Multiweapon_Fighting) at **double** the rate of the weapon skill training.
+Training amount is doubled on critical hits.
+
+### Single/multi weapon fighting
+
+* If the attacking weapon is the only one equipped, [Single Weapon Fighting](https://wiki.cavesofqud.com/wiki/Single_Weapon_Fighting) will also be trained.
+* If the attacking weapon is equipped in an off-hand, it won't train its weapon skill, but will train [Multiweapon Fighting](https://wiki.cavesofqud.com/wiki/Multiweapon_Fighting).
+
+Single/Multiweapon skill training doesn't benefit from the critical hit bonus.
+
+
+## Customs and Folklore
+
+[Customs and Folklore] is trained whenever you gain reputation from a water ritual. Note that unlocking it requires at least 19 Intelligence. It can still be trained, but will only unlock once the requirement is met. 
+
+
+## Cooking
+
+Cooking meal trains the [Cooking and Gathering](https://wiki.cavesofqud.com/wiki/Cooking_and_Gathering) skill. "Tasty" meals double the point increase.
 
 
 ## Missile weapons
