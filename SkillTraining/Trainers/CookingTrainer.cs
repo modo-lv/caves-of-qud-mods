@@ -26,7 +26,7 @@ namespace Modo.SkillTraining.Trainers {
     [HarmonyPostfix][HarmonyPatch(typeof(Harvestable), nameof(Harvestable.AttemptHarvest))]
     private static void PostHarvest(ref Boolean __result, ref Boolean __state) {
       if (__state && __result) {
-        Req.PointTracker.TrainingAction(PlayerAction.Harvest);
+        Main.PointTracker.TrainingAction(PlayerAction.Harvest);
       }
     }
 
@@ -43,7 +43,7 @@ namespace Modo.SkillTraining.Trainers {
     [HarmonyPostfix][HarmonyPatch(typeof(Butcherable), nameof(Butcherable.AttemptButcher))]
     private static void PostButcher(ref Boolean __result, ref Boolean __state) {
       if (__state && __result) {
-        Req.PointTracker.TrainingAction(PlayerAction.Butcher);
+        Main.PointTracker.TrainingAction(PlayerAction.Butcher);
       }
     }
 
@@ -56,7 +56,7 @@ namespace Modo.SkillTraining.Trainers {
     /// <summary>Handle the <see cref="EventNames.CookedAt"/> event.</summary>
     public override Boolean FireEvent(Event ev) {
       if (ev.ID == EventNames.CookedAt)
-        Req.PointTracker.TrainingAction(PlayerAction.Cook);
+        Main.PointTracker.TrainingAction(PlayerAction.Cook);
       return base.FireEvent(ev);
     }
 
@@ -69,7 +69,7 @@ namespace Modo.SkillTraining.Trainers {
     /// <summary>Handle the tasty cooking event.</summary>
     public override Boolean HandleEvent(EffectAppliedEvent ev) {
       if (ev.Effect.GetType().IsSubclassOf(typeof(BasicCookingEffect)))
-        Req.PointTracker.TrainingAction(PlayerAction.CookTasty);
+        Main.PointTracker.TrainingAction(PlayerAction.CookTasty);
       return base.HandleEvent(ev);
     }
   }

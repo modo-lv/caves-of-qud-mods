@@ -29,7 +29,7 @@ namespace Modo.SkillTraining.Trainers {
       }
 
       Output.DebugLog($"[{this.ParentObject}] hit with [{ev.Launcher}].");
-      Req.PointTracker.AddPoints(skill, Settings.MissileTrainingRate);
+      Main.PointTracker.AddPoints(skill, Settings.MissileTrainingRate);
 
       return base.HandleEvent(ev);
     }

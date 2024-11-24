@@ -19,7 +19,7 @@ namespace Modo.SkillTraining.Trainers {
       if (!__result)
         return;
       Output.DebugLog("Bandage applied.");
-      Req.PointTracker.AddPoints(SkillClasses.Physic, Settings.PhysicTrainingRate);
+      Main.PointTracker.AddPoints(SkillClasses.Physic, Settings.PhysicTrainingRate);
     }
   }
 }

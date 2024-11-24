@@ -13,7 +13,7 @@ namespace Modo.SkillTraining.Trainers {
 
     public override Boolean HandleEvent(AfterShieldBlockEvent ev) {
       if (ev.Defender.IsPlayer()) {
-        Req.PointTracker.AddPoints(SkillClasses.Shield, Settings.ShieldOilerTrainingRate);
+        Main.PointTracker.AddPoints(SkillClasses.Shield, Settings.ShieldOilerTrainingRate);
       }
       return base.HandleEvent(ev);
     }

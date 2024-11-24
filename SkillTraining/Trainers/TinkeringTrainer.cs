@@ -13,7 +13,7 @@ namespace Modo.SkillTraining.Trainers {
 
     public override Boolean HandleEvent(ExamineSuccessEvent ev) {
       if (ev.Actor.IsPlayer()) {
-        Req.PointTracker.AddPoints(SkillClasses.Tinkering, Settings.TinkeringTrainingRate);
+        Main.PointTracker.AddPoints(SkillClasses.Tinkering, Settings.TinkeringTrainingRate);
       } 
       return base.HandleEvent(ev);
     }

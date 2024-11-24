@@ -11,10 +11,12 @@ namespace Modo.SkillTraining {
   [HasCallAfterGameLoaded][PlayerMutator]
   public class Main : IPlayerMutator {
     /// <summary>A non-null reference to the main player body.</summary>
-    /// <exception cref="NullReferenceException"></exception>
     public static GameObject Player => The.Player ?? throw new NullReferenceException("[The.Player] is null");
 
+    /// <summary>Training point tracker for the player.</summary>
+    public static PointTracker PointTracker => Player.RequirePart<PointTracker>();
 
+    
     [CallAfterGameLoaded]
     public static void OnGameLoaded() {
       Output.DebugLog($"Game loaded, ensuring that training parts are attached to [{Player}]...");
