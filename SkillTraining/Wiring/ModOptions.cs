@@ -14,12 +14,9 @@ namespace Modo.SkillTraining.Wiring {
 
     public static IDictionary<String, Decimal> Defaults = new Dictionary<String, Decimal> {
       // @formatter:off
-      { SkillClasses.Axe,                 0.05m }, //  50
       { SkillClasses.BowAndRifle,         0.25m }, // 100
-      { SkillClasses.Cudgel,              0.05m }, //  50
       { SkillClasses.CustomsAndFolklore,  1.00m }, // 150
       { SkillClasses.HeavyWeapon,         0.25m }, // 100
-      { SkillClasses.LongBlade,           0.10m }, // 100
       { SkillClasses.MultiweaponFighting, 0.30m }, // 150
       { SkillClasses.Physic,              1.00m }, //  50
       { SkillClasses.Pistol,              0.25m }, // 100

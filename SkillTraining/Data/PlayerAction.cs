@@ -8,6 +8,8 @@
     SingleWeaponHit,
     OffhandWeaponHit,
     
+    ThrownWeaponHit,
+    
     Cook,
     CookTasty,
     Harvest,

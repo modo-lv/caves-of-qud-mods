@@ -1,8 +1,6 @@
 ﻿using System;
 using Modo.SkillTraining.Data;
 using Modo.SkillTraining.Utils;
-using Modo.SkillTraining.Wiring;
-using Wintellect.PowerCollections;
 using XRL;
 using XRL.World;
 
@@ -15,18 +13,15 @@ namespace Modo.SkillTraining.Trainers {
     }
 
     public override Boolean FireEvent(Event ev) {
-      var weapon = ev.GetGameObjectParameter("Weapon");
-      var attacker = ev.GetGameObjectParameter("Attacker");
-      var defender = ev.GetGameObjectParameter("Defender");
       var isCritical = ev.HasFlag("Critical");
-      var skill = SkillUtils.SkillOrPower(weapon.GetWeaponSkill())?.Class;
+      var skill = SkillUtils.SkillOrPower(ev.Weapon()!.GetWeaponSkill()).Class;
       
-      if (!attacker.IsPlayer()
-          || defender.IsPlayer()
+      if (ev.Attacker()?.IsPlayer() != true
+          || ev.Defender()?.IsPlayer() == true
           || skill == null
           || Main.Player.HasSkill(skill)
           // Only equipped weapons train skills
-          || weapon.EquippedOn()?.ThisPartWeapon() == null) {
+          || ev.Weapon()?.EquippedOn()?.ThisPartWeapon() == null) {
         return base.FireEvent(ev);
       }
       
@@ -40,7 +35,7 @@ namespace Modo.SkillTraining.Trainers {
       };
 
       // Weapon skill
-      if (action is not null && weapon.IsEquippedInMainHand()) {
+      if (action is not null && ev.Weapon()?.IsEquippedInMainHand() == true) {
         Main.PointTracker.HandleTrainingAction(
           (PlayerAction) action,
           amountModifier: isCritical ? 2m : 1m
@@ -56,7 +51,7 @@ namespace Modo.SkillTraining.Trainers {
       // Single/multi fighting.
       if (singleWeapon)
         Main.PointTracker.HandleTrainingAction(PlayerAction.SingleWeaponHit);
-      else if (!weapon.IsEquippedOnPrimary())
+      else if (ev.Weapon()?.IsEquippedOnPrimary() == true)
         Main.PointTracker.HandleTrainingAction(PlayerAction.OffhandWeaponHit);
 
       return base.FireEvent(ev);

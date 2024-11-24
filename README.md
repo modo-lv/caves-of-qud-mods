@@ -18,7 +18,8 @@ Wish (`Ctrl+W` by default) for `SkillTraining` to display the mod's main menu, w
   * There is no training for [Acrobatics](https://wiki.cavesofqud.com/wiki/Acrobatics), [Endurance](https://wiki.cavesofqud.com/wiki/Endurance), [Self-discipline](https://wiki.cavesofqud.com/wiki/Self-discipline) and [Tactics](https://wiki.cavesofqud.com/wiki/Tactics) trees; only individual skills [Swimming](https://wiki.cavesofqud.com/wiki/Swimming) and [Deft Throwing](https://wiki.cavesofqud.com/wiki/Deft_Throwing) can be trained.
 * Skill points and training points are completely independent of each other. Training a skill does not make it cheaper to purchase with points, nor does spending skill points affect the practical training in any other skill.
 
-## Melee weapons
+
+## Melee combat
 
 Using melee weapons in combat trains their corresponding base skills ([Axe](https://wiki.cavesofqud.com/wiki/Axe), [Cudgel](https://wiki.cavesofqud.com/wiki/Cudgel), [Short Blade](https://wiki.cavesofqud.com/wiki/Short_Blade) or [Long Blade](https://wiki.cavesofqud.com/wiki/Long_Blade)).
 
@@ -83,16 +84,17 @@ Every completed trade trains [Snake Oiler](https://wiki.cavesofqud.com/wiki/Snak
 Note that this is an individual skill (a "power"), rather than a skill tree -- unlocking it will not automatically make the rest of the [Persuasion](https://wiki.cavesofqud.com/wiki/Persuasion) tree available.
 
 
-## Thrown weapons
+## Deft Throwing
 
-Successfully hitting an enemy in combat trains [Deft Throwing](https://wiki.cavesofqud.com/wiki/Deft_Throwing) skill.
-
-Note that this is an individual skill (a "power"), rather than a skill tree -- unlocking it will not automatically make the rest of the [Tactics](https://wiki.cavesofqud.com/wiki/Tactics) tree available.
+Successfully hitting an enemy with a thrown weapon trains [Deft Throwing](https://wiki.cavesofqud.com/wiki/Deft_Throwing) skill.
 
 Training increases every time you throw something at an enemy, if all the following are true:
 * The target is successfully hit (with or without damage).
 * The target is a creature (throwing at walls and trees doesn't count).
-* The target is the one originally aimed at (hitting something else by accident doesn't count).
+* The target is the one originally aimed at (hitting something else by accident or through bullet spread doesn't count).
+
+* Note that this is an individual skill, rather than a skill tree -- unlocking it will not unlock [Tactics](https://wiki.cavesofqud.com/wiki/Tactics).
+
 
 
 ## Wayfaring

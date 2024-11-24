@@ -35,6 +35,8 @@ namespace Modo.SkillTraining.Data {
         { OffhandWeaponHit, new TrainingData(MultiweaponFighting, 0.02m) },
         #endregion
         
+        { ThrownWeaponHit,  new TrainingData(DeftThrowing,        0.05m) },
+
         //@formatter:on
       };
 

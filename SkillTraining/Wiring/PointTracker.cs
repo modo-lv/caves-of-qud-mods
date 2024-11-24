@@ -34,17 +34,9 @@ namespace Modo.SkillTraining.Wiring {
     private Boolean _disabledLogged = false;
 
     public override Set<Int32> WantEventIds => new Set<Int32> {
-      EquipperEquippedEvent.ID,
       BeforeFireMissileWeaponsEvent.ID,
     };
 
-
-    /// <summary>Thrown weapon attack training.</summary>
-    public override Boolean HandleEvent(EquipperEquippedEvent ev) {
-      if (ev.Item.IsEquippedAsThrownWeapon())
-        ev.Item.RequirePart<ThrownAttackTracker>();
-      return base.HandleEvent(ev);
-    }
 
     /// <summary>Missile weapon attack training.</summary>
     public override Boolean HandleEvent(BeforeFireMissileWeaponsEvent ev) {
