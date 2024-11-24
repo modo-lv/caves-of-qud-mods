@@ -21,11 +21,11 @@ Wish (`Ctrl+W` by default) for `SkillTraining` to display the mod's main menu, w
 
 ## Melee combat
 
-Using melee weapons in combat trains their corresponding base skills ([Axe](https://wiki.cavesofqud.com/wiki/Axe), [Cudgel](https://wiki.cavesofqud.com/wiki/Cudgel), [Short Blade](https://wiki.cavesofqud.com/wiki/Short_Blade) or [Long Blade](https://wiki.cavesofqud.com/wiki/Long_Blade)).
+Using melee weapons in combat trains their corresponding skills ([Axe](https://wiki.cavesofqud.com/wiki/Axe), [Cudgel](https://wiki.cavesofqud.com/wiki/Cudgel), [Short Blade](https://wiki.cavesofqud.com/wiki/Short_Blade) or [Long Blade](https://wiki.cavesofqud.com/wiki/Long_Blade)).
 
-A melee weapon skill training increases every time you attack an enemy, if all the following are true:
+Training points are earned for each attack where all the following are true:
 * The target is successfully hit (with or without damage).
-* The target is a creature (destroying walls or trees is not combat).
+* The target is a creature other than player (attacking walls or yourself doesn't count).
 * The weapon is an equipped item (no natural weapons like fists or claws).
 * The weapon is in the main hand (off-hand weapons don't train weapon skills).
 * The attacking weapon has an associated skill to train (whips will not train anything).
@@ -40,6 +40,16 @@ Training amount is doubled on critical hits.
 Single/Multiweapon skill training doesn't benefit from the critical hit bonus.
 
 
+## Missile weapon combat
+
+Using missile weapons in combat trains the corresponding skills ([Bow and Rifle](https://wiki.cavesofqud.com/wiki/Bow_and_Rifle), [Heavy Weapon](https://wiki.cavesofqud.com/wiki/Heavy_Weapon), or [Pistol](https://wiki.cavesofqud.com/wiki/Pistol)).
+
+Training points are earned for each attack where all the following are true:
+* The target is successfully hit (with or without damage).
+* The target is a creature other than player (attacking walls or yourself doesn't count).
+* The target is the one originally aimed at (hitting something else by accident or through bullet spread doesn't count).
+
+
 ## Customs and Folklore
 
 [Customs and Folklore] is trained whenever you gain reputation from a water ritual. Note that unlocking it requires at least 19 Intelligence. It can still be trained, but will only unlock once the requirement is met. 
@@ -48,16 +58,6 @@ Single/Multiweapon skill training doesn't benefit from the critical hit bonus.
 ## Cooking
 
 Cooking meal trains the [Cooking and Gathering](https://wiki.cavesofqud.com/wiki/Cooking_and_Gathering) skill. "Tasty" meals double the point increase.
-
-
-## Missile weapons
-
-Successfully hitting an enemy in combat trains the associated missile weapon skill ([Bow and Rifle](https://wiki.cavesofqud.com/wiki/Bow_and_Rifle), [Heavy Weapon](https://wiki.cavesofqud.com/wiki/Heavy_Weapon), or [Pistol](https://wiki.cavesofqud.com/wiki/Pistol)).
-
-A missile weapon skill training increases every time you attack an enemy, if all the following are true:
-* The target is successfully hit (with or without damage).
-* The target is a creature (shooting walls and trees doesn't count).
-* The target is the one originally aimed at (hitting something else by accident doesn't count).
 
 
 ## Physic

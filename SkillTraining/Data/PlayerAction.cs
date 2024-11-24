@@ -4,9 +4,13 @@
     CudgelHit,
     LongBladeHit,
     ShortBladeHit,
-    
     SingleWeaponHit,
     OffhandWeaponHit,
+    
+    BowHit,
+    PistolHit,
+    RifleHit,
+    HeavyWeaponHit,
     
     ThrownWeaponHit,
     

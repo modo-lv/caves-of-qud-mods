@@ -31,23 +31,11 @@ namespace Modo.SkillTraining.Wiring {
     public static Decimal CustomsTrainingRate =>
       Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_CustomsTrainingPercentage"))
         .AsPercentage();
-    public static Decimal MeleeTrainingRate =>
-      Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_MeleeTrainingPercentage"))
-        .AsPercentage();
-    public static Decimal ThrownTrainingRate =>
-      Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_ThrownTrainingPercentage"))
-        .AsPercentage();
-    public static Decimal MissileTrainingRate =>
-      Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_MissileTrainingPercentage"))
-        .AsPercentage();
     public static Decimal PhysicTrainingRate =>
       Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_PhysicTrainingPercentage"))
         .AsPercentage();
     public static Decimal ShieldOilerTrainingRate =>
       Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_ShieldTrainingPercentage"))
-        .AsPercentage();
-    public static Decimal SnakeOilerTrainingRate =>
-      Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_SnakeOilerTrainingPercentage"))
         .AsPercentage();
     public static Decimal SwimmingTrainingRate =>
       Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_SwimmingTrainingPercentage"))

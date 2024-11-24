@@ -23,6 +23,7 @@ namespace Modo.SkillTraining {
       Player.RequirePart<CookingTrainer>();
       Player.RequirePart<CustomsTrainer>();
       Player.RequirePart<MeleeWeaponTrainer>();
+      Player.RequirePart<MissileAttackTrainer>();
       Player.RequirePart<PointTracker>();
       Player.RequirePart<ShieldTrainer>();
       Player.RequirePart<SnakeOilerTrainer>();
@@ -39,6 +40,7 @@ namespace Modo.SkillTraining {
       player.RequirePart<CookingTrainer>();
       player.RequirePart<CustomsTrainer>();
       player.RequirePart<MeleeWeaponTrainer>();
+      player.RequirePart<MissileAttackTrainer>();
       player.RequirePart<PointTracker>();
       player.RequirePart<ShieldTrainer>();
       player.RequirePart<SnakeOilerTrainer>();

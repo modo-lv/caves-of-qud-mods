@@ -31,20 +31,7 @@ namespace Modo.SkillTraining.Wiring {
       { SkillClasses.Wayfaring, 0 },
     };
 
-    private Boolean _disabledLogged = false;
-
-    public override Set<Int32> WantEventIds => new Set<Int32> {
-      BeforeFireMissileWeaponsEvent.ID,
-    };
-
-
-    /// <summary>Missile weapon attack training.</summary>
-    public override Boolean HandleEvent(BeforeFireMissileWeaponsEvent ev) {
-      if (ev.ApparentTarget?.IsCreature == true)
-        ev.ApparentTarget.RequirePart<MissileAttackTrainer>();
-      return base.HandleEvent(ev);
-    }
-
+    private Boolean _disabledLogged;
 
     /// <summary>Process a known training action.</summary>
     public void HandleTrainingAction(PlayerAction action, Decimal amountModifier = 1m) {

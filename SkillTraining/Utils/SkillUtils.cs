@@ -16,7 +16,7 @@ namespace Modo.SkillTraining.Utils {
       SkillFactory.GetSkillOrPowerName(skillClass);
 
     /// <summary>Fetches data for a skill.</summary>
-    public static SkillEntry? SkillByClass(String className) =>
+    public static SkillEntry? SkillByClass(String? className) =>
       SkillFactory.Factory.SkillByClass.GetValueOrDefault(className);
 
     /// <summary>Fetches data for a power.</summary>

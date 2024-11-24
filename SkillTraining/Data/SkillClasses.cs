@@ -7,7 +7,7 @@ namespace Modo.SkillTraining.Data {
     public const String Axe = "Axe";
 
     // Bow and rifle tree
-    public const String BowAndRifle = "Rifles";
+    public const String BowAndRifle = "Rifles"; // 100
 
     // Cooking tree
     public const String CookingAndGathering = "CookingAndGathering";
@@ -23,7 +23,7 @@ namespace Modo.SkillTraining.Data {
     public const String Swimming = "Endurance_Swimming";
 
     // Heavy Weapon tree
-    public const String HeavyWeapon = "HeavyWeapons";
+    public const String HeavyWeapon = "HeavyWeapons"; // 100
 
     // Multiweapon tree
     public const String MultiweaponFighting = "Multiweapon_Fighting";
@@ -35,7 +35,7 @@ namespace Modo.SkillTraining.Data {
     public const String SnakeOiler = "Persuasion_SnakeOiler";
 
     // Pistol tree
-    public const String Pistol = "Pistol";
+    public const String Pistol = "Pistol"; // 100
     
     // Physic tree
     public const String Physic = "Physic";
