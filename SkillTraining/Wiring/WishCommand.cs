@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Modo.SkillTraining.Data;
 using Modo.SkillTraining.Utils;
 using XRL.UI;
 using XRL.Wish;
@@ -20,6 +21,7 @@ namespace Modo.SkillTraining.Wiring {
           DefaultSelected: choice,
           Options: new[] {
             "Overview",
+            "In-game options >",
             "Modify skill training >",
             "Unlearn skills (lose skill points) >",
             "Unlearn skills (refund skill points) >",
@@ -27,12 +29,44 @@ namespace Modo.SkillTraining.Wiring {
         );
         switch (choice) {
           case 0: Overview(); break;
-          case 1: ModifyTraining(); break;
-          case 2: Unlearn(false); break;
-          case 3: Unlearn(true); break;
+          case 1: IngameOptions(); break;
+          case 2: ModifyTraining(); break;
+          case 3: Unlearn(false); break;
+          case 4: Unlearn(true); break;
           default: return;
         }
       }
+    }
+
+    public static void IngameOptions() {
+      var opts = Main.IngameOptions;
+
+      var list = new Dictionary<String, String> {
+        { "Use custom training rates", Main.IngameOptions.UseCustomRates.ToString() }
+      };
+
+      foreach (var (action, _) in TrainingData.Data.OrderBy(it => it.Key)) {
+        list.Add(
+          $"Custom training rate: {action}",
+          Main.IngameOptions.TrainingRateFor(action).ToString("##0.00;;0")
+        );
+      }
+
+      var options = list.Select(option => {
+        var sb = new StringBuilder();
+        sb.Append((option.Key + " ").PadRight(list.Keys.Max(it => it.Length) + 3, '-'));
+        sb.Append(" [{{Y|" + option.Value.PadLeft(6, '\u00FF') + "}}]");
+        return sb.ToString();
+      }).ToList();
+
+      Popup.PickOption(
+        Title: "In-game options",
+        Intro: "Unlike global options, these are tied to this specific playthrough.\n",
+        Options: options,
+        Spacing: 20,
+        SpacingText: "huh?",
+        AllowEscape: true
+      );
     }
 
     public static void Overview() {

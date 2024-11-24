@@ -10,18 +10,19 @@ namespace Modo.SkillTraining {
   /// <remarks>Attaches the <see cref="PointTracker"/> part to the player object.</remarks>
   [HasCallAfterGameLoaded][PlayerMutator]
   public class Main : IPlayerMutator {
-    /// <summary>A non-null reference to the main player body.</summary>
     public static GameObject Player => 
       The.Player ?? throw new NullReferenceException("[The.Player] is null.");
 
-    /// <summary>Training point tracker for the player.</summary>
     public static PointTracker PointTracker => Player.RequirePart<PointTracker>();
+    
+    public static IngameOptions IngameOptions => Player.RequirePart<IngameOptions>();
 
     
     [CallAfterGameLoaded]
     public static void OnGameLoaded() {
       Output.DebugLog($"Game loaded, ensuring that training parts are attached to [{Player}]...");
       Player.RequirePart<PointTracker>();
+      Player.RequirePart<IngameOptions>();
       
       Player.RequirePart<CookingTrainer>();
       Player.RequirePart<CustomsTrainer>();
@@ -35,7 +36,8 @@ namespace Modo.SkillTraining {
 
     public void mutate(GameObject player) {
       Output.DebugLog($"New game started, attaching training parts to [{player}]...");
-      Player.RequirePart<PointTracker>();
+      player.RequirePart<PointTracker>();
+      player.RequirePart<IngameOptions>();
 
       player.RequirePart<CookingTrainer>();
       player.RequirePart<CustomsTrainer>();

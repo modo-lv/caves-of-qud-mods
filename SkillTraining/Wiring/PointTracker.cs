@@ -79,13 +79,8 @@ namespace Modo.SkillTraining.Wiring {
       }
 
       Output.DebugLog($"Player action: [{action}].");
-      var training = Data.TrainingAction.Data.GetOr(action, () =>
-        throw new Exception($"No training data for player action [{action}].")
-      );
-      var amount = training.DefaultAmount; // TODO
-
-      this.AddPoints(training.SkillClass, amount);
-      this.UnlockTrained();
+      this.AddPoints(TrainingData.For(action).SkillClass, Main.IngameOptions.TrainingRateFor(action));
+      this.UnlockCompletedSkills();
     }
 
     /// <summary>Increases training point value for a skill.</summary>
@@ -99,11 +94,11 @@ namespace Modo.SkillTraining.Wiring {
           this.Points[skillClass] += amount;
         Output.DebugLog($"[{skillClass.SkillName()}] + {amount} = {this.Points[skillClass]}");
       }
-      this.UnlockTrained();
+      this.UnlockCompletedSkills();
     }
     
     /// <summary>Checks all trainable skills and unlocks those whos training is complete.</summary>
-    private void UnlockTrained() {
+    private void UnlockCompletedSkills() {
       (
         from entry in Main.Player.RequirePart<PointTracker>().Points
         where SkillUtils.SkillOrPower(entry.Key)!.Cost <= entry.Value
