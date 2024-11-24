@@ -40,7 +40,7 @@ namespace Modo.SkillTraining.Wiring {
         .OrderBy(e => e.Key.SkillName())
         .Select(entry => {
           var cost = SkillUtils.SkillOrPower(entry.Key)!.Cost;
-          var locked = !Req.Player.HasSkill(entry.Key);
+          var locked = !Main.Player.HasSkill(entry.Key);
           var trained = locked && entry.Value >= cost;
           var sb = new StringBuilder();
           var color = locked ? (trained ? "&G" : "&y") : "&K";
@@ -88,7 +88,7 @@ namespace Modo.SkillTraining.Wiring {
       var choice = 0;
       while (true) {
         var list = Req.PointTracker.Points
-          .Where(it => !Req.Player.HasSkill(it.Key))
+          .Where(it => !Main.Player.HasSkill(it.Key))
           .ToList();
 
         choice = Popup.PickOption(
@@ -134,7 +134,7 @@ namespace Modo.SkillTraining.Wiring {
       while (true) {
         var combined = SkillFactory.GetSkills()
           .SelectMany(skill => skill.PowerList.Select(it => it.Generic).Prepend(skill.Generic))
-          .Where(it => Req.Player.HasSkill(it.Entry.Class))
+          .Where(it => Main.Player.HasSkill(it.Entry.Class))
           .ToList();
 
         var intro =
@@ -170,9 +170,9 @@ namespace Modo.SkillTraining.Wiring {
           }
         }
 
-        Req.Player.RemoveSkill(target.Name);
+        Main.Player.RemoveSkill(target.Name);
         if (refund)
-          Req.Player.GetStat("SP").Bonus += target.Entry.Cost;
+          Main.Player.GetStat("SP").Bonus += target.Entry.Cost;
         Output.Alert(
           "{{Y|" + target.DisplayName + "}} unlearned."
           + (" {{G|" + target.Entry.Cost + "}} skill points refunded.").If(_ => refund)

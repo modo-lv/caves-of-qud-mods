@@ -5,7 +5,7 @@ using Modo.SkillTraining.Wiring;
 using Wintellect.PowerCollections;
 using XRL.World;
 
-namespace Modo.SkillTraining.Parts {
+namespace Modo.SkillTraining.Trainers {
   public class ShieldTrainer : ModPart {
     public override Set<Int32> WantEventIds => new Set<Int32> {
       AfterShieldBlockEvent.ID,
@@ -13,7 +13,7 @@ namespace Modo.SkillTraining.Parts {
 
     public override Boolean HandleEvent(AfterShieldBlockEvent ev) {
       if (ev.Defender.IsPlayer()) {
-        Req.PointTracker.AddPoints(SkillClasses.Shield, ModOptions.ShieldOilerTrainingRate);
+        Req.PointTracker.AddPoints(SkillClasses.Shield, Settings.ShieldOilerTrainingRate);
       }
       return base.HandleEvent(ev);
     }

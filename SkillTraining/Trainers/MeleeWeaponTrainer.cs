@@ -6,7 +6,7 @@ using Wintellect.PowerCollections;
 using XRL;
 using XRL.World;
 
-namespace Modo.SkillTraining.Parts {
+namespace Modo.SkillTraining.Trainers {
   /// <summary>Trains melee weapon skills.</summary>
   /// <remarks>
   /// Gets attached to the target object to validate successful hits and increase training as appropriate.
@@ -20,10 +20,10 @@ namespace Modo.SkillTraining.Parts {
     public override Boolean HandleEvent(DefendMeleeHitEvent ev) {
       var skill = SkillUtils.SkillOrPower(ev.Weapon.GetWeaponSkill())?.Class;
 
-      if (ev.Attacker != Req.Player
-          || Req.Player.HasSkill(skill)
+      if (ev.Attacker != Main.Player
+          || Main.Player.HasSkill(skill)
           || skill == null
-          || ModOptions.MeleeTrainingRate <= 0
+          || Settings.MeleeTrainingRate <= 0
           // Only equipped weapons train skills
           || ev.Weapon.EquippedOn()?.ThisPartWeapon() == null) {
         return base.HandleEvent(ev);
@@ -38,17 +38,17 @@ namespace Modo.SkillTraining.Parts {
 
       // Main hand weapon skill
       if (ev.Weapon.IsEquippedInMainHand())
-        Req.PointTracker.AddPoints(skill, ModOptions.MeleeTrainingRate);
+        Req.PointTracker.AddPoints(skill, Settings.MeleeTrainingRate);
       // Single / offhand weapon
       if (singleWeapon) {
         Req.PointTracker.AddPoints(
           SkillClasses.SingleWeaponFighting,
-          Math.Max(new Decimal(0.01), Math.Round(ModOptions.MeleeTrainingRate / 2, 2))
+          Math.Max(new Decimal(0.01), Math.Round(Settings.MeleeTrainingRate / 2, 2))
         );
       } else if (!ev.Weapon.IsEquippedOnPrimary()) {
         Req.PointTracker.AddPoints(
           SkillClasses.MultiweaponFighting,
-          Math.Round(ModOptions.MeleeTrainingRate * 2, 2)
+          Math.Round(Settings.MeleeTrainingRate * 2, 2)
         );
       }
 

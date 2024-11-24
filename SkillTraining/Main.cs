@@ -1,25 +1,31 @@
-﻿using Modo.SkillTraining.Internal;
-using Modo.SkillTraining.Parts;
+﻿using System;
+using Modo.SkillTraining.Internal;
+using Modo.SkillTraining.Trainers;
 using Modo.SkillTraining.Wiring;
 using XRL;
 using XRL.World;
 
 namespace Modo.SkillTraining {
   /// <summary>Main "entry point" for the mod functionality.</summary>
-  /// <remarks>Attaches the <see cref="TrainingTracker"/> part to the player object.</remarks>
-  [HasCallAfterGameLoaded] [PlayerMutator]
+  /// <remarks>Attaches the <see cref="PointTracker"/> part to the player object.</remarks>
+  [HasCallAfterGameLoaded][PlayerMutator]
   public class Main : IPlayerMutator {
+    /// <summary>A non-null reference to the main player body.</summary>
+    /// <exception cref="NullReferenceException"></exception>
+    public static GameObject Player => The.Player ?? throw new NullReferenceException("[The.Player] is null");
+
+
     [CallAfterGameLoaded]
     public static void OnGameLoaded() {
-      Output.DebugLog($"Game loaded, ensuring that training parts are attached to [{Req.Player}]...");
-      Req.Player.RequirePart<CookingTrainer>();
-      Req.Player.RequirePart<CustomsTrainer>();
-      Req.Player.RequirePart<PointTracker>();
-      Req.Player.RequirePart<ShieldTrainer>();
-      Req.Player.RequirePart<SnakeOilerTrainer>();
-      Req.Player.RequirePart<SwimmingTrainer>();
-      Req.Player.RequirePart<TinkeringTrainer>();
-      Req.Player.RequirePart<WayfaringTrainer>();
+      Output.DebugLog($"Game loaded, ensuring that training parts are attached to [{Player}]...");
+      Player.RequirePart<CookingTrainer>();
+      Player.RequirePart<CustomsTrainer>();
+      Player.RequirePart<PointTracker>();
+      Player.RequirePart<ShieldTrainer>();
+      Player.RequirePart<SnakeOilerTrainer>();
+      Player.RequirePart<SwimmingTrainer>();
+      Player.RequirePart<TinkeringTrainer>();
+      Player.RequirePart<WayfaringTrainer>();
     }
 
     public void mutate(GameObject player) {

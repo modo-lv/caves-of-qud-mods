@@ -6,7 +6,7 @@ using Wintellect.PowerCollections;
 using XRL.World;
 using XRL.World.Effects;
 
-namespace Modo.SkillTraining.Parts {
+namespace Modo.SkillTraining.Trainers {
   public class WayfaringTrainer : ModPart {
     private Int32 _turnsRemaining = 150;
 
@@ -19,18 +19,18 @@ namespace Modo.SkillTraining.Parts {
       if (ev.Effect.GetEffectType() == new Lost().GetEffectType()) {
         Req.PointTracker.AddPoints(
           SkillClasses.Wayfaring,
-          ModOptions.WayfaringTrainingRate * 5
+          Settings.WayfaringTrainingRate * 5
         );
       }
       return base.HandleEvent(ev);
     }
 
     public override Boolean HandleEvent(EndTurnEvent ev) {
-      if (Req.Player.OnWorldMap()) {
+      if (Main.Player.OnWorldMap()) {
         this._turnsRemaining--;
         if (this._turnsRemaining == 0) {
           this._turnsRemaining = 300;
-          Req.PointTracker.AddPoints(SkillClasses.Wayfaring, ModOptions.WayfaringTrainingRate);
+          Req.PointTracker.AddPoints(SkillClasses.Wayfaring, Settings.WayfaringTrainingRate);
         }
       }
       return base.HandleEvent(ev);

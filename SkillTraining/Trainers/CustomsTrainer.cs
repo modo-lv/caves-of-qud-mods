@@ -5,7 +5,7 @@ using Modo.SkillTraining.Wiring;
 using XRL;
 using XRL.World;
 
-namespace Modo.SkillTraining.Parts {
+namespace Modo.SkillTraining.Trainers {
   public class CustomsTrainer : ModPart {
     public override void Register(GameObject obj, IEventRegistrar reg) {
       base.Register(obj, reg);
@@ -13,12 +13,12 @@ namespace Modo.SkillTraining.Parts {
     }
 
     public override Boolean FireEvent(Event ev) {
-      if (Req.Player.HasSkill(SkillClasses.CustomsAndFolklore)
+      if (Main.Player.HasSkill(SkillClasses.CustomsAndFolklore)
           || ev.GetStringParameter("Type") != "WaterRitualPrimaryAward")
         return base.FireEvent(ev);
 
       Output.DebugLog("Water ritual reputation change.");
-      Req.PointTracker.AddPoints(SkillClasses.CustomsAndFolklore, ModOptions.CustomsTrainingRate);
+      Req.PointTracker.AddPoints(SkillClasses.CustomsAndFolklore, Settings.CustomsTrainingRate);
       return base.FireEvent(ev);
     }
   }

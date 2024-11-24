@@ -9,7 +9,7 @@ using XRL.World;
 using XRL.World.Effects;
 using XRL.World.Parts;
 
-namespace Modo.SkillTraining.Parts {
+namespace Modo.SkillTraining.Trainers {
   /// <summary>Trains "Cooking and Gathering" skill.</summary>
   [HarmonyPatch]
   public class CookingTrainer : ModPart {

@@ -5,7 +5,10 @@ using Modo.SkillTraining.Internal;
 using XRL.UI;
 
 namespace Modo.SkillTraining.Wiring {
-  public static class ModOptions {
+  /// <summary>
+  /// Global mod options, configured in the game's main Options screen and applying to all characters.
+  /// </summary>
+  public static class Settings {
     public static Boolean TrainingEnabled =>
       Options.GetOption("Option_Modo_SkillTraining_Enabled")?.EqualsNoCase("yes") ?? false;
 

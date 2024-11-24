@@ -4,7 +4,7 @@ using System.Linq;
 using AiUnity.Common.Extensions;
 using Modo.SkillTraining.Constants;
 using Modo.SkillTraining.Internal;
-using Modo.SkillTraining.Parts;
+using Modo.SkillTraining.Trainers;
 using Modo.SkillTraining.Wiring;
 using Wintellect.PowerCollections;
 using XRL.World;
@@ -65,7 +65,7 @@ namespace Modo.SkillTraining {
 
     /// <summary>Increases training points for a player action.</summary>
     public void TrainingAction(PlayerAction action) {
-      switch (ModOptions.TrainingEnabled) {
+      switch (Settings.TrainingEnabled) {
         case true when this._disabledLogged:
           this._disabledLogged = false;
           break;
@@ -93,7 +93,7 @@ namespace Modo.SkillTraining {
     /// <summary>Increases training point value for a skill.</summary>
     public void AddPoints(String skillClass, Decimal amount) {
       var skill = SkillUtils.SkillOrPower(skillClass);
-      if (amount > 0 && !Req.Player.HasSkill(skillClass)) {
+      if (amount > 0 && !Main.Player.HasSkill(skillClass)) {
         this.Points.TryAdd(skillClass, 0);
         if (amount > skill.Cost)
           this.Points[skillClass] = amount;
@@ -107,21 +107,21 @@ namespace Modo.SkillTraining {
     /// <summary>Checks all trainable skills and unlocks those whos training is complete.</summary>
     private void UnlockTrained() {
       (
-        from entry in Req.Player.RequirePart<PointTracker>().Points
+        from entry in Main.Player.RequirePart<PointTracker>().Points
         where SkillUtils.SkillOrPower(entry.Key)!.Cost <= entry.Value
         select entry.Key
       ).ToList().ForEach(unlocked => {
         var canUnlock = true;
         // Special case - Tactful has a minimum stat requirement
         if (unlocked == SkillClasses.CustomsAndFolklore) {
-          canUnlock = SkillUtils.PowerByClass(SkillClasses.Tactful)!.MeetsAttributeMinimum(Req.Player);
+          canUnlock = SkillUtils.PowerByClass(SkillClasses.Tactful)!.MeetsAttributeMinimum(Main.Player);
         }
         if (!canUnlock)
           return;
 
         Output.Alert("{{Y|" + unlocked.SkillName() + "}} skill unlocked through practical training!");
-        Req.Player.GetPart<Skills>().AddSkill(unlocked);
-        Output.Log($"[{unlocked}] added to [{Req.Player}].");
+        Main.Player.GetPart<Skills>().AddSkill(unlocked);
+        Output.Log($"[{unlocked}] added to [{Main.Player}].");
         this.ResetPoints(unlocked);
       });
     }

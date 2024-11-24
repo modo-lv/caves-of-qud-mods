@@ -6,7 +6,7 @@ using Wintellect.PowerCollections;
 using XRL.World;
 using XRL.World.Effects;
 
-namespace Modo.SkillTraining.Parts {
+namespace Modo.SkillTraining.Trainers {
   /// <summary>Trains Swimming skill.</summary>
   /// <remarks>
   /// Attached to the player and adds training points at the end of every swimming movement.
@@ -18,9 +18,9 @@ namespace Modo.SkillTraining.Parts {
 
     public override Boolean HandleEvent(EnteredCellEvent ev) {
       if (ev.Object.IsPlayer()
-          && !Req.Player.HasSkill(SkillClasses.Swimming)
-          && Req.Player.HasEffect<Swimming>()) {
-        Req.PointTracker.AddPoints(SkillClasses.Swimming, ModOptions.SwimmingTrainingRate);
+          && !Main.Player.HasSkill(SkillClasses.Swimming)
+          && Main.Player.HasEffect<Swimming>()) {
+        Req.PointTracker.AddPoints(SkillClasses.Swimming, Settings.SwimmingTrainingRate);
       }
       return base.HandleEvent(ev);
     }

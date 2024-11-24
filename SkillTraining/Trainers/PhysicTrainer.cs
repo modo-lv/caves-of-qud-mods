@@ -7,7 +7,7 @@ using XRL.World.Parts;
 // ReSharper disable UnusedType.Global
 // ReSharper disable UnusedMember.Global
 
-namespace Modo.SkillTraining.Parts {
+namespace Modo.SkillTraining.Trainers {
   /// <summary>Trains Physic skill.</summary>
   /// <remarks>
   /// Since bandage application does not trigger any reliable event for detecting success/failure,
@@ -19,7 +19,7 @@ namespace Modo.SkillTraining.Parts {
       if (!__result)
         return;
       Output.DebugLog("Bandage applied.");
-      Req.PointTracker.AddPoints(SkillClasses.Physic, ModOptions.PhysicTrainingRate);
+      Req.PointTracker.AddPoints(SkillClasses.Physic, Settings.PhysicTrainingRate);
     }
   }
 }

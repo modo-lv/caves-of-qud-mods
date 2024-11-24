@@ -5,7 +5,7 @@ using Modo.SkillTraining.Wiring;
 using XRL;
 using XRL.World;
 
-namespace Modo.SkillTraining.Parts {
+namespace Modo.SkillTraining.Trainers {
   /// <summary>Trains thrown weapon skill.</summary>
   /// <remarks>
   /// Gets attached to the throwing weapon to listen to its thrown event, and when that triggers,
@@ -30,11 +30,11 @@ namespace Modo.SkillTraining.Parts {
           break;
         }
         case EventNames.TakeDamage // Taking damage means the hit was successful.
-          when !Req.Player.HasSkill(SkillClasses.DeftThrowing)
-               && ev.GetParameter("Attacker") == Req.Player
+          when !Main.Player.HasSkill(SkillClasses.DeftThrowing)
+               && ev.GetParameter("Attacker") == Main.Player
                && (ev.GetParameter("Defender") as GameObject)?.IsCreature == true:
           Output.DebugLog($"[{ev.GetParameter("Defender")}] hit with [{this.Weapon}].");
-          Req.PointTracker.AddPoints(SkillClasses.DeftThrowing, ModOptions.ThrownTrainingRate);
+          Req.PointTracker.AddPoints(SkillClasses.DeftThrowing, Settings.ThrownTrainingRate);
           break;
       }
 

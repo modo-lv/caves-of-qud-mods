@@ -6,7 +6,7 @@ using XRL;
 using XRL.UI;
 using XRL.World;
 
-namespace Modo.SkillTraining.Parts {
+namespace Modo.SkillTraining.Trainers {
   public class SnakeOilerTrainer : ModPart {
     public override void Register(GameObject obj, IEventRegistrar reg) {
       obj.RegisterPartEvent(this, EventNames.CommandRemoveObject);
@@ -18,7 +18,7 @@ namespace Modo.SkillTraining.Parts {
         return base.FireEvent(ev);
       
       Output.DebugLog("Successful trade.");
-      Req.PointTracker.AddPoints(SkillClasses.SnakeOiler, ModOptions.SnakeOilerTrainingRate);
+      Req.PointTracker.AddPoints(SkillClasses.SnakeOiler, Settings.SnakeOilerTrainingRate);
       return base.FireEvent(ev);
     }
   }

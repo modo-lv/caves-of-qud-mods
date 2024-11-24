@@ -6,7 +6,7 @@ using Wintellect.PowerCollections;
 using XRL.World;
 using XRL.World.Parts;
 
-namespace Modo.SkillTraining.Parts {
+namespace Modo.SkillTraining.Trainers {
   /// <summary>Trains missile weapon skills.</summary>
   /// <remarks>
   /// Gets attached to the target object to validate successful hits and increase training as appropriate.
@@ -20,7 +20,7 @@ namespace Modo.SkillTraining.Parts {
         skillClass = SkillClasses.BowAndRifle;
       var skill = SkillUtils.SkillByClass(skillClass)?.Class;
 
-      if (Req.Player.HasSkill(skill)
+      if (Main.Player.HasSkill(skill)
           || skill == null
           || !ev.Defender.IsCreature
           || !ev.Attacker.IsPlayer()
@@ -29,7 +29,7 @@ namespace Modo.SkillTraining.Parts {
       }
 
       Output.DebugLog($"[{this.ParentObject}] hit with [{ev.Launcher}].");
-      Req.PointTracker.AddPoints(skill, ModOptions.MissileTrainingRate);
+      Req.PointTracker.AddPoints(skill, Settings.MissileTrainingRate);
 
       return base.HandleEvent(ev);
     }
