@@ -50,14 +50,16 @@ Training points are earned for each attack where all the following are true:
 * The target is the one originally aimed at (hitting something else by accident or through bullet spread doesn't count).
 
 
+## Cooking and Gathering
+
+Cooking meals, harvesting plants and butchering corpses all train the [Cooking and Gathering](https://wiki.cavesofqud.com/wiki/Cooking_and_Gathering) skill.
+
+Harvesting has an exceedingly low training value (you'd need thousands of plants to unlock the skill just by harvesting), butchering is only mildly better (around a thousand corpses). Most training is earned through cooking meals at campfires (around 300 meals until a skill unlock), and "tasty" meals earn double points.
+
+
 ## Customs and Folklore
 
 [Customs and Folklore] is trained whenever you gain reputation from a water ritual. Note that unlocking it requires at least 19 Intelligence. It can still be trained, but will only unlock once the requirement is met. 
-
-
-## Cooking
-
-Cooking meal trains the [Cooking and Gathering](https://wiki.cavesofqud.com/wiki/Cooking_and_Gathering) skill. "Tasty" meals double the point increase.
 
 
 ## Physic

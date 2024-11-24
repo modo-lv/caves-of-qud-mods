@@ -18,13 +18,6 @@ namespace Modo.SkillTraining.Data {
       new Dictionary<PlayerAction, TrainingData> {
         //@formatter:off
         
-        #region Cooking and Gathering
-        { Cook,             new TrainingData(CookingAndGathering, 0.33m) },
-        { CookTasty,        new TrainingData(CookingAndGathering, 0.66m) },
-        { Harvest,          new TrainingData(CookingAndGathering, 0.01m) },
-        { Butcher,          new TrainingData(CookingAndGathering, 0.10m) },
-        #endregion
-        
         #region Melee combat
         { AxeHit,           new TrainingData(Axe,                 0.01m) },
         { CudgelHit,        new TrainingData(Cudgel,              0.01m) },
@@ -40,6 +33,13 @@ namespace Modo.SkillTraining.Data {
         { PistolHit,        new TrainingData(Pistol,              0.25m) },
         { RifleHit,         new TrainingData(BowAndRifle,         0.25m) },
         { HeavyWeaponHit,   new TrainingData(HeavyWeapon,         0.25m) },
+        #endregion
+        
+        #region Cooking and Gathering
+        { Cook,             new TrainingData(CookingAndGathering, 0.33m) },
+        { CookTasty,        new TrainingData(CookingAndGathering, 0.66m) },
+        { Harvest,          new TrainingData(CookingAndGathering, 0.01m) },
+        { Butcher,          new TrainingData(CookingAndGathering, 0.10m) },
         #endregion
         
         { ThrownWeaponHit,  new TrainingData(DeftThrowing,        0.05m) },

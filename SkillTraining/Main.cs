@@ -20,10 +20,11 @@ namespace Modo.SkillTraining {
       Output.DebugLog($"Game loaded, ensuring that training parts are attached to [{Player}]...");
       Player.RequirePart<PointTracker>();
       
-      Player.RequirePart<CookingTrainer>();
-      Player.RequirePart<CustomsTrainer>();
       Player.RequirePart<MeleeWeaponTrainer>();
       Player.RequirePart<MissileAttackTrainer>();
+      
+      Player.RequirePart<CookingTrainer>();
+      Player.RequirePart<CustomsTrainer>();
       Player.RequirePart<PointTracker>();
       Player.RequirePart<ShieldTrainer>();
       Player.RequirePart<SnakeOilerTrainer>();
@@ -37,10 +38,11 @@ namespace Modo.SkillTraining {
       Output.DebugLog($"New game started, attaching training parts to [{player}]...");
       player.RequirePart<PointTracker>();
 
-      player.RequirePart<CookingTrainer>();
-      player.RequirePart<CustomsTrainer>();
       player.RequirePart<MeleeWeaponTrainer>();
       player.RequirePart<MissileAttackTrainer>();
+      
+      player.RequirePart<CookingTrainer>();
+      player.RequirePart<CustomsTrainer>();
       player.RequirePart<PointTracker>();
       player.RequirePart<ShieldTrainer>();
       player.RequirePart<SnakeOilerTrainer>();
