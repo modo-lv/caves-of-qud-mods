@@ -38,15 +38,15 @@ namespace Modo.SkillTraining.Parts {
 
       // Main hand weapon skill
       if (ev.Weapon.IsEquippedInMainHand())
-        Req.TrainingTracker.AddPoints(skill, ModOptions.MeleeTrainingRate);
+        Req.PointTracker.AddPoints(skill, ModOptions.MeleeTrainingRate);
       // Single / offhand weapon
       if (singleWeapon) {
-        Req.TrainingTracker.AddPoints(
+        Req.PointTracker.AddPoints(
           SkillClasses.SingleWeaponFighting,
           Math.Max(new Decimal(0.01), Math.Round(ModOptions.MeleeTrainingRate / 2, 2))
         );
       } else if (!ev.Weapon.IsEquippedOnPrimary()) {
-        Req.TrainingTracker.AddPoints(
+        Req.PointTracker.AddPoints(
           SkillClasses.MultiweaponFighting,
           Math.Round(ModOptions.MeleeTrainingRate * 2, 2)
         );

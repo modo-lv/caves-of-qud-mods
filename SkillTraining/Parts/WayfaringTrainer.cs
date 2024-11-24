@@ -17,7 +17,7 @@ namespace Modo.SkillTraining.Parts {
 
     public override Boolean HandleEvent(EffectRemovedEvent ev) {
       if (ev.Effect.GetEffectType() == new Lost().GetEffectType()) {
-        Req.TrainingTracker.AddPoints(
+        Req.PointTracker.AddPoints(
           SkillClasses.Wayfaring,
           ModOptions.WayfaringTrainingRate * 5
         );
@@ -30,7 +30,7 @@ namespace Modo.SkillTraining.Parts {
         this._turnsRemaining--;
         if (this._turnsRemaining == 0) {
           this._turnsRemaining = 300;
-          Req.TrainingTracker.AddPoints(SkillClasses.Wayfaring, ModOptions.WayfaringTrainingRate);
+          Req.PointTracker.AddPoints(SkillClasses.Wayfaring, ModOptions.WayfaringTrainingRate);
         }
       }
       return base.HandleEvent(ev);

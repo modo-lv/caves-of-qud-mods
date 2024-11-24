@@ -1,5 +1,6 @@
 ﻿using Modo.SkillTraining.Internal;
 using Modo.SkillTraining.Parts;
+using Modo.SkillTraining.Wiring;
 using XRL;
 using XRL.World;
 
@@ -13,7 +14,7 @@ namespace Modo.SkillTraining {
       Output.DebugLog($"Game loaded, ensuring that training parts are attached to [{Req.Player}]...");
       Req.Player.RequirePart<CookingTrainer>();
       Req.Player.RequirePart<CustomsTrainer>();
-      Req.Player.RequirePart<TrainingTracker>();
+      Req.Player.RequirePart<PointTracker>();
       Req.Player.RequirePart<ShieldTrainer>();
       Req.Player.RequirePart<SnakeOilerTrainer>();
       Req.Player.RequirePart<SwimmingTrainer>();
@@ -25,7 +26,7 @@ namespace Modo.SkillTraining {
       Output.DebugLog($"New game started, attaching training parts to [{player}]...");
       player.RequirePart<CookingTrainer>();
       player.RequirePart<CustomsTrainer>();
-      player.RequirePart<TrainingTracker>();
+      player.RequirePart<PointTracker>();
       player.RequirePart<ShieldTrainer>();
       player.RequirePart<SnakeOilerTrainer>();
       player.RequirePart<SwimmingTrainer>();

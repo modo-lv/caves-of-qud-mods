@@ -36,7 +36,7 @@ namespace Modo.SkillTraining.Wiring {
     }
 
     public static void Overview() {
-      var output = Req.TrainingTracker.Points
+      var output = Req.PointTracker.Points
         .OrderBy(e => e.Key.SkillName())
         .Select(entry => {
           var cost = SkillUtils.SkillOrPower(entry.Key)!.Cost;
@@ -87,7 +87,7 @@ namespace Modo.SkillTraining.Wiring {
     public static void ModifyTraining() {
       var choice = 0;
       while (true) {
-        var list = Req.TrainingTracker.Points
+        var list = Req.PointTracker.Points
           .Where(it => !Req.Player.HasSkill(it.Key))
           .ToList();
 
@@ -123,9 +123,9 @@ namespace Modo.SkillTraining.Wiring {
         );
 
         if (newValue > target.Value)
-          Req.TrainingTracker.AddPoints(target.Key, newValue - target.Value);
+          Req.PointTracker.AddPoints(target.Key, newValue - target.Value);
         else
-          Req.TrainingTracker.Points[target.Key] = newValue;
+          Req.PointTracker.Points[target.Key] = newValue;
       }
     }
 

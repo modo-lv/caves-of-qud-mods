@@ -1,5 +1,6 @@
 ﻿using System;
 using Modo.SkillTraining.Parts;
+using Modo.SkillTraining.Wiring;
 using XRL;
 using XRL.World;
 
@@ -12,12 +13,12 @@ namespace Modo.SkillTraining.Internal {
       The.Player
       ?? throw new NullReferenceException("[The.Player] is null");
 
-    public static TrainingTracker TrainingTracker {
+    public static PointTracker PointTracker {
       get {
-        Player.TryGetPart<TrainingTracker>(out var part);
+        Player.TryGetPart<PointTracker>(out var part);
         return part
                ?? throw new NullReferenceException(
-                 $"[{Player}] does not have [{nameof(Parts.TrainingTracker)}] part."
+                 $"[{Player}] does not have [{nameof(Parts.PointTracker)}] part."
                );
       }
     }

@@ -9,8 +9,7 @@ using Skills = XRL.World.Parts.Skills;
 
 namespace Modo.SkillTraining.Parts {
   /// <summary>Main component that tracks training points for trainable skills.</summary>
-  [Serializable]
-  public class TrainingTracker : ModPart {
+  [Serializable] public class PointTracker : ModPart {
     /// <inheritdoc cref="Points"/>
     public Dictionary<String, Decimal> Points = new Dictionary<String, Decimal> {
       { SkillClasses.Axe, 0 },
@@ -71,7 +70,7 @@ namespace Modo.SkillTraining.Parts {
       }
 
       (
-        from entry in Req.Player.RequirePart<TrainingTracker>().Points
+        from entry in Req.Player.RequirePart<PointTracker>().Points
         where SkillUtils.SkillOrPower(entry.Key)!.Cost <= entry.Value
         select entry.Key
       ).ToList().ForEach(unlocked => {

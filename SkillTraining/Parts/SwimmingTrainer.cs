@@ -20,7 +20,7 @@ namespace Modo.SkillTraining.Parts {
       if (ev.Object.IsPlayer()
           && !Req.Player.HasSkill(SkillClasses.Swimming)
           && Req.Player.HasEffect<Swimming>()) {
-        Req.TrainingTracker.AddPoints(SkillClasses.Swimming, ModOptions.SwimmingTrainingRate);
+        Req.PointTracker.AddPoints(SkillClasses.Swimming, ModOptions.SwimmingTrainingRate);
       }
       return base.HandleEvent(ev);
     }

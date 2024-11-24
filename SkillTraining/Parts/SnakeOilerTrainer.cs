@@ -18,7 +18,7 @@ namespace Modo.SkillTraining.Parts {
         return base.FireEvent(ev);
       
       Output.DebugLog("Successful trade.");
-      Req.TrainingTracker.AddPoints(SkillClasses.SnakeOiler, ModOptions.SnakeOilerTrainingRate);
+      Req.PointTracker.AddPoints(SkillClasses.SnakeOiler, ModOptions.SnakeOilerTrainingRate);
       return base.FireEvent(ev);
     }
   }

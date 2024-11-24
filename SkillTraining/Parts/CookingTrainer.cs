@@ -37,7 +37,7 @@ namespace Modo.SkillTraining.Parts {
 
     public static void IncreasePoints(Byte multiplier = 1) {
       Output.DebugLog("Meal consumed.");
-      Req.TrainingTracker.AddPoints(
+      Req.PointTracker.AddPoints(
         SkillClasses.CookingAndGathering,
         ModOptions.CookingTrainingRate * multiplier
       );

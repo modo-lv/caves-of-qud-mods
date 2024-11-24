@@ -18,7 +18,7 @@ namespace Modo.SkillTraining.Parts {
         return base.FireEvent(ev);
 
       Output.DebugLog("Water ritual reputation change.");
-      Req.TrainingTracker.AddPoints(SkillClasses.CustomsAndFolklore, ModOptions.CustomsTrainingRate);
+      Req.PointTracker.AddPoints(SkillClasses.CustomsAndFolklore, ModOptions.CustomsTrainingRate);
       return base.FireEvent(ev);
     }
   }

@@ -34,7 +34,7 @@ namespace Modo.SkillTraining.Parts {
                && ev.GetParameter("Attacker") == Req.Player
                && (ev.GetParameter("Defender") as GameObject)?.IsCreature == true:
           Output.DebugLog($"[{ev.GetParameter("Defender")}] hit with [{this.Weapon}].");
-          Req.TrainingTracker.AddPoints(SkillClasses.DeftThrowing, ModOptions.ThrownTrainingRate);
+          Req.PointTracker.AddPoints(SkillClasses.DeftThrowing, ModOptions.ThrownTrainingRate);
           break;
       }
 
