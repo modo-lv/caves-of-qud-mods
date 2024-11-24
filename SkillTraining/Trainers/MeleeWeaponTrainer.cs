@@ -8,51 +8,58 @@ using XRL.World;
 
 namespace Modo.SkillTraining.Trainers {
   /// <summary>Trains melee weapon skills.</summary>
-  /// <remarks>
-  /// Gets attached to the target object to validate successful hits and increase training as appropriate.
-  /// </remarks>
   public class MeleeWeaponTrainer : ModPart {
-    public override Set<Int32> WantEventIds => new Set<Int32> { DefendMeleeHitEvent.ID };
+    public override void Register(GameObject obj, IEventRegistrar reg) {
+      base.Register(obj, reg);
+      obj.RegisterPartEvent(this, EventNames.AttackerHit);
+    }
 
-    /// <summary>
-    /// Handle getting hit (before any damage calculations) and increase the training points accordingly.
-    /// </summary>
-    public override Boolean HandleEvent(DefendMeleeHitEvent ev) {
-      var skill = SkillUtils.SkillOrPower(ev.Weapon.GetWeaponSkill())?.Class;
-
-      if (ev.Attacker != Main.Player
-          || Main.Player.HasSkill(skill)
+    public override Boolean FireEvent(Event ev) {
+      var weapon = ev.GetGameObjectParameter("Weapon");
+      var attacker = ev.GetGameObjectParameter("Attacker");
+      var defender = ev.GetGameObjectParameter("Defender");
+      var isCritical = ev.HasFlag("Critical");
+      var skill = SkillUtils.SkillOrPower(weapon.GetWeaponSkill())?.Class;
+      
+      if (!attacker.IsPlayer()
+          || defender.IsPlayer()
           || skill == null
-          || ModOptions.MeleeTrainingRate <= 0
+          || Main.Player.HasSkill(skill)
           // Only equipped weapons train skills
-          || ev.Weapon.EquippedOn()?.ThisPartWeapon() == null) {
-        return base.HandleEvent(ev);
+          || weapon.EquippedOn()?.ThisPartWeapon() == null) {
+        return base.FireEvent(ev);
       }
+      
+      PlayerAction? action = skill switch {
+        SkillClasses.Axe => PlayerAction.AxeHit,
+        SkillClasses.Cudgel => PlayerAction.CudgelHit,
+        SkillClasses.LongBlade => PlayerAction.LongBladeHit,
+        SkillClasses.ShortBlade => PlayerAction.ShortBladeHit,
+        null => null,
+        _ => throw new Exception($"Unknown melee weapon skill: [{skill}].")
+      };
 
-      Output.DebugLog($"[{ev.Defender}] hit with [{ev.Weapon}].");
+      // Weapon skill
+      if (action is not null && weapon.IsEquippedInMainHand()) {
+        Main.PointTracker.HandleTrainingAction(
+          (PlayerAction) action,
+          amountModifier: isCritical ? 2m : 1m
+        );
+      }
+      
       var singleWeapon = true;
       The.Player.ForeachEquippedObject(obj => {
         if (singleWeapon && obj.EquippedOn().ThisPartWeapon() != null && !obj.IsEquippedOnPrimary())
           singleWeapon = false;
       });
 
-      // Main hand weapon skill
-      if (ev.Weapon.IsEquippedInMainHand())
-        Main.PointTracker.AddPoints(skill, ModOptions.MeleeTrainingRate);
-      // Single / offhand weapon
-      if (singleWeapon) {
-        Main.PointTracker.AddPoints(
-          SkillClasses.SingleWeaponFighting,
-          Math.Max(new Decimal(0.01), Math.Round(ModOptions.MeleeTrainingRate / 2, 2))
-        );
-      } else if (!ev.Weapon.IsEquippedOnPrimary()) {
-        Main.PointTracker.AddPoints(
-          SkillClasses.MultiweaponFighting,
-          Math.Round(ModOptions.MeleeTrainingRate * 2, 2)
-        );
-      }
+      // Single/multi fighting.
+      if (singleWeapon)
+        Main.PointTracker.HandleTrainingAction(PlayerAction.SingleWeaponHit);
+      else if (!weapon.IsEquippedOnPrimary())
+        Main.PointTracker.HandleTrainingAction(PlayerAction.OffhandWeaponHit);
 
-      return base.HandleEvent(ev);
+      return base.FireEvent(ev);
     }
   }
 }

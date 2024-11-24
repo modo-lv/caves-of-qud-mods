@@ -34,17 +34,10 @@ namespace Modo.SkillTraining.Wiring {
     private Boolean _disabledLogged = false;
 
     public override Set<Int32> WantEventIds => new Set<Int32> {
-      BeforeMeleeAttackEvent.ID,
       EquipperEquippedEvent.ID,
       BeforeFireMissileWeaponsEvent.ID,
     };
 
-    /// <summary>Melee weapon attack training.</summary>
-    public override Boolean HandleEvent(BeforeMeleeAttackEvent ev) {
-      if (ev.Target.IsCreature)
-        ev.Target.RequirePart<MeleeWeaponTrainer>();
-      return base.HandleEvent(ev);
-    }
 
     /// <summary>Thrown weapon attack training.</summary>
     public override Boolean HandleEvent(EquipperEquippedEvent ev) {
@@ -61,8 +54,8 @@ namespace Modo.SkillTraining.Wiring {
     }
 
 
-    /// <summary>Increases training points for a player action.</summary>
-    public void TrainingAction(PlayerAction action) {
+    /// <summary>Process a known training action.</summary>
+    public void HandleTrainingAction(PlayerAction action, Decimal amountModifier = 1m) {
       switch (ModOptions.TrainingEnabled) {
         case true when this._disabledLogged:
           this._disabledLogged = false;
@@ -79,11 +72,14 @@ namespace Modo.SkillTraining.Wiring {
       }
 
       Output.DebugLog($"Player action: [{action}].");
-      this.AddPoints(TrainingData.For(action).SkillClass, Main.IngameOptions.TrainingRateFor(action));
+      this.AddPoints(
+        TrainingData.For(action).SkillClass,
+        TrainingData.For(action).DefaultAmount * amountModifier
+      );
       this.UnlockCompletedSkills();
     }
 
-    /// <summary>Increases training point value for a skill.</summary>
+    /// <summary>Increases training point value for a skill (if applicable).</summary>
     public void AddPoints(String skillClass, Decimal amount) {
       var skill = SkillUtils.SkillOrPower(skillClass);
       if (amount > 0 && !Main.Player.HasSkill(skillClass)) {
@@ -96,7 +92,7 @@ namespace Modo.SkillTraining.Wiring {
       }
       this.UnlockCompletedSkills();
     }
-    
+
     /// <summary>Checks all trainable skills and unlocks those whos training is complete.</summary>
     private void UnlockCompletedSkills() {
       (

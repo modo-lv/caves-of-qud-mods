@@ -15,17 +15,14 @@ namespace Modo.SkillTraining {
 
     public static PointTracker PointTracker => Player.RequirePart<PointTracker>();
     
-    public static IngameOptions IngameOptions => Player.RequirePart<IngameOptions>();
-
-    
     [CallAfterGameLoaded]
     public static void OnGameLoaded() {
       Output.DebugLog($"Game loaded, ensuring that training parts are attached to [{Player}]...");
       Player.RequirePart<PointTracker>();
-      Player.RequirePart<IngameOptions>();
       
       Player.RequirePart<CookingTrainer>();
       Player.RequirePart<CustomsTrainer>();
+      Player.RequirePart<MeleeWeaponTrainer>();
       Player.RequirePart<PointTracker>();
       Player.RequirePart<ShieldTrainer>();
       Player.RequirePart<SnakeOilerTrainer>();
@@ -37,10 +34,10 @@ namespace Modo.SkillTraining {
     public void mutate(GameObject player) {
       Output.DebugLog($"New game started, attaching training parts to [{player}]...");
       player.RequirePart<PointTracker>();
-      player.RequirePart<IngameOptions>();
 
       player.RequirePart<CookingTrainer>();
       player.RequirePart<CustomsTrainer>();
+      player.RequirePart<MeleeWeaponTrainer>();
       player.RequirePart<PointTracker>();
       player.RequirePart<ShieldTrainer>();
       player.RequirePart<SnakeOilerTrainer>();

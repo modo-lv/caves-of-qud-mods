@@ -12,7 +12,7 @@ namespace Modo.SkillTraining.Utils {
       var dt = DateTime.Now.ToString(@"yyyy-MM-dd HH:mm:ss.fffzzz", CultureInfo.InvariantCulture);
       Debug.Log($"[SkillTraining][{dt}] {message}");
       // For now, output everything in game as well for easier access.
-      Message($"{message}");
+      Message("{{K|" + message + "}}");
     }
 
     /// <summary>Log a message to the game's log file.</summary>

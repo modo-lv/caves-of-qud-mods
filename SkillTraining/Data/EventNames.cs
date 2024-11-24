@@ -2,6 +2,9 @@
 
 namespace Modo.SkillTraining.Data {
   public static class EventNames {
+    /// <summary>Fired on the attacker as soon as the attack is calculated to hit.</summary>
+    public const String AttackerHit = "AttackerHit";
+    
     /// <summary>Sent to the defender at the end of a melee attack.</summary>
     public const String DefenderAfterAttack = "DefenderAfterAttack";
 
