@@ -18,7 +18,7 @@ namespace Modo.SkillTraining.Internal {
         Player.TryGetPart<PointTracker>(out var part);
         return part
                ?? throw new NullReferenceException(
-                 $"[{Player}] does not have [{nameof(Parts.PointTracker)}] part."
+                 $"[{Player}] does not have [{nameof(SkillTraining.PointTracker)}] part."
                );
       }
     }

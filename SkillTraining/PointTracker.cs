@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AiUnity.Common.Extensions;
 using Modo.SkillTraining.Constants;
 using Modo.SkillTraining.Internal;
+using Modo.SkillTraining.Parts;
 using Modo.SkillTraining.Wiring;
 using Wintellect.PowerCollections;
 using XRL.World;
 using Skills = XRL.World.Parts.Skills;
 
-namespace Modo.SkillTraining.Parts {
+namespace Modo.SkillTraining {
   /// <summary>Main component that tracks training points for trainable skills.</summary>
   [Serializable] public class PointTracker : ModPart {
     /// <inheritdoc cref="Points"/>
@@ -19,7 +21,7 @@ namespace Modo.SkillTraining.Parts {
       { SkillClasses.CookingAndGathering, 0 },
       { SkillClasses.CustomsAndFolklore, 0 },
       { SkillClasses.DeftThrowing, 0 },
-      { SkillClasses.HeavyWeapons, 0 },
+      { SkillClasses.HeavyWeapon, 0 },
       { SkillClasses.LongBlade, 0 },
       { SkillClasses.MultiweaponFighting, 0 },
       { SkillClasses.Pistol, 0 },
@@ -60,8 +62,9 @@ namespace Modo.SkillTraining.Parts {
       return base.HandleEvent(ev);
     }
 
-    /// <summary>Increases training point value for a skill.</summary>
-    public void AddPoints(String skillClass, Decimal amount) {
+
+    /// <summary>Increases training points for a player action.</summary>
+    public void TrainingAction(PlayerAction action) {
       switch (ModOptions.TrainingEnabled) {
         case true when this._disabledLogged:
           this._disabledLogged = false;
@@ -77,6 +80,18 @@ namespace Modo.SkillTraining.Parts {
         }
       }
 
+      Output.DebugLog($"Player action: [{action}].");
+      var training = Constants.TrainingAction.Data.GetOr(action, () =>
+        throw new Exception($"No training data for player action [{action}].")
+      );
+      var amount = training.DefaultAmount; // TODO
+
+      this.AddPoints(training.SkillClass, amount);
+      this.UnlockTrained();
+    }
+
+    /// <summary>Increases training point value for a skill.</summary>
+    public void AddPoints(String skillClass, Decimal amount) {
       var skill = SkillUtils.SkillOrPower(skillClass);
       if (amount > 0 && !Req.Player.HasSkill(skillClass)) {
         this.Points.TryAdd(skillClass, 0);
@@ -86,7 +101,11 @@ namespace Modo.SkillTraining.Parts {
           this.Points[skillClass] += amount;
         Output.DebugLog($"[{skillClass.SkillName()}] + {amount} = {this.Points[skillClass]}");
       }
-
+      this.UnlockTrained();
+    }
+    
+    /// <summary>Checks all trainable skills and unlocks those whos training is complete.</summary>
+    private void UnlockTrained() {
       (
         from entry in Req.Player.RequirePart<PointTracker>().Points
         where SkillUtils.SkillOrPower(entry.Key)!.Cost <= entry.Value
@@ -107,7 +126,7 @@ namespace Modo.SkillTraining.Parts {
       });
     }
 
-    /// <summary>Reset training points back to 0.</summary>
+    /// <summary>Resets training points back to 0.</summary>
     public void ResetPoints(String skillClass) {
       this.Points[skillClass] = 0;
       Output.Log($"[{skillClass}] training reset to 0.");

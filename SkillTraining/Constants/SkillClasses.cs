@@ -23,7 +23,7 @@ namespace Modo.SkillTraining.Constants {
     public const String Swimming = "Endurance_Swimming";
 
     // Heavy Weapon tree
-    public const String HeavyWeapons = "HeavyWeapons";
+    public const String HeavyWeapon = "HeavyWeapons";
 
     // Multiweapon tree
     public const String MultiweaponFighting = "Multiweapon_Fighting";

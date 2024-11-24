@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Modo.SkillTraining.Constants;
 using Modo.SkillTraining.Internal;
 using XRL.UI;
 
@@ -6,10 +8,26 @@ namespace Modo.SkillTraining.Wiring {
   public static class ModOptions {
     public static Boolean TrainingEnabled =>
       Options.GetOption("Option_Modo_SkillTraining_Enabled")?.EqualsNoCase("yes") ?? false;
-    
-    public static Decimal CookingTrainingRate =>
-      Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_CookingTrainingPercentage"))
-        .AsPercentage();
+
+    public static IDictionary<String, Decimal> Defaults = new Dictionary<String, Decimal> {
+      // @formatter:off
+      { SkillClasses.Axe,                 0.05m }, //  50
+      { SkillClasses.BowAndRifle,         0.25m }, // 100
+      { SkillClasses.Cudgel,              0.05m }, //  50
+      { SkillClasses.CustomsAndFolklore,  1.00m }, // 150
+      { SkillClasses.HeavyWeapon,         0.25m }, // 100
+      { SkillClasses.LongBlade,           0.10m }, // 100
+      { SkillClasses.MultiweaponFighting, 0.30m }, // 150
+      { SkillClasses.Physic,              1.00m }, //  50
+      { SkillClasses.Pistol,              0.25m }, // 100
+      { SkillClasses.Shield,              0.50m }, // 100
+
+      { SkillClasses.SnakeOiler,          1.00m }, // 150
+      { SkillClasses.Swimming,            0.15m }, // 100
+      // @formatter:on
+    };
+
+
     public static Decimal CustomsTrainingRate =>
       Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_CustomsTrainingPercentage"))
         .AsPercentage();
