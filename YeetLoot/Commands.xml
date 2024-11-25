@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<commands>
+    <command ID="ModoMods:YeetLoot:YeetLoot" DisplayText="Yeet items to loot chest" Category="Mod: YeetLoot"/>
+</commands>
