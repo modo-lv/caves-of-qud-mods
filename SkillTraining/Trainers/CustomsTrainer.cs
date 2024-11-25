@@ -1,5 +1,6 @@
 ﻿using System;
 using HarmonyLib;
+using ModoMods.Core.Data;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;

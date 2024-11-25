@@ -1,10 +1,13 @@
 ﻿using System;
 
-namespace ModoMods.SkillTraining.Data {
+namespace ModoMods.Core.Data {
   public static class EventNames {
     /// <summary>Fired on the attacker as soon as the attack is calculated to hit.</summary>
     public const String AttackerHit = "AttackerHit";
 
+    /// <summary>Fired on the player when dropping an item to the ground.</summary>
+    public const String CommandDropObject = "CommandDropObject";
+    
     /// <summary>Fired on the player when moving items from inventory to trader or container.</summary>
     public const String CommandRemoveObject = "CommandRemoveObject";
     
