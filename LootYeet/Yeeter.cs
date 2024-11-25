@@ -1,6 +1,6 @@
 ﻿using ModoMods.Core.Utils;
 
-namespace ModoMods.SkillTraining {
+namespace ModoMods.LootYeet {
   public class Yeeter : ModPart {
     
   }
