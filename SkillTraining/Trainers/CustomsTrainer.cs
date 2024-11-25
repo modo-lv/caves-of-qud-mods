@@ -12,8 +12,14 @@ namespace Modo.SkillTraining.Trainers {
 
     [HarmonyPrefix][HarmonyPatch(typeof(IBaseJournalEntry), nameof(IBaseJournalEntry.Reveal))]
     public static void PreReveal(ref IBaseJournalEntry __instance) {
-      if (__instance.Revealed)
+      if (__instance.Revealed
+          || __instance
+            is not JournalMapNote
+            and not JournalRecipeNote
+            and not JournalSultanNote
+            and not JournalVillageNote)
         return;
+
       Main.PointTracker.HandleTrainingAction(PlayerAction.SecretReveal);
     }
 
