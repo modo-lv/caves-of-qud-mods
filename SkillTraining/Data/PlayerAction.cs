@@ -31,6 +31,8 @@
     
     Bandage,
     
+    ExamineSuccess,
+    
     ShieldBlock,
     
     ThrownWeaponHit,

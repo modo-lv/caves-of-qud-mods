@@ -50,6 +50,8 @@ namespace Modo.SkillTraining.Data {
 
         { Bandage,          new TrainingData(Physic,              1.00m) },
         
+        { ExamineSuccess,   new TrainingData(Tinkering,           1.00m) },
+        
         { ShieldBlock,      new TrainingData(Shield,              0.50m) },
         
         { ThrownWeaponHit,  new TrainingData(DeftThrowing,        0.05m) },

@@ -64,6 +64,18 @@ Harvesting has an exceedingly low training value (you'd need thousands of plants
 The reputation gain from the very first water ritual with a creature earns bonus training.     
 
 
+## Deft Throwing
+
+Successfully hitting an enemy with a thrown weapon trains [Deft Throwing](https://wiki.cavesofqud.com/wiki/Deft_Throwing) skill.
+
+Training increases every time you throw something at an enemy, if all the following are true:
+* The target is successfully hit (with or without damage).
+* The target is a creature (throwing at walls and trees doesn't count).
+* The target is the one originally aimed at (hitting something else by accident or through bullet spread doesn't count).
+
+Note that this is an individual skill, rather than a skill tree -- unlocking it will not unlock [Tactics](https://wiki.cavesofqud.com/wiki/Tactics).
+
+
 ## Physic
 
 Successfully applying bandages to bleeding wounds trains [Physic](https://wiki.cavesofqud.com/wiki/Physic) skill.
@@ -89,17 +101,9 @@ Note that this is an individual skill (a "power"), rather than a skill tree -- u
 Note that this is an individual skill, rather than a skill tree -- unlocking it will not unlock [Persuasion](https://wiki.cavesofqud.com/wiki/Persuasion).
 
 
-## Deft Throwing
+## Tinkering
 
-Successfully hitting an enemy with a thrown weapon trains [Deft Throwing](https://wiki.cavesofqud.com/wiki/Deft_Throwing) skill.
-
-Training increases every time you throw something at an enemy, if all the following are true:
-* The target is successfully hit (with or without damage).
-* The target is a creature (throwing at walls and trees doesn't count).
-* The target is the one originally aimed at (hitting something else by accident or through bullet spread doesn't count).
-
-Note that this is an individual skill, rather than a skill tree -- unlocking it will not unlock [Tactics](https://wiki.cavesofqud.com/wiki/Tactics).
-
+Successfully examining artifacts trains [Tinkering](https://wiki.cavesofqud.com/wiki/Tinkering) skill.
 
 
 ## Wayfaring

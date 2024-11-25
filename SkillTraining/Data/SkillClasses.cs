@@ -53,9 +53,9 @@ namespace Modo.SkillTraining.Data {
     public const String DeftThrowing = "Tactics_Throwing";
     
     // Tinkering tree
-    public const String Tinkering = "Tinkering";
+    public const String Tinkering = "Tinkering"; // 100
     
     // Wayfaring tree
-    public const String Wayfaring = "Survival";
+    public const String Wayfaring = "Survival"; // 100
   }
 }
