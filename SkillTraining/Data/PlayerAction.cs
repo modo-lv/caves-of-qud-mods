@@ -38,5 +38,8 @@
     ThrownWeaponHit,
     
     TradeItem,
+    
+    RegainBearings,
+    WorldMapMove,
   }
 }

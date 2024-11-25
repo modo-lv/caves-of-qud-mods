@@ -108,4 +108,6 @@ Successfully examining artifacts trains [Tinkering](https://wiki.cavesofqud.com/
 
 ## Wayfaring
 
-[Wayfaring](https://wiki.cavesofqud.com/wiki/Wayfaring) skill is trained whenever you take a step on the world map. The training is increased every 300 turns (<=1 step on the world map, depending on terrain), and regaining your bearings after getting lost adds training point value 5 times the normal rate. 
+[Wayfaring](https://wiki.cavesofqud.com/wiki/Wayfaring) skill is trained whenever you take a step on the world map.
+* Rougher terrain trains the skill faster (based on how many turns it takes to travel across it).
+* Getting lost and then regaining your bearings gives a big training boost. 

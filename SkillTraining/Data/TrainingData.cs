@@ -57,7 +57,9 @@ namespace Modo.SkillTraining.Data {
         { ThrownWeaponHit,  new TrainingData(DeftThrowing,        0.05m) },
         
         { TradeItem,        new TrainingData(SnakeOiler,          0.01m) },
-
+        
+        { WorldMapMove,     new TrainingData(Wayfaring,           0.15m) },
+        { RegainBearings,   new TrainingData(Wayfaring,           1.00m) },
         
         //@formatter:on
       };
