@@ -1,9 +1,9 @@
 ﻿using System;
 using Wintellect.PowerCollections;
-using XRL.World;
+using XRL.World.Parts;
 
 namespace ModoMods.Core.Utils {
-  public abstract class ModPart : IPart {
+  public abstract class ModPart : IPlayerPart {
     /// <summary>
     /// Outputs a debug log message whenever a new instance of this part is attached to a game object.
     /// </summary>
