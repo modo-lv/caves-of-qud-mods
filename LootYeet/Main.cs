@@ -8,12 +8,15 @@ namespace ModoMods.LootYeet {
     public static GameObject Player =>
       The.Player ?? throw new NullReferenceException("[The.Player] is null.");
 
+    public static GameObject? Chest =>
+      Player.RequirePart<Yeeter>().Chest;
+
     public static void Init(GameObject player) {
-      if (!player.HasPart<Yeeter>()) {
+        /*
         var chest = GameObject.CreateUnmodified("ModoMods_LootYeet_Chest");
         player.Inventory.AddObject(chest);
-      }
-      player.RequirePart<Yeeter>();
+    */
+        player.RequirePart<Yeeter>();
     }
 
     public void mutate(GameObject player) { Init(player); }
