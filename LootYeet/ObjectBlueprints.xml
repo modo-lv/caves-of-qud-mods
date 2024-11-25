@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<objects>
+    <object Name="ModoMods_LootYeet_Chest" Inherits="Chest">
+        <part Name="Render"
+              DisplayName="{{extradimensional|yeeted loot chest}}"
+              DetailColor="M"
+              ColorString="&amp;y"
+        />
+        <part Name="Description" 
+              Short="Extradimensional container that receives and stores {{W|yeeted}} loot." />
+        <tag Name="NoSparkingQuest" />
+        <tag Name="ExcludeFromDynamicEncounters" />
+    </object>
+</objects>
