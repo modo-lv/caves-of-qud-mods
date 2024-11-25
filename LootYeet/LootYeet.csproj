@@ -135,4 +135,7 @@
 		<Reference Include="$(QudLibPath)/UnityMultiSelectDropdown.dll" />
 		<Reference Include="$(QudLibPath)/Unity.Timeline.dll" />
 	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\Core\Core.csproj" />
+	</ItemGroup>
 </Project>

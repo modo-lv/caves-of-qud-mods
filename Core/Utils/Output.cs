@@ -5,7 +5,7 @@ using XRL.Messages;
 using XRL.UI;
 using Object = System.Object;
 
-namespace ModoMods.SkillTraining.Utils {
+namespace ModoMods.Core.Utils {
   public static class Output {
     /// <summary>Log a debug message to the game's log file.</summary>
     public static void DebugLog(Object? message) {

@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillTraining", "SkillTrain
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LootYeet", "LootYeet\LootYeet.csproj", "{9918BD53-DA60-410F-B715-E64279D5954F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{0814F051-602B-434C-ADED-B3F1BE905378}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{9918BD53-DA60-410F-B715-E64279D5954F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9918BD53-DA60-410F-B715-E64279D5954F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9918BD53-DA60-410F-B715-E64279D5954F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0814F051-602B-434C-ADED-B3F1BE905378}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0814F051-602B-434C-ADED-B3F1BE905378}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0814F051-602B-434C-ADED-B3F1BE905378}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0814F051-602B-434C-ADED-B3F1BE905378}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

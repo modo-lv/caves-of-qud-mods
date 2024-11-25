@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Utils;
 using XRL.UI;
 using XRL.Wish;

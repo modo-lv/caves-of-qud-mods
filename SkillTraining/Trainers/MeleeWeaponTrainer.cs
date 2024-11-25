@@ -1,4 +1,5 @@
 ﻿using System;
+using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
 using XRL;

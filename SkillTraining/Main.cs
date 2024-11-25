@@ -1,4 +1,5 @@
 ﻿using System;
+using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Trainers;
 using ModoMods.SkillTraining.Utils;
 using ModoMods.SkillTraining.Wiring;
