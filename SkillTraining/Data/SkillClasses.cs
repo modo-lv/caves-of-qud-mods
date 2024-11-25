@@ -13,7 +13,7 @@ namespace Modo.SkillTraining.Data {
     public const String CookingAndGathering = "CookingAndGathering";
 
     // Customs and folklore tree
-    public const String CustomsAndFolklore = "Customs";
+    public const String CustomsAndFolklore = "Customs"; // 150
     public const String Tactful = "Customs_Tactful";
 
     // Cudgel tree

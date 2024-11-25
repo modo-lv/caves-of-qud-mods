@@ -1,7 +1,6 @@
 ﻿using System;
 using Modo.SkillTraining.Data;
 using Modo.SkillTraining.Utils;
-using Modo.SkillTraining.Wiring;
 using Wintellect.PowerCollections;
 using XRL.World;
 using XRL.World.Parts;

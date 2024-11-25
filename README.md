@@ -59,7 +59,9 @@ Harvesting has an exceedingly low training value (you'd need thousands of plants
 
 ## Customs and Folklore
 
-[Customs and Folklore] is trained whenever you gain reputation from a water ritual. Note that unlocking it requires at least 19 Intelligence. It can still be trained, but will only unlock once the requirement is met. 
+[Customs and Folklore](https://wiki.cavesofqud.com/wiki/Customs_and_Folklore) is trained when your reputation changes during a water ritual, and whenever you discover a secret (no matter how).
+
+The reputation gain from the very first water ritual with a creature earns bonus training.     
 
 
 ## Physic

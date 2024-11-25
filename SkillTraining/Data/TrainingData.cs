@@ -42,8 +42,15 @@ namespace Modo.SkillTraining.Data {
         { Butcher,          new TrainingData(CookingAndGathering, 0.10m) },
         #endregion
         
+        #region Customs and Folklore
+        { FirstRitualRep,   new TrainingData(CustomsAndFolklore,  1.00m) },
+        { RitualRep,        new TrainingData(CustomsAndFolklore,  0.25m) },
+        { SecretReveal,     new TrainingData(CustomsAndFolklore,  0.25m) },
+        #endregion
+        
         { ThrownWeaponHit,  new TrainingData(DeftThrowing,        0.05m) },
 
+        
         //@formatter:on
       };
 

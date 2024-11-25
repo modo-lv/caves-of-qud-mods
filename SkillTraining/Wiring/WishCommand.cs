@@ -19,7 +19,6 @@ namespace Modo.SkillTraining.Wiring {
           DefaultSelected: choice,
           Options: new[] {
             "Overview",
-            "In-game options >",
             "Modify skill training >",
             "Unlearn skills (lose skill points) >",
             "Unlearn skills (refund skill points) >",

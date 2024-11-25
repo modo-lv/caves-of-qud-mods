@@ -14,12 +14,7 @@ namespace Modo.SkillTraining.Wiring {
 
     public static IDictionary<String, Decimal> Defaults = new Dictionary<String, Decimal> {
       // @formatter:off
-      { SkillClasses.BowAndRifle,         0.25m }, // 100
-      { SkillClasses.CustomsAndFolklore,  1.00m }, // 150
-      { SkillClasses.HeavyWeapon,         0.25m }, // 100
-      { SkillClasses.MultiweaponFighting, 0.30m }, // 150
       { SkillClasses.Physic,              1.00m }, //  50
-      { SkillClasses.Pistol,              0.25m }, // 100
       { SkillClasses.Shield,              0.50m }, // 100
 
       { SkillClasses.SnakeOiler,          1.00m }, // 150
@@ -28,9 +23,6 @@ namespace Modo.SkillTraining.Wiring {
     };
 
 
-    public static Decimal CustomsTrainingRate =>
-      Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_CustomsTrainingPercentage"))
-        .AsPercentage();
     public static Decimal PhysicTrainingRate =>
       Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_PhysicTrainingPercentage"))
         .AsPercentage();

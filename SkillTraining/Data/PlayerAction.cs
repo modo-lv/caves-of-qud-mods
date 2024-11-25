@@ -18,5 +18,9 @@
     CookTasty,
     Harvest,
     Butcher,
+    
+    FirstRitualRep,
+    RitualRep,
+    SecretReveal,
   }
 }

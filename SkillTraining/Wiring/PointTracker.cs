@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Modo.SkillTraining.Data;
-using Modo.SkillTraining.Trainers;
 using Modo.SkillTraining.Utils;
-using Wintellect.PowerCollections;
-using XRL.World;
 using Skills = XRL.World.Parts.Skills;
 
 namespace Modo.SkillTraining.Wiring {
