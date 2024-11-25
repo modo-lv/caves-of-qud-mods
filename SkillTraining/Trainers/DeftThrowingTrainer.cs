@@ -6,22 +6,21 @@ using XRL;
 using XRL.World;
 
 namespace Modo.SkillTraining.Trainers {
-  /// <summary>Trains thrown weapon skill.</summary>
+  /// <summary>Trains "Deft Throwing" skill.</summary>
   /// <remarks>
   /// Attached to the player to watch for equipment changes.
   /// When a throwing weapon is equipped, attaches to that item to listen for the throwing event.
   /// When the weapon is thrown, the tracker attaches itself to the intended target,
   /// to listen for the damage taken event.
   /// </remarks>
-  public class ThrownAttackTracker : ModPart {
+  public class DeftThrowingTrainer : ModPart {
     public GameObject? Weapon;
 
     public override Set<Int32> WantEventIds => new Set<Int32> { EquipperEquippedEvent.ID };
 
-    /// <summary>Thrown weapon attack training.</summary>
     public override Boolean HandleEvent(EquipperEquippedEvent ev) {
       if (ev.Item.IsEquippedAsThrownWeapon())
-        ev.Item.RequirePart<ThrownAttackTracker>();
+        ev.Item.RequirePart<DeftThrowingTrainer>();
       return base.HandleEvent(ev);
     }
 
@@ -37,7 +36,7 @@ namespace Modo.SkillTraining.Trainers {
           // Attach this tracker to the target creature, to detect when it gets hit.
           var target = ev.GetParameter("ApparentTarget") as GameObject;
           if (target?.IsCreature == true)
-            target.RequirePart<ThrownAttackTracker>().Weapon = this.ParentObject;
+            target.RequirePart<DeftThrowingTrainer>().Weapon = this.ParentObject;
           break;
         }
         case EventNames.TakeDamage // Taking damage means the hit was successful.
