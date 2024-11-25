@@ -20,9 +20,6 @@ namespace Modo.SkillTraining.Wiring {
     };
 
 
-    public static Decimal ShieldOilerTrainingRate =>
-      Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_ShieldTrainingPercentage"))
-        .AsPercentage();
     public static Decimal SwimmingTrainingRate =>
       Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_SwimmingTrainingPercentage"))
         .AsPercentage();
