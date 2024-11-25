@@ -35,6 +35,8 @@
     
     ShieldBlock,
     
+    Swim,
+    
     ThrownWeaponHit,
     
     TradeItem,

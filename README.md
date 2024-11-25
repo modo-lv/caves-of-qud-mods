@@ -90,7 +90,7 @@ Blocking an attack with a shield trains the [Shield](https://wiki.cavesofqud.com
 
 Swimming in deep water automatically trains [Swimming](https://wiki.cavesofqud.com/wiki/Swimming) skill.
 
-Note that this is an individual skill (a "power"), rather than a skill tree -- unlocking it will not automatically make the rest of the [Endurance](https://wiki.cavesofqud.com/wiki/Endurance) tree available.
+Note that this is an individual skill, rather than a skill tree -- unlocking it will not unlock [Endurance](https://wiki.cavesofqud.com/wiki/Endurance).
 
 
 ## Snake Oiler
