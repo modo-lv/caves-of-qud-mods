@@ -1,39 +1,34 @@
 ﻿using System;
 using System.Linq;
-using HarmonyLib;
 using ModoMods.Core.Utils;
 using Newtonsoft.Json;
-using UnityEngine;
-using Wintellect.PowerCollections;
 using XRL;
 using XRL.UI;
 using XRL.Wish;
 using XRL.World;
-using GameObject = XRL.World.GameObject;
 
 namespace ModoMods.LootYeet {
-  [HarmonyPatch][HasWishCommand]
-  public class Yeeter : ModPart {
-    [SerializeField] public GameObject? Chest;
-    public override Set<Int32> WantEventIds => new Set<Int32> { InventoryActionEvent.ID };
+  [HasCallAfterGameLoaded][PlayerMutator][HasWishCommand]
+  public class Main : IPlayerMutator {
+    public static GameObject Player =>
+      The.Player ?? throw new NullReferenceException("[The.Player] is null.");
 
-    public override Boolean HandleEvent(InventoryActionEvent ev) {
-      Output.DebugLog(ev.Actor);
-      Output.DebugLog(ev.Command);
-      Output.DebugLog(ev.Item.Blueprint);
+    public static GameObject? Chest =>
+      Player.RequirePart<Yeeter>().Chest;
 
-      if (ev.Actor.IsPlayer()
-          && ev.Command == "CommandDropObject"
-          && ev.Item.Blueprint == "ModoMods_LootYeet_Chest") {
-
-        Output.DebugLog($"[{ev.Actor}] dropped [{ev.Item.Blueprint}]");
-
-        this.Chest = ev.Item;
+    public static void Init(GameObject player) {
+      if (!player.HasPart<Yeeter>()) {
+        var chest = GameObject.CreateUnmodified("ModoMods_LootYeet_Chest");
+        player.Inventory.AddObject(chest);
       }
-      return base.HandleEvent(ev);
+      player.RequirePart<Yeeter>();
     }
 
-    [WishCommand("w")]
+    public void mutate(GameObject player) { Init(player); }
+    [CallAfterGameLoaded] public static void OnGameLoaded() { Init(Player); }
+    
+    
+    [WishCommand("")]
     public static void YeetItems() {
       if (Main.Chest == null) {
         Output.Alert("Chest has not been dropped.");

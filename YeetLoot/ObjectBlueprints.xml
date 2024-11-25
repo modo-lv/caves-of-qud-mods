@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <objects>
-    <object Name="ModoMods_LootYeet_Chest" Inherits="Chest">
+    <object Name="ModoMods:YeetLoot:Chest" Inherits="Chest">
         <part Name="Render"
               DisplayName="{{extradimensional|yeeted loot chest}}"
               DetailColor="M"
