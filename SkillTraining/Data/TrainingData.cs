@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Modo.SkillTraining.Utils;
-using static Modo.SkillTraining.Data.PlayerAction;
-using static Modo.SkillTraining.Data.SkillClasses;
+using ModoMods.SkillTraining.Utils;
+using static ModoMods.SkillTraining.Data.PlayerAction;
+using static ModoMods.SkillTraining.Data.SkillClasses;
 
-namespace Modo.SkillTraining.Data {
+namespace ModoMods.SkillTraining.Data {
   public struct TrainingData {
     public readonly String SkillClass;
     public readonly Decimal DefaultAmount;

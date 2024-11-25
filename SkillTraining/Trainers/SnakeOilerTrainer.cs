@@ -1,12 +1,12 @@
 ﻿using System;
-using Modo.SkillTraining.Data;
-using Modo.SkillTraining.Utils;
+using ModoMods.SkillTraining.Data;
+using ModoMods.SkillTraining.Utils;
 using Wintellect.PowerCollections;
 using XRL;
 using XRL.UI;
 using XRL.World;
 
-namespace Modo.SkillTraining.Trainers {
+namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains "Snake Oiler" skill.</summary>
   /// <remarks>
   /// Attached to player to listen for trade start events.

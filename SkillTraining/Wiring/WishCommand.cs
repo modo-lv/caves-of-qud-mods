@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Modo.SkillTraining.Utils;
+using ModoMods.SkillTraining.Utils;
 using XRL.UI;
 using XRL.Wish;
 using XRL.World.Skills;
 
-namespace Modo.SkillTraining.Wiring {
+namespace ModoMods.SkillTraining.Wiring {
   [HasWishCommand] public class Wishes {
     [WishCommand("SkillTraining")]
     public static void Handle() {

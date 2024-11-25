@@ -1,4 +1,4 @@
-﻿namespace Modo.SkillTraining.Data {
+﻿namespace ModoMods.SkillTraining.Data {
   /// <summary>Player actions used in training skills.</summary>
   public enum PlayerAction {
     #region Melee combat

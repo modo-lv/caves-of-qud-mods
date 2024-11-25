@@ -1,11 +1,11 @@
 ﻿using System;
-using Modo.SkillTraining.Data;
-using Modo.SkillTraining.Utils;
+using ModoMods.SkillTraining.Data;
+using ModoMods.SkillTraining.Utils;
 using Wintellect.PowerCollections;
 using XRL.World;
 using XRL.World.Effects;
 
-namespace Modo.SkillTraining.Trainers {
+namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains Swimming skill.</summary>
   /// <remarks>
   /// Attached to the player and adds training points at the end of every swimming movement.

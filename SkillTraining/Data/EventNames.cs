@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Modo.SkillTraining.Data {
+namespace ModoMods.SkillTraining.Data {
   public static class EventNames {
     /// <summary>Fired on the attacker as soon as the attack is calculated to hit.</summary>
     public const String AttackerHit = "AttackerHit";

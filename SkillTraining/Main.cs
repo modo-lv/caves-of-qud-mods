@@ -1,11 +1,11 @@
 ﻿using System;
-using Modo.SkillTraining.Trainers;
-using Modo.SkillTraining.Utils;
-using Modo.SkillTraining.Wiring;
+using ModoMods.SkillTraining.Trainers;
+using ModoMods.SkillTraining.Utils;
+using ModoMods.SkillTraining.Wiring;
 using XRL;
 using XRL.World;
 
-namespace Modo.SkillTraining {
+namespace ModoMods.SkillTraining {
   /// <summary>Main "entry point" for the mod functionality.</summary>
   /// <remarks>Attaches the <see cref="PointTracker"/> part to the player object.</remarks>
   [HasCallAfterGameLoaded][PlayerMutator]

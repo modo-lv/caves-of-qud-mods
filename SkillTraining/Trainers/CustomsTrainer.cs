@@ -1,12 +1,12 @@
 ﻿using System;
 using HarmonyLib;
-using Modo.SkillTraining.Data;
-using Modo.SkillTraining.Utils;
+using ModoMods.SkillTraining.Data;
+using ModoMods.SkillTraining.Utils;
 using Qud.API;
 using XRL;
 using XRL.World;
 
-namespace Modo.SkillTraining.Trainers {
+namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains "Customs and Folklore" skill.</summary>
   [HarmonyPatch] public class CustomsTrainer : ModPart {
 

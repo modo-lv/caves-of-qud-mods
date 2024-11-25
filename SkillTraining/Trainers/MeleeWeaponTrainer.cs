@@ -1,10 +1,10 @@
 ﻿using System;
-using Modo.SkillTraining.Data;
-using Modo.SkillTraining.Utils;
+using ModoMods.SkillTraining.Data;
+using ModoMods.SkillTraining.Utils;
 using XRL;
 using XRL.World;
 
-namespace Modo.SkillTraining.Trainers {
+namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains melee weapon skills.</summary>
   public class MeleeWeaponTrainer : ModPart {
     public override void Register(GameObject obj, IEventRegistrar reg) {

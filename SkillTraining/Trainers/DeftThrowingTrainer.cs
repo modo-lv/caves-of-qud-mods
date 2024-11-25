@@ -1,11 +1,11 @@
 ﻿using System;
-using Modo.SkillTraining.Data;
-using Modo.SkillTraining.Utils;
+using ModoMods.SkillTraining.Data;
+using ModoMods.SkillTraining.Utils;
 using Wintellect.PowerCollections;
 using XRL;
 using XRL.World;
 
-namespace Modo.SkillTraining.Trainers {
+namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains "Deft Throwing" skill.</summary>
   /// <remarks>
   /// Attached to the player to watch for equipment changes.

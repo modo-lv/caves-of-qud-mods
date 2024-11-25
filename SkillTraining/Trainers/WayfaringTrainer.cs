@@ -1,11 +1,11 @@
 ﻿using System;
-using Modo.SkillTraining.Data;
-using Modo.SkillTraining.Utils;
+using ModoMods.SkillTraining.Data;
+using ModoMods.SkillTraining.Utils;
 using Wintellect.PowerCollections;
 using XRL.World;
 using XRL.World.Effects;
 
-namespace Modo.SkillTraining.Trainers {
+namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains "Wayfaring" skill.</summary>
   public class WayfaringTrainer : ModPart {
     /// <summary>Number of turns spent travelling the world map.</summary>

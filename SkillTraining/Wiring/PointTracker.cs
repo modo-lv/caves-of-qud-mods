@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Modo.SkillTraining.Data;
-using Modo.SkillTraining.Utils;
+using ModoMods.SkillTraining.Data;
+using ModoMods.SkillTraining.Utils;
 using Skills = XRL.World.Parts.Skills;
 
-namespace Modo.SkillTraining.Wiring {
+namespace ModoMods.SkillTraining.Wiring {
   /// <summary>Main component that tracks training points for trainable skills.</summary>
   [Serializable] public class PointTracker : ModPart {
     /// <inheritdoc cref="Points"/>

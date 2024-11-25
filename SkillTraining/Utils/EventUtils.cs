@@ -1,6 +1,6 @@
 ﻿using XRL.World;
 
-namespace Modo.SkillTraining.Utils {
+namespace ModoMods.SkillTraining.Utils {
   public static class EventUtils {
     public static GameObject? Attacker(this Event ev) => ev.GetGameObjectParameter("Attacker");
     public static GameObject? Defender(this Event ev) => ev.GetGameObjectParameter("Defender");

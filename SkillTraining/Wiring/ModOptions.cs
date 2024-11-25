@@ -1,7 +1,7 @@
 ﻿using System;
 using XRL.UI;
 
-namespace Modo.SkillTraining.Wiring {
+namespace ModoMods.SkillTraining.Wiring {
   /// <summary>
   /// Global mod options, configured in the game's main Options screen and applying to all characters.
   /// </summary>

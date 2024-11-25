@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Modo.SkillTraining.Utils {
+namespace ModoMods.SkillTraining.Utils {
   public static class StringUtils {
     public static String Repeat(this String value, Int32 count) =>
       Enumerable.Repeat(value, count)

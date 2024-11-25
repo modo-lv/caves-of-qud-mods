@@ -1,11 +1,11 @@
 ﻿using System;
 using HarmonyLib;
-using Modo.SkillTraining.Data;
+using ModoMods.SkillTraining.Data;
 using XRL.World.Parts;
 // ReSharper disable UnusedType.Global
 // ReSharper disable UnusedMember.Global
 
-namespace Modo.SkillTraining.Trainers {
+namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains Physic skill.</summary>
   /// <remarks>
   /// Since bandage application does not trigger any reliable event for detecting success/failure,

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Modo.SkillTraining.Data {
+namespace ModoMods.SkillTraining.Data {
   /// <summary>Known skill class names.</summary>
   public static class SkillClasses {
     // Axe tree

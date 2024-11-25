@@ -1,11 +1,11 @@
 ﻿using System;
-using Modo.SkillTraining.Data;
-using Modo.SkillTraining.Utils;
+using ModoMods.SkillTraining.Data;
+using ModoMods.SkillTraining.Utils;
 using Wintellect.PowerCollections;
 using XRL.World;
 using XRL.World.Parts;
 
-namespace Modo.SkillTraining.Trainers {
+namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains missile weapon skills.</summary>
   /// <remarks>
   /// Attached first to the player to listen for missile attack start.

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using XRL;
 using XRL.World.Skills;
 
-namespace Modo.SkillTraining.Utils {
+namespace ModoMods.SkillTraining.Utils {
   public static class SkillUtils {
     /// <summary>
     /// Gets the display name (<c>"Long Blades"</c>) of a skill class (<c>"LongBlades"</c>).

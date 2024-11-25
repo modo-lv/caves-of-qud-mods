@@ -1,10 +1,10 @@
 ﻿using System;
-using Modo.SkillTraining.Data;
-using Modo.SkillTraining.Utils;
+using ModoMods.SkillTraining.Data;
+using ModoMods.SkillTraining.Utils;
 using Wintellect.PowerCollections;
 using XRL.World;
 
-namespace Modo.SkillTraining.Trainers {
+namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains Shield skill.</summary>
   public class ShieldTrainer : ModPart {
     public override Set<Int32> WantEventIds => new Set<Int32> { AfterShieldBlockEvent.ID };
