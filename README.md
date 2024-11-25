@@ -71,7 +71,7 @@ Successfully applying bandages to bleeding wounds trains [Physic](https://wiki.c
 
 ## Shield
 
-Blocking an attack with shield trains the [Shield](https://wiki.cavesofqud.com/wiki/Shield) skill.
+Blocking an attack with a shield trains the [Shield](https://wiki.cavesofqud.com/wiki/Shield) skill.
 
 
 ## Swimming

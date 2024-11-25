@@ -31,6 +31,8 @@
     
     Bandage,
     
+    ShieldBlock,
+    
     ThrownWeaponHit,
   }
 }
