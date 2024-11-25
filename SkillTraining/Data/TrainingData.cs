@@ -59,9 +59,11 @@ namespace Modo.SkillTraining.Data {
         { TradeItem,        new TrainingData(SnakeOiler,          0.01m) },
         
         { Swim,             new TrainingData(Swimming,            0.15m) },
-        
+
+        #region Wayfaring
         { WorldMapMove,     new TrainingData(Wayfaring,           0.15m) },
         { RegainBearings,   new TrainingData(Wayfaring,           1.00m) },
+        #endregion
         
         //@formatter:on
       };

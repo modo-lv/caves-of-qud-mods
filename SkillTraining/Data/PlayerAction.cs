@@ -1,4 +1,5 @@
 ﻿namespace Modo.SkillTraining.Data {
+  /// <summary>Player actions used in training skills.</summary>
   public enum PlayerAction {
     #region Melee combat
     AxeHit,
@@ -41,7 +42,9 @@
     
     TradeItem,
     
+    #region Wayfaring
     RegainBearings,
     WorldMapMove,
+    #endregion
   }
 }

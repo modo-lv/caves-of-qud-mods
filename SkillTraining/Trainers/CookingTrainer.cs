@@ -2,6 +2,7 @@
 using HarmonyLib;
 using Modo.SkillTraining.Data;
 using Modo.SkillTraining.Utils;
+using Newtonsoft.Json;
 using Wintellect.PowerCollections;
 using XRL;
 using XRL.World;
@@ -67,7 +68,7 @@ namespace Modo.SkillTraining.Trainers {
 
     /// <summary>Handle the tasty cooking event.</summary>
     public override Boolean HandleEvent(EffectAppliedEvent ev) {
-      if (ev.Effect.GetType().IsSubclassOf(typeof(BasicCookingEffect)))
+      if (ev.Actor.IsPlayer() && ev.Effect.GetType().IsSubclassOf(typeof(BasicCookingEffect)))
         Main.PointTracker.HandleTrainingAction(PlayerAction.CookTasty);
       return base.HandleEvent(ev);
     }
