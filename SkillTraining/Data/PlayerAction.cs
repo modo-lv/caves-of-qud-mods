@@ -34,5 +34,7 @@
     ShieldBlock,
     
     ThrownWeaponHit,
+    
+    TradeItem,
   }
 }

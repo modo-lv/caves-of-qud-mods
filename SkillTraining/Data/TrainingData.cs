@@ -53,6 +53,8 @@ namespace Modo.SkillTraining.Data {
         { ShieldBlock,      new TrainingData(Shield,              0.50m) },
         
         { ThrownWeaponHit,  new TrainingData(DeftThrowing,        0.05m) },
+        
+        { TradeItem,        new TrainingData(SnakeOiler,          0.01m) },
 
         
         //@formatter:on

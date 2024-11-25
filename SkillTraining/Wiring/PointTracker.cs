@@ -57,6 +57,7 @@ namespace Modo.SkillTraining.Wiring {
 
     /// <summary>Increases training point value for a skill (if applicable).</summary>
     public void AddPoints(String skillClass, Decimal amount) {
+      amount = Math.Round(amount, 2);
       var skill = SkillUtils.SkillOrPower(skillClass);
       if (amount > 0 && !Main.Player.HasSkill(skillClass)) {
         this.Points.TryAdd(skillClass, 0);

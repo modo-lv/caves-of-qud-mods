@@ -4,10 +4,10 @@ namespace Modo.SkillTraining.Data {
   public static class EventNames {
     /// <summary>Fired on the attacker as soon as the attack is calculated to hit.</summary>
     public const String AttackerHit = "AttackerHit";
-    
-    /// <summary>Sent to the defender at the end of a melee attack.</summary>
-    public const String DefenderAfterAttack = "DefenderAfterAttack";
 
+    /// <summary>Fired on a trader/container when items are moved to it, once for each stack.</summary>
+    public const String CommandTakeObject = "CommandTakeObject";
+    
     /// <summary>Fired on the thrown weapon at the start of throwing it.</summary>
     public const String BeforeThrown = "BeforeThrown";
     

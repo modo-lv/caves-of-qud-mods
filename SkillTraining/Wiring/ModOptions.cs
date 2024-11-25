@@ -14,7 +14,6 @@ namespace Modo.SkillTraining.Wiring {
 
     public static IDictionary<String, Decimal> Defaults = new Dictionary<String, Decimal> {
       // @formatter:off
-      { SkillClasses.SnakeOiler,          1.00m }, // 150
       { SkillClasses.Swimming,            0.15m }, // 100
       // @formatter:on
     };

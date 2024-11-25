@@ -83,9 +83,10 @@ Note that this is an individual skill (a "power"), rather than a skill tree -- u
 
 ## Snake Oiler
 
-Every completed trade trains [Snake Oiler](https://wiki.cavesofqud.com/wiki/Snake_Oiler) 
+[Snake Oiler](https://wiki.cavesofqud.com/wiki/Snake_Oiler) is trained by selling items worth $1 or more.
+* The amount of training points earned is affected by the [base value](https://wiki.cavesofqud.com/wiki/Commerce) of items sold.
 
-Note that this is an individual skill (a "power"), rather than a skill tree -- unlocking it will not automatically make the rest of the [Persuasion](https://wiki.cavesofqud.com/wiki/Persuasion) tree available.
+Note that this is an individual skill, rather than a skill tree -- unlocking it will not unlock [Persuasion](https://wiki.cavesofqud.com/wiki/Persuasion).
 
 
 ## Deft Throwing
@@ -97,7 +98,7 @@ Training increases every time you throw something at an enemy, if all the follow
 * The target is a creature (throwing at walls and trees doesn't count).
 * The target is the one originally aimed at (hitting something else by accident or through bullet spread doesn't count).
 
-* Note that this is an individual skill, rather than a skill tree -- unlocking it will not unlock [Tactics](https://wiki.cavesofqud.com/wiki/Tactics).
+Note that this is an individual skill, rather than a skill tree -- unlocking it will not unlock [Tactics](https://wiki.cavesofqud.com/wiki/Tactics).
 
 
 
