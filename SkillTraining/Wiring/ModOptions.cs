@@ -14,7 +14,6 @@ namespace Modo.SkillTraining.Wiring {
 
     public static IDictionary<String, Decimal> Defaults = new Dictionary<String, Decimal> {
       // @formatter:off
-      { SkillClasses.Physic,              1.00m }, //  50
       { SkillClasses.Shield,              0.50m }, // 100
 
       { SkillClasses.SnakeOiler,          1.00m }, // 150
@@ -23,9 +22,6 @@ namespace Modo.SkillTraining.Wiring {
     };
 
 
-    public static Decimal PhysicTrainingRate =>
-      Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_PhysicTrainingPercentage"))
-        .AsPercentage();
     public static Decimal ShieldOilerTrainingRate =>
       Convert.ToInt32(Options.GetOption("Option_Modo_SkillTraining_ShieldTrainingPercentage"))
         .AsPercentage();

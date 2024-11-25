@@ -1,8 +1,6 @@
 ﻿using System;
 using HarmonyLib;
 using Modo.SkillTraining.Data;
-using Modo.SkillTraining.Utils;
-using Modo.SkillTraining.Wiring;
 using XRL.World.Parts;
 // ReSharper disable UnusedType.Global
 // ReSharper disable UnusedMember.Global
@@ -13,13 +11,12 @@ namespace Modo.SkillTraining.Trainers {
   /// Since bandage application does not trigger any reliable event for detecting success/failure,
   /// this trainer uses Harmony patching instead of part attachment. 
   /// </remarks>
-  [HarmonyPatch(typeof(BandageMedication), nameof(BandageMedication.PerformBandaging))]
+  [HarmonyPatch]
   public class PhysicTrainer {
-    public static void Postfix(ref Boolean __result) {
-      if (!__result)
-        return;
-      Output.DebugLog("Bandage applied.");
-      Main.PointTracker.AddPoints(SkillClasses.Physic, ModOptions.PhysicTrainingRate);
+    [HarmonyPostfix][HarmonyPatch(typeof(BandageMedication), nameof(BandageMedication.PerformBandaging))]
+    public static void PostBandage(ref Boolean __result) {
+      if (!__result) return;
+      Main.PointTracker.HandleTrainingAction(PlayerAction.Bandage);
     }
   }
 }

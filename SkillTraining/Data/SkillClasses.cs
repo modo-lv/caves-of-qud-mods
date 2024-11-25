@@ -38,7 +38,7 @@ namespace Modo.SkillTraining.Data {
     public const String Pistol = "Pistol"; // 100
     
     // Physic tree
-    public const String Physic = "Physic";
+    public const String Physic = "Physic"; // 50
 
     // Shield tree
     public const String Shield = "Shield";

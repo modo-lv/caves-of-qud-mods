@@ -47,6 +47,8 @@ namespace Modo.SkillTraining.Data {
         { RitualRep,        new TrainingData(CustomsAndFolklore,  0.25m) },
         { SecretReveal,     new TrainingData(CustomsAndFolklore,  0.25m) },
         #endregion
+
+        { Bandage,          new TrainingData(Physic,              1.00m) },
         
         { ThrownWeaponHit,  new TrainingData(DeftThrowing,        0.05m) },
 
