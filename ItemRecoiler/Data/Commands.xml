@@ -4,9 +4,9 @@
     No idea what Aut="Down" is for, but it is required (together with Layer="Adventure")
     for the command to work.
     -->
-    <command ID="ModoMods_YeetLoot_YeetCommand"
-             DisplayText="Yeet items to loot chest"
-             Category="Mod: YeetLoot"
+    <command ID="ModoMods_ItemRecoiler_TransmitCommand"
+             DisplayText="Recoil items to storage"
+             Category="Mod: Item Recoiler"
              Layer="Adventure"
              Auto="Down">
         <keyboardBind Modifier="shift" Key="Q"/>

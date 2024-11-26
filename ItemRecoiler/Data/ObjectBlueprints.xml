@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<objects>
+    <object Name="ModoMods:ItemRecoiler:Storage" Inherits="Chest">
+        <part Name="Render"
+              DisplayName="{{extradimensional|recoiled}} items"
+              DetailColor="M"
+              ColorString="&amp;y"
+        />
+        <part Name="Description"
+              Short="Receives and stores items recoiled from inventory." />
+        <tag Name="NoSparkingQuest" />
+        <tag Name="ExcludeFromDynamicEncounters" />
+    </object>
+    
+    <object Name="ModoMods:ItemRecoiler:Transmitter" Inherits="ModoMods:ItemRecoiler:Storage">
+        <part Name="Render"
+              DisplayName="recoil transmitter"/>
+    </object>
+</objects>
