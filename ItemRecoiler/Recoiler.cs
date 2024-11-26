@@ -40,7 +40,8 @@ namespace ModoMods.ItemRecoiler {
           Intro: "Items can only be recoiled to a manually placed recoil storage chest.\n\n" +
                  "If you don't have one in your inventory either, wish for " +
                  "{{Y|" + IrBlueprintNames.Transmitter + "}} (and don't forget to pick it up!).",
-          AllowEscape: true
+          AllowEscape: true,
+          Options: Array.Empty<String>()
         );
         return base.HandleEvent(ev);
       }
@@ -49,7 +50,8 @@ namespace ModoMods.ItemRecoiler {
           Title: "Recoil chest invalid",
           Intro: "Something has gone wrong with the recoil chest placed in the world.\n\n" +
                  "Wish for {{Y|" + IrBlueprintNames.Transmitter + "}} to get a new one and place that.",
-          AllowEscape: true
+          AllowEscape: true,
+          Options: Array.Empty<String>()
         );
         return base.HandleEvent(ev);
       }
@@ -63,7 +65,7 @@ namespace ModoMods.ItemRecoiler {
         total += item.Count;
       }
       Output.Message(total + " item(s) sent to " + this.Storage.DisplayName + ".");
-      
+
       return base.HandleEvent(ev);
     }
   }
