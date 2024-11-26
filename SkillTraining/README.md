@@ -27,15 +27,14 @@ Training points are earned for each attack where all the following are true:
 * The target is successfully hit (with or without damage).
 * The target is a creature other than player (attacking walls or yourself doesn't count).
 * The weapon is an equipped item (no natural weapons like fists or claws).
-* The weapon is in the main hand (off-hand weapons don't train weapon skills).
 * The attacking weapon has an associated skill to train (whips will not train anything).
 
-Training amount is doubled on critical hits.
+Training amount gets a bonus on critical hits, and a penalty for offhand weapons.
 
 ### Single/multi weapon fighting
 
 * If the attacking weapon is the only one equipped, [Single Weapon Fighting](https://wiki.cavesofqud.com/wiki/Single_Weapon_Fighting) will also be trained.
-* If the attacking weapon is equipped in an off-hand, it won't train its weapon skill, but will train [Multiweapon Fighting](https://wiki.cavesofqud.com/wiki/Multiweapon_Fighting).
+* If the attacking weapon is equipped in an off-hand, it will train [Multiweapon Fighting](https://wiki.cavesofqud.com/wiki/Multiweapon_Fighting).
 
 Single/Multiweapon skill training doesn't benefit from the critical hit bonus.
 

@@ -19,10 +19,10 @@ namespace ModoMods.SkillTraining.Data {
         //@formatter:off
         
         #region Melee combat
-        { AxeHit,           new TrainingData(Axe,                 0.01m) },
-        { CudgelHit,        new TrainingData(Cudgel,              0.01m) },
-        { LongBladeHit,     new TrainingData(LongBlade,           0.02m) },
-        { ShortBladeHit,    new TrainingData(ShortBlade,          0.02m) },
+        { AxeHit,           new TrainingData(Axe,                 0.02m) },
+        { CudgelHit,        new TrainingData(Cudgel,              0.02m) },
+        { LongBladeHit,     new TrainingData(LongBlade,           0.04m) },
+        { ShortBladeHit,    new TrainingData(ShortBlade,          0.04m) },
         
         { SingleWeaponHit,  new TrainingData(SingleWeaponFighting,0.01m) },
         { OffhandWeaponHit, new TrainingData(MultiweaponFighting, 0.02m) },

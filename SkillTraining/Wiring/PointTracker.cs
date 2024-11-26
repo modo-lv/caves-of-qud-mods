@@ -48,11 +48,10 @@ namespace ModoMods.SkillTraining.Wiring {
         }
       }
 
+      var amount =
+        Math.Max(0.01m, Math.Min(1.0m, TrainingData.For(action).DefaultAmount * amountModifier));
       Output.DebugLog($"Player action: [{action}].");
-      this.AddPoints(
-        TrainingData.For(action).SkillClass,
-        TrainingData.For(action).DefaultAmount * amountModifier
-      );
+      this.AddPoints(TrainingData.For(action).SkillClass, amount);
       this.UnlockCompletedSkills();
     }
 

@@ -36,11 +36,14 @@ namespace ModoMods.SkillTraining.Trainers {
         _ => throw new Exception($"Unknown melee weapon skill: [{skill}].")
       };
 
-      // Weapon skill
-      if (action is not null && ev.Weapon()?.IsEquippedInMainHand() == true) {
+      var isOffhand = ev.Weapon()?.IsEquippedInMainHand() != true;
+      if (action is not null) {
+        var modifier = 1m;
+        if (isOffhand) modifier /= 2;
+        if (isCritical) modifier *= 2;
         Main.PointTracker.HandleTrainingAction(
           (PlayerAction) action,
-          amountModifier: isCritical ? 2m : 1m
+          amountModifier: modifier
         );
       }
       
@@ -53,7 +56,7 @@ namespace ModoMods.SkillTraining.Trainers {
       // Single/multi fighting.
       if (singleWeapon)
         Main.PointTracker.HandleTrainingAction(PlayerAction.SingleWeaponHit);
-      else if (ev.Weapon()?.IsEquippedOnPrimary() == true)
+      else if (isOffhand)
         Main.PointTracker.HandleTrainingAction(PlayerAction.OffhandWeaponHit);
 
       return base.FireEvent(ev);
