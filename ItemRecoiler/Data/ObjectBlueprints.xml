@@ -2,7 +2,7 @@
 <objects>
     <object Name="ModoMods:ItemRecoiler:Storage" Inherits="Chest">
         <part Name="Render"
-              DisplayName="{{extradimensional|recoiled}} chest"
+              DisplayName="{{extradimensional|recoil receiver}}"
               DetailColor="M"
               ColorString="&amp;y"
         />
@@ -11,9 +11,6 @@
         <tag Name="NoSparkingQuest" />
         <tag Name="ExcludeFromDynamicEncounters" />
     </object>
-    
-    <object Name="ModoMods:ItemRecoiler:Transmitter" Inherits="ModoMods:ItemRecoiler:Storage">
-        <part Name="Render"
-              DisplayName="recoil transmitter"/>
-    </object>
+
+    <object Name="ModoMods:ItemRecoiler:Transmitter" Inherits="ModoMods:ItemRecoiler:Storage" />
 </objects>
