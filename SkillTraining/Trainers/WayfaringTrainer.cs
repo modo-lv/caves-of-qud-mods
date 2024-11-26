@@ -28,7 +28,7 @@ namespace ModoMods.SkillTraining.Trainers {
     
     /// <summary>Regain bearings.</summary>
     public override Boolean HandleEvent(EffectRemovedEvent ev) {
-      if (ev.Actor.IsPlayer() && ev.Effect.GetType().IsSubclassOf(typeof(Lost)))
+      if (ev.Actor?.IsPlayer() == true && ev.Effect?.GetType().IsSubclassOf(typeof(Lost)) == true)
         Main.PointTracker.HandleTrainingAction(PlayerAction.RegainBearings);
       return base.HandleEvent(ev);
     }
