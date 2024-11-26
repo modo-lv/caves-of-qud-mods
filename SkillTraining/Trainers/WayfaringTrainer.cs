@@ -1,8 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
-using ModoMods.SkillTraining.Utils;
-using Wintellect.PowerCollections;
 using XRL.World;
 using XRL.World.Effects;
 
@@ -12,7 +11,7 @@ namespace ModoMods.SkillTraining.Trainers {
     /// <summary>Number of turns spent travelling the world map.</summary>
     private Int32 _travelTurns;
 
-    public override Set<Int32> WantEventIds => new Set<Int32> {
+    public override ISet<Int32> WantEventIds => new HashSet<Int32> {
       EndTurnEvent.ID,
       EffectRemovedEvent.ID,
     };

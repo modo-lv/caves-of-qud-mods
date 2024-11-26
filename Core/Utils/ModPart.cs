@@ -1,5 +1,5 @@
 ﻿using System;
-using Wintellect.PowerCollections;
+using System.Collections.Generic;
 using XRL.World.Parts;
 
 namespace ModoMods.Core.Utils {
@@ -13,7 +13,7 @@ namespace ModoMods.Core.Utils {
     }
 
     /// <summary>Determines which min-event IDs to listen for.</summary>
-    public virtual Set<Int32> WantEventIds => new Set<Int32>();
+    public virtual ISet<Int32> WantEventIds => new HashSet<Int32>();
 
     /// <summary>
     /// Listens for all event IDs contained in <see cref="WantEventIds"/>.

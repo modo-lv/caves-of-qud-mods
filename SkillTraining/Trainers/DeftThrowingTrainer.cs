@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ModoMods.Core.Data;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
@@ -18,7 +19,7 @@ namespace ModoMods.SkillTraining.Trainers {
   public class DeftThrowingTrainer : ModPart {
     public GameObject? Weapon;
 
-    public override Set<Int32> WantEventIds => new Set<Int32> {
+    public override ISet<Int32> WantEventIds => new HashSet<Int32> {
       EquipperEquippedEvent.ID,
       DefenderMissileHitEvent.ID,
     };
@@ -33,23 +34,23 @@ namespace ModoMods.SkillTraining.Trainers {
       obj.RegisterPartEvent(this, EventNames.BeforeThrown);
       base.Register(obj, reg);
     }
-    
+
     public override Boolean HandleEvent(DefenderMissileHitEvent ev) {
       if (ev.Launcher != null
           || ev.Attacker?.IsPlayer() != true
           || ev.Defender?.IsCreature != true)
         return base.HandleEvent(ev);
-      
+
       Output.DebugLog($"[{ev.Defender}] hit with [{this.Weapon}].");
       Main.PointTracker.HandleTrainingAction(PlayerAction.ThrownWeaponHit);
-      
+
       return base.HandleEvent(ev);
     }
 
     public override Boolean FireEvent(Event ev) {
       if (ev.ID != EventNames.BeforeThrown)
         return base.FireEvent(ev);
-      
+
       // Attach this tracker to the target creature, to detect when it gets hit.
       var target = ev.GetParameter("ApparentTarget") as GameObject;
       if (target?.IsCreature == true)

@@ -1,9 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using ModoMods.Core.Data;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
-using ModoMods.SkillTraining.Utils;
-using Wintellect.PowerCollections;
 using XRL;
 using XRL.UI;
 using XRL.World;
@@ -15,7 +14,7 @@ namespace ModoMods.SkillTraining.Trainers {
   /// When a trade is started, also attaches to the trader, to wait for "take object" event. 
   /// </remarks>
   public class SnakeOilerTrainer : ModPart {
-    public override Set<Int32> WantEventIds => new Set<Int32> { StartTradeEvent.ID };
+    public override ISet<Int32> WantEventIds => new HashSet<Int32> { StartTradeEvent.ID };
 
     public override Boolean HandleEvent(StartTradeEvent ev) {
       // Party member trading doesn't count

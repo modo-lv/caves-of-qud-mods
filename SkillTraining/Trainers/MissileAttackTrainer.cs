@@ -1,10 +1,8 @@
 ﻿using System;
-using ModoMods.Core.Data;
+using System.Collections.Generic;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
-using Wintellect.PowerCollections;
-using XRL;
 using XRL.World;
 using XRL.World.Parts;
 
@@ -16,7 +14,7 @@ namespace ModoMods.SkillTraining.Trainers {
   /// to listen for missile hit event.
   /// </remarks>
   public class MissileAttackTrainer : ModPart {
-    public override Set<Int32> WantEventIds => new Set<Int32> {
+    public override ISet<Int32> WantEventIds => new HashSet<Int32> {
       BeforeFireMissileWeaponsEvent.ID,
       DefenderMissileHitEvent.ID,
     };

@@ -1,14 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
-using ModoMods.SkillTraining.Utils;
-using Wintellect.PowerCollections;
 using XRL.World;
 
 namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains Shield skill.</summary>
   public class ShieldTrainer : ModPart {
-    public override Set<Int32> WantEventIds => new Set<Int32> { AfterShieldBlockEvent.ID };
+    public override ISet<Int32> WantEventIds => new HashSet<Int32> { AfterShieldBlockEvent.ID };
 
     public override Boolean HandleEvent(AfterShieldBlockEvent ev) {
       if (!ev.Defender.IsPlayer()) return base.HandleEvent(ev);

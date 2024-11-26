@@ -1,10 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using ModoMods.Core.Utils;
 using ModoMods.ItemRecoiler.Data;
-using Wintellect.PowerCollections;
 using XRL.UI;
 using XRL.World;
-using EventNames = ModoMods.Core.Data.EventNames;
 using GameObject = XRL.World.GameObject;
 
 namespace ModoMods.ItemRecoiler {
@@ -25,7 +24,7 @@ namespace ModoMods.ItemRecoiler {
 
     public String? ZoneId;
 
-    public override Set<Int32> WantEventIds => new Set<Int32> {
+    public override ISet<Int32> WantEventIds => new HashSet<Int32> {
       CommandEvent.ID,
       GenericCommandEvent.ID,
       CommandTakeActionEvent.ID,

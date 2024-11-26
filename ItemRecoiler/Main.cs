@@ -1,7 +1,6 @@
 ﻿using System;
 using ModoMods.Core.Utils;
 using ModoMods.ItemRecoiler.Data;
-using Newtonsoft.Json;
 using XRL;
 using XRL.UI;
 using XRL.Wish;

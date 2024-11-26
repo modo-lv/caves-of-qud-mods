@@ -1,10 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using HarmonyLib;
 using ModoMods.Core.Data;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
-using ModoMods.SkillTraining.Utils;
-using Wintellect.PowerCollections;
 using XRL;
 using XRL.World;
 using XRL.World.Effects;
@@ -65,7 +64,7 @@ namespace ModoMods.SkillTraining.Trainers {
     /// "Tasty" random meals don't trigger the <see cref="EventNames.CookedAt"/> event,
     /// and must be detected by their effects.
     /// </remarks>
-    public override Set<Int32> WantEventIds => new Set<Int32> { EffectAppliedEvent.ID };
+    public override ISet<Int32> WantEventIds => new HashSet<Int32> { EffectAppliedEvent.ID };
 
     /// <summary>Handle the tasty cooking event.</summary>
     public override Boolean HandleEvent(EffectAppliedEvent ev) {
