@@ -1,8 +1,10 @@
 ﻿using System;
+using ModoMods.Core.Data;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
 using Wintellect.PowerCollections;
+using XRL;
 using XRL.World;
 using XRL.World.Parts;
 
@@ -27,6 +29,10 @@ namespace ModoMods.SkillTraining.Trainers {
     }
 
     public override Boolean HandleEvent(DefenderMissileHitEvent ev) {
+      if (ev.Launcher == null) // No launcher means hit with a thrown weapon, which is a separate trainer
+      {
+        return base.HandleEvent(ev);
+      }
       var skillClass = ev.Launcher.GetPart<MissileWeapon>().Skill;
       var action = skillClass switch {
         "Bow" => PlayerAction.BowHit,

@@ -18,7 +18,10 @@ namespace ModoMods.SkillTraining.Trainers {
   public class DeftThrowingTrainer : ModPart {
     public GameObject? Weapon;
 
-    public override Set<Int32> WantEventIds => new Set<Int32> { EquipperEquippedEvent.ID };
+    public override Set<Int32> WantEventIds => new Set<Int32> {
+      EquipperEquippedEvent.ID,
+      DefenderMissileHitEvent.ID,
+    };
 
     public override Boolean HandleEvent(EquipperEquippedEvent ev) {
       if (ev.Item.IsEquippedAsThrownWeapon())
@@ -28,29 +31,32 @@ namespace ModoMods.SkillTraining.Trainers {
 
     public override void Register(GameObject obj, IEventRegistrar reg) {
       obj.RegisterPartEvent(this, EventNames.BeforeThrown);
-      obj.RegisterPartEvent(this, EventNames.TakeDamage);
       base.Register(obj, reg);
+    }
+    
+    public override Boolean HandleEvent(DefenderMissileHitEvent ev) {
+      if (ev.Launcher != null
+          || ev.Attacker?.IsPlayer() != true
+          || ev.Defender?.IsCreature != true)
+        return base.HandleEvent(ev);
+      
+      Output.DebugLog($"[{ev.Defender}] hit with [{this.Weapon}].");
+      Main.PointTracker.HandleTrainingAction(PlayerAction.ThrownWeaponHit);
+      
+      return base.HandleEvent(ev);
     }
 
     public override Boolean FireEvent(Event ev) {
-      switch (ev.ID) {
-        case EventNames.BeforeThrown: {
-          // Attach this tracker to the target creature, to detect when it gets hit.
-          var target = ev.GetParameter("ApparentTarget") as GameObject;
-          if (target?.IsCreature == true)
-            target.RequirePart<DeftThrowingTrainer>().Weapon = this.ParentObject;
-          break;
-        }
-        case EventNames.TakeDamage // Taking damage means the hit was successful.
-          when !Main.Player.HasSkill(SkillClasses.DeftThrowing)
-               && ev.Attacker() == Main.Player
-               && ev.Defender()?.IsCreature == true:
-          Output.DebugLog($"[{ev.Defender()}] hit with [{this.Weapon}].");
-          Main.PointTracker.HandleTrainingAction(PlayerAction.ThrownWeaponHit);
-          break;
-      }
+      if (ev.ID != EventNames.BeforeThrown)
+        return base.FireEvent(ev);
+      
+      // Attach this tracker to the target creature, to detect when it gets hit.
+      var target = ev.GetParameter("ApparentTarget") as GameObject;
+      if (target?.IsCreature == true)
+        target.RequirePart<DeftThrowingTrainer>().Weapon = this.ParentObject;
 
       return base.FireEvent(ev);
     }
   }
+
 }
