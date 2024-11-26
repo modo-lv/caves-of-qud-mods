@@ -56,9 +56,13 @@ namespace ModoMods.ItemRecoiler {
 
       var transmitter = GameObject.CreateUnmodified(IrBlueprintNames.Transmitter);
       TradeUI.ShowTradeScreen(transmitter, 0.0f, TradeUI.TradeScreenMode.Container);
+      var total = 0;
       while (!transmitter.Inventory.Objects.IsNullOrEmpty()) {
-        this.Storage.Inventory.AddObject(transmitter.Inventory.GetFirstObject());
+        var item = transmitter.Inventory.GetFirstObject();
+        this.Storage.Inventory.AddObject(item);
+        total += item.Count;
       }
+      Output.Message(total + " item(s) sent to " + this.Storage.DisplayName + ".");
       
       return base.HandleEvent(ev);
     }

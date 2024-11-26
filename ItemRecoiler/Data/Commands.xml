@@ -5,7 +5,7 @@
     for the command to work.
     -->
     <command ID="ModoMods_ItemRecoiler_TransmitCommand"
-             DisplayText="Recoil items to storage"
+             DisplayText="Open recoil transmitter"
              Category="Mod: Item Recoiler"
              Layer="Adventure"
              Auto="Down">

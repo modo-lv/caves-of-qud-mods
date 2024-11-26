@@ -2,12 +2,12 @@
 <objects>
     <object Name="ModoMods:ItemRecoiler:Storage" Inherits="Chest">
         <part Name="Render"
-              DisplayName="{{extradimensional|recoiled}} items"
+              DisplayName="{{extradimensional|recoiled}} chest"
               DetailColor="M"
               ColorString="&amp;y"
         />
         <part Name="Description"
-              Short="Receives and stores items recoiled from inventory." />
+              Short="Receives and stores items recoiled from inventory.&#xA;&#xA;Place it on the ground somewhere, and use the recoil transmitter command ({{W|Shift=Q}} by default, configurable) to send items to it." />
         <tag Name="NoSparkingQuest" />
         <tag Name="ExcludeFromDynamicEncounters" />
     </object>
