@@ -13,11 +13,11 @@ namespace ModoMods.LootRecoil {
       The.Player ?? throw new NullReferenceException("[The.Player] is null.");
 
     public static void Init(GameObject player) {
-      if (!player.HasPart<Recoiler>()
-          || player.GetPart<Recoiler>()?.Escrow == null
-          && !player.Inventory.HasObject(LrBlueprintNames.Storage)) {
-        Output.DebugLog($"[{player}] does not appear to own a [{LrBlueprintNames.Storage}], placing in inventory...");
-        player.Inventory.AddObject(LrBlueprintNames.Storage);
+      if (/*!player.HasPart<Recoiler>()*/
+          /*|| player.GetPart<Recoiler>()?.Escrow == null*/
+          !player.Inventory.HasObject(LrBlueprintNames.Recoiler)) {
+        Output.DebugLog($"[{player}] does not appear to own a [{LrBlueprintNames.Recoiler}], placing in inventory...");
+        player.Inventory.AddObject(LrBlueprintNames.Recoiler);
       }
       player.RequirePart<Recoiler>();
     }

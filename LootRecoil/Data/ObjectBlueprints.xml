@@ -1,5 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <objects>
+    <object Name="ModoMods:LootRecoil:LootRecoiler" Inherits="Item">
+        <part Name="Render" DisplayName="reprogrammable recoiler" ColorString="&amp;y" DetailColor="M"
+              RenderString="004" RenderLayer="5" Tile="Items/sw_recoiler.bmp" />
+        <part Name="Physics" Category="Tools" />
+        <part Name="ProgrammableRecoiler" ChargeUse="0" Reprogrammable="true" NameElide="reprogrammable" Sound="Sounds/Interact/sfx_interact_recoiler_location_imprint" />
+        <part Name="Commerce" Value="210" />
+        <part Name="ItemTeleporter" ChargeUse="0" Sound="Sounds/Interact/sfx_interact_recoiler_activate" />
+        <part Name="Description"
+              Short="A cassette is cut with hexagonal grooves and steeped in the right amount of magnetic charge to spool a spacetime tether (and generate its characteristic hot gum smell). On top, a recessed button snaps the potential and initiates the recoil." />
+        <part Name="TinkerItem" Bits="12346" CanBuild="true" />
+        <part Name="Metal" />
+        <tag Name="EquipSound" Value="sfx_equip_material_generic_tool" />
+        <tag Name="TinkerCategory" Value="utility" />
+        <tag Name="Mods" Value="CommonMods,ElectronicsMods" />
+        <tag Name="Tier" Value="6" />
+        <tag Name="TechTier" Value="4" />
+        <tag Name="Role" Value="Rare" />
+        <tag Name="BaseObject" Value="*noinherit" />
+        <stag Name="Travel" />
+        <tag Name="DynamicObjectsTable:Trinkets" />
+    </object>
+
     <object Name="ModoMods:LootRecoil:Receiver" Inherits="Chest">
         <part Name="Render"
               DisplayName="{{extradimensional|recoil receiver}}"
