@@ -5,10 +5,9 @@
     for the command to work.
     -->
     <command ID="ModoMods_LootRecoil_TransmitCommand"
-             DisplayText="Choose items to transmit"
+             DisplayText="Activate item recoiler"
              Category="Mod: Loot Recoil"
              Layer="Adventure"
              Auto="Down">
-        <keyboardBind Modifier="shift" Key="Q"/>
     </command>
 </commands>

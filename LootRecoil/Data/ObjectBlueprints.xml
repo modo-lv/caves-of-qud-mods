@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <objects>
-    <object Name="ModoMods:LootRecoil:LootRecoiler" Inherits="Item">
-        <part Name="Render" DisplayName="reprogrammable recoiler" ColorString="&amp;y" DetailColor="M"
+    <object Name="ModoMods:LootRecoil:Recoiler" Inherits="Item">
+        <part Name="Render" DisplayName="{{M|item}} recoiler" ColorString="&amp;M" DetailColor="k"
               RenderString="004" RenderLayer="5" Tile="Items/sw_recoiler.bmp" />
-        <part Name="Physics" Category="Tools" />
-        <part Name="ItemRecoiler" ChargeUse="0" Reprogrammable="true" NameElide="reprogrammable" Sound="Sounds/Interact/sfx_interact_recoiler_location_imprint" />
-        <part Name="Commerce" Value="210" />
+        <part Name="ItemRecoiler" ChargeUse="0" Reprogrammable="true" Sound="Sounds/Interact/sfx_interact_recoiler_location_imprint" />
         <part Name="ItemTeleporter" ChargeUse="0" Sound="Sounds/Interact/sfx_interact_recoiler_activate" />
+        <part Name="Physics" Category="Tools" />
         <part Name="Description"
-              Short="A cassette is cut with hexagonal grooves and steeped in the right amount of magnetic charge to spool a spacetime tether (and generate its characteristic hot gum smell). On top, a recessed button snaps the potential and initiates the recoil." />
+              Short="A cassette is cut with hexagonal grooves and steeped in enough magnetic charge to propel any number of objects across spacetime, in ways no living being could survive. On the bottom, an endlessly extendable spacetime tether entangles cargo. On top, a recessed button snaps the potential and initiates the recoil." />
+        <part Name="Commerce" Value="210" />
         <part Name="TinkerItem" Bits="12346" CanBuild="true" />
         <part Name="Metal" />
         <tag Name="EquipSound" Value="sfx_equip_material_generic_tool" />
         <tag Name="TinkerCategory" Value="utility" />
-        <tag Name="Mods" Value="CommonMods,ElectronicsMods" />
         <tag Name="Tier" Value="6" />
         <tag Name="TechTier" Value="4" />
         <tag Name="Role" Value="Rare" />
         <tag Name="BaseObject" Value="*noinherit" />
         <stag Name="Travel" />
         <tag Name="DynamicObjectsTable:Trinkets" />
+        <tag Name="NoSparkingQuest" />
     </object>
 
     <object Name="ModoMods:LootRecoil:Receiver" Inherits="Chest">
@@ -30,7 +30,7 @@
               ColorString="&amp;y"
         />
         <part Name="Description"
-              Short="Receives and stores items recoiled from inventory.&#xA;&#xA;Place it on the ground somewhere, and use the recoil transmitter command ({{W|Shift=Q}} by default, configurable) to send items to it." />
+              Short="Receives and stores items recoiled with its {{M|item}} recoiler." />
         <tag Name="NoSparkingQuest" />
         <tag Name="ExcludeFromDynamicEncounters" />
     </object>
