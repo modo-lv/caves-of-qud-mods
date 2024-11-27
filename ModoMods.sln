@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillTraining", "SkillTraining\SkillTraining.csproj", "{4C080AE8-D995-4DFA-BA0C-F7C3E4744EFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemRecoiler", "ItemRecoiler\ItemRecoiler.csproj", "{9918BD53-DA60-410F-B715-E64279D5954F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LootRecoil", "LootRecoil\LootRecoil.csproj", "{9918BD53-DA60-410F-B715-E64279D5954F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{0814F051-602B-434C-ADED-B3F1BE905378}"
 EndProject

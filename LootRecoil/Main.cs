@@ -1,12 +1,12 @@
 ﻿using System;
 using ModoMods.Core.Utils;
-using ModoMods.ItemRecoiler.Data;
+using ModoMods.LootRecoil.Data;
 using XRL;
 using XRL.UI;
 using XRL.Wish;
 using XRL.World;
 
-namespace ModoMods.ItemRecoiler {
+namespace ModoMods.LootRecoil {
   [HasCallAfterGameLoaded][PlayerMutator][HasWishCommand]
   public class Main : IPlayerMutator {
     public static GameObject Player =>
@@ -15,9 +15,9 @@ namespace ModoMods.ItemRecoiler {
     public static void Init(GameObject player) {
       if (!player.HasPart<Recoiler>()
           || player.GetPart<Recoiler>()?.Escrow == null
-          && !player.Inventory.HasObject(IrBlueprintNames.Storage)) {
-        Output.DebugLog($"[{player}] does not appear to own a [{IrBlueprintNames.Storage}], placing in inventory...");
-        player.Inventory.AddObject(IrBlueprintNames.Storage);
+          && !player.Inventory.HasObject(LrBlueprintNames.Storage)) {
+        Output.DebugLog($"[{player}] does not appear to own a [{LrBlueprintNames.Storage}], placing in inventory...");
+        player.Inventory.AddObject(LrBlueprintNames.Storage);
       }
       player.RequirePart<Recoiler>();
     }

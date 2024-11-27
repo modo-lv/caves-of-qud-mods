@@ -9,8 +9,8 @@
 		<QudLibPath>C:/games/Steam/steamapps/common/Caves of Qud/CoQ_Data/Managed</QudLibPath>
 		<DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
 		<Nullable>enable</Nullable>
-		<AssemblyName>ModoMods.ItemRecoiler</AssemblyName>
-		<RootNamespace>ModoMods.ItemRecoiler</RootNamespace>
+		<AssemblyName>ModoMods.LootRecoil</AssemblyName>
+		<RootNamespace>ModoMods.LootRecoil</RootNamespace>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Include="$(QudLibPath)/0Harmony.dll" />

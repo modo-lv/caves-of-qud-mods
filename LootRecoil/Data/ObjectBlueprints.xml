@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <objects>
-    <object Name="ModoMods:ItemRecoiler:Storage" Inherits="Chest">
+    <object Name="ModoMods:LootRecoil:Receiver" Inherits="Chest">
         <part Name="Render"
               DisplayName="{{extradimensional|recoil receiver}}"
               DetailColor="M"
@@ -12,5 +12,5 @@
         <tag Name="ExcludeFromDynamicEncounters" />
     </object>
 
-    <object Name="ModoMods:ItemRecoiler:Transmitter" Inherits="ModoMods:ItemRecoiler:Storage" />
+    <object Name="ModoMods:LootRecoil:Transmitter" Inherits="ModoMods:LootRecoil:Receiver" />
 </objects>

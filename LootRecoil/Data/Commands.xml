@@ -4,9 +4,9 @@
     No idea what Aut="Down" is for, but it is required (together with Layer="Adventure")
     for the command to work.
     -->
-    <command ID="ModoMods_ItemRecoiler_TransmitCommand"
-             DisplayText="Open recoil transmitter"
-             Category="Mod: Item Recoiler"
+    <command ID="ModoMods_LootRecoil_TransmitCommand"
+             DisplayText="Choose items to transmit"
+             Category="Mod: Loot Recoil"
              Layer="Adventure"
              Auto="Down">
         <keyboardBind Modifier="shift" Key="Q"/>
