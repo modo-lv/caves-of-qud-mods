@@ -5,6 +5,7 @@ using XRL;
 using XRL.UI;
 using XRL.Wish;
 using XRL.World;
+using XRL.World.AI.GoalHandlers;
 
 namespace ModoMods.LootRecoil {
   [HasCallAfterGameLoaded][PlayerMutator][HasWishCommand]
@@ -13,6 +14,7 @@ namespace ModoMods.LootRecoil {
       The.Player ?? throw new NullReferenceException("[The.Player] is null.");
 
     public static void Init(GameObject player) {
+      player.RequirePart<RecoiledVacuum>();
       if (/*!player.HasPart<Recoiler>()*/
           /*|| player.GetPart<Recoiler>()?.Escrow == null*/
           !player.Inventory.HasObject(LrBlueprintNames.Recoiler)) {

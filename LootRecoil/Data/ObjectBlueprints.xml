@@ -4,7 +4,7 @@
         <part Name="Render" DisplayName="reprogrammable recoiler" ColorString="&amp;y" DetailColor="M"
               RenderString="004" RenderLayer="5" Tile="Items/sw_recoiler.bmp" />
         <part Name="Physics" Category="Tools" />
-        <part Name="ProgrammableRecoiler" ChargeUse="0" Reprogrammable="true" NameElide="reprogrammable" Sound="Sounds/Interact/sfx_interact_recoiler_location_imprint" />
+        <part Name="ItemRecoiler" ChargeUse="0" Reprogrammable="true" NameElide="reprogrammable" Sound="Sounds/Interact/sfx_interact_recoiler_location_imprint" />
         <part Name="Commerce" Value="210" />
         <part Name="ItemTeleporter" ChargeUse="0" Sound="Sounds/Interact/sfx_interact_recoiler_activate" />
         <part Name="Description"
@@ -23,8 +23,9 @@
     </object>
 
     <object Name="ModoMods:LootRecoil:Receiver" Inherits="Chest">
+        <part Name="Physics" Takeable="false" />
         <part Name="Render"
-              DisplayName="{{extradimensional|recoil receiver}}"
+              DisplayName="{{extradimensional|recoiled item receiver}}"
               DetailColor="M"
               ColorString="&amp;y"
         />

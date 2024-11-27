@@ -33,20 +33,20 @@ namespace ModoMods.LootRecoil {
 
     public override Boolean HandleEvent(EndTurnEvent ev) {
       if (this.ZoneId == null
-          && Main.Player.CurrentZone.HasObject(LrBlueprintNames.Storage)) {
+          && Main.Player.CurrentZone.HasObject(LrBlueprintNames.Receiver)) {
         this.ZoneId = Main.Player.CurrentZone.ZoneID;
         Output.DebugLog($"Found receiver chest in zone [{this.ZoneId}], recoiling enabled.");
       }
 
       if (Main.Player.CurrentZone.ZoneID == this.ZoneId
-          && !Main.Player.CurrentZone.HasObject(LrBlueprintNames.Storage)) {
+          && !Main.Player.CurrentZone.HasObject(LrBlueprintNames.Receiver)) {
         this.ZoneId = null;
         Output.DebugLog($"Recoil receiver in [{Main.Player.CurrentZone.ZoneID}] removed, recoiling disabled.");
       }
       
       if (Main.Player.CurrentZone.ZoneID == this.ZoneId
           && !this.Escrow.Inventory.Objects.IsNullOrEmpty()) {
-        var chest = Main.Player.CurrentZone.FindObject(LrBlueprintNames.Storage);
+        var chest = Main.Player.CurrentZone.FindObject(LrBlueprintNames.Receiver);
         var container = Main.Player.Inventory;
         if (chest == null) {
           Output.Alert(
