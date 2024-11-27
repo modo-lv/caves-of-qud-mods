@@ -1,6 +1,7 @@
 ﻿using System;
 using ModoMods.Core.Utils;
 using ModoMods.LootRecoil.Data;
+using ModoMods.LootRecoil.Parts;
 using XRL;
 using XRL.UI;
 using XRL.Wish;

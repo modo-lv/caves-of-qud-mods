@@ -12,6 +12,9 @@ namespace ModoMods.Core.Utils {
       Output.DebugLog($"New [{this.GetType().Name}] attached to [{this.ParentObject}].");
     }
 
+    /// <summary>
+    /// Outputs a debug log message whenever this instance is removed from a game object.
+    /// </summary>
     public override void Remove() {
       Output.DebugLog($"Removal of [{this.GetType().Name}] from [{this.ParentObject}].");
       base.Remove();

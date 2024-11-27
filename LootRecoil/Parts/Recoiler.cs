@@ -6,7 +6,7 @@ using XRL.UI;
 using XRL.World;
 using GameObject = XRL.World.GameObject;
 
-namespace ModoMods.LootRecoil {
+namespace ModoMods.LootRecoil.Parts {
   /// <summary>Provides item recoil functionality.</summary>
   /// <remarks>
   /// Actually sending items to distant zones isn't possible as game objects get serialized when the player

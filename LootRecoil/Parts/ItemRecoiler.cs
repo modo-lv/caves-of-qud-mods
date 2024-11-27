@@ -11,7 +11,6 @@ namespace XRL.World.Parts {
     public Cell? Programmed;
 
     public override void ProgrammedForLocation(Zone zone, Cell cell) {
-      Output.DebugLog("Imprinted");
       base.ProgrammedForLocation(zone, cell);
       if (this.Programmed == null) {
         cell.AddObject(

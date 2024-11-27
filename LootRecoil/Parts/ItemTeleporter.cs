@@ -5,6 +5,7 @@ using ModoMods.Core.Data;
 using ModoMods.Core.Utils;
 using ModoMods.LootRecoil;
 using ModoMods.LootRecoil.Data;
+using ModoMods.LootRecoil.Parts;
 using XRL.UI;
 using XRL.World.Parts;
 
@@ -21,26 +22,27 @@ namespace XRL.World.Parts {
 
       return true;
     }
-    
-    
+
+
 
     public Boolean AttemptItemTeleport() {
-      var Actor = Main.Player;
       if (this.DestinationZone.IsNullOrEmpty())
-        return Actor.Fail("Nothing happens.");
+        return Main.Player.Fail("Nothing happens.");
 
-      if (!this.UsableInCombat && Actor.AreHostilesNearby())
-        return Actor == this.ParentObject
-          ? Actor.Fail("You can't recoil with hostiles nearby!")
-          : Actor.Fail("You can't use " + this.ParentObject.t() + " with hostiles nearby!");
+      if (!this.UsableInCombat && Main.Player.AreHostilesNearby())
+        return Main.Player == this.ParentObject
+          ? Main.Player.Fail("You can't recoil with hostiles nearby!")
+          : Main.Player.Fail("You can't use " + this.ParentObject.t() + " with hostiles nearby!");
 
-      Actor.PlayWorldOrUISound(this.Sound);
-      Output.Message("You activate the item recoiler.");
+      Main.Player.PlayWorldOrUISound(this.Sound);
+      Output.Message($"You activate the {this.ParentObject}.");
 
+      // Teleport items
       var transmitter = GameObject.CreateUnmodified(LrBlueprintNames.Transmitter);
       TradeUI.ShowTradeScreen(transmitter, 0.0f, TradeUI.TradeScreenMode.Container);
       var total = 0;
       var zone = The.ZoneManager.GetZone(this.DestinationZone);
+      var chest = zone.FindObject(LrBlueprintNames.Receiver);
       while (!transmitter.Inventory.Objects.IsNullOrEmpty()) {
         var item = transmitter.Inventory.GetFirstObject();
         if (item.Blueprint == LrBlueprintNames.Recoiler) {
@@ -53,14 +55,13 @@ namespace XRL.World.Parts {
               this.DestinationY,
               null,
               this.ParentObject,
-              Actor)) {
-          item.RequirePart<IsTeleportedItem>();
-          zone.RequirePart<HasTeleportedItems>();
+              Main.Player)) {
+          chest?.Inventory.AddObject(item);
           total += item.Count;
         }
       }
-      Output.Message(total + " item(s) recoiled to {{Y|" + zone.DisplayName + "}}.");
-      RecoiledVacuum.AttemptCleaning(zone);
+      Output.Message(total + " item(s) recoiled to " + zone.DisplayName + ".");
+
       return true;
     }
   }
