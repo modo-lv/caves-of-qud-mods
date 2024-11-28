@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using ModoMods.Core.Utils;
-using ModoMods.LootRecoil.Data;
+using ModoMods.ItemRecoiler.Data;
 using XRL.UI;
 using XRL.World;
 using GameObject = XRL.World.GameObject;
 
-namespace ModoMods.LootRecoil.Parts {
+namespace ModoMods.ItemRecoiler.Parts {
   /// <summary>Provides item recoil functionality.</summary>
   [Serializable] public class Recoiler : ModPart {
     private GameObject? _storage;

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using ModoMods.Core.Utils;
-using ModoMods.LootRecoil;
-using ModoMods.LootRecoil.Data;
+using ModoMods.ItemRecoiler;
+using ModoMods.ItemRecoiler.Data;
 using XRL.UI;
 
 // ReSharper disable once CheckNamespace
@@ -16,11 +16,11 @@ namespace XRL.World.Parts {
       base.ProgrammedForLocation(zone, cell);
       if (!this.IsImprinted) {
         cell.AddObject(
-          GameObject.CreateUnmodified(LrBlueprintNames.Receiver)
+          GameObject.CreateUnmodified(IrBlueprintNames.Receiver)
         );
         this.IsImprinted = true;
       } else {
-        var chest = cell.FindObject(LrBlueprintNames.Receiver);
+        var chest = cell.FindObject(IrBlueprintNames.Receiver);
         if (chest == null)
           return;
         

@@ -1,24 +1,24 @@
 ﻿using System;
 using ModoMods.Core.Utils;
-using ModoMods.LootRecoil.Data;
-using ModoMods.LootRecoil.Parts;
+using ModoMods.ItemRecoiler.Data;
+using ModoMods.ItemRecoiler.Parts;
 using XRL;
 using XRL.UI;
 using XRL.Wish;
 using XRL.World;
 
-namespace ModoMods.LootRecoil {
+namespace ModoMods.ItemRecoiler {
   [HasCallAfterGameLoaded][PlayerMutator][HasWishCommand]
   public class Main : IPlayerMutator {
     public static GameObject Player =>
       The.Player ?? throw new NullReferenceException("[The.Player] is null.");
 
     public static void Init(GameObject player) {
-      if (!player.Inventory.HasObject(LrBlueprintNames.Recoiler)) {
+      if (!player.Inventory.HasObject(IrBlueprintNames.Recoiler)) {
         Output.DebugLog(
-          $"[{player}] does not appear to own a [{LrBlueprintNames.Recoiler}], placing in inventory..."
+          $"[{player}] does not appear to own a [{IrBlueprintNames.Recoiler}], placing in inventory..."
         );
-        player.Inventory.AddObject(LrBlueprintNames.Recoiler);
+        player.Inventory.AddObject(IrBlueprintNames.Recoiler);
       }
       player.RequirePart<Recoiler>();
     }

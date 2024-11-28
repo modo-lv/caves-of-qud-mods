@@ -4,9 +4,9 @@
     No idea what Aut="Down" is for, but it is required (together with Layer="Adventure")
     for the command to work.
     -->
-    <command ID="ModoMods_LootRecoil_TransmitCommand"
+    <command ID="ModoMods_ItemRecoiler_TransmitCommand"
              DisplayText="Activate item recoiler"
-             Category="Mod: Loot Recoil"
+             Category="Mod: Item Recoiler"
              Layer="Adventure"
              Auto="Down">
     </command>

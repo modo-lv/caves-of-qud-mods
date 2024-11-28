@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using ModoMods.Core.Data;
 using ModoMods.Core.Utils;
-using ModoMods.LootRecoil;
-using ModoMods.LootRecoil.Data;
-using ModoMods.LootRecoil.Parts;
+using ModoMods.ItemRecoiler;
+using ModoMods.ItemRecoiler.Data;
+using ModoMods.ItemRecoiler.Parts;
 using XRL.UI;
 using XRL.World.Parts;
 
@@ -39,14 +39,14 @@ namespace XRL.World.Parts {
       Output.Message($"You activate the {this.ParentObject}.");
 
       // Teleport items
-      var transmitter = GameObject.CreateUnmodified(LrBlueprintNames.Transmitter);
+      var transmitter = GameObject.CreateUnmodified(IrBlueprintNames.Transmitter);
       TradeUI.ShowTradeScreen(transmitter, 0.0f, TradeUI.TradeScreenMode.Container);
       var total = 0;
       var zone = The.ZoneManager.GetZone(this.DestinationZone);
-      var chest = zone.FindObject(LrBlueprintNames.Receiver);
+      var chest = zone.FindObject(IrBlueprintNames.Receiver);
       while (!transmitter.Inventory.Objects.IsNullOrEmpty()) {
         var item = transmitter.Inventory.GetFirstObject();
-        if (item.Blueprint == LrBlueprintNames.Recoiler) {
+        if (item.Blueprint == IrBlueprintNames.Recoiler) {
           Main.Player.Inventory.AddObject(item);
           continue;
         }
