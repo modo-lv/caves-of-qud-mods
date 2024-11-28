@@ -8,17 +8,7 @@ using GameObject = XRL.World.GameObject;
 
 namespace ModoMods.LootRecoil.Parts {
   /// <summary>Provides item recoil functionality.</summary>
-  /// <remarks>
-  /// Actually sending items to distant zones isn't possible as game objects get serialized when the player
-  /// moves too far away. Instead, use an abstract chest object attached to the player that the player
-  /// has no direct access to and move items to the receiver when player is close enough for it to be "real".
-  /// 
-  /// When the player drops the recoil receiver, the zone ID of the location is recorded and item recoiling
-  /// enabled. Transmitted items are stored in <see cref="Escrow"/>, and, once the player returns to the zone,
-  /// automatically transferred to the receiver chest at the end of the turn.
-  /// </remarks>
-  [Serializable]
-  public class Recoiler : ModPart {
+  [Serializable] public class Recoiler : ModPart {
     private GameObject? _storage;
     public GameObject Escrow => this._storage ??= GameObject.CreateUnmodified("Chest");
 

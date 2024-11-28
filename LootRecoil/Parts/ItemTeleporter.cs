@@ -11,20 +11,21 @@ using XRL.World.Parts;
 
 // ReSharper disable once CheckNamespace
 namespace XRL.World.Parts {
+  /// <summary>Teleporter part for recoiling items.</summary>
   public class ItemTeleporter : Teleporter {
+    public override Boolean WantEvent(Int32 id, Int32 cascade) =>
+      base.WantEvent(id, cascade)
+      || id == InventoryActionEvent.ID;
+
     public override Boolean HandleEvent(InventoryActionEvent ev) {
-      if (ev.Command != CommandNames.ActivateTeleporter)
-        return true;
-
-      if (this.AttemptItemTeleport()) {
+      if (ev.Command == CommandNames.ActivateTeleporter && this.AttemptItemTeleport()) {
         ev.RequestInterfaceExit();
+        return true;
       }
-
-      return true;
+      return false;
     }
 
-
-
+    /// <summary>A simplified version of <see cref="ITeleporter.AttemptTeleport"/></summary>
     public Boolean AttemptItemTeleport() {
       if (this.DestinationZone.IsNullOrEmpty())
         return Main.Player.Fail("Nothing happens.");

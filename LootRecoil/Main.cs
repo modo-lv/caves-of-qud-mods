@@ -6,7 +6,6 @@ using XRL;
 using XRL.UI;
 using XRL.Wish;
 using XRL.World;
-using XRL.World.AI.GoalHandlers;
 
 namespace ModoMods.LootRecoil {
   [HasCallAfterGameLoaded][PlayerMutator][HasWishCommand]
@@ -15,11 +14,10 @@ namespace ModoMods.LootRecoil {
       The.Player ?? throw new NullReferenceException("[The.Player] is null.");
 
     public static void Init(GameObject player) {
-      player.RequirePart<RecoiledVacuum>();
-      if (/*!player.HasPart<Recoiler>()*/
-          /*|| player.GetPart<Recoiler>()?.Escrow == null*/
-          !player.Inventory.HasObject(LrBlueprintNames.Recoiler)) {
-        Output.DebugLog($"[{player}] does not appear to own a [{LrBlueprintNames.Recoiler}], placing in inventory...");
+      if (!player.Inventory.HasObject(LrBlueprintNames.Recoiler)) {
+        Output.DebugLog(
+          $"[{player}] does not appear to own a [{LrBlueprintNames.Recoiler}], placing in inventory..."
+        );
         player.Inventory.AddObject(LrBlueprintNames.Recoiler);
       }
       player.RequirePart<Recoiler>();
@@ -34,7 +32,8 @@ namespace ModoMods.LootRecoil {
 
     [WishCommand("q")]
     public static void Open() {
-      TradeUI.ShowTradeScreen(Player.RequirePart<Recoiler>()!.Escrow, 0.0f, TradeUI.TradeScreenMode.Container);
+      TradeUI.ShowTradeScreen(Player.RequirePart<Recoiler>()!.Escrow, 0.0f,
+        TradeUI.TradeScreenMode.Container);
     }
   }
 }

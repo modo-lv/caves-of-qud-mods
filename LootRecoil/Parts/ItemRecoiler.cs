@@ -7,28 +7,33 @@ using XRL.UI;
 
 // ReSharper disable once CheckNamespace
 namespace XRL.World.Parts {
+  /// <summary>Recoiler item functionality</summary>
   [Serializable] public class ItemRecoiler : ProgrammableRecoiler {
-    public Cell? Programmed;
+    public Boolean IsImprinted;
 
+    /// <summary>Adds/updates the item receiver chest.</summary>
     public override void ProgrammedForLocation(Zone zone, Cell cell) {
       base.ProgrammedForLocation(zone, cell);
-      if (this.Programmed == null) {
+      if (!this.IsImprinted) {
         cell.AddObject(
           GameObject.CreateUnmodified(LrBlueprintNames.Receiver)
         );
+        this.IsImprinted = true;
       } else {
-        var oldChest = this.Programmed.FindObject(LrBlueprintNames.Receiver);
+        var chest = cell.FindObject(LrBlueprintNames.Receiver);
+        if (chest == null)
+          return;
+        
         var total = 0;
-        oldChest?.Inventory.Objects.ToList().ForEach(item => {
-          this.Programmed.AddObject(item);
+        chest.Inventory.Objects.ToList().ForEach(item => {
+          cell.AddObject(item);
           total += item.Count;
         });
         if (total > 0) {
-          Output.DebugLog($"{total} item(s) removed from the chest to move it to the new location.");
+          Output.DebugLog($"{total} item(s) removed from the chest before moving it to the new location.");
         }
-        oldChest?.ZoneTeleport(zone.ZoneID, cell.X, cell.Y);
+        chest.ZoneTeleport(zone.ZoneID, cell.X, cell.Y);
       }
-      this.Programmed = cell;
     }
   }
 }
