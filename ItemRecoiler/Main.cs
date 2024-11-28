@@ -20,7 +20,7 @@ namespace ModoMods.ItemRecoiler {
         );
         player.Inventory.AddObject(IrBlueprintNames.Recoiler);
       }
-      player.RequirePart<Recoiler>();
+      player.RequirePart<ActivationCommand>();
     }
 
     /// <summary>New game.</summary>
@@ -28,12 +28,5 @@ namespace ModoMods.ItemRecoiler {
 
     /// <summary>Load game.</summary>
     [CallAfterGameLoaded] public static void OnGameLoaded() { Init(Player); }
-
-
-    [WishCommand("q")]
-    public static void Open() {
-      TradeUI.ShowTradeScreen(Player.RequirePart<Recoiler>()!.Escrow, 0.0f,
-        TradeUI.TradeScreenMode.Container);
-    }
   }
 }
