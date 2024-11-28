@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<subtypes>
+    <class ID="Callings" ChargenTitle="choose calling" SingularTitle="calling">
+        <subtype Name="Practitioner" Gear="StartingGear_Practitioner" Tile="creatures/caste_18.bmp" DetailColor="M">
+            <stat Name="Intelligence" Bonus="2" />
+            <skills>
+                <skill Name="Discipline_FastingWay" />
+                <skill Name="Survival_Camp" />
+                <skill Name="CookingAndGathering_Butchery" />
+            </skills>
+        </subtype>
+    </class>
+</subtypes>
