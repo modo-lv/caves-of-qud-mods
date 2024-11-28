@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <objects>
     <object Name="ModoMods:ItemRecoiler:Recoiler" Inherits="Item">
-        <part Name="Render" DisplayName="{{M|item}} recoiler" ColorString="&amp;M" DetailColor="k"
+        <part Name="Render" DisplayName="{{itemrecoiler|item recoiler}}" ColorString="&amp;M" DetailColor="k"
               RenderString="004" RenderLayer="5" Tile="Items/sw_recoiler.bmp" />
         <part Name="ItemRecoiler" ChargeUse="0" Reprogrammable="true" Sound="Sounds/Interact/sfx_interact_recoiler_location_imprint" />
         <part Name="ItemTeleporter" ChargeUse="0" Sound="Sounds/Interact/sfx_interact_recoiler_activate" />
         <part Name="Physics" Category="Tools" />
         <part Name="Description"
-              Short="A cassette is cut with hexagonal grooves and steeped in enough magnetic charge to propel any number of objects across spacetime, in ways no living being could survive. On the bottom, an endlessly extendable spacetime tether entangles cargo. On top, a recessed button snaps the potential and initiates the recoil." />
+              Short="A cassette is cut with hexagonal grooves and steeped in enough magnetic charge to propel any number of objects across spacetime, in ways no living being could survive. On the bottom, an endlessly extendable tether entangles the cargo. On top, a recessed button snaps the potential and initiates the recoil." />
         <part Name="Commerce" Value="210" />
         <part Name="TinkerItem" Bits="12346" CanBuild="true" />
         <part Name="Metal" />
@@ -25,12 +25,12 @@
     <object Name="ModoMods:ItemRecoiler:Receiver" Inherits="Chest">
         <part Name="Physics" Takeable="false" />
         <part Name="Render"
-              DisplayName="{{extradimensional|recoiled item receiver}}"
+              DisplayName="{{itemrecoiler|recoil chest}}"
               DetailColor="M"
               ColorString="&amp;y"
         />
         <part Name="Description"
-              Short="Receives and stores items recoiled with its {{M|item}} recoiler." />
+              Short="Receives and stores recoiled items." />
         <tag Name="NoSparkingQuest" />
         <tag Name="ExcludeFromDynamicEncounters" />
     </object>
