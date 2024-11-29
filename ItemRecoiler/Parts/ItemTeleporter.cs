@@ -35,8 +35,9 @@ namespace XRL.World.Parts {
           ? Main.Player.Fail("You can't recoil with hostiles nearby!")
           : Main.Player.Fail("You can't use " + this.ParentObject.t() + " with hostiles nearby!");
 
-      Main.Player.PlayWorldOrUISound(this.Sound);
-      Output.Message($"You activate the {this.ParentObject}.");
+      Output.Message(
+        $"You pull the spacetime tether from {this.ParentObject.DisplayName} " +
+        "and start tying it to your belongings.");
 
       // Teleport items
       var transmitter = GameObject.CreateUnmodified(IrBlueprintNames.Transmitter);
@@ -61,7 +62,10 @@ namespace XRL.World.Parts {
           total += item.Count;
         }
       }
-      Output.Message(total + " item(s) recoiled to " + zone.DisplayName + ".");
+      if (total > 0) {
+        Main.Player.PlayWorldOrUISound(this.Sound);
+        Output.Message(total + " item(s) recoiled to " + zone.DisplayName + ".");
+      }
 
       return true;
     }
