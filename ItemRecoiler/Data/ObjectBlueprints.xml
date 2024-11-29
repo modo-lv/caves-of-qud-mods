@@ -25,7 +25,7 @@
     <object Name="ModoMods:ItemRecoiler:Receiver" Inherits="Chest">
         <part Name="Physics" Takeable="false" />
         <part Name="Render"
-              DisplayName="{{itemrecoiler|recoil chest}}"
+              DisplayName="{{itemrecoiler|recoiled items}} chest"
               DetailColor="M"
               ColorString="&amp;y"
         />
@@ -35,5 +35,9 @@
         <tag Name="ExcludeFromDynamicEncounters" />
     </object>
 
-    <object Name="ModoMods:ItemRecoiler:Transmitter" Inherits="ModoMods:ItemRecoiler:Receiver" />
+    <object Name="ModoMods:ItemRecoiler:Transmitter" Inherits="ModoMods:ItemRecoiler:Recoiler">
+        <part Name="Inventory" />
+        <stag Name="Storage" />
+        <tag Name="ExcludeFromDynamicEncounters" />
+    </object>
 </objects>
