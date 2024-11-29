@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Linq;
 using ModoMods.Core.Utils;
-using ModoMods.ItemRecoiler;
 using ModoMods.ItemRecoiler.Data;
-using XRL.UI;
 
 // ReSharper disable once CheckNamespace
 namespace XRL.World.Parts {

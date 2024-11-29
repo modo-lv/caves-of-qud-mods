@@ -5,6 +5,7 @@
               RenderString="004" RenderLayer="5" Tile="Items/sw_recoiler.bmp" />
         <part Name="ItemRecoiler" ChargeUse="0" Reprogrammable="true" Sound="Sounds/Interact/sfx_interact_recoiler_location_imprint" />
         <part Name="ItemTeleporter" ChargeUse="0" Sound="Sounds/Interact/sfx_interact_recoiler_activate" />
+        <part Name="EnergyCellSocket" SlotType="EnergyCell" />
         <part Name="Physics" Category="Tools" />
         <part Name="Description"
               Short="A cassette is cut with hexagonal grooves and steeped in enough magnetic charge to propel any number of objects across spacetime, in ways no living being could survive. On the bottom, an endlessly extendable tether entangles the cargo. On top, a recessed button snaps the potential and initiates the recoil." />

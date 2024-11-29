@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using ModoMods.Core.Data;
 using ModoMods.Core.Utils;
 using ModoMods.ItemRecoiler;
 using ModoMods.ItemRecoiler.Data;
-using ModoMods.ItemRecoiler.Parts;
 using XRL.UI;
-using XRL.World.Parts;
 
 // ReSharper disable once CheckNamespace
 namespace XRL.World.Parts {
@@ -22,7 +19,7 @@ namespace XRL.World.Parts {
         ev.RequestInterfaceExit();
         return true;
       }
-      return false;
+      return base.HandleEvent(ev);
     }
 
     /// <summary>A simplified version of <see cref="ITeleporter.AttemptTeleport"/></summary>
@@ -42,7 +39,25 @@ namespace XRL.World.Parts {
       // Teleport items
       var transmitter = GameObject.CreateUnmodified(IrBlueprintNames.Transmitter);
       TradeUI.ShowTradeScreen(transmitter, 0.0f, TradeUI.TradeScreenMode.Container);
+
+      var chargeNeeded = transmitter.Inventory.Objects.Sum(o => o.Weight);
+      var actualCharge = this.ParentObject.QueryCharge();
+      if (chargeNeeded > actualCharge) {
+        if (actualCharge > 0)
+          Popup.ShowFail(
+            this.ParentObject.Does("hum") + " for a moment, then powers down. " +
+            this.ParentObject.Does("don't", Pronoun: true) + " have enough charge to recoil " +
+            "all the items ({{Y|" + actualCharge + "}}/{{Y|" + chargeNeeded + "}})."
+          );
+        else
+          Popup.ShowFail(this.ParentObject.Does("don't") + " have any charge left.");
+
+        Main.Player.Inventory.AddObject(transmitter.Inventory.Objects.ToList());
+        
+        return true;
+      }
       var total = 0;
+      var chargeSpent = 0;
       var zone = The.ZoneManager.GetZone(this.DestinationZone);
       var chest = zone.FindObject(IrBlueprintNames.Receiver);
       while (!transmitter.Inventory.Objects.IsNullOrEmpty()) {
@@ -60,11 +75,14 @@ namespace XRL.World.Parts {
               Main.Player)) {
           chest?.Inventory.AddObject(item);
           total += item.Count;
+          this.ParentObject.UseCharge(item.Weight);
+          chargeSpent += item.Weight;
         }
       }
       if (total > 0) {
         Main.Player.PlayWorldOrUISound(this.Sound);
-        Output.Message(total + " item(s) recoiled to " + zone.DisplayName + ".");
+        Output.Message("{{Y|" + total + "}} item(s) recoiled to {{Y|" + zone.DisplayName + "}}.");
+        Output.DebugLog($"[{this.ParentObject}] charge - {chargeSpent} = {this.ParentObject.QueryCharge()}.");
       }
 
       return true;
