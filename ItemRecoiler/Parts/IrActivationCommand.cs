@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using ModoMods.Core.Data;
 using ModoMods.Core.Utils;
 using ModoMods.ItemRecoiler.Data;
 using XRL.World;
+using XRL.World.Parts;
 
 namespace ModoMods.ItemRecoiler.Parts {
   /// <summary>Reacts to keyboard shortcut</summary>
@@ -14,10 +16,16 @@ namespace ModoMods.ItemRecoiler.Parts {
         return base.HandleEvent(ev);
 
       var recoiler = Main.Player.Inventory.FindObjectByBlueprint(IrBlueprintNames.Recoiler);
-      if (recoiler != null)
-        recoiler.Twiddle();
-      else
-        Output.Message("You don't have an item recoiler");
+      if (recoiler != null) {
+        var teleporter = recoiler.GetPartDescendedFrom<ITeleporter>();
+        if (teleporter.DestinationZone.IsNullOrEmpty())
+          recoiler.Twiddle();
+        else
+          teleporter.HandleEvent(
+            new InventoryActionEvent { Command = CommandNames.ActivateTeleporter }
+          );
+      } else
+        Main.Player.ParticleText("You don't have an item recoiler.", 'o');
 
       return base.HandleEvent(ev);
     }
