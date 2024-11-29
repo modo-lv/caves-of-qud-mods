@@ -32,10 +32,6 @@ namespace XRL.World.Parts {
           ? Main.Player.Fail("You can't recoil with hostiles nearby!")
           : Main.Player.Fail("You can't use " + this.ParentObject.t() + " with hostiles nearby!");
 
-      Output.Message(
-        $"You pull the spacetime tether from {this.ParentObject.DisplayName} " +
-        "and start tying it to your belongings.");
-
       // Teleport items
       var transmitter = GameObject.CreateUnmodified(IrBlueprintNames.Transmitter);
       TradeUI.ShowTradeScreen(transmitter, 0.0f, TradeUI.TradeScreenMode.Container);
