@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <objects>
-    <object Name="ModoMods:ItemRecoiler:Recoiler" Inherits="Item">
+    <object Name="ModoMods_ItemRecoiler_Recoiler" Inherits="Item">
         <part Name="Render" DisplayName="{{itemrecoiler|item recoiler}}" ColorString="&amp;M" DetailColor="k"
               RenderString="004" RenderLayer="5" Tile="Items/sw_recoiler.bmp" />
         <part Name="ItemRecoiler" ChargeUse="0" Reprogrammable="true" Sound="Sounds/Interact/sfx_interact_recoiler_location_imprint" />
@@ -23,7 +23,7 @@
         <tag Name="NoSparkingQuest" />
     </object>
 
-    <object Name="ModoMods:ItemRecoiler:Receiver" Inherits="Chest">
+    <object Name="ModoMods_ItemRecoiler_Receiver" Inherits="Chest">
         <part Name="Physics" Takeable="false" />
         <part Name="Render"
               DisplayName="{{itemrecoiler|recoiled items}} chest"
@@ -36,7 +36,7 @@
         <tag Name="ExcludeFromDynamicEncounters" />
     </object>
 
-    <object Name="ModoMods:ItemRecoiler:Transmitter" Inherits="ModoMods:ItemRecoiler:Recoiler">
+    <object Name="ModoMods_ItemRecoiler_Transmitter" Inherits="ModoMods_ItemRecoiler_Recoiler">
         <part Name="Inventory" />
         <stag Name="Storage" />
         <tag Name="ExcludeFromDynamicEncounters" />
