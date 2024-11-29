@@ -1,13 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <options>
     <!-- Training toggle -->
-    <option ID="Option_Modo_SkillTraining_Enabled"
+    <option ID="Option_ModoMods_SkillTraining_Enabled"
             DisplayText="Training enabled"
             Type="Checkbox"
             Default="Yes"
             Category="Mod: Skill Training">
         <helptext>
             Enable/disable skill training. If disabled, training points will no longer be earned and skills will not automatically unlock, but otherwise the mod will function as normal. For example, unlearning skills and manually modifying training points through the mod menu (wish for {{W|SkillTraining}}) will remain available. 
+        </helptext>
+    </option>
+
+
+    <!-- Show training gains -->
+    <option ID="Option_ModoMods_SkillTraining_ShowTraining"
+            Requires="Option_ModoMods_SkillTraining_Enabled==Yes"
+            DisplayText="Show training point gains"
+            Type="Checkbox"
+            Default="Yes"
+            Category="Mod: Skill Training">
+        <helptext>
+            If enabled, the message log window will record every time skill training happens.
         </helptext>
     </option>
 </options>

@@ -65,7 +65,16 @@ namespace ModoMods.SkillTraining.Wiring {
           this.Points[skillClass] = amount;
         else
           this.Points[skillClass] += amount;
-        Output.DebugLog($"[{skillClass.SkillName()}] + {amount} = {this.Points[skillClass]}");
+
+        if (ModOptions.ShowTraining)
+          Output.Message(
+            "Training: {{Y|" + skillClass.SkillName() + "}} " +
+            "+ {{Y|" + amount + "}} = " + $"{this.Points[skillClass]}."
+          );
+        Output.DebugLog(
+          $"[{skillClass.SkillName()}] + {amount} = {this.Points[skillClass]}",
+          inGame: false
+        );
       }
       this.UnlockCompletedSkills();
     }

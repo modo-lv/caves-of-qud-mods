@@ -7,6 +7,10 @@ namespace ModoMods.SkillTraining.Wiring {
   /// </summary>
   public static class ModOptions {
     public static Boolean TrainingEnabled =>
-      Options.GetOption("Option_Modo_SkillTraining_Enabled")?.EqualsNoCase("yes") ?? false;
+      Options.GetOption("Option_ModoMods_SkillTraining_Enabled")?.EqualsNoCase("yes") ?? false;
+    
+    public static Boolean ShowTraining =>
+      Options.GetOption("Option_ModoMods_SkillTraining_ShowTraining")?.EqualsNoCase("yes") ?? false;
+    
   }
 }
