@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<options>
+    <!-- Give recoiler on startup -->
+    <option ID="Option_ModoMods_ItemRecoiler_GiveOnStartup"
+            DisplayText="Start with an item recoiler"
+            Type="Checkbox"
+            Default="Yes"
+            Category="Mod: Item Recoiler">
+        <helptext>
+            If enabled, every character will start the game with an item recoiler in the inventory. Existing characters will also have one automatically added after installing the mod.
+        </helptext>
+    </option>
+</options>

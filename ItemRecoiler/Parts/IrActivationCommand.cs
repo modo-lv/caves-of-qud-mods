@@ -6,7 +6,7 @@ using XRL.World;
 
 namespace ModoMods.ItemRecoiler.Parts {
   /// <summary>Reacts to keyboard shortcut</summary>
-  [Serializable] public class ActivationCommand : ModPart {
+  public class IrActivationCommand : ModPart {
     public override ISet<Int32> WantEventIds => new HashSet<Int32> { CommandEvent.ID, };
 
     public override Boolean HandleEvent(CommandEvent ev) {

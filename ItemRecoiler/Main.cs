@@ -2,8 +2,8 @@
 using ModoMods.Core.Utils;
 using ModoMods.ItemRecoiler.Data;
 using ModoMods.ItemRecoiler.Parts;
+using ModoMods.ItemRecoiler.Wiring;
 using XRL;
-using XRL.UI;
 using XRL.Wish;
 using XRL.World;
 
@@ -14,13 +14,17 @@ namespace ModoMods.ItemRecoiler {
       The.Player ?? throw new NullReferenceException("[The.Player] is null.");
 
     public static void Init(GameObject player) {
-      if (!player.Inventory.HasObject(IrBlueprintNames.Recoiler)) {
-        Output.DebugLog(
-          $"[{player}] does not appear to own a [{IrBlueprintNames.Recoiler}], placing in inventory..."
-        );
-        player.Inventory.AddObject(IrBlueprintNames.Recoiler);
+      if (ModOptions.GiveOnStartup
+          && !player.Inventory.HasObject(IrBlueprintNames.Recoiler)
+          && !player.HasPart<IrActivationCommand>()) {
+        var recoiler = GameObject.CreateUnmodified(IrBlueprintNames.Recoiler);
+        var text = "You feel a slight spacetime disturbance in your immediate vicinity, " +
+                   $"and quickly discover {recoiler.a}{recoiler.DisplayName} in your inventory " +
+                   "that wasn't there before.";
+        player.Inventory.AddObject(recoiler);
+        Output.Alert(text);
       }
-      player.RequirePart<ActivationCommand>();
+      player.RequirePart<IrActivationCommand>();
     }
 
     /// <summary>New game.</summary>
