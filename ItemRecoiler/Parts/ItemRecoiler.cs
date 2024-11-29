@@ -11,17 +11,20 @@ namespace XRL.World.Parts {
 
     /// <summary>Adds/updates the item receiver chest.</summary>
     public override void ProgrammedForLocation(Zone zone, Cell cell) {
-      base.ProgrammedForLocation(zone, cell);
-      if (!this.IsImprinted) {
+      Zone? chestZone;
+      if (this.IsImprinted) {
+        chestZone = ZoneManager.instance.GetZone(
+          this.ParentObject.GetPartDescendedFrom<ITeleporter>().DestinationZone
+        );
+      } else chestZone = zone;
+      
+      var chest = chestZone.FindObject(IrBlueprintNames.Receiver);
+      if (chest == null) {
         cell.AddObject(
           GameObject.CreateUnmodified(IrBlueprintNames.Receiver)
         );
         this.IsImprinted = true;
       } else {
-        var chest = cell.FindObject(IrBlueprintNames.Receiver);
-        if (chest == null)
-          return;
-        
         var total = 0;
         chest.Inventory.Objects.ToList().ForEach(item => {
           cell.AddObject(item);
@@ -32,6 +35,7 @@ namespace XRL.World.Parts {
         }
         chest.ZoneTeleport(zone.ZoneID, cell.X, cell.Y);
       }
+      base.ProgrammedForLocation(zone, cell);
     }
   }
 }
