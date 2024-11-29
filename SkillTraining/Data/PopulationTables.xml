@@ -4,7 +4,6 @@
         <group Name="Items" Style="pickeach">
             <table Name="StartingGear_Common" />
             <object Blueprint="HalfFullWaterskin" Number="3" />
-            <object Blueprint="Ekuemekiyyen Greens" Number="3-4" />
             <object Blueprint="Bandage" Number="10-15" />
             <object Blueprint="Steel Vinereaper" Number="1" />
             <object Blueprint="Gas Mask" Number="1" />
@@ -13,13 +12,6 @@
             <object Blueprint="Short Bow" Number="1" />
             <object Blueprint="Wooden Arrow" Number="30-50" />
             <object Blueprint="Iron Buckler" Number="1" />
-            <object Blueprint="SalveTonic" Number="1-3" />
-            <object Blueprint="Pestle" Number="1" />
-            <table Name="Injectors" Number="2-6" />
-            <table Name="Cells" Number="1-2" />
-            <table Name="Trinkets 1" Number="0-1" />
-            <table Name="Artifact 1" Number="0-2" />
-            <table Name="Artifact 2" Number="0-2" />
             <object Blueprint="Witchwood Bark" Number="3-4" />
         </group>
     </population>
