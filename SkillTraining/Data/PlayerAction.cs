@@ -29,7 +29,11 @@
     SecretReveal,
     #endregion
     
+    #region Physic
     Bandage,
+    Recover,
+    Inject,
+    #endregion
     
     #region Tinkering
     ExamineSuccess,

@@ -47,7 +47,11 @@ namespace ModoMods.SkillTraining.Data {
         { SecretReveal,      new TrainingData(CustomsAndFolklore,  0.25m) },
         #endregion 
  
+        #region Physic
         { Bandage,           new TrainingData(Physic,              1.00m) },
+        { Recover,           new TrainingData(Physic,              1.00m) },
+        { Inject,            new TrainingData(Physic,              1.00m) },
+        #endregion
          
         #region Tinkering 
         { ExamineSuccess,    new TrainingData(Tinkering,           1.00m) },
