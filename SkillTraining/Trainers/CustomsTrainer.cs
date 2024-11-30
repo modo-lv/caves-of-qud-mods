@@ -23,7 +23,10 @@ namespace ModoMods.SkillTraining.Trainers {
             and not JournalVillageNote)
         return;
 
-      Main.PointTracker.HandleTrainingAction(PlayerAction.SecretReveal);
+      // Location reveal can trigger on a new game, before the player is fully initiated.
+      // Just skip the training for that one reveal.
+      if (The.Player != null)
+        Main.PointTracker.HandleTrainingAction(PlayerAction.SecretReveal);
     }
 
     /// <remarks>
