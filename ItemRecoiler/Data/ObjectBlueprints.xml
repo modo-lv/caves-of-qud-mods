@@ -35,10 +35,4 @@
         <tag Name="NoSparkingQuest" />
         <tag Name="ExcludeFromDynamicEncounters" />
     </object>
-
-    <object Name="ModoMods_ItemRecoiler_Transmitter" Inherits="ModoMods_ItemRecoiler_Recoiler">
-        <part Name="Inventory" />
-        <stag Name="Storage" />
-        <tag Name="ExcludeFromDynamicEncounters" />
-    </object>
 </objects>

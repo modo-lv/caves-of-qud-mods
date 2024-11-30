@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using ModoMods.Core.Data;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
 using XRL.World;
-using XRL.World.Parts;
 
 namespace ModoMods.SkillTraining.Wiring {
   /// <summary>Reacts to keyboard shortcut</summary>

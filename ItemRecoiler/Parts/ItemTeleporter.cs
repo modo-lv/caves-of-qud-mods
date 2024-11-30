@@ -4,6 +4,7 @@ using ModoMods.Core.Data;
 using ModoMods.Core.Utils;
 using ModoMods.ItemRecoiler;
 using ModoMods.ItemRecoiler.Data;
+using ModoMods.ItemRecoiler.Utils;
 using XRL.UI;
 
 // ReSharper disable once CheckNamespace
@@ -34,7 +35,7 @@ namespace XRL.World.Parts {
           : Main.Player.Fail("You can't use " + this.ParentObject.t() + " with hostiles nearby!");
 
       // Teleport items
-      var transmitter = GameObject.CreateUnmodified(ModBlueprintNames.Transmitter);
+      var transmitter = this.ParentObject.DeepCopy().Also(it => it.RequirePart<Inventory>());
       TradeUI.ShowTradeScreen(transmitter, 0.0f, TradeUI.TradeScreenMode.Container);
 
       var chargeNeeded = transmitter.Inventory.Objects.Sum(o => o.Weight);
@@ -50,7 +51,7 @@ namespace XRL.World.Parts {
           Popup.ShowFail(this.ParentObject.Does("don't") + " have any charge left.");
 
         Main.Player.Inventory.AddObject(transmitter.Inventory.Objects.ToList());
-        
+
         return true;
       }
       var total = 0;
@@ -76,6 +77,7 @@ namespace XRL.World.Parts {
           chargeSpent += item.Weight;
         }
       }
+      transmitter.Obliterate(Silent: true);
       if (total > 0) {
         Main.Player.PlayWorldOrUISound(this.Sound);
         Output.Message("{{Y|" + total + "}} item(s) recoiled to {{Y|" + zone.DisplayName + "}}.");
