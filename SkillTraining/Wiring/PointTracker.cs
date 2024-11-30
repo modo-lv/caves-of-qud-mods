@@ -68,7 +68,7 @@ namespace ModoMods.SkillTraining.Wiring {
 
         if (ModOptions.ShowTraining)
           Output.Message(
-            "Training: {{Y|" + skillClass.SkillName() + "}} " +
+            "{{training|Training}}: {{Y|" + skillClass.SkillName() + "}} " +
             "+ {{Y|" + amount + "}} = " + $"{this.Points[skillClass]}."
           );
         Output.DebugLog(

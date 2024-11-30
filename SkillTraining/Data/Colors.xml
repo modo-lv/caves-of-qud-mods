@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<colors>
+  <shaders>
+    <shader Name="training" Type="alternation" Colors="b-B-g-G" ShowInPicker="true" />
+  </shaders>
+</colors>
