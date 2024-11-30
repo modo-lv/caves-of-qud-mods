@@ -1,4 +1,5 @@
 ﻿using System;
+using ModoMods.Core.Utils;
 using ModoMods.ItemRecoiler.Parts;
 using ModoMods.ItemRecoiler.Wiring;
 using XRL;
@@ -11,15 +12,22 @@ namespace ModoMods.ItemRecoiler {
     public static GameObject Player =>
       The.Player ?? throw new NullReferenceException("[The.Player] is null.");
 
+    /// <summary>Attaches all the necessary mod parts to the main player object.</summary>
     public static void Init(GameObject player) {
       player.RequirePart<Commands>();
       player.RequirePart<StartupProvider>();
     }
 
     /// <summary>New game.</summary>
-    public void mutate(GameObject player) { Init(player); }
+    public void mutate(GameObject player) {
+      Output.DebugLog("Game started, wiring up the mod...");
+      Init(player);
+    }
 
     /// <summary>Load game.</summary>
-    [CallAfterGameLoaded] public static void OnGameLoaded() { Init(Player); }
+    [CallAfterGameLoaded] public static void OnGameLoaded() {
+      Output.DebugLog("Game loaded, verifying all the mod wiring...");
+      Init(Player);
+    }
   }
 }

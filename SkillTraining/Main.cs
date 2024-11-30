@@ -10,38 +10,19 @@ namespace ModoMods.SkillTraining {
   /// <remarks>Attaches the <see cref="PointTracker"/> part to the player object.</remarks>
   [HasCallAfterGameLoaded][PlayerMutator]
   public class Main : IPlayerMutator {
-    public static GameObject Player => 
+    public static GameObject Player =>
       The.Player ?? throw new NullReferenceException("[The.Player] is null.");
 
     public static PointTracker PointTracker => Player.RequirePart<PointTracker>();
-    
-    [CallAfterGameLoaded]
-    public static void OnGameLoaded() {
-      Output.DebugLog($"Game loaded, ensuring that training parts are attached to [{Player}]...");
-      Player.RequirePart<PointTracker>();
-      Player.RequirePart<Commands>();
-      
-      Player.RequirePart<MeleeWeaponTrainer>();
-      Player.RequirePart<MissileAttackTrainer>();
-      
-      Player.RequirePart<CookingTrainer>();
-      Player.RequirePart<CustomsTrainer>();
-      Player.RequirePart<ShieldTrainer>();
-      Player.RequirePart<SnakeOilerTrainer>();
-      Player.RequirePart<SwimmingTrainer>();
-      Player.RequirePart<DeftThrowingTrainer>();
-      Player.RequirePart<TinkeringTrainer>();
-      Player.RequirePart<WayfaringTrainer>();
-    }
 
-    public void mutate(GameObject player) {
-      Output.DebugLog($"New game started, attaching training parts to [{player}]...");
+    /// <summary>Attaches all the necessary mod parts to the main player object.</summary>
+    public static void Init(GameObject player) {
       player.RequirePart<PointTracker>();
       player.RequirePart<Commands>();
 
       player.RequirePart<MeleeWeaponTrainer>();
       player.RequirePart<MissileAttackTrainer>();
-      
+
       player.RequirePart<CookingTrainer>();
       player.RequirePart<CustomsTrainer>();
       player.RequirePart<ShieldTrainer>();
@@ -50,6 +31,17 @@ namespace ModoMods.SkillTraining {
       player.RequirePart<DeftThrowingTrainer>();
       player.RequirePart<TinkeringTrainer>();
       player.RequirePart<WayfaringTrainer>();
+    }
+
+    public void mutate(GameObject player) {
+      Output.DebugLog("Game started, wiring up the mod...");
+      Init(player);
+    }
+
+    [CallAfterGameLoaded]
+    public static void OnGameLoaded() {
+      Output.DebugLog("Game loaded, verifying all the mod wiring...");
+      Init(Player);
     }
   }
 }
