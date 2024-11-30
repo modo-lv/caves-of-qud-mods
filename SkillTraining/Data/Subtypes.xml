@@ -4,9 +4,10 @@
         <subtype Name="Practitioner" Gear="StartingGear_Practitioner" Tile="creatures/caste_18.bmp" DetailColor="M">
             <stat Name="Intelligence" Bonus="2" />
             <skills>
-                <skill Name="Discipline_FastingWay" />
-                <skill Name="Survival_Camp" />
                 <skill Name="CookingAndGathering_Butchery" />
+                <skill Name="Survival_Camp" />
+                <skill Name="Tinkering_Disassemble" />
+                <skill Name="Tinkering_Scavenger" />
             </skills>
         </subtype>
     </class>
