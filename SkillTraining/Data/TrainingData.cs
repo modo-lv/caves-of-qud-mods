@@ -60,7 +60,7 @@ namespace ModoMods.SkillTraining.Data {
          
         { ShieldBlock,       new TrainingData(Shield,              0.25m) },
          
-        { ThrownWeaponHit,   new TrainingData(DeftThrowing,        1.00m) },
+        { ThrownWeaponHit,   new TrainingData(DeftThrowing,        0.75m) },
          
         { TradeItem,         new TrainingData(SnakeOiler,          0.01m) },
          
