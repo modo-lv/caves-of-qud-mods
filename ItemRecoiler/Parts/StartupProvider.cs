@@ -18,7 +18,7 @@ namespace ModoMods.ItemRecoiler.Parts {
     public override Boolean HandleEvent(BeforeTakeActionEvent ev) {
       var player = this.ParentObject;
       if (ModOptions.GiveOnStartup && !this.Provided) {
-        var recoiler = GameObject.CreateUnmodified(IrBlueprintNames.Recoiler);
+        var recoiler = GameObject.CreateUnmodified(ModBlueprintNames.Recoiler);
         var cell = GameObject.CreateUnmodified("Solar Cell");
         cell.RemovePart<Examiner>();
         recoiler.GetPart<EnergyCellSocket>().SetCell(cell);

@@ -18,10 +18,10 @@ namespace XRL.World.Parts {
         );
       } else chestZone = zone;
       
-      var chest = chestZone.FindObject(IrBlueprintNames.Receiver);
+      var chest = chestZone.FindObject(ModBlueprintNames.Receiver);
       if (chest == null) {
         cell.AddObject(
-          GameObject.CreateUnmodified(IrBlueprintNames.Receiver)
+          GameObject.CreateUnmodified(ModBlueprintNames.Receiver)
         );
         this.IsImprinted = true;
       } else {

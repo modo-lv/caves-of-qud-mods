@@ -34,7 +34,7 @@ namespace XRL.World.Parts {
           : Main.Player.Fail("You can't use " + this.ParentObject.t() + " with hostiles nearby!");
 
       // Teleport items
-      var transmitter = GameObject.CreateUnmodified(IrBlueprintNames.Transmitter);
+      var transmitter = GameObject.CreateUnmodified(ModBlueprintNames.Transmitter);
       TradeUI.ShowTradeScreen(transmitter, 0.0f, TradeUI.TradeScreenMode.Container);
 
       var chargeNeeded = transmitter.Inventory.Objects.Sum(o => o.Weight);
@@ -56,10 +56,10 @@ namespace XRL.World.Parts {
       var total = 0;
       var chargeSpent = 0;
       var zone = The.ZoneManager.GetZone(this.DestinationZone);
-      var chest = zone.FindObject(IrBlueprintNames.Receiver);
+      var chest = zone.FindObject(ModBlueprintNames.Receiver);
       while (!transmitter.Inventory.Objects.IsNullOrEmpty()) {
         var item = transmitter.Inventory.GetFirstObject();
-        if (item.Blueprint == IrBlueprintNames.Recoiler) {
+        if (item.Blueprint == ModBlueprintNames.Recoiler) {
           Main.Player.Inventory.AddObject(item);
           continue;
         }

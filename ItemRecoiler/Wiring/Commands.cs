@@ -12,10 +12,10 @@ namespace ModoMods.ItemRecoiler.Wiring {
     public override ISet<Int32> WantEventIds => new HashSet<Int32> { CommandEvent.ID, };
 
     public override Boolean HandleEvent(CommandEvent ev) {
-      if (ev.Command != IrEventNames.TransmitCommand)
+      if (ev.Command != ModEventNames.TransmitCommand)
         return base.HandleEvent(ev);
 
-      var recoiler = Main.Player.Inventory.FindObjectByBlueprint(IrBlueprintNames.Recoiler);
+      var recoiler = Main.Player.Inventory.FindObjectByBlueprint(ModBlueprintNames.Recoiler);
       if (recoiler != null) {
         var teleporter = recoiler.GetPartDescendedFrom<ITeleporter>();
         if (teleporter.DestinationZone.IsNullOrEmpty())
