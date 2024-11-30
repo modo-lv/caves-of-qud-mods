@@ -14,6 +14,9 @@ namespace ModoMods.Core.Data {
       new Ironshank().ID,
       new Monochrome().ID,
     };
+
+    public static readonly Guid BasicCooking = new BasicCookingEffect().ID;
+    
     public static readonly Guid Lost = new Lost().ID;
 
 
