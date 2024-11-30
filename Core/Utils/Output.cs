@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Reflection;
 using UnityEngine;
 using XRL.Messages;
 using XRL.UI;
@@ -10,7 +11,8 @@ namespace ModoMods.Core.Utils {
     /// <summary>Log a debug message to the game's log file.</summary>
     public static void DebugLog(Object? message, Boolean inGame = true) {
       var dt = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fffzzz", CultureInfo.InvariantCulture);
-      Debug.Log($"[SkillTraining][{dt}] {message}");
+      var mod = Assembly.GetCallingAssembly().GetName().Name.Replace(".dll", "");
+      Debug.Log($"[{dt}][{mod}] {message}");
       if (inGame)
         Message("{{K|" + message + "}}");
     }
