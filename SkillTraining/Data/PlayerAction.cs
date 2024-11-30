@@ -32,7 +32,10 @@
     
     Bandage,
     
+    #region Tinkering
     ExamineSuccess,
+    RifleTrashSuccess,
+    #endregion
     
     ShieldBlock,
     

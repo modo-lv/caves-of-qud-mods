@@ -19,20 +19,20 @@ namespace ModoMods.SkillTraining.Data {
         //@formatter:off
         
         #region Melee combat
-        { AxeHit,           new TrainingData(Axe,                 0.02m) },
-        { CudgelHit,        new TrainingData(Cudgel,              0.02m) },
-        { LongBladeHit,     new TrainingData(LongBlade,           0.04m) },
-        { ShortBladeHit,    new TrainingData(ShortBlade,          0.04m) },
-        
-        { SingleWeaponHit,  new TrainingData(SingleWeaponFighting,0.01m) },
-        { OffhandWeaponHit, new TrainingData(MultiweaponFighting, 0.02m) },
+        { AxeHit,            new TrainingData(Axe,                 0.02m) },
+        { CudgelHit,         new TrainingData(Cudgel,              0.02m) },
+        { LongBladeHit,      new TrainingData(LongBlade,           0.04m) },
+        { ShortBladeHit,     new TrainingData(ShortBlade,          0.04m) },
+         
+        { SingleWeaponHit,   new TrainingData(SingleWeaponFighting,0.01m) },
+        { OffhandWeaponHit,  new TrainingData(MultiweaponFighting, 0.02m) },
         #endregion
         
         #region Missile combat
-        { BowHit,           new TrainingData(BowAndRifle,         0.25m) },
-        { PistolHit,        new TrainingData(Pistol,              0.25m) },
-        { RifleHit,         new TrainingData(BowAndRifle,         0.25m) },
-        { HeavyWeaponHit,   new TrainingData(HeavyWeapon,         0.25m) },
+        { BowHit,            new TrainingData(BowAndRifle,         0.25m) },
+        { PistolHit,         new TrainingData(Pistol,              0.25m) },
+        { RifleHit,          new TrainingData(BowAndRifle,         0.25m) },
+        { HeavyWeaponHit,    new TrainingData(HeavyWeapon,         0.25m) },
         #endregion
         
         #region Cooking and Gathering
@@ -43,22 +43,25 @@ namespace ModoMods.SkillTraining.Data {
         #endregion
         
         #region Customs and Folklore
-        { FirstRitualRep,   new TrainingData(CustomsAndFolklore,  1.00m) },
-        { RitualRep,        new TrainingData(CustomsAndFolklore,  0.25m) },
-        { SecretReveal,     new TrainingData(CustomsAndFolklore,  0.25m) },
-        #endregion
-
-        { Bandage,          new TrainingData(Physic,              1.00m) },
-        
-        { ExamineSuccess,   new TrainingData(Tinkering,           1.00m) },
-        
-        { ShieldBlock,      new TrainingData(Shield,              0.50m) },
-        
-        { ThrownWeaponHit,  new TrainingData(DeftThrowing,        0.50m) },
-        
-        { TradeItem,        new TrainingData(SnakeOiler,          0.01m) },
-        
-        { Swim,             new TrainingData(Swimming,            0.15m) },
+        { FirstRitualRep,    new TrainingData(CustomsAndFolklore,  1.00m) },
+        { RitualRep,         new TrainingData(CustomsAndFolklore,  0.25m) },
+        { SecretReveal,      new TrainingData(CustomsAndFolklore,  0.25m) },
+        #endregion 
+ 
+        { Bandage,           new TrainingData(Physic,              1.00m) },
+         
+        #region Tinkering 
+        { ExamineSuccess,    new TrainingData(Tinkering,           1.00m) },
+        { RifleTrashSuccess, new TrainingData(Tinkering,           0.25m) },
+        #endregion 
+         
+        { ShieldBlock,       new TrainingData(Shield,              0.50m) },
+         
+        { ThrownWeaponHit,   new TrainingData(DeftThrowing,        0.50m) },
+         
+        { TradeItem,         new TrainingData(SnakeOiler,          0.01m) },
+         
+        { Swim,              new TrainingData(Swimming,            0.15m) },
 
         #region Wayfaring
         { WorldMapMove,     new TrainingData(Wayfaring,           0.15m) },
