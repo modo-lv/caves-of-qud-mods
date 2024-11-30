@@ -8,7 +8,7 @@ using XRL.World.Parts;
 
 namespace ModoMods.SkillTraining.Wiring {
   /// <summary>Reacts to keyboard shortcut</summary>
-  public class Commands : ModPart {
+  public class ModCommands : ModPart {
     public override ISet<Int32> WantEventIds => new HashSet<Int32> { CommandEvent.ID };
 
     public override Boolean HandleEvent(CommandEvent ev) {

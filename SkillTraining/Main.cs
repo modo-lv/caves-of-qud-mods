@@ -18,7 +18,7 @@ namespace ModoMods.SkillTraining {
     /// <summary>Attaches all the necessary mod parts to the main player object.</summary>
     public static void Init(GameObject player) {
       player.RequirePart<PointTracker>();
-      player.RequirePart<Commands>();
+      player.RequirePart<ModCommands>();
 
       player.RequirePart<MeleeWeaponTrainer>();
       player.RequirePart<MissileAttackTrainer>();
