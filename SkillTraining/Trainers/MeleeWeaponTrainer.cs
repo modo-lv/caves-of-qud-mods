@@ -16,6 +16,9 @@ namespace ModoMods.SkillTraining.Trainers {
     }
 
     public override Boolean FireEvent(Event ev) {
+      if (ev.ID != EventNames.AttackerHit)
+        return base.FireEvent(ev);
+      
       var isCritical = ev.HasFlag("Critical");
       var skill = SkillUtils.SkillOrPower(ev.Weapon()!.GetWeaponSkill()).Class;
       
