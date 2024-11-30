@@ -1,5 +1,6 @@
 ﻿using System;
 using ModoMods.ItemRecoiler.Parts;
+using ModoMods.ItemRecoiler.Wiring;
 using XRL;
 using XRL.Wish;
 using XRL.World;
@@ -11,7 +12,7 @@ namespace ModoMods.ItemRecoiler {
       The.Player ?? throw new NullReferenceException("[The.Player] is null.");
 
     public static void Init(GameObject player) {
-      player.RequirePart<IrActivationCommand>();
+      player.RequirePart<Commands>();
       player.RequirePart<StartupProvider>();
     }
 
