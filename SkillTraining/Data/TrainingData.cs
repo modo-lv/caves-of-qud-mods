@@ -55,7 +55,7 @@ namespace ModoMods.SkillTraining.Data {
         { RifleTrashSuccess, new TrainingData(Tinkering,           0.25m) },
         #endregion 
          
-        { ShieldBlock,       new TrainingData(Shield,              0.50m) },
+        { ShieldBlock,       new TrainingData(Shield,              0.25m) },
          
         { ThrownWeaponHit,   new TrainingData(DeftThrowing,        1.00m) },
          
