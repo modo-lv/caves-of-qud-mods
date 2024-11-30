@@ -19,6 +19,7 @@ namespace ModoMods.SkillTraining {
     public static void OnGameLoaded() {
       Output.DebugLog($"Game loaded, ensuring that training parts are attached to [{Player}]...");
       Player.RequirePart<PointTracker>();
+      Player.RequirePart<Commands>();
       
       Player.RequirePart<MeleeWeaponTrainer>();
       Player.RequirePart<MissileAttackTrainer>();
@@ -36,6 +37,7 @@ namespace ModoMods.SkillTraining {
     public void mutate(GameObject player) {
       Output.DebugLog($"New game started, attaching training parts to [{player}]...");
       player.RequirePart<PointTracker>();
+      player.RequirePart<Commands>();
 
       player.RequirePart<MeleeWeaponTrainer>();
       player.RequirePart<MissileAttackTrainer>();

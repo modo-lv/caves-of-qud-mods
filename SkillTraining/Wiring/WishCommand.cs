@@ -15,14 +15,14 @@ namespace ModoMods.SkillTraining.Wiring {
       var choice = 0;
       while (true) {
         choice = Popup.PickOption(
-          Title: "Skill Training menu",
+          Title: "Skill Training",
           AllowEscape: true,
           DefaultSelected: choice,
           Options: new[] {
-            "Overview",
-            "Modify skill training >",
-            "Unlearn skills (lose skill points) >",
-            "Unlearn skills (refund skill points) >",
+            "\t Progress overview",
+            "\t Modify skill training \x10",
+            "\t Unlearn skills (lose skill points) \x10",
+            "\t Unlearn skills (refund skill points) \x10",
           }
         );
         switch (choice) {

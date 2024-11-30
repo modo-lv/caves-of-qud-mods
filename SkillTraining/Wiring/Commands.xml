@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<commands>
+    <!--
+    No idea what Aut="Down" is for, but it is required (together with Layer="Adventure")
+    for the command to work.
+    -->
+    <command ID="ModoMods_SkillTraining_Overview"
+             DisplayText="Show skill training progress"
+             Category="Mod: Skill Training"
+             Layer="Adventure"
+             Auto="Down">
+    </command>
+</commands>
