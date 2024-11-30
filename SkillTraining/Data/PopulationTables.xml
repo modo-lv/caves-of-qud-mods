@@ -2,14 +2,16 @@
 <populations>
     <population Name="StartingGear_Practitioner">
         <group Name="Items" Style="pickeach">
+            <table Name="StartingGear_Common" />
             <object Blueprint="HalfFullWaterskin" Number="3" />
 
             <object Blueprint="Battle Axe" Number="1" />
             <object Blueprint="Staff" Number="1" />
-            <object Blueprint="Dagger" Number="6-10" />
+            <object Blueprint="Dagger" Number="1" />
             <object Blueprint="Two-Handed Sword" Number="1" />
 
             <object Blueprint="Wooden Buckler" Number="1" />
+            <object Blueprint="Small Stone" Number="5" />
 
             <object Blueprint="Short Bow" Number="1" />
             <object Blueprint="Wooden Arrow" Number="30-50" />
