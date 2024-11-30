@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ModoMods.Core.Data;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
@@ -22,7 +23,7 @@ namespace ModoMods.SkillTraining.Trainers {
 
     /// <summary>Missile weapon attack training.</summary>
     public override Boolean HandleEvent(BeforeFireMissileWeaponsEvent ev) {
-      if (ev.ApparentTarget?.IsCreature == true 
+      if (ev.ApparentTarget?.IsCreature == true
           && ev.ApparentTarget?.IsPlayer() == false
           && ev.Actor?.HasEffect<Dominated>() == false)
         ev.ApparentTarget.RequirePart<MissileAttackTrainer>();
@@ -52,11 +53,11 @@ namespace ModoMods.SkillTraining.Trainers {
                             $"but defender is [{ev.Defender}].");
 
       if (skill == null
-          || !this.ParentObject.IsCreature
           || !ev.Attacker.IsPlayer()
           || ev.Attacker?.HasEffect<Dominated>() != false
-          || this.ParentObject.IsPlayer()
-          || ev.AimedAt != this.ParentObject) {
+          || ev.AimedAt != this.ParentObject
+          || !this.ParentObject.IsCombatant()
+         ) {
         return base.HandleEvent(ev);
       }
 

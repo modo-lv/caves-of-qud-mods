@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ModoMods.Core.Data;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
+using ModoMods.SkillTraining.Utils;
 using XRL;
 using XRL.World;
 using XRL.World.Effects;
@@ -43,7 +44,7 @@ namespace ModoMods.SkillTraining.Trainers {
 
       // Attach this tracker to the target creature, to detect when it gets hit.
       var target = ev.GetGameObjectParameter("ApparentTarget");
-      if (target?.IsCreature == true)
+      if (target.IsCombatant())
         target.RequirePart<ThrownHitDetector>();
 
       return base.FireEvent(ev);

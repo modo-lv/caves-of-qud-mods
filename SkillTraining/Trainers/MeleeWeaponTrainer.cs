@@ -6,6 +6,8 @@ using ModoMods.SkillTraining.Utils;
 using XRL;
 using XRL.World;
 using XRL.World.Effects;
+using XRL.World.Parts;
+using XRL.World.Parts.Mutation;
 
 namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains melee weapon skills.</summary>
@@ -21,14 +23,15 @@ namespace ModoMods.SkillTraining.Trainers {
       
       var isCritical = ev.HasFlag("Critical");
       var skill = SkillUtils.SkillOrPower(ev.Weapon()!.GetWeaponSkill()).Class;
-      
+
       if (ev.Attacker()?.IsPlayer() != true
           || ev.Attacker()?.HasEffect<Dominated>() != false
-          || ev.Defender()?.IsPlayer() == true
           || skill == null
           || Main.Player.HasSkill(skill)
           // Only equipped weapons train skills
-          || ev.Weapon()?.EquippedOn()?.ThisPartWeapon() == null) {
+          || ev.Weapon()?.EquippedOn()?.ThisPartWeapon() == null
+          || !ev.Defender().IsCombatant()
+        ) {
         return base.FireEvent(ev);
       }
       
