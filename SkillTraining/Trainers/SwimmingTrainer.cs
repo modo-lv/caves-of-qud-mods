@@ -15,6 +15,7 @@ namespace ModoMods.SkillTraining.Trainers {
 
     public override Boolean HandleEvent(EnteredCellEvent ev) {
       if (ev.Object.IsPlayer()
+          && ev.Object?.HasEffect<Dominated>() == false
           && !Main.Player.OnWorldMap()
           && !Main.Player.HasSkill(SkillClasses.Swimming)
           && Main.Player.HasEffect<Swimming>()) {

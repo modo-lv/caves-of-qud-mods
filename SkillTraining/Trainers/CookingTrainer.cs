@@ -4,6 +4,7 @@ using HarmonyLib;
 using ModoMods.Core.Data;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
+using ModoMods.SkillTraining.Utils;
 using XRL;
 using XRL.World;
 using XRL.World.Effects;
@@ -19,7 +20,7 @@ namespace ModoMods.SkillTraining.Trainers {
     /// </remarks>
     [HarmonyPrefix][HarmonyPatch(typeof(Harvestable), nameof(Harvestable.AttemptHarvest))]
     private static void PreHarvest(GameObject who, out Boolean __state) {
-      __state = who.IsPlayer();
+      __state = who.IsPlayer() && !who.HasEffect<Dominated>();
     }
 
     /// <summary>Training points from harvesting plants.</summary>
@@ -36,7 +37,7 @@ namespace ModoMods.SkillTraining.Trainers {
     /// </remarks>
     [HarmonyPrefix][HarmonyPatch(typeof(Butcherable), nameof(Butcherable.AttemptButcher))]
     private static void PreButcher(GameObject Actor, out Boolean __state) {
-      __state = Actor.IsPlayer();
+      __state = Actor.IsPlayer() && !Actor.HasEffect<Dominated>();
     }
 
     /// <summary>Training points from harvesting plants.</summary>
@@ -55,7 +56,7 @@ namespace ModoMods.SkillTraining.Trainers {
 
     /// <summary>Handle the <see cref="EventNames.CookedAt"/> event.</summary>
     public override Boolean FireEvent(Event ev) {
-      if (ev.ID == EventNames.CookedAt)
+      if (ev.ID == EventNames.CookedAt && ev.Actor()?.HasEffect<Dominated>() == false)
         Main.PointTracker.HandleTrainingAction(PlayerAction.Cook);
       return base.FireEvent(ev);
     }
@@ -69,6 +70,7 @@ namespace ModoMods.SkillTraining.Trainers {
     /// <summary>Handle the tasty cooking event.</summary>
     public override Boolean HandleEvent(EffectAppliedEvent ev) {
       if (ev.Actor?.IsPlayer() == true 
+          && ev.Actor?.HasEffect<Dominated>() == false
           && ev.Effect?.GetType().IsSubclassOf(typeof(BasicCookingEffect)) == true)
         Main.PointTracker.HandleTrainingAction(PlayerAction.CookTasty);
       return base.HandleEvent(ev);

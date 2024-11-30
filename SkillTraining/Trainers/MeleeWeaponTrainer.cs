@@ -5,6 +5,7 @@ using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
 using XRL;
 using XRL.World;
+using XRL.World.Effects;
 
 namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains melee weapon skills.</summary>
@@ -19,6 +20,7 @@ namespace ModoMods.SkillTraining.Trainers {
       var skill = SkillUtils.SkillOrPower(ev.Weapon()!.GetWeaponSkill()).Class;
       
       if (ev.Attacker()?.IsPlayer() != true
+          || ev.Attacker()?.HasEffect<Dominated>() != false
           || ev.Defender()?.IsPlayer() == true
           || skill == null
           || Main.Player.HasSkill(skill)

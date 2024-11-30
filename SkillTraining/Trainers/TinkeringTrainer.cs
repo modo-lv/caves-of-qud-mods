@@ -4,6 +4,7 @@ using HarmonyLib;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
 using XRL.World;
+using XRL.World.Effects;
 using XRL.World.Parts;
 
 namespace ModoMods.SkillTraining.Trainers {
@@ -12,9 +13,8 @@ namespace ModoMods.SkillTraining.Trainers {
     public override ISet<Int32> WantEventIds => new HashSet<Int32> { ExamineSuccessEvent.ID, };
 
     public override Boolean HandleEvent(ExamineSuccessEvent ev) {
-      if (ev.Actor.IsPlayer()) {
-        Main.PointTracker.HandleTrainingAction(PlayerAction.ExamineSuccess);
-      } 
+      if (ev.Actor?.IsPlayer() == true && ev.Actor?.HasEffect<Dominated>() == false)
+        Main.PointTracker.HandleTrainingAction(PlayerAction.ExamineSuccess); 
       return base.HandleEvent(ev);
     }
 

@@ -4,6 +4,7 @@ using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
 using XRL.World;
+using XRL.World.Effects;
 using XRL.World.Parts;
 
 namespace ModoMods.SkillTraining.Trainers {
@@ -21,7 +22,9 @@ namespace ModoMods.SkillTraining.Trainers {
 
     /// <summary>Missile weapon attack training.</summary>
     public override Boolean HandleEvent(BeforeFireMissileWeaponsEvent ev) {
-      if (ev.ApparentTarget?.IsCreature == true && ev.ApparentTarget?.IsPlayer() == false)
+      if (ev.ApparentTarget?.IsCreature == true 
+          && ev.ApparentTarget?.IsPlayer() == false
+          && ev.Actor?.HasEffect<Dominated>() == false)
         ev.ApparentTarget.RequirePart<MissileAttackTrainer>();
       return base.HandleEvent(ev);
     }
@@ -47,10 +50,10 @@ namespace ModoMods.SkillTraining.Trainers {
         throw new Exception($"Defender missile hit event fired on [{this.ParentObject}], " +
                             $"but defender is [{ev.Defender}].");
 
-      if (Main.Player.HasSkill(skill)
-          || skill == null
+      if (skill == null
           || !this.ParentObject.IsCreature
           || !ev.Attacker.IsPlayer()
+          || ev.Attacker?.HasEffect<Dominated>() != false
           || this.ParentObject.IsPlayer()
           || ev.AimedAt != this.ParentObject) {
         return base.HandleEvent(ev);

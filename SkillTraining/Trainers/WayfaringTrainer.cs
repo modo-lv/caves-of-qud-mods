@@ -18,7 +18,8 @@ namespace ModoMods.SkillTraining.Trainers {
 
     /// <summary>Travel.</summary>
     public override Boolean HandleEvent(EndTurnEvent ev) {
-      if (!Main.Player.OnWorldMap()) return base.HandleEvent(ev);
+      if (!Main.Player.OnWorldMap() || Main.Player.HasEffect<Dominated>()) 
+        return base.HandleEvent(ev);
       this._travelTurns = (this._travelTurns + 1) % 300;
       if (this._travelTurns == 0)
         Main.PointTracker.HandleTrainingAction(PlayerAction.WorldMapMove);
@@ -27,7 +28,9 @@ namespace ModoMods.SkillTraining.Trainers {
     
     /// <summary>Regain bearings.</summary>
     public override Boolean HandleEvent(EffectRemovedEvent ev) {
-      if (ev.Actor?.IsPlayer() == true && ev.Effect?.GetType().IsSubclassOf(typeof(Lost)) == true)
+      if (ev.Actor?.IsPlayer() == true
+          && ev.Actor?.HasEffect<Dominated>() == false
+          && ev.Effect?.GetType().IsSubclassOf(typeof(Lost)) == true)
         Main.PointTracker.HandleTrainingAction(PlayerAction.RegainBearings);
       return base.HandleEvent(ev);
     }

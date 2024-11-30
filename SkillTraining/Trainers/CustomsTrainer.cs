@@ -3,9 +3,11 @@ using HarmonyLib;
 using ModoMods.Core.Data;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
+using ModoMods.SkillTraining.Utils;
 using Qud.API;
 using XRL;
 using XRL.World;
+using XRL.World.Effects;
 
 namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains "Customs and Folklore" skill.</summary>
@@ -34,6 +36,9 @@ namespace ModoMods.SkillTraining.Trainers {
     }
 
     public override Boolean FireEvent(Event ev) {
+      if (ev.ID != EventNames.ReputationChanged || ev.Actor()?.HasEffect<Dominated>() != false)
+        return base.FireEvent(ev);
+      
       var type = ev.GetStringParameter("Type");
       Output.DebugLog($"Reputation change type: {type}");
 
