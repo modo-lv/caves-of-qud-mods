@@ -27,7 +27,7 @@ namespace XRL.World.Parts {
       } else {
         var total = 0;
         chest.Inventory.Objects.ToList().ForEach(item => {
-          cell.AddObject(item);
+          chest.CurrentCell.AddObject(item);
           total += item.Count;
         });
         if (total > 0) {
