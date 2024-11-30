@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using HarmonyLib;
 using ModoMods.Core.Data;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
@@ -13,7 +14,19 @@ namespace ModoMods.SkillTraining.Trainers {
   /// Attached to player to listen for trade start events.
   /// When a trade is started, also attaches to the trader, to wait for "take object" event. 
   /// </remarks>
+  [HarmonyPatch]
   public class SnakeOilerTrainer : ModPart {
+    [HarmonyPrefix][HarmonyPatch(typeof(TradeUI), nameof(TradeUI.ShowTradeScreen))]
+    public static void BeforeTradeScreen(GameObject Trader, out GameObject __state) {
+      __state = Trader;
+    }
+    
+    [HarmonyPostfix][HarmonyPatch(typeof(TradeUI), nameof(TradeUI.ShowTradeScreen))]
+    public static void AfterTradeScreen(GameObject Trader, ref GameObject __state) {
+      __state.RemovePart<SnakeOilerTrainer>();
+    }
+    
+    
     public override ISet<Int32> WantEventIds => new HashSet<Int32> { StartTradeEvent.ID };
 
     public override Boolean HandleEvent(StartTradeEvent ev) {
