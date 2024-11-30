@@ -11,9 +11,8 @@
     #endregion
     
     #region Missile combat
-    BowHit,
+    BowOrRifleHit,
     PistolHit,
-    RifleHit,
     HeavyWeaponHit,
     #endregion
     

@@ -29,10 +29,9 @@ namespace ModoMods.SkillTraining.Data {
         #endregion
         
         #region Missile combat
-        { BowHit,            new TrainingData(BowAndRifle,         0.25m) },
-        { PistolHit,         new TrainingData(Pistol,              0.25m) },
-        { RifleHit,          new TrainingData(BowAndRifle,         0.25m) },
-        { HeavyWeaponHit,    new TrainingData(HeavyWeapon,         0.25m) },
+        { BowOrRifleHit,     new TrainingData(BowAndRifle,         0.50m) },
+        { PistolHit,         new TrainingData(Pistol,              0.50m) },
+        { HeavyWeaponHit,    new TrainingData(HeavyWeapon,         0.50m) },
         #endregion
         
         #region Cooking and Gathering

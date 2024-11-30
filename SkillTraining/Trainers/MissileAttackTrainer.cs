@@ -36,9 +36,10 @@ namespace ModoMods.SkillTraining.Trainers {
       }
       var skillClass = ev.Launcher.GetPart<MissileWeapon>().Skill;
       var action = skillClass switch {
-        "Bow" => PlayerAction.BowHit,
+        // AFAICT there are no weapons using "Bow" skill anymore, but the game has checks for it.
+        "Bow" => PlayerAction.BowOrRifleHit,
         SkillClasses.Pistol => PlayerAction.PistolHit,
-        "Rifle" => PlayerAction.RifleHit,
+        "Rifle" => PlayerAction.BowOrRifleHit,
         SkillClasses.HeavyWeapon => PlayerAction.HeavyWeaponHit,
         _ => throw new Exception($"Unknown missile weapon skill: [{skillClass}].")
       };
