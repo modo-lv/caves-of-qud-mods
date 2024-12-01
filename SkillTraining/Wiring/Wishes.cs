@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ModoMods.Core.Utils;
+using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
 using XRL.UI;
 using XRL.Wish;
@@ -36,8 +38,11 @@ namespace ModoMods.SkillTraining.Wiring {
     }
 
     public static void Overview() {
-      var output = Main.PointTracker.Points
-        .OrderBy(e => e.Key.SkillName())
+      var output = TrainingData.Data.Values
+        .Select(it => it.SkillClass)
+        .Distinct()
+        .OrderBy(it => it.SkillName())
+        .ToDictionary(it => it, it => Main.PointTracker.Points.GetOr(it, () => 0m))
         .Select(entry => {
           var cost = SkillUtils.SkillOrPower(entry.Key)!.Cost;
           var locked = !Main.Player.HasSkill(entry.Key);
@@ -87,7 +92,11 @@ namespace ModoMods.SkillTraining.Wiring {
     public static void ModifyTraining() {
       var choice = 0;
       while (true) {
-        var list = Main.PointTracker.Points
+        var list = TrainingData.Data.Values
+          .Select(it => it.SkillClass)
+          .Distinct()
+          .OrderBy(it => it.SkillName())
+          .ToDictionary(it => it, it => Main.PointTracker.Points.GetOr(it, () => 0m))
           .Where(it => !Main.Player.HasSkill(it.Key))
           .ToList();
 
