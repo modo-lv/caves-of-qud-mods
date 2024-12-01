@@ -44,7 +44,7 @@ namespace ModoMods.SkillTraining.Trainers {
         _ => throw new Exception($"Unknown melee weapon skill: [{skill}].")
       };
 
-      var isOffhand = ev.Weapon()?.IsEquippedInMainHand() != true;
+      var isOffhand = ev.Attacker()?.GetPrimaryWeapon() != ev.Weapon();
       if (action is not null) {
         var modifier = 1m;
         if (isOffhand) modifier /= 2;
