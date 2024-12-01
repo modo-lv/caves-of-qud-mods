@@ -25,7 +25,7 @@ namespace ModoMods.SkillTraining.Data {
         { ShortBladeHit,     new TrainingData(ShortBlade,          0.20m) },
          
         { SingleWeaponHit,   new TrainingData(SingleWeaponFighting,0.10m) },
-        { OffhandWeaponHit,  new TrainingData(MultiweaponFighting, 0.50m) },
+        { OffhandWeaponHit,  new TrainingData(MultiweaponFighting, 1.00m) },
         #endregion
         
         #region Missile combat

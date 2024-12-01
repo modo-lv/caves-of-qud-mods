@@ -26,7 +26,7 @@ namespace ModoMods.SkillTraining.Data {
     public const String HeavyWeapon = "HeavyWeapons"; // 100
 
     // Multiweapon tree
-    public const String MultiweaponFighting = "Multiweapon_Fighting";
+    public const String MultiweaponFighting = "Multiweapon_Fighting"; // 150
 
     // Long Blade tree
     public const String LongBlade = "LongBlades";
