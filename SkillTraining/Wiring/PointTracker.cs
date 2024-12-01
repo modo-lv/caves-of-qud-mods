@@ -19,6 +19,8 @@ namespace ModoMods.SkillTraining.Wiring {
       { SkillClasses.DeftThrowing, 0 },
       { SkillClasses.HeavyWeapon, 0 },
       { SkillClasses.LongBlade, 0 },
+      { SkillClasses.Lionheart, 0 },
+      { SkillClasses.IronMind, 0 },
       { SkillClasses.MultiweaponFighting, 0 },
       { SkillClasses.Pistol, 0 },
       { SkillClasses.Shield, 0 },

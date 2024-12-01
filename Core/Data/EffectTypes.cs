@@ -6,24 +6,24 @@ using XRL.World.Effects;
 namespace ModoMods.Core.Data {
   /// <summary>Known in-game effect IDs.</summary>
   public static class EffectTypes {
-    public static readonly Int32 Terrified = new Terrified().GetEffectType();
-    public static readonly Int32 Confused = new Confused().GetEffectType();
+    public static readonly Type Terrified = typeof(Terrified);
+    public static readonly Type Confused = typeof(Confused);
     
-    public static readonly Int32 Bleeding = new Bleeding().GetEffectType();
-    public static readonly Int32 Poisoned = new Poisoned().GetEffectType();
-    public static readonly Int32 Illness = new Ill().GetEffectType();
-    public static readonly ISet<Int32> Diseases = new HashSet<Int32> {
-      new Glotrot().GetEffectType(),
-      new Ironshank().GetEffectType(),
-      new Monochrome().GetEffectType(),
+    public static readonly Type Bleeding = typeof(Bleeding);
+    public static readonly Type Poisoned = typeof(Poisoned);
+    public static readonly Type Illness = typeof(Ill);
+    public static readonly ISet<Type> Diseases = new HashSet<Type> {
+      typeof(Glotrot),
+      typeof(Ironshank),
+      typeof(Monochrome),
     };
 
-    public static readonly Int32 BasicCooking = new BasicCookingEffect().GetEffectType();
+    public static readonly Type BasicCooking = typeof(BasicCookingEffect);
     
-    public static readonly Int32 Lost = new Lost().GetEffectType();
+    public static readonly Type Lost = typeof(Lost);
 
 
-    public static readonly ISet<Int32> PhysicalNegative = 
-      new HashSet<Int32> { Bleeding, Poisoned, Illness }.Concat(Diseases).ToHashSet();
+    public static readonly ISet<Type> PhysicalNegative = 
+      new HashSet<Type> { Bleeding, Poisoned, Illness }.Concat(Diseases).ToHashSet();
   }
 }

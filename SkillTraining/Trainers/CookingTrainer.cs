@@ -69,9 +69,8 @@ namespace ModoMods.SkillTraining.Trainers {
 
     /// <summary>Handle the tasty cooking event.</summary>
     public override Boolean HandleEvent(EffectAppliedEvent ev) {
-      if (ev.Actor?.IsPlayer() == true 
-          && ev.Actor?.HasEffect<Dominated>() == false
-          && ev.Effect?.GetEffectType() == EffectTypes.BasicCooking)
+      if (this.ParentObject?.HasEffect<Dominated>() == false
+          && ev.Effect is BasicCookingEffect)
         Main.PointTracker.HandleTrainingAction(PlayerAction.CookTasty);
       return base.HandleEvent(ev);
     }
