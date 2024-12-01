@@ -6,6 +6,9 @@ using XRL.World.Effects;
 namespace ModoMods.Core.Data {
   /// <summary>Known in-game effect IDs.</summary>
   public static class EffectTypes {
+    public static readonly Int32 Terrified = new Terrified().GetEffectType();
+    public static readonly Int32 Confused = new Confused().GetEffectType();
+    
     public static readonly Int32 Bleeding = new Bleeding().GetEffectType();
     public static readonly Int32 Poisoned = new Poisoned().GetEffectType();
     public static readonly Int32 Illness = new Ill().GetEffectType();
@@ -20,7 +23,7 @@ namespace ModoMods.Core.Data {
     public static readonly Int32 Lost = new Lost().GetEffectType();
 
 
-    public static readonly ISet<Int32> HealthNegative = 
+    public static readonly ISet<Int32> PhysicalNegative = 
       new HashSet<Int32> { Bleeding, Poisoned, Illness }.Concat(Diseases).ToHashSet();
   }
 }

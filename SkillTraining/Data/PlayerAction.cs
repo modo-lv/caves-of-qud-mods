@@ -40,6 +40,11 @@
     RifleTrashSuccess,
     #endregion
     
+    #region Self-Discipline
+    RecoverTerror,
+    RecoverConfusion,
+    #endregion
+    
     ShieldBlock,
     
     Swim,

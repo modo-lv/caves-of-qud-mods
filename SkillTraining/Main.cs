@@ -27,6 +27,7 @@ namespace ModoMods.SkillTraining {
       player.RequirePart<CustomsTrainer>();
       player.RequirePart<DeftThrowingTrainer>();
       player.RequirePart<PhysicTrainer>();
+      player.RequirePart<SelfDisciplineTrainer>();
       player.RequirePart<ShieldTrainer>();
       player.RequirePart<SnakeOilerTrainer>();
       player.RequirePart<SwimmingTrainer>();

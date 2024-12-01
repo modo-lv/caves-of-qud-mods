@@ -52,6 +52,11 @@ namespace ModoMods.SkillTraining.Data {
         { Recover,           new TrainingData(Physic,              1.00m) },
         { Inject,            new TrainingData(Physic,              1.00m) },
         #endregion
+        
+        #region Self-Discipline
+        { RecoverTerror,     new TrainingData(Lionheart,           1.00m) },
+        { RecoverConfusion,  new TrainingData(IronMind,            1.00m) },
+        #endregion
          
         #region Tinkering 
         { ExamineSuccess,    new TrainingData(Tinkering,           1.00m) },

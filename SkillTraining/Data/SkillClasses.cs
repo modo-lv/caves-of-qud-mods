@@ -39,6 +39,10 @@ namespace ModoMods.SkillTraining.Data {
     
     // Physic tree
     public const String Physic = "Physic"; // 50
+    
+    // Self-Discipline tree
+    public const String Lionheart = "Discipline_Lionheart";
+    public const String IronMind = "Discipline_IronMind";
 
     // Shield tree
     public const String Shield = "Shield";
