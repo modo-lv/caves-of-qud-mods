@@ -19,9 +19,12 @@ namespace ModoMods.ItemRecoiler.Parts {
       var player = this.ParentObject;
       if (ModOptions.GiveOnStartup && !this.Provided) {
         var recoiler = GameObject.CreateUnmodified(ModBlueprintNames.Recoiler);
-        var cell = GameObject.CreateUnmodified("Solar Cell");
-        cell.RemovePart<Examiner>();
-        recoiler.GetPart<EnergyCellSocket>().SetCell(cell);
+        {
+          var cell = GameObject.CreateUnmodified("Solar Cell");
+          cell.RemovePart<Examiner>();
+          cell.AddPart<ModMetered>();
+          recoiler.GetPart<EnergyCellSocket>().SetCell(cell);
+        }
         var text = "You feel a slight spacetime disturbance in your immediate vicinity, " +
                    $"and quickly discover {recoiler.a}{recoiler.BaseDisplayName} in your inventory " +
                    "that wasn't there before.";
