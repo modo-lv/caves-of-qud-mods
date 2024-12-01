@@ -96,7 +96,7 @@ namespace ModoMods.SkillTraining.Wiring {
 
         Output.Alert("{{Y|" + unlocked.SkillName() + "}} skill unlocked through practical training!");
         Main.Player.GetPart<Skills>().AddSkill(unlocked);
-        Output.Log($"[{unlocked}] added to [{Main.Player}].");
+        Output.DebugLog($"[{unlocked}] added to [{Main.Player}].");
         this.ResetPoints(unlocked);
       });
     }

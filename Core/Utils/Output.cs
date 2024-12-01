@@ -9,7 +9,7 @@ using Object = System.Object;
 namespace ModoMods.Core.Utils {
   public static class Output {
     /// <summary>Log a debug message to the game's log file.</summary>
-    public static void DebugLog(Object? message, Boolean inGame = true) {
+    public static void DebugLog(Object? message, Boolean inGame = false) {
       var dt = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fffzzz", CultureInfo.InvariantCulture);
       var mod = Assembly.GetCallingAssembly().GetName().Name.Replace(".dll", "");
       Debug.Log($"[{dt}][{mod}] {message}");
@@ -19,7 +19,7 @@ namespace ModoMods.Core.Utils {
 
     /// <summary>Log a message to the game's log file.</summary>
     public static void Log(Object? message) {
-      DebugLog(message);
+      DebugLog(message, inGame: true);
     }
 
     /// <summary>
