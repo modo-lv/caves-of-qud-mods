@@ -29,8 +29,6 @@ namespace ModoMods.SkillTraining.Trainers {
   /// Attached to a thrown weapon when it is equipped, to listen for the throwing event.
   /// </remarks>
   public class ItemThrownDetector : ModPart {
-    public override ISet<Int32> WantEventIds => new HashSet<Int32> { AfterThrownEvent.ID };
-    
     public override void Register(GameObject obj, IEventRegistrar reg) {
       obj.RegisterPartEvent(this, EventNames.BeforeThrown);
       base.Register(obj, reg);
@@ -50,12 +48,15 @@ namespace ModoMods.SkillTraining.Trainers {
       return base.FireEvent(ev);
     }
 
+    public override ISet<Int32> WantEventIds => new HashSet<Int32> { AfterThrownEvent.ID };
+    
     /// <summary>Removes this detector from the weapon after it's been thrown.</summary>
     /// <remarks>
     /// Normally this isn't necessary, but something about enemies picking up the thrown weapons
     /// with this detector attached causes random(?) <see cref="NullReferenceException"/>s.
     /// </remarks>
     public override Boolean HandleEvent(AfterThrownEvent ev) {
+      ev.Item.UnregisterPartEvent(this, EventNames.BeforeThrown);
       ev.Item.RemovePart<ItemThrownDetector>();
       return base.HandleEvent(ev);
     }
