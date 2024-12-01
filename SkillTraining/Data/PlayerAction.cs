@@ -24,9 +24,9 @@
     #endregion
     
     #region Customs and Folklore
-    FirstRitualRep,
+    RitualFirstRep,
     RitualRep,
-    SecretReveal,
+    JournalReveal,
     #endregion
     
     #region Physic

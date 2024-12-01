@@ -6,7 +6,7 @@ namespace ModoMods.SkillTraining.Utils {
     /// Return <paramref name="value"/> if <paramref name="predicate"/> returns <c>true</c>,
     /// or <c>null</c> if it returns <c>false</c>.
     /// </summary>
-    public static T? If<T>(this T? value, Predicate<T?> predicate) where T : class => 
+    public static T? OnlyIf<T>(this T? value, Predicate<T?> predicate) where T : class => 
       predicate(value) ? value : null;
     
     /// <summary>

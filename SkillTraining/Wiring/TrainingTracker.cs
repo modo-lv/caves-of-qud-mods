@@ -8,28 +8,9 @@ using Skills = XRL.World.Parts.Skills;
 
 namespace ModoMods.SkillTraining.Wiring {
   /// <summary>Main component that tracks training points for trainable skills.</summary>
-  [Serializable] public class PointTracker : ModPart {
+  [Serializable] public class TrainingTracker : ModPart {
     /// <inheritdoc cref="Points"/>
-    public Dictionary<String, Decimal> Points = new Dictionary<String, Decimal> {
-      { SkillClasses.Axe, 0 },
-      { SkillClasses.BowAndRifle, 0 },
-      { SkillClasses.Cudgel, 0 },
-      { SkillClasses.CookingAndGathering, 0 },
-      { SkillClasses.CustomsAndFolklore, 0 },
-      { SkillClasses.DeftThrowing, 0 },
-      { SkillClasses.HeavyWeapon, 0 },
-      { SkillClasses.LongBlade, 0 },
-      { SkillClasses.Lionheart, 0 },
-      { SkillClasses.IronMind, 0 },
-      { SkillClasses.MultiweaponFighting, 0 },
-      { SkillClasses.Pistol, 0 },
-      { SkillClasses.Shield, 0 },
-      { SkillClasses.ShortBlade, 0 },
-      { SkillClasses.SingleWeaponFighting, 0 },
-      { SkillClasses.SnakeOiler, 0 },
-      { SkillClasses.Swimming, 0 },
-      { SkillClasses.Wayfaring, 0 },
-    };
+    public Dictionary<String, Decimal> Points = new Dictionary<String, Decimal>();
 
     private Boolean _disabledLogged;
 
@@ -84,7 +65,7 @@ namespace ModoMods.SkillTraining.Wiring {
     /// <summary>Checks all trainable skills and unlocks those whos training is complete.</summary>
     private void UnlockCompletedSkills() {
       (
-        from entry in Main.Player.RequirePart<PointTracker>().Points
+        from entry in Main.Player.RequirePart<TrainingTracker>().Points
         where SkillUtils.SkillOrPower(entry.Key)!.Cost <= entry.Value
         select entry.Key
       ).ToList().ForEach(unlocked => {

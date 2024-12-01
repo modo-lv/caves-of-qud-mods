@@ -6,7 +6,6 @@ using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
 using XRL;
 using XRL.World;
-using XRL.World.Effects;
 
 namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains "Deft Throwing" skill.</summary>
@@ -16,9 +15,7 @@ namespace ModoMods.SkillTraining.Trainers {
 
     /// <summary>Attaches to the equipped item.</summary>
     public override Boolean HandleEvent(EquipperEquippedEvent ev) {
-      if (ev.Actor?.IsPlayer() == true
-          && ev.Actor?.HasEffect<Dominated>() == false
-          && ev.Item.IsEquippedAsThrownWeapon())
+      if (ev.Item.IsEquippedAsThrownWeapon() && ev.Actor.CanTrainSkills())
         ev.Item.RequirePart<ItemThrownDetector>();
       return base.HandleEvent(ev);
     }
@@ -36,20 +33,21 @@ namespace ModoMods.SkillTraining.Trainers {
 
     /// <summary>Attach hit detection to the intended target.</summary>
     public override Boolean FireEvent(Event ev) {
-      if (ev.ID != EventNames.BeforeThrown 
-          || ev.GetGameObjectParameter("Thrower")?.HasEffect<Dominated>() != false)
+      if (ev.ID != EventNames.BeforeThrown)
         return base.FireEvent(ev);
 
-      // Attach this tracker to the target creature, to detect when it gets hit.
+      var thrower = ev.GetGameObjectParameter("Thrower"); 
       var target = ev.GetGameObjectParameter("ApparentTarget");
-      if (target.IsCombatant())
+      if (thrower.CanTrainSkills() && target.IsCombatant()) {
+        // Attach this tracker to the target creature, to detect when it gets hit.
         target.RequirePart<ThrownHitDetector>();
+      }
 
       return base.FireEvent(ev);
     }
 
     public override ISet<Int32> WantEventIds => new HashSet<Int32> { AfterThrownEvent.ID };
-    
+
     /// <summary>Removes this detector from the weapon after it's been thrown.</summary>
     /// <remarks>
     /// Normally this isn't necessary, but something about enemies picking up the thrown weapons
@@ -70,18 +68,9 @@ namespace ModoMods.SkillTraining.Trainers {
 
     /// <summary>Processes a successful hit.</summary>
     public override Boolean HandleEvent(DefenderMissileHitEvent ev) {
-      if (ev.Launcher != null
-          || ev.Attacker?.IsPlayer() != true
-          || ev.Attacker?.HasEffect<Dominated>() != false
-          || ev.Defender?.IsCreature != true)
-        return base.HandleEvent(ev);
-
-      Output.DebugLog($"[{ev.Defender}] hit with with a thrown weapon.");
-      Main.PointTracker.HandleTrainingAction(PlayerAction.ThrownWeaponHit);
-
+      if (ev.Launcher == null && ev.Defender.IsCombatant() && ev.Attacker.CanTrainSkills())
+        ev.Attacker.TrainingTracker()?.HandleTrainingAction(PlayerAction.ThrownWeaponHit);
       return base.HandleEvent(ev);
     }
-
   }
-
 }

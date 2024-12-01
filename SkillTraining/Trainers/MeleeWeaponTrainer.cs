@@ -5,9 +5,6 @@ using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
 using XRL;
 using XRL.World;
-using XRL.World.Effects;
-using XRL.World.Parts;
-using XRL.World.Parts.Mutation;
 
 namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains melee weapon skills.</summary>
@@ -18,23 +15,25 @@ namespace ModoMods.SkillTraining.Trainers {
     }
 
     public override Boolean FireEvent(Event ev) {
-      if (ev.ID != EventNames.AttackerHit)
+      var attacker = ev.Attacker().OnlyIf(it => it == this.ParentObject);
+      var weapon = ev.Weapon();
+      var defender = ev.Defender();
+      if (ev.ID != EventNames.AttackerHit || weapon == null || attacker == null || defender == null)
         return base.FireEvent(ev);
-      
-      var isCritical = ev.HasFlag("Critical");
-      var skill = SkillUtils.SkillOrPower(ev.Weapon()!.GetWeaponSkill()).Class;
 
-      if (ev.Attacker()?.IsPlayer() != true
-          || ev.Attacker()?.HasEffect<Dominated>() != false
-          || skill == null
-          || Main.Player.HasSkill(skill)
+      var isCritical = ev.HasFlag("Critical");
+      var skill = SkillUtils.SkillOrPower(weapon.GetWeaponSkill()).Class;
+
+      if (skill == null
+          || !attacker.CanTrainSkills()
+          || attacker.HasSkill(skill)
           // Only equipped weapons train skills
-          || ev.Weapon()?.EquippedOn()?.ThisPartWeapon() == null
-          || !ev.Defender().IsCombatant()
-        ) {
+          || weapon.EquippedOn()?.ThisPartWeapon() == null
+          || !defender.IsCombatant()
+         ) {
         return base.FireEvent(ev);
       }
-      
+
       PlayerAction? action = skill switch {
         SkillClasses.Axe => PlayerAction.AxeHit,
         SkillClasses.Cudgel => PlayerAction.CudgelHit,
@@ -44,28 +43,28 @@ namespace ModoMods.SkillTraining.Trainers {
         _ => throw new Exception($"Unknown melee weapon skill: [{skill}].")
       };
 
-      var isOffhand = ev.Attacker()?.GetPrimaryWeapon() != ev.Weapon();
+      var isOffhand = attacker.GetPrimaryWeapon() != weapon;
       if (action is not null) {
         var modifier = 1m;
         if (isOffhand) modifier /= 2;
         if (isCritical) modifier *= 2;
-        Main.PointTracker.HandleTrainingAction(
+        attacker.TrainingTracker()?.HandleTrainingAction(
           (PlayerAction) action,
           amountModifier: modifier
         );
       }
-      
+
       var singleWeapon = true;
-      The.Player.ForeachEquippedObject(obj => {
+      attacker.ForeachEquippedObject(obj => {
         if (singleWeapon && obj.EquippedOn().ThisPartWeapon() != null && !obj.IsEquippedOnPrimary())
           singleWeapon = false;
       });
 
       // Single/multi fighting.
       if (singleWeapon)
-        Main.PointTracker.HandleTrainingAction(PlayerAction.SingleWeaponHit);
+        attacker.TrainingTracker()?.HandleTrainingAction(PlayerAction.SingleWeaponHit);
       else if (isOffhand)
-        Main.PointTracker.HandleTrainingAction(PlayerAction.OffhandWeaponHit);
+        attacker.TrainingTracker()?.HandleTrainingAction(PlayerAction.OffhandWeaponHit);
 
       return base.FireEvent(ev);
     }

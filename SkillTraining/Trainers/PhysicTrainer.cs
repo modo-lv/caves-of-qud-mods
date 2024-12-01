@@ -7,21 +7,17 @@ using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
 using XRL.World;
 using XRL.World.Parts;
-// ReSharper disable UnusedType.Global
-// ReSharper disable UnusedMember.Global
 
 namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains Physic skill.</summary>
   [HarmonyPatch]
   public class PhysicTrainer : ModPart {
-    /// <remarks>
-    /// Since bandage application does not trigger any reliable event for detecting success/failure,
-    /// this trainer uses Harmony patching instead of part attachment. 
-    /// </remarks>
+    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once InconsistentNaming
     [HarmonyPostfix][HarmonyPatch(typeof(BandageMedication), nameof(BandageMedication.PerformBandaging))]
-    public static void PostBandage(ref Boolean __result) {
-      if (!__result) return;
-      Main.PointTracker.HandleTrainingAction(PlayerAction.Bandage);
+    public static void AfterBandage(ref Boolean __result, ref GameObject Actor) {
+      if (__result && Actor.CanTrainSkills())
+        Actor.TrainingTracker()?.HandleTrainingAction(PlayerAction.Bandage);
     }
 
     public override ISet<Int32> WantEventIds => new HashSet<Int32> {
@@ -31,15 +27,15 @@ namespace ModoMods.SkillTraining.Trainers {
 
     /// <summary>Handles recovering from any negative health effect.</summary>
     public override Boolean HandleEvent(EffectRemovedEvent ev) {
-      if (ev.Effect.GetType().IsIn(EffectTypes.PhysicalNegative))
-        Main.PointTracker.HandleTrainingAction(PlayerAction.Recover);
+      if (ev.Effect.GetType().IsOneOf(EffectTypes.PhysicalNegative))
+        this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.Recover);
       return base.HandleEvent(ev);
     }
     
     /// <summary>Handles tonic injection.</summary>
     public override Boolean HandleEvent(AfterConsumeEvent ev) {
       if (ev.Inject && ev.Actor.IsPlayer() && ev.Voluntary)
-        Main.PointTracker.HandleTrainingAction(PlayerAction.Inject);
+        this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.Inject);
       return base.HandleEvent(ev);
     }
   }

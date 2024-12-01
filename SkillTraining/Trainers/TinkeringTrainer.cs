@@ -3,26 +3,25 @@ using System.Collections.Generic;
 using HarmonyLib;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
+using ModoMods.SkillTraining.Utils;
 using XRL.World;
-using XRL.World.Effects;
 using XRL.World.Parts;
 
 namespace ModoMods.SkillTraining.Trainers {
-  [HarmonyPatch]
-  public class TinkeringTrainer : ModPart {
+  [HarmonyPatch] public class TinkeringTrainer : ModPart {
     public override ISet<Int32> WantEventIds => new HashSet<Int32> { ExamineSuccessEvent.ID, };
 
     public override Boolean HandleEvent(ExamineSuccessEvent ev) {
-      if (ev.Actor?.IsPlayer() == true && ev.Actor?.HasEffect<Dominated>() == false)
-        Main.PointTracker.HandleTrainingAction(PlayerAction.ExamineSuccess); 
+      ev.Actor.TrainingTracker()?.HandleTrainingAction(PlayerAction.ExamineSuccess); 
       return base.HandleEvent(ev);
     }
 
-
+    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once InconsistentNaming
     [HarmonyPostfix][HarmonyPatch(typeof(Garbage), nameof(Garbage.AttemptRifle))]
-    public static void AfterRifle(ref Boolean __result) {
-      if (__result) {
-        Main.PointTracker.HandleTrainingAction(PlayerAction.RifleTrashSuccess);
+    public static void AfterTrashRifle(ref Boolean __result, ref GameObject Actor) {
+      if (__result && Actor.CanTrainSkills()) {
+        Main.TrainingTracker.HandleTrainingAction(PlayerAction.RifleTrashSuccess);
       }
     }
   }

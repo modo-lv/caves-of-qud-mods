@@ -42,9 +42,9 @@ namespace ModoMods.SkillTraining.Data {
         #endregion
         
         #region Customs and Folklore
-        { FirstRitualRep,    new TrainingData(CustomsAndFolklore,  1.00m) },
+        { RitualFirstRep,    new TrainingData(CustomsAndFolklore,  1.00m) },
         { RitualRep,         new TrainingData(CustomsAndFolklore,  0.25m) },
-        { SecretReveal,      new TrainingData(CustomsAndFolklore,  0.25m) },
+        { JournalReveal,     new TrainingData(CustomsAndFolklore,  0.25m) },
         #endregion 
  
         #region Physic

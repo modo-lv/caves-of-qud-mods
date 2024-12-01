@@ -14,38 +14,19 @@ namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains "Cooking and Gathering" skill.</summary>
   [HarmonyPatch]
   public class CookingTrainer : ModPart {
-    /// <remarks>
-    /// Since harvesting can be done by anyone, the actor has to be checked for being the player,
-    /// and the result remembered for the post-harvest check.
-    /// </remarks>
-    [HarmonyPrefix][HarmonyPatch(typeof(Harvestable), nameof(Harvestable.AttemptHarvest))]
-    private static void PreHarvest(GameObject who, out Boolean __state) {
-      __state = who.IsPlayer() && !who.HasEffect<Dominated>();
-    }
-
     /// <summary>Training points from harvesting plants.</summary>
     [HarmonyPostfix][HarmonyPatch(typeof(Harvestable), nameof(Harvestable.AttemptHarvest))]
-    private static void PostHarvest(ref Boolean __result, ref Boolean __state) {
-      if (__state && __result) {
-        Main.PointTracker.HandleTrainingAction(PlayerAction.Harvest);
-      }
+    private static void AfterHarvest(ref Boolean __result, ref GameObject who) {
+      if (__result && who.CanTrainSkills())
+        who.TrainingTracker()?.HandleTrainingAction(PlayerAction.Harvest);
     }
 
-    /// <remarks>
-    /// Since butchering can be done by anyone, the actor has to be checked for being the player,
-    /// and the result remembered for the post-butcher check.
-    /// </remarks>
-    [HarmonyPrefix][HarmonyPatch(typeof(Butcherable), nameof(Butcherable.AttemptButcher))]
-    private static void PreButcher(GameObject Actor, out Boolean __state) {
-      __state = Actor.IsPlayer() && !Actor.HasEffect<Dominated>();
-    }
-
+    // ReSharper disable once InconsistentNaming
     /// <summary>Training points from harvesting plants.</summary>
     [HarmonyPostfix][HarmonyPatch(typeof(Butcherable), nameof(Butcherable.AttemptButcher))]
-    private static void PostButcher(ref Boolean __result, ref Boolean __state) {
-      if (__state && __result) {
-        Main.PointTracker.HandleTrainingAction(PlayerAction.Butcher);
-      }
+    private static void AfterButcher(ref Boolean __result, ref GameObject Actor) {
+      if (__result && Actor.CanTrainSkills())
+        Actor.TrainingTracker()?.HandleTrainingAction(PlayerAction.Butcher);
     }
 
     /// <summary>Listen for the <see cref="EventNames.CookedAt"/> event.</summary>
@@ -56,8 +37,8 @@ namespace ModoMods.SkillTraining.Trainers {
 
     /// <summary>Handle the <see cref="EventNames.CookedAt"/> event.</summary>
     public override Boolean FireEvent(Event ev) {
-      if (ev.ID == EventNames.CookedAt && ev.Actor()?.HasEffect<Dominated>() == false)
-        Main.PointTracker.HandleTrainingAction(PlayerAction.Cook);
+      if (ev.ID == EventNames.CookedAt)
+        this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.Cook);
       return base.FireEvent(ev);
     }
 
@@ -69,9 +50,8 @@ namespace ModoMods.SkillTraining.Trainers {
 
     /// <summary>Handle the tasty cooking event.</summary>
     public override Boolean HandleEvent(EffectAppliedEvent ev) {
-      if (this.ParentObject?.HasEffect<Dominated>() == false
-          && ev.Effect is BasicCookingEffect)
-        Main.PointTracker.HandleTrainingAction(PlayerAction.CookTasty);
+      if (ev.Effect is BasicCookingEffect)
+        this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.CookTasty);
       return base.HandleEvent(ev);
     }
   }

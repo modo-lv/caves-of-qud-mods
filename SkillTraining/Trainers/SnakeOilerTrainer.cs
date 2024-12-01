@@ -4,6 +4,7 @@ using HarmonyLib;
 using ModoMods.Core.Data;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
+using ModoMods.SkillTraining.Utils;
 using XRL;
 using XRL.UI;
 using XRL.World;
@@ -14,33 +15,21 @@ namespace ModoMods.SkillTraining.Trainers {
   /// Attached to player to listen for trade start events.
   /// When a trade is started, also attaches to the trader, to wait for "take object" event. 
   /// </remarks>
-  [HarmonyPatch]
   public class SnakeOilerTrainer : ModPart {
-    [HarmonyPrefix][HarmonyPatch(typeof(TradeUI), nameof(TradeUI.ShowTradeScreen))]
-    public static void BeforeTradeScreen(GameObject Trader, out GameObject __state) {
-      __state = Trader;
-    }
-    
-    [HarmonyPostfix][HarmonyPatch(typeof(TradeUI), nameof(TradeUI.ShowTradeScreen))]
-    public static void AfterTradeScreen(GameObject Trader, ref GameObject __state) {
-      __state.RemovePart<SnakeOilerTrainer>();
-    }
-    
-    
     public override ISet<Int32> WantEventIds => new HashSet<Int32> { StartTradeEvent.ID };
 
     public override Boolean HandleEvent(StartTradeEvent ev) {
       // Party member trading doesn't count
-      if (ev.Trader.IsPlayerLed()) {
-        ev.Trader.RemovePart<SnakeOilerTrainer>();
-        return base.HandleEvent(ev);
-      }
+      if (ev.Trader.IsPlayerLed())
+        ev.Trader.RemovePart<TradeListener>();
       // Non-creatures are containers (which trigger the same events).
-      if (ev.Trader.IsCreature)
-        ev.Trader.RequirePart<SnakeOilerTrainer>();
+      else if (ev.Trader.IsCreature)
+        ev.Trader.RequirePart<TradeListener>();
       return base.HandleEvent(ev);
     }
+  }
 
+  [HarmonyPatch] public class TradeListener : ModPart {
     public override void Register(GameObject obj, IEventRegistrar reg) {
       obj.RegisterPartEvent(this, EventNames.CommandTakeObject);
       base.Register(obj, reg);
@@ -48,7 +37,7 @@ namespace ModoMods.SkillTraining.Trainers {
 
     public override Boolean FireEvent(Event ev) {
       var item = ev.GetGameObjectParameter("Object");
-      
+
       if (ev.ID != EventNames.CommandTakeObject
           || TradeUI.ScreenMode != TradeUI.TradeScreenMode.Trade
           || !this.ParentObject.IsCreature
@@ -62,9 +51,17 @@ namespace ModoMods.SkillTraining.Trainers {
       var bonus = Math.Round(new Decimal(item.Value) / 1000, 2);
       Output.DebugLog($"Sold {itemCount} item(s) worth {item.Value}, bonus: {bonus}.");
       bonus *= 1m / TrainingData.For(PlayerAction.TradeItem).DefaultAmount;
-      Main.PointTracker.HandleTrainingAction(PlayerAction.TradeItem, itemCount + bonus);
+      // Only player trades things through a UI
+      The.Player?.TrainingTracker()?.HandleTrainingAction(PlayerAction.TradeItem, itemCount + bonus);
 
       return base.FireEvent(ev);
+    }
+
+    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once InconsistentNaming
+    [HarmonyPostfix][HarmonyPatch(typeof(TradeUI), nameof(TradeUI.ShowTradeScreen))]
+    public static void AfterTradeScreen(GameObject Trader) {
+      Trader.RemovePart<TradeListener>();
     }
   }
 }

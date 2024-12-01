@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using ModoMods.Core.Data;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
 using XRL.World;
-using XRL.World.Effects;
 using XRL.World.Parts;
 
 namespace ModoMods.SkillTraining.Trainers {
@@ -23,18 +21,20 @@ namespace ModoMods.SkillTraining.Trainers {
 
     /// <summary>Missile weapon attack training.</summary>
     public override Boolean HandleEvent(BeforeFireMissileWeaponsEvent ev) {
-      if (ev.ApparentTarget?.IsCreature == true
-          && ev.ApparentTarget?.IsPlayer() == false
-          && ev.Actor?.HasEffect<Dominated>() == false)
+      if (ev.ApparentTarget.IsCombatant() && ev.Actor.CanTrainSkills())
         ev.ApparentTarget.RequirePart<MissileAttackTrainer>();
       return base.HandleEvent(ev);
     }
 
     public override Boolean HandleEvent(DefenderMissileHitEvent ev) {
-      if (ev.Launcher == null) // No launcher means hit with a thrown weapon, which is a separate trainer
-      {
+      // No launcher means hit with a thrown weapon, which is a separate trainer
+      if (ev.Launcher == null)
         return base.HandleEvent(ev);
-      }
+     
+      if (this.ParentObject != ev.Defender)
+        throw new Exception($"Defender missile hit event fired on [{this.ParentObject}], " +
+                            $"but defender is [{ev.Defender}].");
+      
       var skillClass = ev.Launcher.GetPart<MissileWeapon>().Skill;
       var action = skillClass switch {
         // AFAICT there are no weapons using "Bow" skill anymore, but the game has checks for it.
@@ -48,21 +48,13 @@ namespace ModoMods.SkillTraining.Trainers {
         skillClass = SkillClasses.BowAndRifle;
       var skill = SkillUtils.SkillByClass(skillClass)?.Class;
 
-      if (this.ParentObject != ev.Defender)
-        throw new Exception($"Defender missile hit event fired on [{this.ParentObject}], " +
-                            $"but defender is [{ev.Defender}].");
-
-      if (skill == null
-          || !ev.Attacker.IsPlayer()
-          || ev.Attacker?.HasEffect<Dominated>() != false
-          || ev.AimedAt != this.ParentObject
-          || !this.ParentObject.IsCombatant()
+      if (skill != null
+          && ev.Attacker.CanTrainSkills()
+          && ev.AimedAt == ev.Defender
+          && ev.Defender.IsCombatant()
          ) {
-        return base.HandleEvent(ev);
+        ev.Attacker.TrainingTracker()?.HandleTrainingAction(action);
       }
-
-      Output.DebugLog($"[{this.ParentObject}] hit with [{ev.Launcher}].");
-      Main.PointTracker.HandleTrainingAction(action);
 
       return base.HandleEvent(ev);
     }

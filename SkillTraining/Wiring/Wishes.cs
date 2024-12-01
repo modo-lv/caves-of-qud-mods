@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,7 +41,7 @@ namespace ModoMods.SkillTraining.Wiring {
         .Select(it => it.SkillClass)
         .Distinct()
         .OrderBy(it => it.SkillName())
-        .ToDictionary(it => it, it => Main.PointTracker.Points.GetOr(it, () => 0m))
+        .ToDictionary(it => it, it => Main.TrainingTracker.Points.GetOr(it, () => 0m))
         .Select(entry => {
           var cost = SkillUtils.SkillOrPower(entry.Key)!.Cost;
           var locked = !Main.Player.HasSkill(entry.Key);
@@ -96,7 +95,7 @@ namespace ModoMods.SkillTraining.Wiring {
           .Select(it => it.SkillClass)
           .Distinct()
           .OrderBy(it => it.SkillName())
-          .ToDictionary(it => it, it => Main.PointTracker.Points.GetOr(it, () => 0m))
+          .ToDictionary(it => it, it => Main.TrainingTracker.Points.GetOr(it, () => 0m))
           .Where(it => !Main.Player.HasSkill(it.Key))
           .ToList();
 
@@ -132,9 +131,9 @@ namespace ModoMods.SkillTraining.Wiring {
         );
 
         if (newValue > target.Value)
-          Main.PointTracker.AddPoints(target.Key, newValue - target.Value);
+          Main.TrainingTracker.AddPoints(target.Key, newValue - target.Value);
         else
-          Main.PointTracker.Points[target.Key] = newValue;
+          Main.TrainingTracker.Points[target.Key] = newValue;
       }
     }
 
@@ -158,7 +157,7 @@ namespace ModoMods.SkillTraining.Wiring {
           Title: "Unlearn a skill",
           Intro: intro,
           Options: combined.Select(it =>
-            "* ".If(_ => it.Entry is PowerEntry)
+            "* ".OnlyIf(_ => it.Entry is PowerEntry)
             + "{{Y|" + it.DisplayName + "}}"
             + $" [{it.Entry.Cost} sp]"
           ).ToList(),
@@ -184,7 +183,7 @@ namespace ModoMods.SkillTraining.Wiring {
           Main.Player.GetStat("SP").Bonus += target.Entry.Cost;
         Output.Alert(
           "{{Y|" + target.DisplayName + "}} unlearned."
-          + (" {{G|" + target.Entry.Cost + "}} skill points refunded.").If(_ => refund)
+          + (" {{G|" + target.Entry.Cost + "}} skill points refunded.").OnlyIf(_ => refund)
         );
         if (choice == combined.Count - 1) {
           choice--;
