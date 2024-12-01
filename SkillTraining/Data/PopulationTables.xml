@@ -11,7 +11,7 @@
             <object Blueprint="Two-Handed Sword" Number="1" />
 
             <object Blueprint="Wooden Buckler" Number="1" />
-            <object Blueprint="Small Stone" Number="5" />
+            <object Blueprint="Small Stone" Number="6-8" />
 
             <object Blueprint="Short Bow" Number="1" />
             <object Blueprint="Wooden Arrow" Number="30-50" />
