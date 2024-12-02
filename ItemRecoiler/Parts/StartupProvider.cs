@@ -21,8 +21,7 @@ namespace ModoMods.ItemRecoiler.Parts {
         var recoiler = GameObject.CreateUnmodified(ModBlueprintNames.Recoiler);
         {
           var cell = GameObject.CreateUnmodified("Solar Cell");
-          cell.RemovePart<Examiner>();
-          cell.AddPart<ModMetered>();
+          cell.MakeUnderstood();
           recoiler.GetPart<EnergyCellSocket>().SetCell(cell);
         }
         var text = "You feel a slight spacetime disturbance in your immediate vicinity, " +
