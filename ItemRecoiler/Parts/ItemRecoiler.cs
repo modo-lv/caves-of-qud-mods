@@ -70,8 +70,11 @@ namespace XRL.World.Parts {
     }
 
     public override Boolean HandleEvent(GetInventoryActionsEvent ev) {
-      if (this.Teleporter?.DestinationZone != null && this.IsObjectActivePartSubject(The.Player))
+      if (this.Teleporter?.DestinationZone.IsNullOrEmpty() == false
+          && this.IsObjectActivePartSubject(The.Player)
+         ) {
         ev.AddAction(Name: "FindImprint", Display: "find imprint", EventNames.FindImprintCommand, Key: 'f');
+      }
       return base.HandleEvent(ev);
     }
 
