@@ -31,10 +31,12 @@ namespace XRL.World.Parts {
       var chestZone = this.ParentObject.GetPartDescendedFrom<ITeleporter>()?.DestinationZone?.Let(it =>
         ZoneManager.instance.GetZone(it)
       ) ?? zone;
-      var chest = chestZone.FindObject(it => it.GetBooleanProperty(IsItemReceiver));
+      var chest = chestZone.FindObject(it =>
+        it.GetStringProperty(LinkedReceiver) == this.ParentObject.ID
+      );
       if (chest == null) {
         var receiver = GameObject.CreateUnmodified("Chest");
-        receiver.SetBooleanProperty(IsItemReceiver, true);
+        receiver.SetStringProperty(LinkedReceiver, this.ParentObject.ID);
         receiver.DisplayName = "{{itemrecoiler|recoiled item}} receiver";
         receiver.SetDetailColor('M');
         receiver.SetForegroundColor('y');
@@ -85,7 +87,7 @@ namespace XRL.World.Parts {
         var y = parasang.Y switch { 0 => "north", 2 => "south", _ => "" };
         sb.Append("Parasang {{B|" + parasang.wX + ":" + parasang.wY + "}} ");
         sb.Append("(" + parasang.DisplayName + "), ");
-        sb.Append("{{B|" + $"{(x != "" || y != "" ? x+y : "center")}" + "}} region.");
+        sb.Append("{{B|" + $"{(x != "" || y != "" ? x + y : "center")}" + "}} region.");
         Output.Alert(sb.ToString());
       }
       return base.HandleEvent(ev);

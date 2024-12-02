@@ -57,7 +57,9 @@ namespace XRL.World.Parts {
       var total = 0;
       var chargeSpent = 0;
       var zone = The.ZoneManager.GetZone(this.DestinationZone);
-      var chest = zone.FindObject(it => it.GetBooleanProperty(PropertyNames.IsItemReceiver));
+      var chest = zone.FindObject(it =>
+        it.GetStringProperty(PropertyNames.LinkedReceiver) == this.ParentObject.ID
+      );
       while (!transmitter.Inventory.Objects.IsNullOrEmpty()) {
         var item = transmitter.Inventory.GetFirstObject();
         if (item.Blueprint == ModBlueprintNames.Recoiler) {
@@ -73,7 +75,7 @@ namespace XRL.World.Parts {
               Main.Player)) {
           chest?.Inventory.AddObject(item);
           total += item.Count;
-          this.ParentObject.UseCharge((Int32)Math.Ceiling(item.GetWeight() * item.Count));
+          this.ParentObject.UseCharge((Int32) Math.Ceiling(item.GetWeight() * item.Count));
           chargeSpent += item.Weight;
         }
       }
