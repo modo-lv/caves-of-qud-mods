@@ -19,7 +19,7 @@ namespace ModoMods.ItemRecoiler.Parts {
       var player = this.ParentObject;
       if (ModOptions.GiveOnStartup && !this.Provided) {
         var recoiler = GameObject.CreateUnmodified(ModBlueprintNames.Recoiler);
-        {
+        if (recoiler.HasPart<EnergyCellSocket>()) {
           var cell = GameObject.CreateUnmodified("Solar Cell");
           cell.MakeUnderstood();
           recoiler.GetPart<EnergyCellSocket>().SetCell(cell);
