@@ -13,7 +13,7 @@ namespace XRL.World.Parts {
   [Serializable] public class ItemRecoiler : ProgrammableRecoiler {
     /// <summary>Cached zone name for displaying the full item name.</summary>
     /// <remarks>
-    /// Dynamically reading zone data while it's frozen causes a
+    /// Dynamically reading zone data while it's frozen can cause
     /// <c>SerializationReader::TryGetShared not on game context!</c>
     /// exception, so we need to cache the name when it is set/changed.
     /// It's also more performant, as we don't have to look up zone data every time the item is displayed. 
@@ -53,7 +53,7 @@ namespace XRL.World.Parts {
         receiver.RequirePart<HologramInvulnerability>();
         receiver.RequirePart<Commerce>().Value = 0.0;
         receiver.RequirePart<Description>().Short =
-          "A landing beacon for {{itemrecoiler|items recoiling}} through the ether.";
+          $"A landing beacon for items recoiled by\n{this.ParentObject.DisplayName}.";
         cell.AddObject(receiver);
       } else {
         var total = 0;
