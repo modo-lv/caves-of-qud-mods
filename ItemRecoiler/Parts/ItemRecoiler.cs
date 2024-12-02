@@ -32,6 +32,8 @@ namespace XRL.World.Parts {
       var chestZone = this.ParentObject.GetPartDescendedFrom<ITeleporter>()?.DestinationZone?.Let(it =>
         ZoneManager.instance.GetZone(it)
       ) ?? zone;
+      base.ProgrammedForLocation(zone, cell);
+      this.ImprintedZoneName = zone.BaseDisplayName;
       var chest = chestZone.FindObject(it =>
         it.GetStringProperty(LinkedReceiver) == this.ParentObject.ID
       );
@@ -65,8 +67,6 @@ namespace XRL.World.Parts {
           Output.DebugLog($"{total} item(s) removed from the chest before moving it to the new location.");
         chest.ZoneTeleport(zone.ZoneID, cell.X, cell.Y);
       }
-      this.ImprintedZoneName = zone.BaseDisplayName;
-      base.ProgrammedForLocation(zone, cell);
     }
 
     public override Boolean HandleEvent(GetInventoryActionsEvent ev) {
