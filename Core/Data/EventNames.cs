@@ -1,9 +1,14 @@
 ﻿using System;
+using XRL.World.Parts;
 
 namespace ModoMods.Core.Data {
   public static class EventNames {
     /// <summary>Fired on the attacker as soon as the attack is calculated to hit.</summary>
     public const String AttackerHit = "AttackerHit";
+
+    /// <summary>Fired on the attacker (and defender) after an attack has successfully hit.</summary>
+    /// <seealso cref="Combat.MeleeAttackWithWeaponInternal"/>
+    public const String AttackerAfterAttack = "AttackerAfterAttack";
 
     /// <summary>Fired on the player when dropping an item to the ground.</summary>
     public const String CommandDropObject = "CommandDropObject";
