@@ -26,12 +26,12 @@ namespace ModoMods.SkillTraining.Trainers {
     /// for water ritual reputation changes.
     /// </remarks>
     public override void Register(GameObject obj, IEventRegistrar reg) {
-      obj.RegisterPartEvent(this, EventNames.ReputationChanged);
+      obj.RegisterPartEvent(this, QudEventNames.ReputationChanged);
       base.Register(obj, reg);
     }
 
     public override Boolean FireEvent(Event ev) {
-      if (ev.ID != EventNames.ReputationChanged)
+      if (ev.ID != QudEventNames.ReputationChanged)
         return base.FireEvent(ev);
 
       if (ev.Actor().CanTrainSkills()) {

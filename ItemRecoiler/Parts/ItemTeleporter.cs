@@ -16,7 +16,7 @@ namespace XRL.World.Parts {
       || id == InventoryActionEvent.ID;
 
     public override Boolean HandleEvent(InventoryActionEvent ev) {
-      if (ev.Command == CommandNames.ActivateTeleporter) {
+      if (ev.Command == QudCommands.ActivateTeleporter) {
         if (this.AttemptItemTeleport())
           ev.RequestInterfaceExit();
         return true;

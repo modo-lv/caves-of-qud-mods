@@ -11,14 +11,14 @@ namespace ModoMods.SkillTraining.Trainers {
   public class MeleeWeaponTrainer : ModPart {
     public override void Register(GameObject obj, IEventRegistrar reg) {
       base.Register(obj, reg);
-      obj.RegisterPartEvent(this, EventNames.AttackerAfterAttack);
+      obj.RegisterPartEvent(this, QudEventNames.AttackerAfterAttack);
     }
 
     public override Boolean FireEvent(Event ev) {
       var attacker = ev.Attacker().OnlyIf(it => it == this.ParentObject);
       var weapon = ev.Weapon();
       var defender = ev.Defender();
-      if (ev.ID != EventNames.AttackerAfterAttack
+      if (ev.ID != QudEventNames.AttackerAfterAttack
           || ev.GetIntParameter("Penetrations") == 0
           || weapon == null || attacker == null || defender == null)
         return base.FireEvent(ev);

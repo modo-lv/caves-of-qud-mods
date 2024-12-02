@@ -27,7 +27,7 @@ namespace ModoMods.SkillTraining.Trainers {
 
     /// <summary>Handles recovering from any negative health effect.</summary>
     public override Boolean HandleEvent(EffectRemovedEvent ev) {
-      if (ev.Effect.GetType().IsOneOf(EffectTypes.PhysicalNegative))
+      if (ev.Effect.GetType().IsOneOf(QudEffectTypes.PhysicalNegative))
         this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.Recover);
       return base.HandleEvent(ev);
     }

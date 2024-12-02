@@ -3,7 +3,7 @@ using XRL.World;
 using XRL.World.Parts;
 
 namespace ModoMods.Core.Data {
-  public static class EventNames {
+  public static class QudEventNames {
     /// <summary>Fired on the attacker as soon as the attack is calculated to hit.</summary>
     public const String AttackerHit = "AttackerHit";
 

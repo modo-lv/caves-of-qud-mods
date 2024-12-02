@@ -26,13 +26,13 @@ namespace ModoMods.SkillTraining.Trainers {
   /// </remarks>
   public class ItemThrownDetector : ModPart {
     public override void Register(GameObject obj, IEventRegistrar reg) {
-      obj.RegisterPartEvent(this, EventNames.ThrownProjectileHit);
+      obj.RegisterPartEvent(this, QudEventNames.ThrownProjectileHit);
       base.Register(obj, reg);
     }
 
     /// <summary>Attach hit detection to the intended target.</summary>
     public override Boolean FireEvent(Event ev) {
-      if (ev.ID != EventNames.ThrownProjectileHit)
+      if (ev.ID != QudEventNames.ThrownProjectileHit)
         return base.FireEvent(ev);
 
       var defender = ev.Defender()?.OnlyIf(it =>
@@ -53,7 +53,7 @@ namespace ModoMods.SkillTraining.Trainers {
     /// with this detector attached causes random(?) <see cref="NullReferenceException"/>s.
     /// </remarks>
     public override Boolean HandleEvent(AfterThrownEvent ev) {
-      ev.Item.UnregisterPartEvent(this, EventNames.ThrownProjectileHit);
+      ev.Item.UnregisterPartEvent(this, QudEventNames.ThrownProjectileHit);
       ev.Item.RemovePart<ItemThrownDetector>();
       return base.HandleEvent(ev);
     }

@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace ModoMods.Core.Data {
-  public static class CommandNames {
+  public static class QudCommands {
     public const String ActivateTeleporter = "ActivateTeleporter";
   }
 }

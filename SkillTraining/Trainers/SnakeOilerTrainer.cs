@@ -31,14 +31,14 @@ namespace ModoMods.SkillTraining.Trainers {
 
   [HarmonyPatch] public class TradeListener : ModPart {
     public override void Register(GameObject obj, IEventRegistrar reg) {
-      obj.RegisterPartEvent(this, EventNames.CommandTakeObject);
+      obj.RegisterPartEvent(this, QudEventNames.CommandTakeObject);
       base.Register(obj, reg);
     }
 
     public override Boolean FireEvent(Event ev) {
       var item = ev.GetGameObjectParameter("Object");
 
-      if (ev.ID != EventNames.CommandTakeObject
+      if (ev.ID != QudEventNames.CommandTakeObject
           || TradeUI.ScreenMode != TradeUI.TradeScreenMode.Trade
           || !this.ParentObject.IsCreature
           // Getting items doesn't train selling them

@@ -19,7 +19,7 @@ namespace ModoMods.SkillTraining.Trainers {
     public override ISet<Int32> WantEventIds => new HashSet<Int32> { BeforeFireMissileWeaponsEvent.ID };
 
     public override void Register(GameObject gameObject, IEventRegistrar registrar) {
-      gameObject.RegisterPartEvent(this, EventNames.DefenderProjectileHit);
+      gameObject.RegisterPartEvent(this, QudEventNames.DefenderProjectileHit);
       base.Register(gameObject, registrar);
     }
 
@@ -31,7 +31,7 @@ namespace ModoMods.SkillTraining.Trainers {
     }
 
     public override Boolean FireEvent(Event ev) {
-      if (ev.ID != EventNames.DefenderProjectileHit)
+      if (ev.ID != QudEventNames.DefenderProjectileHit)
         return base.FireEvent(ev);
       
       var launcher = ev.GetGameObjectParameter("Launcher");

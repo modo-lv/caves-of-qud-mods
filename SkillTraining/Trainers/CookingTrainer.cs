@@ -29,21 +29,21 @@ namespace ModoMods.SkillTraining.Trainers {
         Actor.TrainingTracker()?.HandleTrainingAction(PlayerAction.Butcher);
     }
 
-    /// <summary>Listen for the <see cref="EventNames.CookedAt"/> event.</summary>
+    /// <summary>Listen for the <see cref="QudEventNames.CookedAt"/> event.</summary>
     public override void Register(GameObject obj, IEventRegistrar reg) {
       base.Register(obj, reg);
-      obj.RegisterPartEvent(this, EventNames.CookedAt);
+      obj.RegisterPartEvent(this, QudEventNames.CookedAt);
     }
 
-    /// <summary>Handle the <see cref="EventNames.CookedAt"/> event.</summary>
+    /// <summary>Handle the <see cref="QudEventNames.CookedAt"/> event.</summary>
     public override Boolean FireEvent(Event ev) {
-      if (ev.ID == EventNames.CookedAt)
+      if (ev.ID == QudEventNames.CookedAt)
         this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.Cook);
       return base.FireEvent(ev);
     }
 
     /// <remarks>
-    /// "Tasty" random meals don't trigger the <see cref="EventNames.CookedAt"/> event,
+    /// "Tasty" random meals don't trigger the <see cref="QudEventNames.CookedAt"/> event,
     /// and must be detected by their effects.
     /// </remarks>
     public override ISet<Int32> WantEventIds => new HashSet<Int32> { EffectAppliedEvent.ID };

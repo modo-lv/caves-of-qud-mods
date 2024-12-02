@@ -5,7 +5,7 @@ using XRL.World.Effects;
 
 namespace ModoMods.Core.Data {
   /// <summary>Known in-game effect IDs.</summary>
-  public static class EffectTypes {
+  public static class QudEffectTypes {
     public static readonly Type Terrified = typeof(Terrified);
     public static readonly Type Confused = typeof(Confused);
     

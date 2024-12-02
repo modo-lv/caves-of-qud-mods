@@ -12,7 +12,7 @@ namespace ModoMods.ItemRecoiler.Wiring {
     public override ISet<Int32> WantEventIds => new HashSet<Int32> { CommandEvent.ID, };
 
     public override Boolean HandleEvent(CommandEvent ev) {
-      if (ev.Command != ModEventNames.TransmitCommand)
+      if (ev.Command != EventNames.TransmitCommand)
         return base.HandleEvent(ev);
 
       var recoiler = Main.Player.Inventory.FindObjectByBlueprint(ModBlueprintNames.Recoiler);
@@ -22,7 +22,7 @@ namespace ModoMods.ItemRecoiler.Wiring {
           recoiler.Twiddle();
         else
           teleporter.HandleEvent(
-            new InventoryActionEvent { Command = CommandNames.ActivateTeleporter }
+            new InventoryActionEvent { Command = QudCommands.ActivateTeleporter }
           );
       } else
         Main.Player.ParticleText("You don't have an item recoiler.", 'o');

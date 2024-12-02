@@ -44,7 +44,7 @@ namespace ModoMods.SkillTraining.Utils {
       // Attacking self isn't combat
       && !gameObject.IsPlayer()
       // Some walls are also creatures (fungi), but they don't fight back.
-      && !gameObject.HasTag(TagNames.Wall)
+      && !gameObject.HasTag(QudTagNames.Wall)
       // Fists, fangs etc. count as weapons. Dreadroots are weaponless.
       && gameObject.HasWeapon()
       // SporePuffer mutation consumes 1000 energy every turn, regardless of whether the spores were released.
