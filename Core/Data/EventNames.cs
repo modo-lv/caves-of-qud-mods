@@ -28,6 +28,9 @@ namespace ModoMods.Core.Data {
     /// <summary>Fired on the player after successfully cooking and eating a meal.</summary>
     public const String CookedAt = "CookedAt";
 
+    /// <summary>Fired on the missile weapon when it hits something with an attack.</summary>
+    public const String DefenderProjectileHit = "DefenderProjectileHit";
+
     /// <summary>Fired on the player after a reputation change has occured.</summary>
     public const String ReputationChanged = "ReputationChanged";
   }
