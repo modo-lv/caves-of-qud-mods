@@ -15,11 +15,16 @@ namespace ModoMods.ItemRecoiler.Wiring {
       if (ev.Command != EventNames.TransmitCommand)
         return base.HandleEvent(ev);
 
-      var recoiler = Main.Player.Inventory.FindObjectByBlueprint(ModBlueprintNames.Recoiler);
-      if (recoiler != null) {
-        var teleporter = recoiler.GetPartDescendedFrom<ITeleporter>();
+      var recoilers = Main.Player.Inventory.GetObjects(it => it.Blueprint == ModBlueprintNames.Recoiler);
+      if (recoilers.Count > 1) {
+        Main.Player.ParticleText(
+          "You have multiple item recoilers. Quick activation not available.",
+          Color: 'w', juiceDuration: 3f
+        );
+      } else if (recoilers[0] != null) {
+        var teleporter = recoilers[0].GetPartDescendedFrom<ITeleporter>();
         if (teleporter.DestinationZone.IsNullOrEmpty())
-          recoiler.Twiddle();
+          recoilers[0].Twiddle();
         else
           teleporter.HandleEvent(
             new InventoryActionEvent { Command = QudCommands.ActivateTeleporter }
