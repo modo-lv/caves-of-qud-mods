@@ -57,7 +57,7 @@ namespace XRL.World.Parts {
       var total = 0;
       var chargeSpent = 0;
       var zone = The.ZoneManager.GetZone(this.DestinationZone);
-      var chest = zone.FindObject(ModBlueprintNames.Receiver);
+      var chest = zone.FindObject(it => it.GetBooleanProperty(PropertyNames.IsItemReceiver));
       while (!transmitter.Inventory.Objects.IsNullOrEmpty()) {
         var item = transmitter.Inventory.GetFirstObject();
         if (item.Blueprint == ModBlueprintNames.Recoiler) {

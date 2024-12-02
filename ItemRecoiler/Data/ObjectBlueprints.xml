@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <objects>
     <object Name="ModoMods_ItemRecoiler_Recoiler" Inherits="Item">
-        <part Name="Render" DisplayName="{{itemrecoiler|item recoiler}}" ColorString="&amp;M" DetailColor="k"
+        <part Name="Render" DisplayName="{{itemrecoiler|item recoiler}}" ColorString="&amp;m" DetailColor="k"
               RenderString="004" RenderLayer="5" Tile="Items/sw_recoiler.bmp" />
         <part Name="ItemRecoiler" ChargeUse="0" Reprogrammable="true" Sound="Sounds/Interact/sfx_interact_recoiler_location_imprint" />
         <part Name="ItemTeleporter" ChargeUse="0" Sound="Sounds/Interact/sfx_interact_recoiler_activate" />
@@ -21,18 +21,5 @@
         <stag Name="Travel" />
         <tag Name="DynamicObjectsTable:Trinkets" />
         <tag Name="NoSparkingQuest" />
-    </object>
-
-    <object Name="ModoMods_ItemRecoiler_Receiver" Inherits="Chest">
-        <part Name="Physics" Takeable="false" />
-        <part Name="Render"
-              DisplayName="{{itemrecoiler|recoiled items}} chest"
-              DetailColor="M"
-              ColorString="&amp;y"
-        />
-        <part Name="Description"
-              Short="Receives and stores recoiled items." />
-        <tag Name="NoSparkingQuest" />
-        <tag Name="ExcludeFromDynamicEncounters" />
     </object>
 </objects>
