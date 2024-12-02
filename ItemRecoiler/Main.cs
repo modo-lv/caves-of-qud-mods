@@ -20,13 +20,13 @@ namespace ModoMods.ItemRecoiler {
 
     /// <summary>New game.</summary>
     public void mutate(GameObject player) {
-      Output.DebugLog("Game started, wiring up the mod...");
+      Output.DebugLog("Game started, wiring up Item Recoiler...");
       Init(player);
     }
 
     /// <summary>Load game.</summary>
     [CallAfterGameLoaded] public static void OnGameLoaded() {
-      Output.DebugLog("Game loaded, verifying all the mod wiring...");
+      Output.DebugLog("Game loaded, verifying Item Recoiler wiring...");
       Init(Player);
     }
   }
