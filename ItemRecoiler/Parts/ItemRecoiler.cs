@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using ModoMods.Core.Utils;
 using ModoMods.ItemRecoiler.Data;
 using ModoMods.ItemRecoiler.Utils;
@@ -82,12 +83,20 @@ namespace XRL.World.Parts {
           "Hazy disparate scraps of geospatial awareness surface slowly and " +
           "assemble themselves into a clear sense of location:\n\n"
         );
-        var parasang = ZoneManager.instance.GetZone(this.Teleporter.DestinationZone);
-        var x = parasang.X switch { 0 => "west", 2 => "east", _ => "" };
-        var y = parasang.Y switch { 0 => "north", 2 => "south", _ => "" };
-        sb.Append("Parasang {{B|" + parasang.wX + ":" + parasang.wY + "}} ");
-        sb.Append("(" + parasang.DisplayName + "), ");
-        sb.Append("{{B|" + $"{(x != "" || y != "" ? x + y : "center")}" + "}} region.");
+        var zone = ZoneManager.instance.GetZone(this.Teleporter.DestinationZone);
+        var zoneName = zone.DisplayName;
+        var x = zone.X switch { 0 => "west", 2 => "east", _ => "" };
+        var y = zone.Y switch { 0 => "north", 2 => "south", _ => "" };
+        var match = Regex.Match(zoneName, ",([^,]+)$").OnlyIf(it => it.Success);
+        var depth = match?.Groups[1].Value;
+        if (match != null)
+          zoneName = zoneName.Replace(match.Groups[0].Value, "");
+        sb.Append("Parasang {{B|" + zone.wX + ":" + zone.wY + "}}");
+        sb.Append(" ({{W|" + zoneName + "}})");
+        sb.Append(", {{B|" + $"{(x != "" || y != "" ? x + y : "center")}" + "}} region");
+        if (depth != null)
+          sb.Append(", {{B|" + depth + "}}");
+        sb.Append(".");
         Output.Alert(sb.ToString());
       }
       return base.HandleEvent(ev);
