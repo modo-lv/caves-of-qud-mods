@@ -1,0 +1,9 @@
+{
+  "id": "ItemRecoiler",
+  "version": "1.0.0",
+  "title": "{{m|I}}tem Recoile{{m|r}}",
+  "description": "Adds a different kind of recoiler to the game -- one that recoils items, not the player. It mostly functions just like a regular reprogrammable recoiler, except when activated, it displays a container window, and any items placed in it when the window closes are teleported to the imprinted location.",
+  "tags": "Stable,Beta,Item,Tool,Script",
+  "author": "modo_lv",
+  "previewImage": "preview.png"
+}
