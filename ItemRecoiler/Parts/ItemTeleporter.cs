@@ -73,7 +73,7 @@ namespace XRL.World.Parts {
               Main.Player)) {
           chest?.Inventory.AddObject(item);
           total += item.Count;
-          this.ParentObject.UseCharge(item.Weight);
+          this.ParentObject.UseCharge((Int32)Math.Ceiling(item.GetWeight() * item.Count));
           chargeSpent += item.Weight;
         }
       }
