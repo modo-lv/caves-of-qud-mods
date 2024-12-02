@@ -1,4 +1,5 @@
 ﻿using System;
+using XRL.World;
 using XRL.World.Parts;
 
 namespace ModoMods.Core.Data {
@@ -19,8 +20,9 @@ namespace ModoMods.Core.Data {
     /// <summary>Fired on a trader/container when items are moved to it, once for each stack.</summary>
     public const String CommandTakeObject = "CommandTakeObject";
     
-    /// <summary>Fired on the thrown weapon at the start of throwing it.</summary>
-    public const String BeforeThrown = "BeforeThrown";
+    /// <summary>Fired on the thrown weapon once it hits something.</summary>
+    /// <seealso cref="GameObject.PerformThrow"/>
+    public const String ThrownProjectileHit = "ThrownProjectileHit";
     
     /// <summary>Fired on the defender when an attack hits.</summary>
     public const String TakeDamage = "TakeDamage";

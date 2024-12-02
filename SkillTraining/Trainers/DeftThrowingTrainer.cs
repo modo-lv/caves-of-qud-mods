@@ -21,26 +21,25 @@ namespace ModoMods.SkillTraining.Trainers {
     }
   }
 
-
   /// <remarks>
   /// Attached to a thrown weapon when it is equipped, to listen for the throwing event.
   /// </remarks>
   public class ItemThrownDetector : ModPart {
     public override void Register(GameObject obj, IEventRegistrar reg) {
-      obj.RegisterPartEvent(this, EventNames.BeforeThrown);
+      obj.RegisterPartEvent(this, EventNames.ThrownProjectileHit);
       base.Register(obj, reg);
     }
 
     /// <summary>Attach hit detection to the intended target.</summary>
     public override Boolean FireEvent(Event ev) {
-      if (ev.ID != EventNames.BeforeThrown)
+      if (ev.ID != EventNames.ThrownProjectileHit)
         return base.FireEvent(ev);
 
-      var thrower = ev.GetGameObjectParameter("Thrower"); 
-      var target = ev.GetGameObjectParameter("ApparentTarget");
-      if (thrower.CanTrainSkills() && target.IsCombatant()) {
-        // Attach this tracker to the target creature, to detect when it gets hit.
-        target.RequirePart<ThrownHitDetector>();
+      var defender = ev.Defender()?.OnlyIf(it =>
+        it.IsCombatant() && it == ev.GetGameObjectParameter("ApparentTarget")
+      );
+      if (ev.Attacker().CanTrainSkills() && defender != null) {
+        ev.Attacker().TrainingTracker()?.HandleTrainingAction(PlayerAction.ThrownWeaponHit);
       }
 
       return base.FireEvent(ev);
@@ -54,22 +53,8 @@ namespace ModoMods.SkillTraining.Trainers {
     /// with this detector attached causes random(?) <see cref="NullReferenceException"/>s.
     /// </remarks>
     public override Boolean HandleEvent(AfterThrownEvent ev) {
-      ev.Item.UnregisterPartEvent(this, EventNames.BeforeThrown);
+      ev.Item.UnregisterPartEvent(this, EventNames.ThrownProjectileHit);
       ev.Item.RemovePart<ItemThrownDetector>();
-      return base.HandleEvent(ev);
-    }
-  }
-
-  /// <remarks>
-  /// Attached to the intended target when the weapon is thrown, to listen for the "hit landed" event.
-  /// </remarks>
-  public class ThrownHitDetector : ModPart {
-    public override ISet<Int32> WantEventIds => new HashSet<Int32> { DefenderMissileHitEvent.ID };
-
-    /// <summary>Processes a successful hit.</summary>
-    public override Boolean HandleEvent(DefenderMissileHitEvent ev) {
-      if (ev.Launcher == null && ev.Defender.IsCombatant() && ev.Attacker.CanTrainSkills())
-        ev.Attacker.TrainingTracker()?.HandleTrainingAction(PlayerAction.ThrownWeaponHit);
       return base.HandleEvent(ev);
     }
   }
