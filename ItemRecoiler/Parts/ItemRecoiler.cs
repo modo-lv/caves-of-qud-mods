@@ -4,6 +4,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using ModoMods.Core.Utils;
 using ModoMods.ItemRecoiler.Data;
+using ModoMods.ItemRecoiler.Parts;
 using ModoMods.ItemRecoiler.Utils;
 using ModoMods.ItemRecoiler.Wiring;
 using static ModoMods.ItemRecoiler.Data.PropertyNames;
@@ -57,6 +58,7 @@ namespace XRL.World.Parts {
         receiver.RequirePart<Commerce>().Value = 0.0;
         receiver.RequirePart<Description>().Short =
           $"A landing beacon for items recoiled by\n{this.ParentObject.DisplayName}.";
+        receiver.RequirePart<ReceiverErasure>();
         cell.AddObject(receiver);
       } else {
         var total = 0;
@@ -91,7 +93,7 @@ namespace XRL.World.Parts {
         var zoneName = zone.DisplayName;
         var x = zone.X switch { 0 => "west", 2 => "east", _ => "" };
         var y = zone.Y switch { 0 => "north", 2 => "south", _ => "" };
-        var match = Regex.Match(zoneName, ",([^,]+)$").OnlyIf(it => it.Success);
+        var match = Regex.Match(zoneName, ",\\s*([^,]+)$").OnlyIf(it => it.Success);
         var depth = match?.Groups[1].Value;
         if (match != null)
           zoneName = zoneName.Replace(match.Groups[0].Value, "");

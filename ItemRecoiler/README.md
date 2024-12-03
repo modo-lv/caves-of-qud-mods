@@ -6,12 +6,18 @@ Most other aspects are unchanged -- it requires energy to function, it can be fo
 
 # Features and details
 
-* **Acquiring**: All characters automatically get one free recoiler (with a [solar cell](https://wiki.cavesofqud.com/wiki/Solar_cell)) per game at the start of the game, or when loading a game after installing the mod. This can be turned off in options.
-* **Holographic receiver**: When you imprint an item recoiler, it places a holographic receiver (shaped like a purple-colored chest) as a marker in that location. This marks the place for recoil and makes item access more convenient, however, the box itself is a hologram and can't be interacted with (picked up, destroyed, etc.). And when the recoiler is programmed with a new location, the receiver will move, but any items still "in" it will remain.
+* **Acquiring** (configurable): All characters automatically get one free recoiler (with a [solar cell](https://wiki.cavesofqud.com/wiki/Solar_cell)) per game at the start of the game, or when loading a game after installing the mod.
+* **Holographic receiver** (configurable): When you imprint an item recoiler, it places a holographic receiver (shaped like a purple-colored chest) as a marker in that location. This marks the place for recoil and makes item access more convenient, however, the box itself is a hologram and can't be interacted with (picked up, destroyed, etc.). When the recoiler is programmed with a new location, the receiver will disappear (leaving items behind) and appear in the new location.
 * **Recoiling the recoiler**: Item recoilers themselves can't be recoiled. If placed in the teleportation "container", they will simply return to the player's inventory once the teleportation begins. 
 * **Energy cost**: The energy cost of recoiling items is equal to their total weight, rounded up to the nearest full pound. If you're using a low energy cell (such as the starting solar one), beware of recoiling heavy objects (corpses, stones) unless you have a way to recharge.
 * **Keyboard shortcut**: If you're recoiling items frequently, you can assign a keyboard shortcut for quick activation in the game's control mappings (I like `Shift+Q`). Note that quick activation can't choose between multiple item recoilers, you'll have to use the regular Recoil ability if you're carrying more than one.
 * **Find imprint**: The recoiler changes its name depending on where it's imprinted, but if that's not enough to find a lost imprint point, you can use the "find imprint" function. It will tell you the world map coordinates (`X:Y`, starting from the top left corner), parasang name, zone (one of the 9 regions that each parasang has) and depth (if the parasang has more than the surface level).
+
+# Uninstall
+
+The mod is safe to add or remove at any point. The recoiled items will remain where they are, as will the holographic receivers (if enabled).
+
+To remove the receivers, use either `turn off` interaction (available while the mod is enabled, safely moves all items to the ground), or `destroy` wish (available always, will destroy everything on the tile, including items!). There's also `deathgeno:Chest` wish, which is safe for items, but will destroy all chests in the zone, not just the holograms.
 
 # License and source code
 
