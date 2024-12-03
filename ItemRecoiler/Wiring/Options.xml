@@ -10,4 +10,15 @@
             If enabled, every character will start the game with an item recoiler in the inventory. Existing characters will also have one automatically added after installing the mod.
         </helptext>
     </option>
+    
+    <!-- Use receivers -->
+    <option ID="Option_ModoMods_ItemRecoiler_CreateReceivers"
+            DisplayText="Create receivers"
+            Type="Checkbox"
+            Default="Yes"
+            Category="Mod: Item Recoiler">
+        <helptext>
+            Control whether imprinting an item recoiler creates a holographic receiver at the location.&#10;&#10;Receivers make it more convenient to manage items at the drop sites (through a container window, rather than just picking up off the ground), but will be left over if the mod is uninstalled. It shouldn't break anything though (they're just tweaked vanilla chests).&#10;&#10;Disabling this does not remove existing receivers, that can be done safely with {{B|turn off}} interaction (removes items first, available while the mod is enabled), or unsafely with a {{B|destroy}} wish (you must remove items yourself!).  
+        </helptext>
+    </option>
 </options>

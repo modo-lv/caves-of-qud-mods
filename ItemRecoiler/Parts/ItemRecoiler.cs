@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using ModoMods.Core.Utils;
 using ModoMods.ItemRecoiler.Data;
 using ModoMods.ItemRecoiler.Utils;
+using ModoMods.ItemRecoiler.Wiring;
 using static ModoMods.ItemRecoiler.Data.PropertyNames;
 
 // ReSharper disable once CheckNamespace
@@ -37,7 +38,7 @@ namespace XRL.World.Parts {
       var chest = chestZone.FindObject(it =>
         it.GetStringProperty(LinkedReceiver) == this.ParentObject.ID
       );
-      if (chest == null) {
+      if (chest == null && ModOptions.CreateReceivers) {
         var receiver = GameObject.CreateUnmodified("Chest");
         receiver.SetStringProperty(LinkedReceiver, this.ParentObject.ID);
         receiver.DisplayName = "{{itemrecoiler|recoiled item}} receiver";
@@ -59,13 +60,13 @@ namespace XRL.World.Parts {
         cell.AddObject(receiver);
       } else {
         var total = 0;
-        chest.Inventory.Objects.ToList().ForEach(item => {
+        chest?.Inventory.Objects.ToList().ForEach(item => {
           chest.CurrentCell.AddObject(item);
           total += item.Count;
         });
         if (total > 0)
           Output.DebugLog($"{total} item(s) removed from the chest before moving it to the new location.");
-        chest.ZoneTeleport(zone.ZoneID, cell.X, cell.Y);
+        chest?.ZoneTeleport(zone.ZoneID, cell.X, cell.Y);
       }
     }
 

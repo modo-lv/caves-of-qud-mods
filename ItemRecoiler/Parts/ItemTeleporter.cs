@@ -73,7 +73,12 @@ namespace XRL.World.Parts {
               null,
               this.ParentObject,
               Main.Player)) {
-          chest?.Inventory.AddObject(item);
+          if (chest != null)
+            chest.Inventory.AddObject(item);
+          else {
+            var cell = zone.GetCell(this.DestinationX, this.DestinationY);
+            cell.AddObject(item);
+          }
           total += item.Count;
           this.ParentObject.UseCharge((Int32) Math.Ceiling(item.GetWeight() * item.Count));
           chargeSpent += item.Weight;

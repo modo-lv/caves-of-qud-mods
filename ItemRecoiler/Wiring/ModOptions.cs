@@ -8,5 +8,7 @@ namespace ModoMods.ItemRecoiler.Wiring {
   public static class ModOptions {
     public static Boolean GiveOnStartup =>
       Options.GetOption("Option_ModoMods_ItemRecoiler_GiveOnStartup")?.EqualsNoCase("yes") ?? false;
+    public static Boolean CreateReceivers =>
+      Options.GetOption("Option_ModoMods_ItemRecoiler_CreateReceivers")?.EqualsNoCase("yes") ?? false;
   }
 }
