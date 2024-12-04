@@ -55,7 +55,7 @@ namespace ModoMods.SkillTraining.Data {
         
         #region Self-Discipline
         { RecoverTerror,     new TrainingData(Lionheart,           0.75m) },
-        { RecoverConfusion,  new TrainingData(IronMind,            1.00m) },
+        { RecoverConfusion,  new TrainingData(IronMind,            5.00m) },
         #endregion
          
         #region Tinkering 
