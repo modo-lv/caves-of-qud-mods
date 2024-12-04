@@ -1,0 +1,9 @@
+{
+  "id": "SkillGone",
+  "version": "1.0.0",
+  "title": "SkillGone",
+  "description": "A simple mod allowing to lose skills by wishing for {{W|SkillGone}}. Meant for modders, challenge runs etc., as vanilla wishes can only gain skills, not remove them.",
+  "tags": "Stable,Beta,Script,Wish",
+  "author": "modo_lv",
+  "previewImage": "manifest.png"
+}
