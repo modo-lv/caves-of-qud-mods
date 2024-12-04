@@ -10,7 +10,7 @@ namespace ModoMods.SkillTraining.Wiring {
   /// <summary>Main component that tracks training points for trainable skills.</summary>
   [Serializable] public class TrainingTracker : ModPart {
     /// <inheritdoc cref="Points"/>
-    public Dictionary<String, Decimal> Points = new Dictionary<String, Decimal>();
+    public IDictionary<String, Decimal> Points = new Dictionary<String, Decimal>();
 
     private Boolean _disabledLogged;
 
@@ -35,7 +35,6 @@ namespace ModoMods.SkillTraining.Wiring {
         Math.Max(0.01m, Math.Min(1.0m, TrainingData.For(action).DefaultAmount * amountModifier));
       Output.DebugLog($"Player action: [{action}].");
       this.AddPoints(TrainingData.For(action).SkillClass, amount);
-      this.UnlockCompletedSkills();
     }
 
     /// <summary>Increases training point value for a skill (if applicable).</summary>
@@ -59,6 +58,7 @@ namespace ModoMods.SkillTraining.Wiring {
           inGame: false
         );
       }
+      CostModifier.UpdateCost(skillClass, this);
       this.UnlockCompletedSkills();
     }
 
@@ -66,7 +66,7 @@ namespace ModoMods.SkillTraining.Wiring {
     private void UnlockCompletedSkills() {
       (
         from entry in Main.Player.RequirePart<TrainingTracker>().Points
-        where SkillUtils.SkillOrPower(entry.Key)!.Cost <= entry.Value
+        where CostModifier.RealCosts[entry.Key] <= entry.Value
         select entry.Key
       ).ToList().ForEach(unlocked => {
         var canUnlock = true;

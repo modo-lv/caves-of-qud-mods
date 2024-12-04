@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Reflection;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Trainers;
 using ModoMods.SkillTraining.Wiring;
 using XRL;
 using XRL.World;
+using XRL.World.Skills;
 
 namespace ModoMods.SkillTraining {
   /// <summary>Main "entry point" for the mod functionality.</summary>
@@ -33,6 +35,8 @@ namespace ModoMods.SkillTraining {
       gameObject.RequirePart<SwimmingTrainer>();
       gameObject.RequirePart<TinkeringTrainer>();
       gameObject.RequirePart<WayfaringTrainer>();
+      
+      CostModifier.ResetSkills();
     }
 
     /// <summary>Remove all training-related parts form a game object.</summary>
@@ -53,6 +57,8 @@ namespace ModoMods.SkillTraining {
       gameObject?.RemovePart<SwimmingTrainer>();
       gameObject?.RemovePart<TinkeringTrainer>();
       gameObject?.RemovePart<WayfaringTrainer>();
+      
+      CostModifier.ResetSkills();
     }
 
     public void mutate(GameObject player) {
