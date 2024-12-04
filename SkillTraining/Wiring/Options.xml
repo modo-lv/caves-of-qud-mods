@@ -11,7 +11,6 @@
         </helptext>
     </option>
 
-
     <!-- Show training gains -->
     <option ID="Option_ModoMods_SkillTraining_ShowTraining"
             Requires="Option_ModoMods_SkillTraining_Enabled==Yes"
@@ -19,8 +18,23 @@
             Type="Checkbox"
             Default="Yes"
             Category="Mod: Skill Training">
+        <helptext>If enabled, the message log window will record every time skill training happens.</helptext>
+    </option>
+    
+    <!-- Modify skill costs -->
+    <option ID="Option_ModoMods_SkillTraining_ModifyCosts"
+            Requires="Option_ModoMods_SkillTraining_Enabled==Yes"
+            DisplayText="Modify skill costs"
+            Type="Checkbox"
+            Default="Yes"
+            Category="Mod: Skill Training">
         <helptext>
-            If enabled, the message log window will record every time skill training happens.
+            If enabled, practicing skills will make them cheaper to buy normally.
+            
+            This is not a feature supported by the game, as skill costs are meant to be global and static. The mod does it's best to properly reset everything on new and loaded games, but if there are issues, turn this off (and restart the game to ).
+            
+            You can also modify this setting per-game, in the `SkillTraining` wish menu.
         </helptext>
     </option>
+    
 </options>

@@ -8,7 +8,7 @@ using XRL.World.Skills;
 namespace ModoMods.SkillTraining.Wiring {
   /// <summary>Class responsible for modifying skill prices depending on training.</summary>
   public static class CostModifier {
-    public static Boolean Disabled = false;
+    public static Boolean Disabled => !ModOptions.ModifyCosts;
 
     public static readonly IDictionary<String, Int32> RealCosts =
       SkillFactory.GetSkills().ToDictionary(it => it.Class, it => it.Cost);

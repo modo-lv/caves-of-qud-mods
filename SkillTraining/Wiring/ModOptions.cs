@@ -12,5 +12,7 @@ namespace ModoMods.SkillTraining.Wiring {
     public static Boolean ShowTraining =>
       Options.GetOption("Option_ModoMods_SkillTraining_ShowTraining")?.EqualsNoCase("yes") ?? false;
     
+    public static Boolean ModifyCosts =>
+      Options.GetOption("Option_ModoMods_SkillTraining_ModifyCosts")?.EqualsNoCase("yes") ?? false;
   }
 }
