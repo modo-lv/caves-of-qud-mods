@@ -1,7 +1,9 @@
 ﻿namespace ModoMods.SkillTraining.Data {
   /// <summary>Player actions used in training skills.</summary>
   public enum PlayerAction {
-    #region Melee combat
+    DodgeMelee,
+    
+    #region Melee weapons
     AxeHit,
     CudgelHit,
     LongBladeHit,

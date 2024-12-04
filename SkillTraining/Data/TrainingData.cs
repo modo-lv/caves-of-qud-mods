@@ -17,8 +17,9 @@ namespace ModoMods.SkillTraining.Data {
     public static readonly IDictionary<PlayerAction, TrainingData> Data =
       new Dictionary<PlayerAction, TrainingData> {
         //@formatter:off
+        { DodgeMelee,        new TrainingData(Spry,                0.10m) }, // 100
         
-        #region Melee combat
+        #region Melee weapons
         { AxeHit,            new TrainingData(Axe,                 0.10m) },
         { CudgelHit,         new TrainingData(Cudgel,              0.10m) },
         { LongBladeHit,      new TrainingData(LongBlade,           0.20m) },

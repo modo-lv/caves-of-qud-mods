@@ -19,6 +19,9 @@ namespace ModoMods.Core.Data {
     
     /// <summary>Fired on a trader/container when items are moved to it, once for each stack.</summary>
     public const String CommandTakeObject = "CommandTakeObject";
+
+    /// <summary>Fired on the defender just after a melee attack has missed.</summary>
+    public const String DefenderAfterAttackMissed = "DefenderAfterAttackMissed";
     
     /// <summary>Fired on the thrown weapon once it hits something.</summary>
     /// <seealso cref="GameObject.PerformThrow"/>
