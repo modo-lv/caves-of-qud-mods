@@ -22,15 +22,11 @@ namespace ModoMods.SkillTraining.Wiring {
           Options: new[] {
             "\t Progress overview",
             "\t Modify skill training \x10",
-            "\t Unlearn skills (lose skill points) \x10",
-            "\t Unlearn skills (refund skill points) \x10",
           }
         );
         switch (choice) {
           case 0: Overview(); break;
           case 1: ModifyTraining(); break;
-          case 2: Unlearn(false); break;
-          case 3: Unlearn(true); break;
           default: return;
         }
       }
@@ -134,60 +130,6 @@ namespace ModoMods.SkillTraining.Wiring {
           Main.TrainingTracker.AddPoints(target.Key, newValue - target.Value);
         else
           Main.TrainingTracker.Points[target.Key] = newValue;
-      }
-    }
-
-    public static void Unlearn(Boolean refund) {
-      var choice = 0;
-      while (true) {
-        var combined = SkillFactory.GetSkills()
-          .SelectMany(skill => skill.PowerList.Select(it => it.Generic).Prepend(skill.Generic))
-          .Where(it => Main.Player.HasSkill(it.Entry.Class))
-          .ToList();
-
-        var intro =
-          "Choose a skill to unlearn. "
-          + "{{"
-          + $"{(refund ? "G" : "R")}|Skill points {(refund ? "will" : "won't")} be refunded."
-          + "}}\n";
-        if (combined.Count < 1)
-          intro = "No skills learned.";
-
-        choice = Popup.PickOption(
-          Title: "Unlearn a skill",
-          Intro: intro,
-          Options: combined.Select(it =>
-            "* ".OnlyIf(_ => it.Entry is PowerEntry)
-            + "{{Y|" + it.DisplayName + "}}"
-            + $" [{it.Entry.Cost} sp]"
-          ).ToList(),
-          DefaultSelected: choice,
-          AllowEscape: true
-        );
-        if (choice == -1)
-          break;
-        var target = combined[choice];
-        if (!refund && target.Entry.Cost > 0) {
-          var confirm = Popup.ShowYesNo(
-            Message: "You will lose the {{Y|" + target.DisplayName + "}} skill, " +
-                     "along with the {{Y|" + target.Entry.Cost + "}} points spent on it. Are you sure?",
-            defaultResult: DialogResult.No
-          );
-          if (confirm != DialogResult.Yes) {
-            continue;
-          }
-        }
-
-        Main.Player.RemoveSkill(target.Name);
-        if (refund)
-          Main.Player.GetStat("SP").Bonus += target.Entry.Cost;
-        Output.Alert(
-          "{{Y|" + target.DisplayName + "}} unlearned."
-          + (" {{G|" + target.Entry.Cost + "}} skill points refunded.").OnlyIf(_ => refund)
-        );
-        if (choice == combined.Count - 1) {
-          choice--;
-        }
       }
     }
   }
