@@ -23,6 +23,9 @@ namespace ModoMods.Core.Data {
     /// <summary>Fired on the defender just after a melee attack has missed.</summary>
     public const String DefenderAfterAttackMissed = "DefenderAfterAttackMissed";
     
+    /// <summary>Fired on the defender when calculating whether a missile weapon attack will hit.</summary>
+    public const String WeaponGetDefenderDV = "WeaponGetDefenderDV";
+    
     /// <summary>Fired on the thrown weapon once it hits something.</summary>
     /// <seealso cref="GameObject.PerformThrow"/>
     public const String ThrownProjectileHit = "ThrownProjectileHit";

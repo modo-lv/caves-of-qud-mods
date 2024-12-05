@@ -18,6 +18,7 @@ namespace ModoMods.SkillTraining.Data {
       new Dictionary<PlayerAction, TrainingData> {
         //@formatter:off
         { DodgeMelee,        new TrainingData(Spry,                0.10m) }, // 100
+        { DodgeMissile,      new TrainingData(Acrobatics,          1.00m) }, // 75
         
         #region Melee weapons
         { AxeHit,            new TrainingData(Axe,                 0.10m) },

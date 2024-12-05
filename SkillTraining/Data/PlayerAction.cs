@@ -2,6 +2,7 @@
   /// <summary>Player actions used in training skills.</summary>
   public enum PlayerAction {
     DodgeMelee,
+    DodgeMissile,
     
     #region Melee weapons
     AxeHit,

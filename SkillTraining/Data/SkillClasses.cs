@@ -4,6 +4,8 @@ namespace ModoMods.SkillTraining.Data {
   /// <summary>Known skill class names.</summary>
   public static class SkillClasses {
     // Acrobatics tree
+    public const String Acrobatics = "Acrobatics";
+    public const String SwiftReflexes = "Acrobatics_SwiftReflexes";
     public const String Spry = "Acrobatics_Dodge";
     
     // Axe tree

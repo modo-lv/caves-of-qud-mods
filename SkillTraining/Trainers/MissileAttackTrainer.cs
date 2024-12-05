@@ -39,11 +39,6 @@ namespace ModoMods.SkillTraining.Trainers {
       var attacker = ev.Attacker()?.OnlyIf(it => it.CanTrainSkills());
       var defender = ev.Defender()?.OnlyIf(it => it.IsCombatant());
       
-      Output.Log(launcher);
-      Output.Log(skillClass);
-      Output.Log(attacker);
-      Output.Log(defender);
-
       if (launcher == null || attacker == null || defender == null || skillClass == null)
         return base.FireEvent(ev);
       
