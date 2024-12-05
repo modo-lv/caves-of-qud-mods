@@ -53,6 +53,7 @@
     #endregion
     
     #region Self-Discipline
+    SufferFamine,
     SufferTerror,
     SufferConfusion,
     #endregion
