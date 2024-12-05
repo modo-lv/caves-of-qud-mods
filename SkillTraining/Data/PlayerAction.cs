@@ -5,8 +5,10 @@
     DodgeMissile,
     
     #region Endurance
+    Sprinting,
     SufferStun,
     SufferDaze,
+    SufferPoison,
     Swim,
     #endregion
     

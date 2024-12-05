@@ -26,7 +26,9 @@ namespace ModoMods.SkillTraining.Data {
     
     // Endurance tree
     public const String Endurance = "Endurance";
+    public const String Longstrider = "Endurance_Longstrider";
     public const String Swimming = "Endurance_Swimming";
+    public const String PoisonTolerance = "Endurance_PoisonTolerance";
 
     // Heavy Weapon tree
     public const String HeavyWeapon = "HeavyWeapons"; // 100
