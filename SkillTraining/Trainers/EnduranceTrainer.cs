@@ -10,7 +10,18 @@ using XRL.World.Effects;
 namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains Endurance skills.</summary>
   public class EnduranceTrainer : ModPart {
-    public override ISet<Int32> WantEventIds => new HashSet<Int32> { EndTurnEvent.ID };
+    public override ISet<Int32> WantEventIds => new HashSet<Int32> {
+      EnterCellEvent.ID,
+      EndTurnEvent.ID,
+    };
+
+    public override Boolean HandleEvent(EnterCellEvent ev) {
+      if (ev.Object.HasEffect<Swimming>())
+        ev.Object.TrainingTracker()?.HandleTrainingAction(PlayerAction.Swim);
+      if (ev.Object.HasEffect<Running>())
+        ev.Object.TrainingTracker()?.HandleTrainingAction(PlayerAction.Sprinting);
+      return base.HandleEvent(ev);
+    }
 
     public override Boolean HandleEvent(EndTurnEvent ev) {
       if (this.ParentObject.HasEffect<Dazed>())
@@ -19,8 +30,6 @@ namespace ModoMods.SkillTraining.Trainers {
         this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.SufferStun);
       if (this.ParentObject.HasEffect<Poisoned>())
         this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.SufferPoison);
-      if (this.ParentObject.HasEffect<Running>())
-        this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.Sprinting);
       return base.HandleEvent(ev);
     }
   }
