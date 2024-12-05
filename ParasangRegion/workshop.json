@@ -1,0 +1,8 @@
+{
+  "WorkshopId": 3378838111,
+  "Title": "Parasang Region",
+  "Description": "[h1]Overview[/h1]\r\n\r\nAdds a letter to parasang names to indicate which of the 9 regions (zones) the player character is in.\r\n\r\n[h1]Details[/h1]\r\n\r\nThis is an alternative to \"Show Parasang\" mod. \"Parasang Region\" works correctly with game version 1.0, and the zone name changes are not permanent.\r\n\r\nThe markers are:\r\n\r\n[code]\r\nNW | N | NE\r\n---+---+---\r\n W | C | E\r\n---+---+---\r\nSW | S | SE\r\n[/code]\r\n\r\n[h1]Uninstall[/h1]\r\n\r\nThe mod is safe to add or remove at any point.\r\n\r\n[h1]License and source code[/h1]\r\n\r\nThis work © 2024 is licensed under [url=https://creativecommons.org/licenses/by-nc-sa/4.0/]Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International[/url].\r\n\r\nSource code is hosted on [url=https://github.com/modo-lv/caves-of-qud-mods/tree/main/ParasangRegion]GitHub[/url].",
+  "Tags": "Stable,Beta,World,Script",
+  "Visibility": "2",
+  "ImagePath": "preview.png"
+}
