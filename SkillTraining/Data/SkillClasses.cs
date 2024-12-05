@@ -63,6 +63,7 @@ namespace ModoMods.SkillTraining.Data {
     public const String SingleWeaponFighting = "SingleWeaponFighting";
 
     // Tactics tree
+    public const String Tactics = "Tactics";
     public const String DeftThrowing = "Tactics_Throwing";
     
     // Tinkering tree

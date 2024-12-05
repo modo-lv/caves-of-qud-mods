@@ -70,6 +70,11 @@ namespace ModoMods.SkillTraining.Data {
         { SufferConfusion,   new TrainingData(IronMind,            1.00m) }, // 100
         #endregion
          
+        #region Tactics
+        { SprintDodge,       new TrainingData(Tactics,             1.00m) }, // 100
+        { ThrownWeaponHit,   new TrainingData(DeftThrowing,        0.75m) },
+        #endregion
+         
         #region Tinkering 
         { ExamineSuccess,    new TrainingData(Tinkering,           1.00m) },
         { RifleTrashSuccess, new TrainingData(Tinkering,           0.25m) },
@@ -77,8 +82,6 @@ namespace ModoMods.SkillTraining.Data {
         #endregion 
          
         { ShieldBlock,       new TrainingData(Shield,              0.25m) },
-         
-        { ThrownWeaponHit,   new TrainingData(DeftThrowing,        0.75m) },
          
         { TradeItem,         new TrainingData(SnakeOiler,          0.01m) },
          

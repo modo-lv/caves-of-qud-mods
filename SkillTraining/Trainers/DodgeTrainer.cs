@@ -6,6 +6,7 @@ using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
 using XRL;
 using XRL.World;
+using XRL.World.Effects;
 
 namespace ModoMods.SkillTraining.Trainers {
   public class DodgeTrainer : ModPart {
@@ -16,10 +17,13 @@ namespace ModoMods.SkillTraining.Trainers {
       obj.RegisterPartEvent(this, QudEventNames.WeaponGetDefenderDV);
       base.Register(obj, reg);
     }
-    
+
     public override Boolean FireEvent(Event ev) {
-      if (ev.ID == QudEventNames.DefenderAfterAttackMissed)
+      if (ev.ID == QudEventNames.DefenderAfterAttackMissed) {
         ev.Defender().TrainingTracker()?.HandleTrainingAction(PlayerAction.DodgeMelee);
+        if (ev.Defender()?.HasEffect<Running>() == true)
+          ev.Defender().TrainingTracker()?.HandleTrainingAction(PlayerAction.SprintDodge);
+      }
 
       // Technically the defender DV detection event gets sent to the projectile after defender,
       // but at least in the vanilla game projectiles don't seem to be using it do modify the DV,
@@ -32,9 +36,13 @@ namespace ModoMods.SkillTraining.Trainers {
           dv -= 5;
         if (ev.Defender()?.IsMobile() == false)
           dv = -100;
-        if (ev.GetIntParameter("Result") <= dv)
+        if (ev.GetIntParameter("Result") <= dv) {
           ev.Defender().TrainingTracker()?.HandleTrainingAction(PlayerAction.DodgeMissile);
+          if (ev.Defender()?.HasEffect<Running>() == true)
+            ev.Defender().TrainingTracker()?.HandleTrainingAction(PlayerAction.SprintDodge);
+        }
       }
+
       return base.FireEvent(ev);
     }
   }

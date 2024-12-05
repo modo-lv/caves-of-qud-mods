@@ -7,5 +7,9 @@ namespace ModoMods.SkillTraining.Utils {
     /// <summary>Determines if the receiver is present in a collection.</summary>
     public static Boolean IsOneOf<T>(this T item, IEnumerable<T> collection) => 
       collection.Contains(item);
+    
+    /// <summary>Determines if the receiver is one of the params.</summary>
+    public static Boolean IsOneOf<T>(this T item, params T[] collection) => 
+      collection.Contains(item);
   }
 }

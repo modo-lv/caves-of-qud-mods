@@ -60,7 +60,10 @@
     
     ShieldBlock,
     
+    #region Tactics
+    SprintDodge,
     ThrownWeaponHit,
+    #endregion
     
     TradeItem,
     
