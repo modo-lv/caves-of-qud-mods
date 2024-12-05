@@ -10,18 +10,13 @@ using XRL.World.Effects;
 namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains Self-Discipline skills.</summary>
   public class SelfDisciplineTrainer : ModPart {
-    public override ISet<Int32> WantEventIds => new HashSet<Int32> { EffectRemovedEvent.ID };
+    public override ISet<Int32> WantEventIds => new HashSet<Int32> { EndTurnEvent.ID };
 
-    /// <summary>Handles recovering from any negative health effect.</summary>
-    public override Boolean HandleEvent(EffectRemovedEvent ev) {
-      switch (ev.Effect) {
-        case Terrified:
-          this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.RecoverTerror);
-          break;
-        case Confused:
-          this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.RecoverConfusion);
-          break;
-      }
+    public override Boolean HandleEvent(EndTurnEvent ev) {
+      if (this.ParentObject.HasEffect<Confused>())
+        this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.SufferConfusion);
+      if (this.ParentObject.HasEffect<Terrified>())
+        this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.SufferTerror);
       return base.HandleEvent(ev);
     }
   }

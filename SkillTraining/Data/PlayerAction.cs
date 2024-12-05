@@ -44,8 +44,8 @@
     #endregion
     
     #region Self-Discipline
-    RecoverTerror,
-    RecoverConfusion,
+    SufferTerror,
+    SufferConfusion,
     #endregion
     
     ShieldBlock,
