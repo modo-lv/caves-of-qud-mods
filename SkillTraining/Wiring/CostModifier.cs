@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Utils;
+using XRL;
 using XRL.World.Skills;
 
 namespace ModoMods.SkillTraining.Wiring {
@@ -25,7 +26,6 @@ namespace ModoMods.SkillTraining.Wiring {
     }
 
     public static void ResetSkills() {
-      if (Disabled) return;
       var total = 0;
       SkillFactory.GetSkills().ForEach(it => {
         it.Cost = RealCosts[it.Class];
@@ -36,6 +36,11 @@ namespace ModoMods.SkillTraining.Wiring {
         total++;
       });
       Output.DebugLog($"{total} skill and power costs reset to defaults.");
+      if (Disabled) return;
+      The.Player.TrainingTracker()?.Also(tracker => {
+        foreach (var skill in tracker.Points.Keys)
+          UpdateCost(skill, tracker);
+      });
     }
   }
 }
