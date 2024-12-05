@@ -4,6 +4,12 @@
     DodgeMelee,
     DodgeMissile,
     
+    #region Endurance
+    SufferStun,
+    SufferDaze,
+    Swim,
+    #endregion
+    
     #region Melee weapons
     AxeHit,
     CudgelHit,
@@ -50,8 +56,6 @@
     #endregion
     
     ShieldBlock,
-    
-    Swim,
     
     ThrownWeaponHit,
     

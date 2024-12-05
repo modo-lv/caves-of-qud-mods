@@ -17,9 +17,17 @@ namespace ModoMods.SkillTraining.Data {
     public static readonly IDictionary<PlayerAction, TrainingData> Data =
       new Dictionary<PlayerAction, TrainingData> {
         //@formatter:off
+        #region Acrobatics
         { DodgeMelee,        new TrainingData(Spry,                0.10m) }, // 100
         { DodgeMissile,      new TrainingData(Acrobatics,          1.00m) }, // 75
+        #endregion
         
+        #region Endurance
+        { SufferDaze,        new TrainingData(Endurance,           0.10m) }, // 100
+        { SufferStun,        new TrainingData(Endurance,           0.10m) }, // 100
+        { Swim,              new TrainingData(Swimming,            0.15m) },
+        #endregion
+
         #region Melee weapons
         { AxeHit,            new TrainingData(Axe,                 0.10m) },
         { CudgelHit,         new TrainingData(Cudgel,              0.10m) },
@@ -72,8 +80,6 @@ namespace ModoMods.SkillTraining.Data {
          
         { TradeItem,         new TrainingData(SnakeOiler,          0.01m) },
          
-        { Swim,              new TrainingData(Swimming,            0.15m) },
-
         #region Wayfaring
         { WorldMapMove,      new TrainingData(Wayfaring,           0.15m) },
         { RegainBearings,    new TrainingData(Wayfaring,           1.00m) },

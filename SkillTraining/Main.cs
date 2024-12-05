@@ -5,6 +5,7 @@ using ModoMods.SkillTraining.Trainers;
 using ModoMods.SkillTraining.Wiring;
 using XRL;
 using XRL.World;
+using XRL.World.Parts.Skill;
 using XRL.World.Skills;
 
 namespace ModoMods.SkillTraining {
@@ -29,6 +30,7 @@ namespace ModoMods.SkillTraining {
       gameObject.RequirePart<CustomsTrainer>();
       gameObject.RequirePart<DeftThrowingTrainer>();
       gameObject.RequirePart<DodgeTrainer>();
+      gameObject.RequirePart<EnduranceTrainer>();
       gameObject.RequirePart<PhysicTrainer>();
       gameObject.RequirePart<SelfDisciplineTrainer>();
       gameObject.RequirePart<ShieldTrainer>();
@@ -50,8 +52,9 @@ namespace ModoMods.SkillTraining {
 
       gameObject?.RemovePart<CookingTrainer>();
       gameObject?.RemovePart<CustomsTrainer>();
-      gameObject?.RemovePart<DodgeTrainer>();
       gameObject?.RemovePart<DeftThrowingTrainer>();
+      gameObject?.RemovePart<DodgeTrainer>();
+      gameObject?.RemovePart<EnduranceTrainer>();
       gameObject?.RemovePart<PhysicTrainer>();
       gameObject?.RemovePart<SelfDisciplineTrainer>();
       gameObject?.RemovePart<ShieldTrainer>();
