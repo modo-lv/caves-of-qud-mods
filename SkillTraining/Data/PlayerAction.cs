@@ -41,6 +41,7 @@
     #region Tinkering
     ExamineSuccess,
     RifleTrashSuccess,
+    DisassembleBit,
     #endregion
     
     #region Self-Discipline

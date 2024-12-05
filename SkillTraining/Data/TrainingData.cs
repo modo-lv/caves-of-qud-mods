@@ -63,6 +63,7 @@ namespace ModoMods.SkillTraining.Data {
         #region Tinkering 
         { ExamineSuccess,    new TrainingData(Tinkering,           1.00m) },
         { RifleTrashSuccess, new TrainingData(Tinkering,           0.25m) },
+        { DisassembleBit,    new TrainingData(Tinkering,           0.25m) },
         #endregion 
          
         { ShieldBlock,       new TrainingData(Shield,              0.25m) },
