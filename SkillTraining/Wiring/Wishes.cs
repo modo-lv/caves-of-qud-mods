@@ -39,9 +39,10 @@ namespace ModoMods.SkillTraining.Wiring {
         .OrderBy(it => it.SkillName())
         .ToDictionary(it => it, it => Main.TrainingTracker.Points.GetOr(it, () => 0m))
         .Select(entry => {
-          var cost = CostModifier.RealCosts[entry.Key];
+          var fullCost = CostModifier.RealCosts[entry.Key];
+          var cost = fullCost - Convert.ToInt32(entry.Value);
           var locked = !Main.Player.HasSkill(entry.Key);
-          var trained = locked && entry.Value >= cost;
+          var trained = locked && entry.Value >= fullCost;
           var sb = new StringBuilder();
           var color = locked ? (trained ? "&G" : "&y") : "&K";
           sb.Append($"{color}○ {SkillFactory.GetSkillOrPowerName(entry.Key)} ".PadRight(30, '-'));
