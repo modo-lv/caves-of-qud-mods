@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using ModoMods.Core.Utils;
+using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Trainers;
+using ModoMods.SkillTraining.Utils;
 using ModoMods.SkillTraining.Wiring;
 using XRL;
 using XRL.World;
@@ -15,6 +19,17 @@ namespace ModoMods.SkillTraining {
   public class Main : IPlayerMutator {
     public static GameObject Player =>
       The.Player ?? throw new NullReferenceException("[The.Player] is null.");
+
+    /// <summary>
+    /// All trainable skills and their current training points (or -1 if called without a current player).
+    /// </summary>
+    public static IDictionary<String, Decimal> AllTrainableSkills =>
+      TrainingData.Data.Values
+        .Select(it => it.SkillClass)
+        .Distinct()
+        .OrderBy(it => it.SkillName())
+        .ToDictionary(it => it, it => The.Player.TrainingTracker()?.GetPoints(it) ?? -1m);
+
 
     /// <summary>Attaches all the necessary mod parts to the main player object.</summary>
     public static void Register(GameObject gameObject) {

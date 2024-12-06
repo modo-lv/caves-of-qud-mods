@@ -7,33 +7,32 @@
             Default="Yes"
             Category="Mod: Skill Training">
         <helptext>
-            Enable/disable skill training. If disabled, training points will no longer be earned and skills will not automatically unlock, but otherwise the mod will function as normal. For example, unlearning skills and manually modifying training points through the mod menu (wish for {{W|SkillTraining}}) will remain available. 
+            Enable/disable training for supported skills.
+            
+            This only controls the default, each skill can be additionally toggled for each playthrough by using the skill training menu (assign a keyboard shortcut for it, or wish for `SkillTraining`). 
         </helptext>
     </option>
 
     <!-- Show training gains -->
     <option ID="Option_ModoMods_SkillTraining_ShowTraining"
-            Requires="Option_ModoMods_SkillTraining_Enabled==Yes"
             DisplayText="Show training point gains"
             Type="Checkbox"
             Default="Yes"
             Category="Mod: Skill Training">
-        <helptext>If enabled, the message log window will record every time skill training happens.</helptext>
+        <helptext>If enabled, earned training point amounts will be recorded in the player message log.</helptext>
     </option>
     
     <!-- Modify skill costs -->
     <option ID="Option_ModoMods_SkillTraining_ModifyCosts"
-            Requires="Option_ModoMods_SkillTraining_Enabled==Yes"
             DisplayText="Modify skill costs"
             Type="Checkbox"
             Default="Yes"
             Category="Mod: Skill Training">
         <helptext>
-            If enabled, practicing skills will make them cheaper to buy normally.
+            If enabled, earning training points will reduce the cost of skills, allowing them to be purchased cheaper through partial training.
+            If disabled, skills will have to be unlocked by training them fully, or purchased at full price as normal.
             
-            This is not a feature supported by the game, as skill costs are meant to be global and static. The mod does it's best to properly reset everything on new and loaded games, but if there are issues, turn this off (and restart the game to ).
-            
-            You can also modify this setting per-game, in the `SkillTraining` wish menu.
+            {{o|IMPORTANT!}} Having different skill costs in different games is not normally supported by the game; they're supposed to be static and global. The mod does it's best to properly reset and readjust everything on every new and loaded game, but if you encounter any issues with skill costs, turn this off (and restart the game).
         </helptext>
     </option>
     

@@ -19,7 +19,7 @@ namespace ModoMods.SkillTraining.Wiring {
     public static void UpdateCost(String skillClass, TrainingTracker training) {
       if (Disabled) return;
       SkillFactory.GetSkills().FirstOrDefault(it => it.Class == skillClass)?.Also(skill => {
-        var reduction = Convert.ToInt32(Math.Floor(training.Points.GetOr(skillClass, () => 0m)));
+        var reduction = Convert.ToInt32(Math.Floor(training.GetPoints(skillClass)));
         skill.Cost = RealCosts[skillClass] - reduction;
         Output.DebugLog($"Skill [{skillClass}] cost - {reduction} = {skill.Cost}.");
       });
@@ -38,8 +38,8 @@ namespace ModoMods.SkillTraining.Wiring {
       Output.DebugLog($"{total} skill and power costs reset to defaults.");
       if (Disabled) return;
       The.Player.TrainingTracker()?.Also(tracker => {
-        foreach (var skill in tracker.Points.Keys)
-          UpdateCost(skill, tracker);
+        foreach (var skill in Main.AllTrainableSkills)
+          UpdateCost(skill.Key, tracker);
       });
     }
   }

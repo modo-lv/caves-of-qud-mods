@@ -4,90 +4,85 @@ using System.Linq;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
+using UnityEngine;
 using Skills = XRL.World.Parts.Skills;
 
 namespace ModoMods.SkillTraining.Wiring {
   /// <summary>Main component that tracks training points for trainable skills.</summary>
   [Serializable] public class TrainingTracker : ModPart {
-    /// <inheritdoc cref="Points"/>
     public IDictionary<String, Decimal> Points = new Dictionary<String, Decimal>();
-
-    private Boolean _disabledLogged;
+    /// <summary>
+    /// Tracks on/off toggles for each skill. 
+    /// </summary>
+    public IDictionary<String, Boolean?> Enabled = new Dictionary<String, Boolean?>();
 
     /// <summary>Process a known training action.</summary>
     public void HandleTrainingAction(PlayerAction action, Decimal amountModifier = 1m) {
-      switch (ModOptions.TrainingEnabled) {
-        case true when this._disabledLogged:
-          this._disabledLogged = false;
-          break;
-        case false when this._disabledLogged:
-          return;
-        case false: {
-          Output.Log(
-            "Skill training has been disabled in game options, no points will be earned or skills unlocked."
-          );
-          this._disabledLogged = true;
-          return;
-        }
-      }
-
+      var trainingData = TrainingData.For(action);
+      if (!(this.Enabled[trainingData.SkillClass] ?? ModOptions.TrainingEnabled))
+        return;
       var amount =
-        Math.Max(0.01m, Math.Min(1.0m, TrainingData.For(action).DefaultAmount * amountModifier));
+        Math.Max(0.01m, trainingData.DefaultAmount * amountModifier);
       Output.DebugLog($"Player action: [{action}].");
-      this.AddPoints(TrainingData.For(action).SkillClass, amount);
+      this.AddPoints(trainingData.SkillClass, amount);
+    }
+
+    public Decimal GetPoints(String skillClass) {
+      this.Points.TryAdd(skillClass, 0);
+      return this.Points[skillClass];
     }
 
     /// <summary>Increases training point value for a skill (if applicable).</summary>
     public void AddPoints(String skillClass, Decimal amount) {
       amount = Math.Round(amount, 2);
-      var skill = SkillUtils.SkillOrPower(skillClass);
-      if (amount > 0 && !Main.Player.HasSkill(skillClass)) {
-        this.Points.TryAdd(skillClass, 0);
-        if (amount > skill.Cost)
-          this.Points[skillClass] = amount;
-        else
-          this.Points[skillClass] += amount;
-
+      if (this.SetPoints(skillClass, this.GetPoints(skillClass) + amount, false)) {
         if (ModOptions.ShowTraining)
           Output.Message(
             "{{training|Training}}: {{Y|" + skillClass.SkillName() + "}} " +
-            $"+ {amount} = " + "{{Y|" + this.Points[skillClass] + "}}."
+            $"+ {amount} = " + "{{Y|" + this.GetPoints(skillClass) + "}}."
           );
         Output.DebugLog(
-          $"[{skillClass.SkillName()}] + {amount} = {this.Points[skillClass]}",
+          $"[{skillClass.SkillName()}] + {amount} = {this.GetPoints(skillClass)}",
           inGame: false
         );
+        CostModifier.UpdateCost(skillClass, this);
+        this.UnlockCompletedSkills();
       }
-      CostModifier.UpdateCost(skillClass, this);
-      this.UnlockCompletedSkills();
     }
 
-    /// <summary>Checks all trainable skills and unlocks those whos training is complete.</summary>
+    public Boolean SetPoints(String skillClass, Decimal newValue, Boolean unlock = true) {
+      var current = this.GetPoints(skillClass);
+      newValue = Math.Min(newValue, CostModifier.RealCosts[skillClass]);
+      if (newValue == current || this.ParentObject.HasSkill(skillClass))
+        return false;
+      this.Points[skillClass] = newValue;
+      CostModifier.UpdateCost(skillClass, this);
+      if (unlock)
+        this.UnlockCompletedSkills();
+      return true;
+    }
+
+    /// <summary>Checks all trainable skills and unlocks those whose training is complete.</summary>
     private void UnlockCompletedSkills() {
       (
-        from entry in Main.Player.RequirePart<TrainingTracker>().Points
+        from entry in this.Points
         where CostModifier.RealCosts[entry.Key] <= entry.Value
         select entry.Key
-      ).ToList().ForEach(unlocked => {
-        var canUnlock = true;
-        // Special case - Tactful has a minimum stat requirement
-        if (unlocked == SkillClasses.CustomsAndFolklore) {
-          canUnlock = SkillUtils.PowerByClass(SkillClasses.Tactful)!.MeetsAttributeMinimum(Main.Player);
-        }
-        if (!canUnlock)
+      ).ToList().ForEach(completed => {
+        if (SkillUtils.PowerByClass(completed)?.MeetsAttributeMinimum(this.ParentObject) == false)
           return;
 
-        Output.Alert("{{Y|" + unlocked.SkillName() + "}} skill unlocked through practical training!");
-        Main.Player.GetPart<Skills>().AddSkill(unlocked);
-        Output.DebugLog($"[{unlocked}] added to [{Main.Player}].");
-        this.ResetPoints(unlocked);
+        Output.Alert("{{G|" + completed.SkillName() + "}} skill unlocked through practical training!");
+        this.ParentObject.GetPart<Skills>().AddSkill(completed);
+        Output.DebugLog($"[{completed}] added to [{this.ParentObject}].");
+        this.ResetPoints(completed);
       });
     }
 
     /// <summary>Resets training points back to 0.</summary>
     public void ResetPoints(String skillClass) {
       this.Points[skillClass] = 0;
-      Output.Log($"[{skillClass}] training reset to 0.");
+      Output.DebugLog($"[{skillClass}] training reset to 0.");
     }
   }
 }

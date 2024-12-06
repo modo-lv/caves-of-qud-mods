@@ -13,6 +13,15 @@ namespace ModoMods.SkillTraining.Utils {
         ? dictionary[key]
         : fallback();
 
+    public static TValue? GetOr<TKey, TValue>(
+      this IDictionary<TKey, TValue> dictionary,
+      TKey key,
+      TValue fallback
+    ) =>
+      dictionary.ContainsKey(key)
+        ? dictionary[key]
+        : fallback;
+
     /// <summary>
     /// Parameter-less conversion of any collection of key-value pairs to a dictionary. 
     /// </summary>
