@@ -16,8 +16,6 @@ namespace ModoMods.SkillTraining {
     public static GameObject Player =>
       The.Player ?? throw new NullReferenceException("[The.Player] is null.");
 
-    public static TrainingTracker TrainingTracker => Player.RequirePart<TrainingTracker>();
-
     /// <summary>Attaches all the necessary mod parts to the main player object.</summary>
     public static void Register(GameObject gameObject) {
       gameObject.RequirePart<TrainingTracker>();
@@ -37,8 +35,6 @@ namespace ModoMods.SkillTraining {
       gameObject.RequirePart<SnakeOilerTrainer>();
       gameObject.RequirePart<TinkeringTrainer>();
       gameObject.RequirePart<WayfaringTrainer>();
-      
-      CostModifier.ResetSkills();
     }
 
     /// <summary>Remove all training-related parts form a game object.</summary>
@@ -60,18 +56,18 @@ namespace ModoMods.SkillTraining {
       gameObject?.RemovePart<SnakeOilerTrainer>();
       gameObject?.RemovePart<TinkeringTrainer>();
       gameObject?.RemovePart<WayfaringTrainer>();
-      
-      CostModifier.ResetSkills();
     }
 
     public void mutate(GameObject player) {
       Output.DebugLog("Game started, wiring up the training parts...");
+      CostModifier.ResetSkills();
       Register(player);
     }
 
     [CallAfterGameLoaded]
     public static void OnGameLoaded() {
       Output.DebugLog("Game loaded, checking the training part wiring...");
+      CostModifier.ResetSkills();
       Register(Player);
     }
   }

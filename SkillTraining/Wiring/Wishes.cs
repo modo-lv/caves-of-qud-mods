@@ -5,6 +5,7 @@ using System.Text;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
+using XRL;
 using XRL.UI;
 using XRL.Wish;
 using XRL.World.Skills;
@@ -37,7 +38,7 @@ namespace ModoMods.SkillTraining.Wiring {
         .Select(it => it.SkillClass)
         .Distinct()
         .OrderBy(it => it.SkillName())
-        .ToDictionary(it => it, it => Main.TrainingTracker.Points.GetOr(it, () => 0m))
+        .ToDictionary(it => it, it => The.Player.TrainingTracker()!.Points.GetOr(it, () => 0m))
         .Select(entry => {
           var fullCost = CostModifier.RealCosts[entry.Key];
           var cost = fullCost - Convert.ToInt32(entry.Value);
@@ -92,7 +93,7 @@ namespace ModoMods.SkillTraining.Wiring {
           .Select(it => it.SkillClass)
           .Distinct()
           .OrderBy(it => it.SkillName())
-          .ToDictionary(it => it, it => Main.TrainingTracker.Points.GetOr(it, () => 0m))
+          .ToDictionary(it => it, it => The.Player.TrainingTracker()!.Points.GetOr(it, () => 0m))
           .Where(it => !Main.Player.HasSkill(it.Key))
           .ToList();
 
@@ -128,9 +129,9 @@ namespace ModoMods.SkillTraining.Wiring {
         );
 
         if (newValue > target.Value)
-          Main.TrainingTracker.AddPoints(target.Key, newValue - target.Value);
+          The.Player.TrainingTracker()!.AddPoints(target.Key, newValue - target.Value);
         else
-          Main.TrainingTracker.Points[target.Key] = newValue;
+          The.Player.TrainingTracker()!.Points[target.Key] = newValue;
       }
     }
   }

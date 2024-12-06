@@ -4,6 +4,7 @@ using HarmonyLib;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
+using XRL;
 using XRL.World;
 using XRL.World.Parts;
 using XRL.World.Tinkering;
@@ -22,13 +23,13 @@ namespace ModoMods.SkillTraining.Trainers {
     [HarmonyPostfix][HarmonyPatch(typeof(Garbage), nameof(Garbage.AttemptRifle))]
     public static void AfterTrashRifle(ref Boolean __result, ref GameObject Actor) {
       if (__result && Actor.CanTrainSkills()) {
-        Main.TrainingTracker.HandleTrainingAction(PlayerAction.RifleTrashSuccess);
+        The.Player.TrainingTracker()?.HandleTrainingAction(PlayerAction.RifleTrashSuccess);
       }
     }
 
     [HarmonyPostfix][HarmonyPatch(typeof(Disassembly), nameof(Disassembly.End))]
     public static void AfterDisassemble(ref Disassembly __instance) {
-      Main.Player.TrainingTracker()?.HandleTrainingAction(
+      The.Player.TrainingTracker()?.HandleTrainingAction(
         action: PlayerAction.DisassembleBit,
         amountModifier: __instance.BitsDone.Length
       );

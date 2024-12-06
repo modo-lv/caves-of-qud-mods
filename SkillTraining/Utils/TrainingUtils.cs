@@ -25,8 +25,6 @@ namespace ModoMods.SkillTraining.Utils {
         }
         return null;
       }
-      if (!gameObject.HasPart<TrainingTracker>())
-        Main.Register(gameObject);
       return gameObject.RequirePart<TrainingTracker>();
     }
     
