@@ -1,9 +1,9 @@
 {
   "id": "ParasangRegion",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "title": "Parasang Region",
   "description": "Adds a letter to parasang names to indicate which of the 9 regions (zones) the player character is in.",
-  "tags": "Stable,Beta,World,Script",
+  "tags": "Stable,Beta,Map,World,Script",
   "author": "modo_lv",
   "previewImage": "manifest.png"
 }
