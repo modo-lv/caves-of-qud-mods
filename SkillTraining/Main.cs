@@ -48,6 +48,7 @@ namespace ModoMods.SkillTraining {
       gameObject.RequirePart<SelfDisciplineTrainer>();
       gameObject.RequirePart<ShieldTrainer>();
       gameObject.RequirePart<SnakeOilerTrainer>();
+      gameObject.RequirePart<TacticsTrainer>();
       gameObject.RequirePart<TinkeringTrainer>();
       gameObject.RequirePart<WayfaringTrainer>();
     }
@@ -69,6 +70,7 @@ namespace ModoMods.SkillTraining {
       gameObject?.RemovePart<SelfDisciplineTrainer>();
       gameObject?.RemovePart<ShieldTrainer>();
       gameObject?.RemovePart<SnakeOilerTrainer>();
+      gameObject?.RemovePart<TacticsTrainer>();
       gameObject?.RemovePart<TinkeringTrainer>();
       gameObject?.RemovePart<WayfaringTrainer>();
     }

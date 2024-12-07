@@ -61,7 +61,7 @@
     ShieldBlock,
     
     #region Tactics
-    SprintDodge,
+    DangerSprint,
     ThrownWeaponHit,
     #endregion
     
