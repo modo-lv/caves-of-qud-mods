@@ -56,7 +56,8 @@ namespace ModoMods.SkillTraining.Trainers {
           && ev.GetGameObjectParameter("AimedAt") == defender
           && defender.IsCombatant()
          ) {
-        attacker.TrainingTracker()?.HandleTrainingAction(action);
+        var multiplier = 1m / launcher.GetPart<MissileWeapon>()?.ShotsPerAction ?? 1m;
+        attacker.TrainingTracker()?.HandleTrainingAction(action, multiplier);
       }
 
       return base.FireEvent(ev);
