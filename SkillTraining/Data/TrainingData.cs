@@ -66,7 +66,7 @@ namespace ModoMods.SkillTraining.Data {
         #endregion
         
         #region Self-Discipline
-        { DisciplineSprint,  new TrainingData(Conatus,             0.15m) }, // 150
+        { DisciplineSprint,  new TrainingData(Conatus,             0.25m) }, // 150
         { SufferTerror,      new TrainingData(Lionheart,           0.25m) }, // 100
         { SufferConfusion,   new TrainingData(IronMind,            0.75m) }, // 100
         #endregion
