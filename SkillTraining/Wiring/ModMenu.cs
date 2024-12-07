@@ -32,7 +32,7 @@ namespace ModoMods.SkillTraining.Wiring {
         var trainingList = Main.AllTrainableSkills.ToList();
         var list = trainingList.Select(entry => {
           var fullCost = CostModifier.RealCosts[entry.Key];
-          var cost = CostModifier.Disabled ? fullCost : fullCost - Convert.ToInt32(entry.Value);
+          var cost = CostModifier.Disabled ? fullCost : fullCost - Convert.ToInt32(Math.Floor(entry.Value));
           var locked = !Main.Player.HasSkill(entry.Key);
           var trained = locked && entry.Value >= fullCost;
           var sb = new StringBuilder();
@@ -177,7 +177,7 @@ namespace ModoMods.SkillTraining.Wiring {
     public static String ToggleStatus(Boolean? value, Boolean defaultValue) {
       return ToggleStatus(value ?? defaultValue, value != null);
     }
-    
+
     public static String ToggleStatus(Boolean value, Boolean isSet) {
       var bColor = isSet ? "&y" : "&K";
       var color = isSet ? (value ? "&G" : "&R") : "";

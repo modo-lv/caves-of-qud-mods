@@ -43,24 +43,26 @@ namespace ModoMods.SkillTraining.Wiring {
             "{{training|Training}}: {{Y|" + skillClass.SkillName() + "}} " +
             $"+ {amount} = " + "{{Y|" + this.GetPoints(skillClass) + "}}."
           );
-        Output.DebugLog(
-          $"[{skillClass.SkillName()}] + {amount} = {this.GetPoints(skillClass)}",
-          inGame: false
-        );
+        else
+          Output.DebugLog(
+            $"[{skillClass.SkillName()}] + {amount} = {this.GetPoints(skillClass)}",
+            inGame: false
+          );
         CostModifier.UpdateCost(skillClass, this);
         this.UnlockCompletedSkills();
       }
     }
 
-    public Boolean SetPoints(String skillClass, Decimal newValue, Boolean unlock = true) {
+    public Boolean SetPoints(String skillClass, Decimal newValue, Boolean postProcess = true) {
       var current = this.GetPoints(skillClass);
       newValue = Math.Min(newValue, CostModifier.RealCosts[skillClass]);
       if (newValue == current || this.ParentObject.HasSkill(skillClass))
         return false;
       this.Points[skillClass] = newValue;
-      CostModifier.UpdateCost(skillClass, this);
-      if (unlock)
+      if (postProcess) {
+        CostModifier.UpdateCost(skillClass, this);
         this.UnlockCompletedSkills();
+      }
       return true;
     }
 
