@@ -11,7 +11,7 @@
             <object Blueprint="Two-Handed Sword" Number="1" />
 
             <object Blueprint="Wooden Buckler" Number="1" />
-            <object Blueprint="Small Stone" Number="6-8" />
+            <object Blueprint="Small Stone" Number="7-10" />
 
             <object Blueprint="Short Bow" Number="1" />
             <object Blueprint="Wooden Arrow" Number="30-50" />
@@ -19,6 +19,8 @@
             <object Blueprint="Lead Slug" Number="30-50" />
             
             <object Blueprint="Bandage" Number="10-15" />
+            <object Blueprint="Witchwood Bark" Number="7-10" />
+            <object Blueprint="SalveTonic" Number="1-3" />
         </group>
     </population>
 </populations>
