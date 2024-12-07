@@ -16,7 +16,7 @@ namespace ModoMods.SkillTraining.Utils {
     public static TrainingTracker? TrainingTracker(this GameObject? gameObject) {
       if (gameObject == null || !gameObject.CanTrainSkills()) {
         // Just in case we have somehow attached training parts to something that can't actually train.
-        if (gameObject != null) {
+        if (gameObject != null && !gameObject.HasEffect<Dominated>()) {
           Output.DebugLog(
             $"Tried to access training tracker on [{gameObject}], which isn't capable of training. " +
             "Removing training parts (if any) instead."
