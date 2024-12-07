@@ -16,10 +16,12 @@ namespace ModoMods.SkillTraining.Wiring {
     /// </summary>
     public IDictionary<String, Boolean?> Enabled = new Dictionary<String, Boolean?>();
 
+    public Boolean? ModifyCosts;
+
     /// <summary>Process a known training action.</summary>
     public void HandleTrainingAction(PlayerAction action, Decimal amountModifier = 1m) {
       var trainingData = TrainingData.For(action);
-      if (!(this.Enabled[trainingData.SkillClass] ?? ModOptions.TrainingEnabled))
+      if (!(this.Enabled.GetOr(trainingData.SkillClass, default(Boolean?)) ?? ModOptions.TrainingEnabled))
         return;
       var amount =
         Math.Max(0.01m, trainingData.DefaultAmount * amountModifier);

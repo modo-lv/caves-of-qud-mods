@@ -10,4 +10,16 @@
              Layer="Adventure"
              Auto="Down">
     </command>
+    
+    <!--
+    Hotkey for the settings butotn in the mod menu. 
+    -->
+    <command ID="ModoMods_SkillTraining_Settings"
+             DisplayText="Playthrough options"
+             Category="Mod: Skill Training"
+             Layer="Menus"
+             Auto="DownPass">
+        <keyboardBind Key="o"/>
+    </command>
+
 </commands>

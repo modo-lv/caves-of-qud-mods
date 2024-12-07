@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ModoMods.Core.Utils;
-using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
 using Qud.UI;
+using UnityEngine.UIElements;
 using XRL;
 using XRL.UI;
 using XRL.Wish;
 using XRL.World.Skills;
+using static ModoMods.SkillTraining.Data.ModEventNames;
 
 namespace ModoMods.SkillTraining.Wiring {
   [HasWishCommand]
@@ -20,16 +21,23 @@ namespace ModoMods.SkillTraining.Wiring {
     [WishCommand("SkillTraining")]
     public static void Show() {
       var selectedIndex = 0;
+      var buttons = new QudMenuItem[] {
+        new QudMenuItem {
+          text = "{{W|[" + ControlManager.getCommandInputFormatted(SettingsCommand) + "]}} {{y|Settings}}",
+          command = "option:-2",
+          hotkey = SettingsCommand,
+        }
+      };
       while (selectedIndex != -1) {
         var trainingList = Main.AllTrainableSkills.ToList();
         var list = trainingList.Select(entry => {
           var fullCost = CostModifier.RealCosts[entry.Key];
-          var cost = fullCost - Convert.ToInt32(entry.Value);
+          var cost = CostModifier.Disabled ? fullCost : fullCost - Convert.ToInt32(entry.Value);
           var locked = !Main.Player.HasSkill(entry.Key);
           var trained = locked && entry.Value >= fullCost;
           var sb = new StringBuilder();
           var color = locked ? (trained ? "&G" : "&y") : "&K";
-          sb.Append(OnOff(entry.Key) + $"{color} {entry.Key.SkillName()} ".PadRight(30, '-'));
+          sb.Append(SkillToggleStatus(entry.Key) + $"{color} {entry.Key.SkillName()} ".PadRight(30, '-'));
 
           // Current points
           sb.Append(" ");
@@ -43,7 +51,7 @@ namespace ModoMods.SkillTraining.Wiring {
             sb.Append(value);
           }
 
-          sb.Append(" /");
+          sb.Append(" " + (CostModifier.Disabled ? "/" : "\x1A"));
 
           // Cost
           sb.Append(" ");
@@ -63,27 +71,57 @@ namespace ModoMods.SkillTraining.Wiring {
           Title: "Skill training",
           Options: list,
           AllowEscape: true,
-          DefaultSelected: selectedIndex
+          DefaultSelected: selectedIndex,
+          Buttons: buttons
         );
 
-        if (selectedIndex >= 0) {
-          if (The.Player?.HasSkill(trainingList[selectedIndex].Key) != false) {
+        switch (selectedIndex) {
+          case >= 0 when The.Player?.HasSkill(trainingList[selectedIndex].Key) != false:
             Popup.ShowBlock(
               Message: "Training is not applicable to unlocked skills.",
               LogMessage: false
             );
             continue;
-          }
-          SubMenu(trainingList[selectedIndex]);
+          case >= 0:
+            SkillMenu(trainingList[selectedIndex]);
+            break;
+          case -2:
+            SettingsMenu();
+            break;
         }
       }
     }
 
-    public static void SubMenu(KeyValuePair<String, Decimal> entry) {
+    public static void SettingsMenu() {
       var selectedIndex = 0;
       while (selectedIndex != -1) {
         var options = new[] {
-          "Toggle training \x10 " + OnOff(entry.Key),
+          "Reduce skill costs \x10 " + ToggleStatus(Tracker.ModifyCosts, ModOptions.ModifyCosts),
+        };
+        selectedIndex = Popup.PickOption(
+          Title: "Skill training settings",
+          Intro: "Settings for this playthrough.\n\n",
+          Options: options,
+          DefaultSelected: selectedIndex,
+          AllowEscape: true
+        );
+
+        if (selectedIndex == 0) {
+          Tracker.ModifyCosts = Tracker.ModifyCosts switch {
+            null => true,
+            true => false,
+            _ => null
+          };
+          CostModifier.ResetSkillCosts();
+        }
+      }
+    }
+
+    public static void SkillMenu(KeyValuePair<String, Decimal> entry) {
+      var selectedIndex = 0;
+      while (selectedIndex != -1) {
+        var options = new[] {
+          "Toggle training \x10 " + SkillToggleStatus(entry.Key),
           "Modify points \x10 ",
         };
         selectedIndex = Popup.PickOption(
@@ -120,21 +158,27 @@ namespace ModoMods.SkillTraining.Wiring {
           );
 
           Tracker.SetPoints(entry.Key, newValue);
+          break;
         }
       }
     }
 
-    public static String OnOff(String skillClass) {
+    public static String SkillToggleStatus(String skillClass) {
       Tracker.Enabled.TryAdd(skillClass, null);
       var isSet = true;
-      var value = Tracker.Enabled[skillClass] ?? ModOptions.TrainingEnabled.Also(_ => {
-        isSet = false;
-      });
+      var value = Tracker.Enabled[skillClass]
+                  ?? ModOptions.TrainingEnabled.Also(_ => { isSet = false; });
 
-      if (The.Player?.HasSkill(skillClass) != false) {
-        return "{{k|[---]}}";
-      }
+      return The.Player?.HasSkill(skillClass) != false
+        ? "{{k|[---]}}"
+        : ToggleStatus(value, isSet);
+    }
 
+    public static String ToggleStatus(Boolean? value, Boolean defaultValue) {
+      return ToggleStatus(value ?? defaultValue, value != null);
+    }
+    
+    public static String ToggleStatus(Boolean value, Boolean isSet) {
       var bColor = isSet ? "&y" : "&K";
       var color = isSet ? (value ? "&G" : "&R") : "";
 

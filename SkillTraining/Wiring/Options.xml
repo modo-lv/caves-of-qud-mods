@@ -32,7 +32,9 @@
             If enabled, earning training points will reduce the cost of skills, allowing them to be purchased cheaper through partial training.
             If disabled, skills will have to be unlocked by training them fully, or purchased at full price as normal.
             
-            {{o|IMPORTANT!}} Having different skill costs in different games is not normally supported by the game; they're supposed to be static and global. The mod does it's best to properly reset and readjust everything on every new and loaded game, but if you encounter any issues with skill costs, turn this off (and restart the game).
+            This is the global/default setting. Cost modification can be additionally toggled for each playthrough by using the skill training menu (assign a keyboard shortcut for it, or wish for `SkillTraining`).
+
+            {{o|IMPORTANT!}} Having different skill costs in different games is not normally supported by the game, they're supposed to be static and global. The mod does it's best to properly reset and readjust everything on every new and loaded game, but if you encounter any issues with skill costs, turn this off (and restart the game).
         </helptext>
     </option>
     

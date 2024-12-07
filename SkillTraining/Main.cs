@@ -77,14 +77,14 @@ namespace ModoMods.SkillTraining {
 
     public void mutate(GameObject player) {
       Output.DebugLog("Game started, wiring up the training parts...");
-      CostModifier.ResetSkills();
+      CostModifier.ResetSkillCosts();
       Register(player);
     }
 
     [CallAfterGameLoaded]
     public static void OnGameLoaded() {
       Output.DebugLog("Game loaded, checking the training part wiring...");
-      CostModifier.ResetSkills();
+      CostModifier.ResetSkillCosts();
       Register(Player);
     }
   }
