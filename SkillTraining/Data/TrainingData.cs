@@ -27,7 +27,7 @@ namespace ModoMods.SkillTraining.Data {
         { SufferDaze,        new TrainingData(Endurance,           0.10m) }, // 100
         { SufferStun,        new TrainingData(Endurance,           0.10m) }, // 100
         { SufferPoison,      new TrainingData(PoisonTolerance,     0.10m) }, // 100
-        { Swim,              new TrainingData(Swimming,            0.10m) }, // 100
+        { Swim,              new TrainingData(Swimming,            0.15m) }, // 100
         #endregion
 
         #region Melee weapons
