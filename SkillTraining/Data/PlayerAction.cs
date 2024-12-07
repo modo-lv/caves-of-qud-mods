@@ -5,7 +5,7 @@
     DodgeMissile,
     
     #region Endurance
-    Sprinting,
+    EnduranceSprint,
     SufferStun,
     SufferDaze,
     SufferPoison,
@@ -53,6 +53,7 @@
     #endregion
     
     #region Self-Discipline
+    DisciplineSprint,
     SufferFamine,
     SufferTerror,
     SufferConfusion,

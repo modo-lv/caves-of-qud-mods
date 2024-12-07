@@ -9,13 +9,22 @@ using XRL.World.Effects;
 namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains Self-Discipline skills.</summary>
   public class SelfDisciplineTrainer : ModPart {
-    public override ISet<Int32> WantEventIds => new HashSet<Int32> { EndTurnEvent.ID };
+    public override ISet<Int32> WantEventIds => new HashSet<Int32> {
+      EndTurnEvent.ID,
+      EnterCellEvent.ID,
+    };
 
     public override Boolean HandleEvent(EndTurnEvent ev) {
       if (this.ParentObject.HasEffect<Confused>())
         this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.SufferConfusion);
       if (this.ParentObject.HasEffect<Terrified>())
         this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.SufferTerror);
+      return base.HandleEvent(ev);
+    }
+
+    public override Boolean HandleEvent(EnterCellEvent ev) {
+      if (this.ParentObject.HasEffect<Running>())
+        this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.DisciplineSprint);
       return base.HandleEvent(ev);
     }
   }

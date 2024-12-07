@@ -23,7 +23,7 @@ namespace ModoMods.SkillTraining.Data {
         #endregion
         
         #region Endurance
-        { Sprinting,         new TrainingData(Longstrider,         0.25m) }, // 250
+        { EnduranceSprint,   new TrainingData(Longstrider,         0.25m) }, // 250
         { SufferDaze,        new TrainingData(Endurance,           0.10m) }, // 100
         { SufferStun,        new TrainingData(Endurance,           0.10m) }, // 100
         { SufferPoison,      new TrainingData(PoisonTolerance,     0.10m) }, // 100
@@ -66,6 +66,7 @@ namespace ModoMods.SkillTraining.Data {
         #endregion
         
         #region Self-Discipline
+        { DisciplineSprint,  new TrainingData(Conatus,             0.15m) }, // 150
         { SufferTerror,      new TrainingData(Lionheart,           0.25m) }, // 100
         { SufferConfusion,   new TrainingData(IronMind,            1.00m) }, // 100
         #endregion

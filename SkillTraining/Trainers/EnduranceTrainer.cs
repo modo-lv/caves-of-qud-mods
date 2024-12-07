@@ -19,7 +19,7 @@ namespace ModoMods.SkillTraining.Trainers {
       if (ev.Object.HasEffect<Swimming>())
         ev.Object.TrainingTracker()?.HandleTrainingAction(PlayerAction.Swim);
       if (ev.Object.HasEffect<Running>())
-        ev.Object.TrainingTracker()?.HandleTrainingAction(PlayerAction.Sprinting);
+        ev.Object.TrainingTracker()?.HandleTrainingAction(PlayerAction.EnduranceSprint);
       return base.HandleEvent(ev);
     }
 

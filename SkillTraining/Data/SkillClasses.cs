@@ -52,6 +52,7 @@ namespace ModoMods.SkillTraining.Data {
     public const String FastingWay = "Discipline_FastingWay";
     public const String Lionheart = "Discipline_Lionheart";
     public const String IronMind = "Discipline_IronMind";
+    public const String Conatus = "Discipline_Conatus";
 
     // Shield tree
     public const String Shield = "Shield";
