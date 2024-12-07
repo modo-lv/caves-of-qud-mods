@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using HarmonyLib;
 using ModoMods.Core.Data;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
@@ -11,6 +13,16 @@ namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains "Deft Throwing" skill.</summary>
   /// <remarks>Attached to the player to watch for equipment changes.</remarks>
   public class DeftThrowingTrainer : ModPart {
+
+    public override void AddedAfterCreation() {
+      base.AddedAfterCreation();
+      
+      // Wire up items equipped before trainer was attached.  
+      this.ParentObject.GetEquippedObjects()
+        .Where(item => item.IsEquippedAsThrownWeapon())
+        .Do(item => item.RequirePart<ItemThrownDetector>());
+    }
+
     public override ISet<Int32> WantEventIds => new HashSet<Int32> { EquipperEquippedEvent.ID };
 
     /// <summary>Attaches to the equipped item.</summary>
