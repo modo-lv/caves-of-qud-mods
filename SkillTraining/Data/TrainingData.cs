@@ -72,7 +72,7 @@ namespace ModoMods.SkillTraining.Data {
         #endregion
          
         #region Tactics
-        { DangerSprint,      new TrainingData(Tactics,             1.00m) }, // 100
+        { DangerSprint,      new TrainingData(Tactics,             0.75m) }, // 100
         { ThrownWeaponHit,   new TrainingData(DeftThrowing,        0.75m) },
         #endregion
          
