@@ -35,6 +35,7 @@ namespace ModoMods.SkillTraining {
     public static void Register(GameObject gameObject) {
       gameObject.RequirePart<TrainingTracker>();
       gameObject.RequirePart<ModCommands>();
+      gameObject.RequirePart<LevelUpModifier>();
 
       gameObject.RequirePart<MeleeWeaponTrainer>();
       gameObject.RequirePart<MissileAttackTrainer>();
@@ -57,6 +58,7 @@ namespace ModoMods.SkillTraining {
     public static void Unregister(GameObject? gameObject) {
       gameObject?.RemovePart<TrainingTracker>();
       gameObject?.RemovePart<ModCommands>();
+      gameObject?.RequirePart<LevelUpModifier>();
 
       gameObject?.RemovePart<MeleeWeaponTrainer>();
       gameObject?.RemovePart<MissileAttackTrainer>();

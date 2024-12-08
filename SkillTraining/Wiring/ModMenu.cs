@@ -96,7 +96,9 @@ namespace ModoMods.SkillTraining.Wiring {
       var selectedIndex = 0;
       while (selectedIndex != -1) {
         var options = new[] {
-          "Reduce skill costs \x10 " + ToggleStatus(Tracker.ModifyCosts, ModOptions.ModifyCosts),
+          "Reduce skill costs \x10 " + ToggleStatus(Tracker.ModifyCostsOverride, ModOptions.ModifyCosts),
+          "Skill points at level-up \x10 " +
+          ToggleEnum(Tracker.LevelUpSkillPointsOverride, ModOptions.LevelUpSkillPoints),
         };
         selectedIndex = Popup.PickOption(
           Title: "Skill training settings",
@@ -106,13 +108,23 @@ namespace ModoMods.SkillTraining.Wiring {
           AllowEscape: true
         );
 
-        if (selectedIndex == 0) {
-          Tracker.ModifyCosts = Tracker.ModifyCosts switch {
-            null => true,
-            true => false,
-            _ => null
-          };
-          CostModifier.ResetSkillCosts();
+        switch (selectedIndex) {
+          case 0:
+            Tracker.ModifyCostsOverride = Tracker.ModifyCostsOverride switch {
+              null => true,
+              true => false,
+              _ => null
+            };
+            CostModifier.ResetSkillCosts();
+            break;
+          case 1:
+            Tracker.LevelUpSkillPointsOverride = Tracker.LevelUpSkillPointsOverride switch {
+              null => LevelUpSkillPoints.Full,
+              LevelUpSkillPoints.Full => LevelUpSkillPoints.Reduced,
+              LevelUpSkillPoints.Reduced => LevelUpSkillPoints.None,
+              _ => null,
+            };
+            break;
         }
       }
     }
@@ -179,10 +191,16 @@ namespace ModoMods.SkillTraining.Wiring {
     }
 
     public static String ToggleStatus(Boolean value, Boolean isSet) {
-      var bColor = isSet ? "&y" : "&K";
+      var bColor = isSet ? "&Y" : "&K";
       var color = isSet ? (value ? "&G" : "&R") : "";
-
       return bColor + "[" + color + (value ? "ON" : "OFF").PadLeft(3, ' ') + bColor + "]&y";
+    }
+
+    public static String ToggleEnum<T>(T? value, T defaultValue) where T : struct, Enum {
+      var isSet = value != null;
+      var maxLength = Enum.GetNames(typeof(T)).Max(it => it.Length);
+      var bColor = isSet ? "&Y" : "&K";
+      return bColor + "[" + $"{value ?? defaultValue}".PadRight(maxLength, '\xFF') + bColor + "]&y";
     }
   }
 }

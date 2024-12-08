@@ -16,7 +16,13 @@ namespace ModoMods.SkillTraining.Wiring {
     /// </summary>
     public IDictionary<String, Boolean?> Enabled = new Dictionary<String, Boolean?>();
 
-    public Boolean? ModifyCosts;
+    public Boolean? ModifyCostsOverride;
+    public LevelUpSkillPoints? LevelUpSkillPointsOverride;
+
+    public Boolean ModifyCosts =>
+      this.ModifyCostsOverride ?? ModOptions.ModifyCosts;
+    public LevelUpSkillPoints LevelUpSkillPoints =>
+      this.LevelUpSkillPointsOverride ?? ModOptions.LevelUpSkillPoints;
 
     /// <summary>Process a known training action.</summary>
     public void HandleTrainingAction(PlayerAction action, Decimal amountModifier = 1m) {

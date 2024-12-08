@@ -32,9 +32,30 @@
             If enabled, earning training points will reduce the cost of skills, allowing them to be purchased cheaper through partial training.
             If disabled, skills will have to be unlocked by training them fully, or purchased at full price as normal.
             
-            This is the global/default setting. Cost modification can be additionally toggled for each playthrough by using the skill training menu (assign a keyboard shortcut for it, or wish for `SkillTraining`).
+            This is the global/default setting. Cost modification can be additionally toggled each playthrough individually, by using the skill training menu (assign a keyboard shortcut for it, or wish for `SkillTraining`).
 
             {{o|IMPORTANT!}} Having different skill costs in different games is not normally supported by the game, they're supposed to be static and global. The mod does it's best to properly reset and readjust everything on every new and loaded game, but if you encounter any issues with skill costs, turn this off (and restart the game).
+        </helptext>
+    </option>
+    
+    
+    <!-- Skill points at level up -->
+    <option ID="Option_ModoMods_SkillTraining_LevelUpSkillPoints"
+            DisplayText="Skill points at level-up"
+            Type="Combo"
+            Values="Full,Reduced,None"
+            Default="Full"
+            Category="Mod: Skill Training">
+        <helptext>
+            Adjust skill point amount gained at level-ups to offset the training bonuses. See mod description / README for more details and play style considerations for each setting.
+            
+            * {{W|Full}} ({{C|default}}, {{C|easy}}): {{B|100%}} of SP at level-up. Combining with training points virtually guarantees extra skills (amount depends on training-purchasing ratio).
+            * {{W|Reduced}} ({{C|normal}}): {{B|50%}} of SP at level-up. Training essential.
+            * {{W|None}} ({{C|hard}}): {{B|0}} SP at level up. All skills must be unlocked through training or learned from NPCs. Some of the untrainable skills may end up not being available at all.
+
+            This is the global/default setting. It can also be changed for each playthrough individually, by using the skill training menu (assign a keyboard shortcut for it, or wish for `SkillTraining`).
+
+            {{o|IMPORTANT!}} While this setting can be changed at any time, it does not apply retroactively. Only future level-up SP values are changed, no matter what was gained (or not) before. 
         </helptext>
     </option>
     
