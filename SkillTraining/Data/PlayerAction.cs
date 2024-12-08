@@ -69,7 +69,8 @@
     TradeItem,
     
     #region Wayfaring
-    RegainBearings,
+    SufferLost,
+    RecoverLost,
     WorldMapMove,
     #endregion
   }

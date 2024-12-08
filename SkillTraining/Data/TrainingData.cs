@@ -87,8 +87,9 @@ namespace ModoMods.SkillTraining.Data {
         { TradeItem,         new TrainingData(SnakeOiler,          0.01m) },
          
         #region Wayfaring
+        { SufferLost,        new TrainingData(Wayfaring,           0.25m) },
+        { RecoverLost,       new TrainingData(Wayfaring,           0.75m) },
         { WorldMapMove,      new TrainingData(Wayfaring,           0.15m) },
-        { RegainBearings,    new TrainingData(Wayfaring,           1.00m) },
         #endregion
         
         //@formatter:on

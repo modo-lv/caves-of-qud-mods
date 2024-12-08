@@ -15,6 +15,7 @@ namespace ModoMods.SkillTraining.Trainers {
     public override ISet<Int32> WantEventIds => new HashSet<Int32> {
       EndTurnEvent.ID,
       EffectRemovedEvent.ID,
+      EnteringZoneEvent.ID,
     };
 
     /// <summary>Travel.</summary>
@@ -30,7 +31,14 @@ namespace ModoMods.SkillTraining.Trainers {
     /// <summary>Regain bearings.</summary>
     public override Boolean HandleEvent(EffectRemovedEvent ev) {
       if (ev.Effect is Lost && this.ParentObject.CanTrainSkills())
-        this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.RegainBearings);
+        this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.RecoverLost);
+      return base.HandleEvent(ev);
+    }
+
+    /// <summary>Train wayfaring while trying to regain bearings.</summary>
+    public override Boolean HandleEvent(EnteringZoneEvent ev) {
+      if (this.ParentObject.HasEffect<Lost>())
+        this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.SufferLost);
       return base.HandleEvent(ev);
     }
   }
