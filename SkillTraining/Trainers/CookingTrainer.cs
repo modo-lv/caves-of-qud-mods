@@ -12,8 +12,7 @@ using XRL.World.Parts;
 
 namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains "Cooking and Gathering" skill.</summary>
-  [HarmonyPatch]
-  public class CookingTrainer : ModPart {
+  [HarmonyPatch] public class CookingTrainer : ModPart {
     /// <summary>Training points from harvesting plants.</summary>
     [HarmonyPostfix][HarmonyPatch(typeof(Harvestable), nameof(Harvestable.AttemptHarvest))]
     private static void AfterHarvest(ref Boolean __result, ref GameObject who) {

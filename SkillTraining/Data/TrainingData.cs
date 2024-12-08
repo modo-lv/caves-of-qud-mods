@@ -17,13 +17,13 @@ namespace ModoMods.SkillTraining.Data {
     public static readonly IDictionary<PlayerAction, TrainingData> Data =
       new Dictionary<PlayerAction, TrainingData> {
         //@formatter:off
-        #region Axe
-        { Cleave,            new TrainingData(AxeCleave,           1.00m) }, // 150
-        #endregion
-        
         #region Acrobatics
         { DodgeMelee,        new TrainingData(Spry,                0.10m) }, // 100
         { DodgeMissile,      new TrainingData(Acrobatics,          1.00m) }, // 75
+        #endregion
+        
+        #region Axe
+        { Cleave,            new TrainingData(AxeCleave,           1.00m) }, // 150
         #endregion
         
         #region Endurance

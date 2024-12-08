@@ -1,8 +1,10 @@
 ﻿namespace ModoMods.SkillTraining.Data {
-  /// <summary>Player actions used in training skills.</summary>
+  /// <summary>Player actions that train skills.</summary>
   public enum PlayerAction {
+    #region Acrobatics
     DodgeMelee,
     DodgeMissile,
+    #endregion
     
     #region Axe
     Cleave,

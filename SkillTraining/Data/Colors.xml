@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <colors>
   <shaders>
+    <!-- Color used in the player message log when displaying training point gains. -->
     <shader Name="training" Type="alternation" Colors="b-B-g-G" ShowInPicker="true" />
   </shaders>
 </colors>
