@@ -29,7 +29,7 @@ namespace ModoMods.SkillTraining.Wiring {
         }
       };
       while (selectedIndex != -1) {
-        var trainingList = Main.AllTrainableSkills.ToList();
+        var trainingList = Main.AllTrainableSkills.OrderBy(it => it.Key.SkillName()).ToList();
         var list = trainingList.Select(entry => {
           var fullCost = CostModifier.RealCosts[entry.Key];
           var cost = CostModifier.Disabled ? fullCost : fullCost - Convert.ToInt32(Math.Floor(entry.Value));
@@ -37,7 +37,10 @@ namespace ModoMods.SkillTraining.Wiring {
           var trained = locked && entry.Value >= fullCost;
           var sb = new StringBuilder();
           var color = locked ? (trained ? "&G" : "&y") : "&K";
-          sb.Append(SkillToggleStatus(entry.Key) + $"{color} {entry.Key.SkillName()} ".PadRight(30, '-'));
+          var maxLength = trainingList.Max(it => it.Key.Length) + 7 + 1;
+          sb.Append(
+            SkillToggleStatus(entry.Key) + $"{color} {entry.Key.SkillName()} ".PadRight(maxLength, '-')
+          );
 
           // Current points
           sb.Append(" ");

@@ -27,7 +27,6 @@ namespace ModoMods.SkillTraining {
       TrainingData.Data.Values
         .Select(it => it.SkillClass)
         .Distinct()
-        .OrderBy(it => it.SkillName())
         .ToDictionary(it => it, it => The.Player.TrainingTracker()?.GetPoints(it) ?? -1m);
 
 
