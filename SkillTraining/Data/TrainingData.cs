@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using ModoMods.SkillTraining.Utils;
 using static ModoMods.SkillTraining.Data.PlayerAction;
-using static ModoMods.SkillTraining.Data.SkillClasses;
+using static ModoMods.Core.Data.QudSkillClasses;
 
 namespace ModoMods.SkillTraining.Data {
   public struct TrainingData {

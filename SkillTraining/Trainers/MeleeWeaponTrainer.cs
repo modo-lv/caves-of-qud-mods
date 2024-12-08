@@ -37,10 +37,10 @@ namespace ModoMods.SkillTraining.Trainers {
       }
 
       PlayerAction? action = skill switch {
-        SkillClasses.Axe => PlayerAction.AxeHit,
-        SkillClasses.Cudgel => PlayerAction.CudgelHit,
-        SkillClasses.LongBlade => PlayerAction.LongBladeHit,
-        SkillClasses.ShortBlade => PlayerAction.ShortBladeHit,
+        QudSkillClasses.Axe => PlayerAction.AxeHit,
+        QudSkillClasses.Cudgel => PlayerAction.CudgelHit,
+        QudSkillClasses.LongBlade => PlayerAction.LongBladeHit,
+        QudSkillClasses.ShortBlade => PlayerAction.ShortBladeHit,
         null => null,
         _ => throw new Exception($"Unknown melee weapon skill: [{skill}].")
       };

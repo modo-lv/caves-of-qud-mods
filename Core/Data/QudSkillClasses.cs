@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace ModoMods.SkillTraining.Data {
+namespace ModoMods.Core.Data {
   /// <summary>Known skill class names.</summary>
-  public static class SkillClasses {
+  public static class QudSkillClasses {
     // Acrobatics tree
     public const String Acrobatics = "Acrobatics";
     public const String SwiftReflexes = "Acrobatics_SwiftReflexes";

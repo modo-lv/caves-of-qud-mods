@@ -29,7 +29,7 @@ namespace ModoMods.SkillTraining.Trainers {
       // this is the only way.
       if (ev.ID == QudEventNames.WeaponGetDefenderDV && ev.Defender().CanTrainSkills()) {
         var dv = ev.GetIntParameter("DV");
-        if (ev.Defender()?.HasSkill(SkillClasses.SwiftReflexes) == false)
+        if (ev.Defender()?.HasSkill(QudSkillClasses.SwiftReflexes) == false)
           dv -= 5;
         if (ev.Defender()?.IsMobile() == false)
           dv = -100;

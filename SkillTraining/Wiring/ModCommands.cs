@@ -10,7 +10,7 @@ namespace ModoMods.SkillTraining.Wiring {
     public override ISet<Int32> WantEventIds => new HashSet<Int32> { CommandEvent.ID };
 
     public override Boolean HandleEvent(CommandEvent ev) {
-      if (ev.Command != ModEventNames.MenuCommand)
+      if (ev.Command != Data.ModCommands.MenuCommand)
         return base.HandleEvent(ev);
 
       ModMenu.Show();

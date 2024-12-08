@@ -11,6 +11,7 @@ using XRL;
 using XRL.World;
 using XRL.World.Parts.Skill;
 using XRL.World.Skills;
+using ModCommands = ModoMods.SkillTraining.Wiring.ModCommands;
 
 namespace ModoMods.SkillTraining {
   /// <summary>Main "entry point" for the mod functionality.</summary>

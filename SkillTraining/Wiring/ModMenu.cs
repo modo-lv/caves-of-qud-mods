@@ -11,7 +11,7 @@ using XRL;
 using XRL.UI;
 using XRL.Wish;
 using XRL.World.Skills;
-using static ModoMods.SkillTraining.Data.ModEventNames;
+using static ModoMods.SkillTraining.Data.ModCommands;
 
 namespace ModoMods.SkillTraining.Wiring {
   [HasWishCommand]
