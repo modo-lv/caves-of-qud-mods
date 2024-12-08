@@ -10,6 +10,7 @@ namespace ModoMods.SkillTraining.Data {
     
     // Axe tree
     public const String Axe = "Axe";
+    public const String AxeCleave = "Axe_Cleave";
 
     // Bow and rifle tree
     public const String BowAndRifle = "Rifles"; // 100

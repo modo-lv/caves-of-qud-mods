@@ -4,6 +4,10 @@
     DodgeMelee,
     DodgeMissile,
     
+    #region Axe
+    Cleave,
+    #endregion
+    
     #region Endurance
     EnduranceSprint,
     SufferStun,

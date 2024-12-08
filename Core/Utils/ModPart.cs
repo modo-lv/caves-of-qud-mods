@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using ModoMods.Core.Data;
+using XRL;
+using XRL.World;
 using XRL.World.Parts;
 
 namespace ModoMods.Core.Utils {
@@ -22,6 +25,14 @@ namespace ModoMods.Core.Utils {
 
     /// <summary>Determines which min-event IDs to listen for.</summary>
     public virtual ISet<Int32> WantEventIds => new HashSet<Int32>();
+
+    public virtual ISet<String> RegisterEventIds => new HashSet<String>();
+
+    public override void Register(GameObject obj, IEventRegistrar reg) {
+      foreach (var id in this.RegisterEventIds)
+        obj.RegisterPartEvent(this, id);
+      base.Register(obj, reg);
+    }
 
     /// <summary>
     /// Listens for all event IDs contained in <see cref="WantEventIds"/>.
