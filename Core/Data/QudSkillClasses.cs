@@ -11,6 +11,7 @@ namespace ModoMods.Core.Data {
     // Axe tree
     public const String Axe = "Axe";
     public const String AxeCleave = "Axe_Cleave";
+    public const String AxeChargingStrike = "Cudgel_ChargingStrike";
 
     // Bow and rifle tree
     public const String BowAndRifle = "Rifles"; // 100

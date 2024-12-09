@@ -1,4 +1,6 @@
-﻿using HarmonyLib;
+﻿using System;
+using HarmonyLib;
+using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
 using XRL.World;
@@ -14,8 +16,10 @@ namespace ModoMods.SkillTraining.Trainers {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once UnusedMember.Global
     [HarmonyPostfix][HarmonyPatch(typeof(Axe_Cleave), nameof(Axe_Cleave.PerformCleave))]
-    public static void AfterCleave(GameObject Attacker) {
+    public static void AfterCleave(GameObject Attacker, String Properties) {
       Attacker.Training()?.HandleTrainingAction(PlayerAction.Cleave);
+      if (Properties.HasDelimitedSubstring(',', "Charging"))
+        Attacker.Training()?.HandleTrainingAction(PlayerAction.ChargedCleave);
     }
   }
 }
