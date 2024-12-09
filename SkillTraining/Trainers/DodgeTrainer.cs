@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using ModoMods.Core.Data;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
 using XRL;
 using XRL.World;
-using XRL.World.Effects;
 
 namespace ModoMods.SkillTraining.Trainers {
   public class DodgeTrainer : ModPart {

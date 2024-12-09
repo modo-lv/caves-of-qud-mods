@@ -42,7 +42,7 @@ namespace ModoMods.SkillTraining {
 
       gameObject.RequirePart<CookingTrainer>();
       gameObject.RequirePart<CustomsTrainer>();
-      gameObject.RequirePart<DeftThrowingTrainer>();
+      gameObject.RequirePart<ThrowingTrainer>();
       gameObject.RequirePart<DodgeTrainer>();
       gameObject.RequirePart<EnduranceTrainer>();
       gameObject.RequirePart<PhysicTrainer>();
@@ -65,7 +65,7 @@ namespace ModoMods.SkillTraining {
 
       gameObject?.RemovePart<CookingTrainer>();
       gameObject?.RemovePart<CustomsTrainer>();
-      gameObject?.RemovePart<DeftThrowingTrainer>();
+      gameObject?.RemovePart<ThrowingTrainer>();
       gameObject?.RemovePart<DodgeTrainer>();
       gameObject?.RemovePart<EnduranceTrainer>();
       gameObject?.RemovePart<PhysicTrainer>();

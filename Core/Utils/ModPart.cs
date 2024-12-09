@@ -23,9 +23,10 @@ namespace ModoMods.Core.Utils {
       base.Remove();
     }
 
-    /// <summary>Determines which min-event IDs to listen for.</summary>
+    /// <summary>Which <see cref="MinEvent.ID"/>s to listen for.</summary>
     public virtual ISet<Int32> WantEventIds => new HashSet<Int32>();
 
+    /// <summary>Which <see cref="Event.ID"/>s to listen for.</summary>
     public virtual ISet<String> RegisterEventIds => new HashSet<String>();
 
     public override void Register(GameObject obj, IEventRegistrar reg) {
