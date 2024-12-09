@@ -56,5 +56,11 @@ namespace ModoMods.SkillTraining.Trainers {
       if (__result && Actor.CanTrainSkills())
         Actor.Training()?.HandleTrainingAction(PlayerAction.Butcher);
     }
+
+    [HarmonyPostfix][HarmonyPatch(typeof(Campfire), nameof(Campfire.CookFromIngredients))]
+    private static void AfterIngredients(ref Boolean random) {
+      if (!random)
+        The.Player.Training()?.HandleTrainingAction(PlayerAction.CookIngredients);
+    }
   }
 }

@@ -17,6 +17,7 @@ namespace ModoMods.Core.Data {
 
     // Cooking tree
     public const String CookingAndGathering = "CookingAndGathering";
+    public const String Spicer = "CookingAndGathering_Spicer";
 
     // Customs and folklore tree
     public const String CustomsAndFolklore = "Customs"; // 150

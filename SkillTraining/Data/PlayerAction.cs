@@ -35,6 +35,8 @@
     
     #region Cooking and Gathering
     Cook,
+    /// <summary>Meal cooked with manually selected ingredients (no recipe).</summary>
+    CookIngredients,
     CookTasty,
     Harvest,
     Butcher,

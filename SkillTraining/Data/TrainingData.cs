@@ -51,10 +51,11 @@ namespace ModoMods.SkillTraining.Data {
         #endregion
         
         #region Cooking and Gathering
-        { Cook,              new TrainingData(CookingAndGathering, 0.50m) },
-        { CookTasty,         new TrainingData(CookingAndGathering, 1.00m) },
-        { Harvest,           new TrainingData(CookingAndGathering, 0.25m) },
+        { Cook,              new TrainingData(CookingAndGathering, 0.25m) }, // 100
+        { CookTasty,         new TrainingData(CookingAndGathering, 1.00m) }, 
+        { Harvest,           new TrainingData(CookingAndGathering, 0.15m) },
         { Butcher,           new TrainingData(CookingAndGathering, 0.75m) },
+        { CookIngredients,   new TrainingData(Spicer,              0.75m) }, // 50
         #endregion
         
         #region Customs and Folklore
