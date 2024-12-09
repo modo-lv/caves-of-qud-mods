@@ -1,4 +1,5 @@
-﻿using XRL.World;
+﻿using System;
+using XRL.World;
 
 namespace ModoMods.SkillTraining.Utils {
   public static class EventUtils {
@@ -6,5 +7,8 @@ namespace ModoMods.SkillTraining.Utils {
     public static GameObject? Attacker(this Event ev) => ev.GetGameObjectParameter("Attacker");
     public static GameObject? Defender(this Event ev) => ev.GetGameObjectParameter("Defender");
     public static GameObject? Weapon(this Event ev) => ev.GetGameObjectParameter("Weapon");
+
+    public static Boolean IsChargeAttack(this Event ev) =>
+      ev.GetStringParameter("Properties").HasDelimitedSubstring(',', "Charging");
   }
 }

@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using XRL.World;
 using XRL.World.Parts;
 
 namespace ModoMods.Core.Data {
+  // ReSharper disable InconsistentNaming
   public static class QudEventNames {
     /// <summary>Fired on the attacker as soon as the attack is calculated to hit.</summary>
     public const String AttackerHit = "AttackerHit";
@@ -10,6 +12,9 @@ namespace ModoMods.Core.Data {
     /// <summary>Fired on the attacker (and defender) after an attack has successfully hit.</summary>
     /// <seealso cref="Combat.MeleeAttackWithWeaponInternal"/>
     public const String AttackerAfterAttack = "AttackerAfterAttack";
+
+    /// <summary>Earliest event fired on the attacker during melee attack calculations.</summary>
+    public const String AttackerGetDefenderDV = "AttackerGetDefenderDV"; 
 
     /// <summary>Fired on the player when dropping an item to the ground.</summary>
     public const String CommandDropObject = "CommandDropObject";

@@ -8,6 +8,7 @@
     
     #region Axe
     Cleave,
+    ChargedCleave,
     #endregion
     
     #region Endurance

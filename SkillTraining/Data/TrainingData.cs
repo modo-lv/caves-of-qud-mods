@@ -24,6 +24,7 @@ namespace ModoMods.SkillTraining.Data {
         
         #region Axe
         { Cleave,            new TrainingData(AxeCleave,           1.00m) }, // 150
+        { ChargedCleave,     new TrainingData(AxeChargingStrike,   0.50m) }, // 100
         #endregion
         
         #region Endurance
