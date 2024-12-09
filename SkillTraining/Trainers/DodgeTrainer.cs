@@ -20,7 +20,7 @@ namespace ModoMods.SkillTraining.Trainers {
 
     public override Boolean FireEvent(Event ev) {
       if (ev.ID == QudEventNames.DefenderAfterAttackMissed)
-        ev.Defender().TrainingTracker()?.HandleTrainingAction(PlayerAction.DodgeMelee);
+        ev.Defender().Training()?.HandleTrainingAction(PlayerAction.DodgeMelee);
 
       // Technically the defender DV detection event gets sent to the projectile after defender,
       // but at least in the vanilla game projectiles don't seem to be using it do modify the DV,
@@ -34,7 +34,7 @@ namespace ModoMods.SkillTraining.Trainers {
         if (ev.Defender()?.IsMobile() == false)
           dv = -100;
         if (ev.GetIntParameter("Result") <= dv) {
-          ev.Defender().TrainingTracker()?.HandleTrainingAction(PlayerAction.DodgeMissile);
+          ev.Defender().Training()?.HandleTrainingAction(PlayerAction.DodgeMissile);
         }
       }
 

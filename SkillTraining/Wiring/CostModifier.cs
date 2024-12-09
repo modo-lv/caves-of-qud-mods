@@ -9,7 +9,7 @@ using XRL.World.Skills;
 namespace ModoMods.SkillTraining.Wiring {
   /// <summary>Class responsible for modifying skill prices depending on training.</summary>
   public static class CostModifier {
-    public static Boolean Disabled => !(The.Player.TrainingTracker()?.ModifyCosts ?? ModOptions.ModifyCosts);
+    public static Boolean Disabled => !(The.Player.Training()?.ModifyCosts ?? ModOptions.ModifyCosts);
 
     public static readonly IDictionary<String, Int32> RealCosts =
       SkillFactory.GetSkills().ToDictionary(it => it.Class, it => it.Cost).Also(list => {
@@ -37,7 +37,7 @@ namespace ModoMods.SkillTraining.Wiring {
       });
       Output.DebugLog($"{total} skill and power costs reset to defaults.");
       if (Disabled) return;
-      The.Player.TrainingTracker()?.Also(tracker => {
+      The.Player.Training()?.Also(tracker => {
         foreach (var skill in Main.AllTrainableSkills)
           UpdateCost(skill.Key, tracker);
       });

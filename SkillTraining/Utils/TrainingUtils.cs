@@ -13,7 +13,7 @@ namespace ModoMods.SkillTraining.Utils {
     /// If the object is capable of skill training, but doesn't have all the necessary parts,
     /// those will be created and attached. 
     /// </remarks>
-    public static TrainingTracker? TrainingTracker(this GameObject? gameObject) {
+    public static TrainingTracker? Training(this GameObject? gameObject) {
       if (gameObject == null || !gameObject.CanTrainSkills()) {
         // Just in case we have somehow attached training parts to something that can't actually train.
         if (gameObject != null && !gameObject.HasEffect<Dominated>()) {

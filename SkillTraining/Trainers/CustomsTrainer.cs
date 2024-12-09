@@ -16,7 +16,7 @@ namespace ModoMods.SkillTraining.Trainers {
     public override Boolean HandleEvent(SecretVisibilityChangedEvent ev) {
       // Accomplishments are achievements, and general notes are those that a player writes by hand. 
       if (ev.Entry.Revealed && ev.Entry is not JournalAccomplishment and not JournalGeneralNote) {
-        this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.JournalReveal);
+        this.ParentObject.Training()?.HandleTrainingAction(PlayerAction.JournalReveal);
       }
       return base.HandleEvent(ev);
     }
@@ -46,7 +46,7 @@ namespace ModoMods.SkillTraining.Trainers {
         else
           return base.FireEvent(ev);
 
-        this.ParentObject.TrainingTracker()?.HandleTrainingAction(action);
+        this.ParentObject.Training()?.HandleTrainingAction(action);
       }
 
       return base.FireEvent(ev);

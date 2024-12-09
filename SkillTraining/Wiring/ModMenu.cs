@@ -16,7 +16,7 @@ using static ModoMods.SkillTraining.Data.ModCommands;
 namespace ModoMods.SkillTraining.Wiring {
   [HasWishCommand]
   public class ModMenu {
-    static TrainingTracker Tracker => The.Player.TrainingTracker()!;
+    static TrainingTracker Tracker => The.Player.Training()!;
 
     [WishCommand("SkillTraining")]
     public static void Show() {

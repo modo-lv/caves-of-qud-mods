@@ -23,7 +23,7 @@ namespace ModoMods.SkillTraining.Trainers {
       if (this.ParentObject.OnWorldMap() && this.ParentObject.CanTrainSkills()) {
         this._travelTurns = (this._travelTurns + 1) % 300;
         if (this._travelTurns == 0)
-          this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.WorldMapMove);
+          this.ParentObject.Training()?.HandleTrainingAction(PlayerAction.WorldMapMove);
       }
       return base.HandleEvent(ev);
     }
@@ -31,14 +31,14 @@ namespace ModoMods.SkillTraining.Trainers {
     /// <summary>Regain bearings.</summary>
     public override Boolean HandleEvent(EffectRemovedEvent ev) {
       if (ev.Effect is Lost && this.ParentObject.CanTrainSkills())
-        this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.RecoverLost);
+        this.ParentObject.Training()?.HandleTrainingAction(PlayerAction.RecoverLost);
       return base.HandleEvent(ev);
     }
 
     /// <summary>Train wayfaring while trying to regain bearings.</summary>
     public override Boolean HandleEvent(EnteringZoneEvent ev) {
       if (this.ParentObject.HasEffect<Lost>())
-        this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.SufferLost);
+        this.ParentObject.Training()?.HandleTrainingAction(PlayerAction.SufferLost);
       return base.HandleEvent(ev);
     }
   }

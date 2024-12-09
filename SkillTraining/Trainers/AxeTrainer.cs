@@ -14,7 +14,7 @@ namespace ModoMods.SkillTraining.Trainers {
     [HarmonyPostfix][HarmonyPatch(typeof(Axe_Cleave), nameof(Axe_Cleave.PerformCleave))]
     // ReSharper disable once InconsistentNaming
     public static void AfterCleave(GameObject Attacker) {
-      Attacker.TrainingTracker()?.HandleTrainingAction(PlayerAction.Cleave);
+      Attacker.Training()?.HandleTrainingAction(PlayerAction.Cleave);
     }
   }
 }

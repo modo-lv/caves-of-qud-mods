@@ -17,19 +17,19 @@ namespace ModoMods.SkillTraining.Trainers {
 
     public override Boolean HandleEvent(EnterCellEvent ev) {
       if (ev.Object.HasEffect<Swimming>())
-        ev.Object.TrainingTracker()?.HandleTrainingAction(PlayerAction.Swim);
+        ev.Object.Training()?.HandleTrainingAction(PlayerAction.Swim);
       if (ev.Object.HasEffect<Running>())
-        ev.Object.TrainingTracker()?.HandleTrainingAction(PlayerAction.EnduranceSprint);
+        ev.Object.Training()?.HandleTrainingAction(PlayerAction.EnduranceSprint);
       return base.HandleEvent(ev);
     }
 
     public override Boolean HandleEvent(EndTurnEvent ev) {
       if (this.ParentObject.HasEffect<Dazed>())
-        this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.SufferDaze);
+        this.ParentObject.Training()?.HandleTrainingAction(PlayerAction.SufferDaze);
       if (this.ParentObject.HasEffect<Stun>())
-        this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.SufferStun);
+        this.ParentObject.Training()?.HandleTrainingAction(PlayerAction.SufferStun);
       if (this.ParentObject.HasEffect<Poisoned>())
-        this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.SufferPoison);
+        this.ParentObject.Training()?.HandleTrainingAction(PlayerAction.SufferPoison);
       return base.HandleEvent(ev);
     }
   }

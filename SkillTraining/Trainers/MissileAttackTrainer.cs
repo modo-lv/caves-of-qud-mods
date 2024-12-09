@@ -57,7 +57,7 @@ namespace ModoMods.SkillTraining.Trainers {
           && defender.IsCombatant()
          ) {
         var multiplier = 1m / launcher.GetPart<MissileWeapon>()?.ShotsPerAction ?? 1m;
-        attacker.TrainingTracker()?.HandleTrainingAction(action, multiplier);
+        attacker.Training()?.HandleTrainingAction(action, multiplier);
       }
 
       return base.FireEvent(ev);

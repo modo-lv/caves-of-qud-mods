@@ -28,7 +28,7 @@ namespace ModoMods.SkillTraining {
       TrainingData.Data.Values
         .Select(it => it.SkillClass)
         .Distinct()
-        .ToDictionary(it => it, it => The.Player.TrainingTracker()?.GetPoints(it) ?? -1m);
+        .ToDictionary(it => it, it => The.Player.Training()?.GetPoints(it) ?? -1m);
 
 
     /// <summary>Attaches all the necessary mod parts to the main player object.</summary>

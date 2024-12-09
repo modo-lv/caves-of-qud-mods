@@ -11,7 +11,7 @@ namespace ModoMods.SkillTraining.Wiring {
 
     public override Boolean HandleEvent(GetLevelUpPointsEvent ev) {
       // ReSharper disable once SwitchStatementMissingSomeEnumCasesNoDefault
-      switch (this.ParentObject.TrainingTracker()?.LevelUpSkillPoints) {
+      switch (this.ParentObject.Training()?.LevelUpSkillPoints) {
         case LevelUpSkillPoints.Reduced: ev.SkillPoints /= 2; break;
         case LevelUpSkillPoints.None: ev.SkillPoints = 0; break;
       }

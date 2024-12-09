@@ -52,7 +52,7 @@ namespace ModoMods.SkillTraining.Trainers {
       Output.DebugLog($"Sold {itemCount} item(s) worth {item.Value}, bonus: {bonus}.");
       bonus *= 1m / TrainingData.For(PlayerAction.TradeItem).DefaultAmount;
       // Only player trades things through a UI
-      The.Player?.TrainingTracker()?.HandleTrainingAction(PlayerAction.TradeItem, itemCount + bonus);
+      The.Player?.Training()?.HandleTrainingAction(PlayerAction.TradeItem, itemCount + bonus);
 
       return base.FireEvent(ev);
     }

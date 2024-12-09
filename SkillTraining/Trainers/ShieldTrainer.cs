@@ -12,7 +12,7 @@ namespace ModoMods.SkillTraining.Trainers {
 
     public override Boolean HandleEvent(AfterShieldBlockEvent ev) {
       if (ev.Defender.CanTrainSkills())
-        ev.Defender.TrainingTracker()?.HandleTrainingAction(PlayerAction.ShieldBlock);
+        ev.Defender.Training()?.HandleTrainingAction(PlayerAction.ShieldBlock);
       return base.HandleEvent(ev);
     }
   }

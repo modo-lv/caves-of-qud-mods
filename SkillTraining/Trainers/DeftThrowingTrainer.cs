@@ -51,7 +51,7 @@ namespace ModoMods.SkillTraining.Trainers {
         it.IsCombatant() && it == ev.GetGameObjectParameter("ApparentTarget")
       );
       if (ev.Attacker().CanTrainSkills() && defender != null) {
-        ev.Attacker().TrainingTracker()?.HandleTrainingAction(PlayerAction.ThrownWeaponHit);
+        ev.Attacker().Training()?.HandleTrainingAction(PlayerAction.ThrownWeaponHit);
       }
 
       return base.FireEvent(ev);

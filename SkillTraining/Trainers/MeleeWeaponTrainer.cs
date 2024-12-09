@@ -50,7 +50,7 @@ namespace ModoMods.SkillTraining.Trainers {
         var modifier = 1m;
         if (isOffhand) modifier /= 2;
         if (isCritical) modifier *= 2;
-        attacker.TrainingTracker()?.HandleTrainingAction(
+        attacker.Training()?.HandleTrainingAction(
           (PlayerAction) action,
           amountModifier: modifier
         );
@@ -64,9 +64,9 @@ namespace ModoMods.SkillTraining.Trainers {
 
       // Single/multi fighting.
       if (singleWeapon)
-        attacker.TrainingTracker()?.HandleTrainingAction(PlayerAction.SingleWeaponHit);
+        attacker.Training()?.HandleTrainingAction(PlayerAction.SingleWeaponHit);
       else if (isOffhand)
-        attacker.TrainingTracker()?.HandleTrainingAction(PlayerAction.OffhandWeaponHit);
+        attacker.Training()?.HandleTrainingAction(PlayerAction.OffhandWeaponHit);
 
       return base.FireEvent(ev);
     }

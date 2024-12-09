@@ -16,15 +16,15 @@ namespace ModoMods.SkillTraining.Trainers {
 
     public override Boolean HandleEvent(EndTurnEvent ev) {
       if (this.ParentObject.HasEffect<Confused>())
-        this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.SufferConfusion);
+        this.ParentObject.Training()?.HandleTrainingAction(PlayerAction.SufferConfusion);
       if (this.ParentObject.HasEffect<Terrified>())
-        this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.SufferTerror);
+        this.ParentObject.Training()?.HandleTrainingAction(PlayerAction.SufferTerror);
       return base.HandleEvent(ev);
     }
 
     public override Boolean HandleEvent(EnterCellEvent ev) {
       if (this.ParentObject.HasEffect<Running>())
-        this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.DisciplineSprint);
+        this.ParentObject.Training()?.HandleTrainingAction(PlayerAction.DisciplineSprint);
       return base.HandleEvent(ev);
     }
   }

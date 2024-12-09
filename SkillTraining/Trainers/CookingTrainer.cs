@@ -17,7 +17,7 @@ namespace ModoMods.SkillTraining.Trainers {
     [HarmonyPostfix][HarmonyPatch(typeof(Harvestable), nameof(Harvestable.AttemptHarvest))]
     private static void AfterHarvest(ref Boolean __result, ref GameObject who) {
       if (__result && who.CanTrainSkills())
-        who.TrainingTracker()?.HandleTrainingAction(PlayerAction.Harvest);
+        who.Training()?.HandleTrainingAction(PlayerAction.Harvest);
     }
 
     // ReSharper disable once InconsistentNaming
@@ -25,7 +25,7 @@ namespace ModoMods.SkillTraining.Trainers {
     [HarmonyPostfix][HarmonyPatch(typeof(Butcherable), nameof(Butcherable.AttemptButcher))]
     private static void AfterButcher(ref Boolean __result, ref GameObject Actor) {
       if (__result && Actor.CanTrainSkills())
-        Actor.TrainingTracker()?.HandleTrainingAction(PlayerAction.Butcher);
+        Actor.Training()?.HandleTrainingAction(PlayerAction.Butcher);
     }
 
     /// <summary>Listen for the <see cref="QudEventNames.CookedAt"/> event.</summary>
@@ -37,7 +37,7 @@ namespace ModoMods.SkillTraining.Trainers {
     /// <summary>Handle the <see cref="QudEventNames.CookedAt"/> event.</summary>
     public override Boolean FireEvent(Event ev) {
       if (ev.ID == QudEventNames.CookedAt)
-        this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.Cook);
+        this.ParentObject.Training()?.HandleTrainingAction(PlayerAction.Cook);
       return base.FireEvent(ev);
     }
 
@@ -50,7 +50,7 @@ namespace ModoMods.SkillTraining.Trainers {
     /// <summary>Handle the tasty cooking event.</summary>
     public override Boolean HandleEvent(EffectAppliedEvent ev) {
       if (ev.Effect is BasicCookingEffect)
-        this.ParentObject.TrainingTracker()?.HandleTrainingAction(PlayerAction.CookTasty);
+        this.ParentObject.Training()?.HandleTrainingAction(PlayerAction.CookTasty);
       return base.HandleEvent(ev);
     }
   }

@@ -15,7 +15,7 @@ namespace ModoMods.SkillTraining.Trainers {
           && ev.Actor.HasEffect<Running>() 
           && ev.Actor.AreViableHostilesAdjacent()
         ) {
-        ev.Actor.TrainingTracker()?.HandleTrainingAction(PlayerAction.DangerSprint);
+        ev.Actor.Training()?.HandleTrainingAction(PlayerAction.DangerSprint);
       }
       return base.HandleEvent(ev);
     }
