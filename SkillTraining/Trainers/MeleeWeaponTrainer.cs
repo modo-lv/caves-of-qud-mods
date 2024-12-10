@@ -68,8 +68,15 @@ namespace ModoMods.SkillTraining.Trainers {
       // Single/multi fighting.
       if (singleWeapon)
         attacker.Training()?.HandleTrainingAction(PlayerAction.SingleWeaponHit);
-      else if (isOffhand)
-        attacker.Training()?.HandleTrainingAction(PlayerAction.OffhandWeaponHit);
+      else if (isOffhand) {
+        action =
+          attacker.HasSkill(QudSkillClasses.MultiweaponExpertise)
+            ? PlayerAction.ExpertOffhand
+            : attacker.HasSkill(QudSkillClasses.MultiweaponFighting)
+              ? PlayerAction.ProficientOffhand
+              : PlayerAction.Offhand;
+        attacker.Training()?.HandleTrainingAction((PlayerAction) action);
+      }
 
       return base.FireEvent(ev);
     }

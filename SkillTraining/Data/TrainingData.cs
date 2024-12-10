@@ -53,6 +53,13 @@ namespace ModoMods.SkillTraining.Data {
         { LongBladeHit,      new TrainingData(LongBlade,           0.20m) }, // 100
         { StanceHit,         new TrainingData(DuelingStance,       0.30m) }, // 200
         #endregion
+
+        #region Multiweapon Fighting
+        { Offhand,           new TrainingData(MultiweaponFighting, 1.00m) }, // 150
+        { ProficientOffhand, new TrainingData(MultiweaponExpertise,0.75m) }, // 150
+        { ExpertOffhand,     new TrainingData(MultiweaponMastery,  0.50m) }, // 200
+        
+        #endregion
         
         #region Melee weapons
         { AxeHit,            new TrainingData(Axe,                 0.10m) },
@@ -60,7 +67,6 @@ namespace ModoMods.SkillTraining.Data {
         { ShortBladeHit,     new TrainingData(ShortBlade,          0.20m) },
          
         { SingleWeaponHit,   new TrainingData(SingleWeaponFighting,0.10m) },
-        { OffhandWeaponHit,  new TrainingData(MultiweaponFighting, 1.00m) },
         #endregion
         
         #region Missile combat

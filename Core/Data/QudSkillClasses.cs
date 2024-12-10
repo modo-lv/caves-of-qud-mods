@@ -44,6 +44,8 @@ namespace ModoMods.Core.Data {
 
     // Multiweapon tree
     public const String MultiweaponFighting = "Multiweapon_Fighting"; // 150
+    public const String MultiweaponExpertise = "Multiweapon_Expertise"; // 150
+    public const String MultiweaponMastery = "Multiweapon_Mastery"; // 200
 
     // Long Blade tree
     public const String LongBlade = "LongBlades";

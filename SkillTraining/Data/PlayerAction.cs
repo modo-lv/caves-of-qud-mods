@@ -38,12 +38,17 @@
     StanceHit,
     #endregion
     
+    #region Multiweapon Fighting
+    Offhand,
+    ProficientOffhand,
+    ExpertOffhand,
+    #endregion
+    
     #region Melee weapons
     AxeHit,
     CudgelHit,
     ShortBladeHit,
     SingleWeaponHit,
-    OffhandWeaponHit,
     #endregion
     
     #region Missile weapons
