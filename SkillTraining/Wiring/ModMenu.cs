@@ -1,27 +1,23 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Utils;
 using Qud.UI;
-using UnityEngine.UIElements;
 using XRL;
 using XRL.UI;
 using XRL.Wish;
-using XRL.World.Skills;
 using static ModoMods.SkillTraining.Data.ModCommands;
 
 namespace ModoMods.SkillTraining.Wiring {
-  [HasWishCommand]
-  public class ModMenu {
-    static TrainingTracker Tracker => The.Player.Training()!;
+  [HasWishCommand] public class ModMenu {
+    private static TrainingTracker Tracker => The.Player.Training()!;
 
     [WishCommand("SkillTraining")]
     public static void Show() {
       var selectedIndex = 0;
-      var buttons = new QudMenuItem[] {
+      var buttons = new[] {
         new QudMenuItem {
           text = "{{W|[" + ControlManager.getCommandInputFormatted(SettingsCommand) + "]}} {{y|Settings}}",
           command = "option:-2",
@@ -30,45 +26,46 @@ namespace ModoMods.SkillTraining.Wiring {
       };
       while (selectedIndex != -1) {
         var trainingList = Main.AllTrainableSkills.OrderBy(it => it.Key.SkillName()).ToList();
-        var list = trainingList.Select(entry => {
-          var fullCost = CostModifier.RealCosts[entry.Key];
-          var cost = CostModifier.Disabled ? fullCost : fullCost - Convert.ToInt32(Math.Floor(entry.Value));
-          var locked = !Main.Player.HasSkill(entry.Key);
-          var trained = locked && entry.Value >= fullCost;
-          var sb = new StringBuilder();
-          var color = locked ? (trained ? "&G" : "&y") : "&K";
-          var maxLength = trainingList.Max(it => it.Key.Length) + 7 + 1;
-          sb.Append(
-            SkillToggleStatus(entry.Key) + $"{color} {entry.Key.SkillName()} ".PadRight(maxLength, '-')
-          );
+        var list = trainingList
+          .Where(entry => !Main.Player.HasSkill(entry.Key))
+          .Select(entry => {
+            var fullCost = CostModifier.RealCosts[entry.Key];
+            var cost = CostModifier.Disabled ? fullCost : fullCost - Convert.ToInt32(Math.Floor(entry.Value));
+            var trained = entry.Value >= fullCost;
+            var sb = new StringBuilder();
+            var color = trained ? "&G" : "&y";
+            var maxLength = trainingList.Max(it => it.Key.Length) + 7 + 1;
+            sb.Append(
+              SkillToggleStatus(entry.Key) + $"{color} {entry.Key.SkillName()} ".PadRight(maxLength, '-')
+            );
 
-          // Current points
-          sb.Append(" ");
-          var value = $"{(locked ? (trained ? "&G" : "&Y") : "&K")}{entry.Value:##0.00;;0}{color}";
-          var pad = 10;
-          if (entry.Value == 0) {
-            sb.Append("{{k|000.0}}" + value);
-          } else if (value.Length < pad) {
-            sb.Append("{{k|" + ("}}" + value).PadLeft(pad + 2, '0'));
-          } else {
-            sb.Append(value);
-          }
+            // Current points
+            sb.Append(" ");
+            var value = $"{(trained ? "&G" : "&Y")}{entry.Value:##0.00;;0}{color}";
+            var pad = 10;
+            if (entry.Value == 0) {
+              sb.Append("{{k|000.0}}" + value);
+            } else if (value.Length < pad) {
+              sb.Append("{{k|" + ("}}" + value).PadLeft(pad + 2, '0'));
+            } else {
+              sb.Append(value);
+            }
 
-          sb.Append(" " + (CostModifier.Disabled ? "/" : "\x1A"));
+            sb.Append(" " + (CostModifier.Disabled ? "/" : "\x1A"));
 
-          // Cost
-          sb.Append(" ");
-          value = $"{color}{cost}";
-          pad = 5;
-          if (value.Length < pad)
-            sb.Append("{{k|" + ("}}" + value).PadLeft(pad + 2, '0'));
-          else {
-            sb.Append(value);
-          }
+            // Cost
+            sb.Append(" ");
+            value = $"{color}{cost}";
+            pad = 5;
+            if (value.Length < pad)
+              sb.Append("{{k|" + ("}}" + value).PadLeft(pad + 2, '0'));
+            else {
+              sb.Append(value);
+            }
 
-          Output.DebugLog(sb.ToString());
-          return sb.ToString();
-        }).ToList();
+            Output.DebugLog(sb.ToString());
+            return sb.ToString();
+          }).ToList();
 
         selectedIndex = Popup.PickOption(
           Title: "Skill training",
