@@ -27,6 +27,7 @@
     SufferStun,
     SufferDaze,
     SufferPoison,
+    EndurePoison,
     Swim,
     #endregion
     

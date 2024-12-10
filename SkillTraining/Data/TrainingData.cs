@@ -42,7 +42,8 @@ namespace ModoMods.SkillTraining.Data {
         { EnduranceSprint,   new TrainingData(Longstrider,         0.25m) }, // 250
         { SufferDaze,        new TrainingData(Endurance,           1.00m) }, // 100
         { SufferStun,        new TrainingData(Endurance,           1.00m) }, // 100
-        { SufferPoison,      new TrainingData(Endurance,           1.00m) }, // 100
+        { SufferPoison,      new TrainingData(Endurance,           0.25m) }, // 100
+        { EndurePoison,      new TrainingData(PoisonTolerance,     0.25m) }, // 100
         { Swim,              new TrainingData(Swimming,            0.15m) }, // 100
         #endregion
 

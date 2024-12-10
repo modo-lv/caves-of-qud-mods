@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using HarmonyLib;
+using ModoMods.Core.Data;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
@@ -28,8 +28,13 @@ namespace ModoMods.SkillTraining.Trainers {
         this.ParentObject.Training()?.HandleTrainingAction(PlayerAction.SufferDaze);
       if (this.ParentObject.HasEffect<Stun>())
         this.ParentObject.Training()?.HandleTrainingAction(PlayerAction.SufferStun);
-      if (this.ParentObject.HasEffect<Poisoned>())
-        this.ParentObject.Training()?.HandleTrainingAction(PlayerAction.SufferPoison);
+      if (this.ParentObject.HasEffect<Poisoned>()) {
+        this.ParentObject.Training()?.HandleTrainingAction(
+          this.ParentObject.HasSkill(QudSkillClasses.Endurance)
+            ? PlayerAction.EndurePoison
+            : PlayerAction.SufferPoison
+        );
+      }
       return base.HandleEvent(ev);
     }
   }
