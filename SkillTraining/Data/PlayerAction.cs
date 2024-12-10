@@ -15,6 +15,13 @@
     ChargedStrike,
     #endregion
     
+    #region Customs and Folklore
+    RitualFirstRep,
+    RitualRep,
+    JournalReveal,
+    RifleTrash,
+    #endregion
+
     #region Endurance
     EnduranceSprint,
     SufferStun,
@@ -45,12 +52,6 @@
     CookTasty,
     Harvest,
     Butcher,
-    #endregion
-    
-    #region Customs and Folklore
-    RitualFirstRep,
-    RitualRep,
-    JournalReveal,
     #endregion
     
     #region Physic

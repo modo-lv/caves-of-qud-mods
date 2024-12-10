@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using HarmonyLib;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
 using Qud.API;
+using XRL;
 using XRL.World;
+using XRL.World.Parts;
+using XRL.World.Parts.Skill;
 
 namespace ModoMods.SkillTraining.Trainers {
-  /// <summary>Trains "Customs and Folklore" skill.</summary>
+  /// <summary>Trains "Customs and Folklore" skills.</summary>
   public class CustomsTrainer : ModPart {
     
     public override ISet<Int32> WantEventIds => new HashSet<Int32> {
@@ -39,6 +43,15 @@ namespace ModoMods.SkillTraining.Trainers {
         this.ParentObject.Training()?.HandleTrainingAction(action);
       }
       return base.HandleEvent(ev);
+    }
+  }
+
+  [HarmonyPatch] public static class TrashRifle {
+    // ReSharper disable InconsistentNaming, UnusedMember.Global
+    [HarmonyPostfix][HarmonyPatch(typeof(Garbage), nameof(Garbage.AttemptRifle))]
+    public static void AfterTrashRifle(ref GameObject Actor) {
+      if (Actor.HasPart<Tinkering_Scavenger>() && Actor.CanTrainSkills())
+        The.Player.Training()?.HandleTrainingAction(PlayerAction.RifleTrash);
     }
   }
 }

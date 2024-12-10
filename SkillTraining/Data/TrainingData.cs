@@ -31,6 +31,13 @@ namespace ModoMods.SkillTraining.Data {
         { ChargedStrike,     new TrainingData(ChargingStrike,      0.50m) }, // 100
         #endregion
         
+        #region Customs and Folklore
+        { RitualFirstRep,    new TrainingData(CustomsAndFolklore,  1.00m) },
+        { RitualRep,         new TrainingData(CustomsAndFolklore,  0.25m) },
+        { JournalReveal,     new TrainingData(CustomsAndFolklore,  0.25m) },
+        { RifleTrash,        new TrainingData(TrashDivining,       0.25m) }, // 150
+        #endregion 
+
         #region Endurance
         { EnduranceSprint,   new TrainingData(Longstrider,         0.25m) }, // 250
         { SufferDaze,        new TrainingData(Endurance,           1.00m) }, // 100
@@ -63,11 +70,6 @@ namespace ModoMods.SkillTraining.Data {
         { CookIngredients,   new TrainingData(Spicer,              0.75m) }, // 50
         #endregion
         
-        #region Customs and Folklore
-        { RitualFirstRep,    new TrainingData(CustomsAndFolklore,  1.00m) },
-        { RitualRep,         new TrainingData(CustomsAndFolklore,  0.25m) },
-        { JournalReveal,     new TrainingData(CustomsAndFolklore,  0.25m) },
-        #endregion 
  
         #region Physic
         { Bandage,           new TrainingData(Physic,              1.00m) },

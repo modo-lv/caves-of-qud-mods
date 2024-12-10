@@ -25,6 +25,7 @@ namespace ModoMods.Core.Data {
     // Customs and folklore tree
     public const String CustomsAndFolklore = "Customs"; // 150
     public const String Tactful = "Customs_Tactful";
+    public const String TrashDivining = "Customs_TrashDivining"; // 150
 
     // Cudgel tree
     public const String Cudgel = "Cudgel";
