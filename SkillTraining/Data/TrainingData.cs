@@ -63,6 +63,7 @@ namespace ModoMods.SkillTraining.Data {
         { BowOrRifleHit,     new TrainingData(BowAndRifle,         0.50m) },
         { PistolHit,         new TrainingData(Pistol,              0.50m) },
         { HeavyWeaponHit,    new TrainingData(HeavyWeapon,         0.50m) },
+        { CarryHeavyWeapon,  new TrainingData(Tank,                0.01m) },
         #endregion
         
         #region Cooking and Gathering

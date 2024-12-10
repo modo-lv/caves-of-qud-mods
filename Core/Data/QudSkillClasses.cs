@@ -40,6 +40,7 @@ namespace ModoMods.Core.Data {
 
     // Heavy Weapon tree
     public const String HeavyWeapon = "HeavyWeapons"; // 100
+    public const String Tank = "HeavyWeapons_Tank"; // 150
 
     // Multiweapon tree
     public const String MultiweaponFighting = "Multiweapon_Fighting"; // 150

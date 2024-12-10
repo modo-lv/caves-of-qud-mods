@@ -42,10 +42,11 @@
     OffhandWeaponHit,
     #endregion
     
-    #region Missile combat
+    #region Missile weapons
     BowOrRifleHit,
     PistolHit,
     HeavyWeaponHit,
+    CarryHeavyWeapon,
     #endregion
     
     #region Cooking and Gathering

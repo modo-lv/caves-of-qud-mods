@@ -13,13 +13,24 @@ namespace ModoMods.SkillTraining.Trainers {
   /// <remarks>
   /// Attached to the player to listen for missile attack start, and attach the hit tracker to the target.
   /// </remarks>
-  public class MissileAttackTrainer : ModPart {
-    public override ISet<Int32> WantEventIds => new HashSet<Int32> { BeforeFireMissileWeaponsEvent.ID };
+  public class MissileWeaponTrainer : ModPart {
+    public override ISet<Int32> WantEventIds => new HashSet<Int32> {
+      BeforeFireMissileWeaponsEvent.ID,
+      EnteredCellEvent.ID,
+    };
 
     /// <summary>Missile weapon attack training.</summary>
     public override Boolean HandleEvent(BeforeFireMissileWeaponsEvent ev) {
       if (ev.ApparentTarget.IsCombatant() && ev.Actor.CanTrainSkills())
         ev.ApparentTarget.RequirePart<MissileHitTracker>();
+      return base.HandleEvent(ev);
+    }
+
+    /// <summary>Carrying a heavy weapon.</summary>
+    public override Boolean HandleEvent(EnteredCellEvent ev) {
+      if (ev.Actor == this.ParentObject && ev.Actor.HasHeavyWeaponEquipped()) {
+        ev.Actor.Training()?.HandleTrainingAction(PlayerAction.CarryHeavyWeapon);
+      }
       return base.HandleEvent(ev);
     }
   }
