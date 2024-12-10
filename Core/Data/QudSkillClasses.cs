@@ -36,6 +36,7 @@ namespace ModoMods.Core.Data {
     public const String Swimming = "Endurance_Swimming";
     public const String PoisonTolerance = "Endurance_PoisonTolerance";
     public const String Weathered = "Endurance_Weathered";
+    public const String Juicer = "Endurance_Juicer"; // 150
 
     // Heavy Weapon tree
     public const String HeavyWeapon = "HeavyWeapons"; // 100

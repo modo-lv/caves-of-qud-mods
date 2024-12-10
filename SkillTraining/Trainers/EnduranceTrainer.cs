@@ -10,6 +10,8 @@ using XRL.World.Effects;
 namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains Endurance skills.</summary>
   public class EnduranceTrainer : ModPart {
+    public override Int32 Priority => PRIORITY_VERY_LOW;
+
     public override ISet<Int32> WantEventIds => new HashSet<Int32> {
       EnterCellEvent.ID,
       EndTurnEvent.ID,
@@ -37,6 +39,8 @@ namespace ModoMods.SkillTraining.Trainers {
       }
       if (this.ParentObject.HasEffect<Burning>() || this.ParentObject.HasEffect<Frozen>())
         this.ParentObject.Training()?.HandleTrainingAction(PlayerAction.ExtremeTemp);
+      if (this.ParentObject.GetTonicEffectCount() > this.ParentObject.GetTonicCapacity())
+        this.ParentObject.Training()?.HandleTrainingAction(PlayerAction.Juicing);
       return base.HandleEvent(ev);
     }
   }

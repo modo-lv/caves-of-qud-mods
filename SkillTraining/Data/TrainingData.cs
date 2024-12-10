@@ -46,6 +46,7 @@ namespace ModoMods.SkillTraining.Data {
         { Swim,              new TrainingData(Swimming,            0.15m) }, // 100
         { EndurePoison,      new TrainingData(PoisonTolerance,     0.25m) }, // 100
         { ExtremeTemp,       new TrainingData(Weathered,           1.00m) }, // 200
+        { Juicing,           new TrainingData(Juicer,              1.00m) }, // 150
         #endregion
 
         #region Melee weapons

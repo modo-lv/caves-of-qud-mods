@@ -30,6 +30,7 @@
     Swim,
     EndurePoison,
     ExtremeTemp,
+    Juicing,
     #endregion
     
     #region Melee weapons

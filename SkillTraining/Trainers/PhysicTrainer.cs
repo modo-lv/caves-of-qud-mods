@@ -31,11 +31,11 @@ namespace ModoMods.SkillTraining.Trainers {
         this.ParentObject.Training()?.HandleTrainingAction(PlayerAction.Recover);
       return base.HandleEvent(ev);
     }
-    
+
     /// <summary>Handles tonic injection.</summary>
     public override Boolean HandleEvent(AfterConsumeEvent ev) {
-      if (ev.Inject && ev.Actor.IsPlayer() && ev.Voluntary)
-        this.ParentObject.Training()?.HandleTrainingAction(PlayerAction.Inject);
+      if (ev.Inject && ev.Actor == this.ParentObject && ev.Actor.IsPlayer())
+        ev.Actor.Training()?.HandleTrainingAction(PlayerAction.Inject);
       return base.HandleEvent(ev);
     }
   }
