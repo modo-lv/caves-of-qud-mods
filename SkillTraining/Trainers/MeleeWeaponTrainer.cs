@@ -5,6 +5,7 @@ using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
 using XRL;
 using XRL.World;
+using XRL.World.Parts.Skill;
 
 namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains melee weapon skills.</summary>
@@ -28,7 +29,6 @@ namespace ModoMods.SkillTraining.Trainers {
 
       if (skill == null
           || !attacker.CanTrainSkills()
-          || attacker.HasSkill(skill)
           // Only equipped weapons train skills
           || weapon.EquippedOn()?.ThisPartWeapon() == null
           || !defender.IsCombatant()
@@ -39,7 +39,10 @@ namespace ModoMods.SkillTraining.Trainers {
       PlayerAction? action = skill switch {
         QudSkillClasses.Axe => PlayerAction.AxeHit,
         QudSkillClasses.Cudgel => PlayerAction.CudgelHit,
-        QudSkillClasses.LongBlade => PlayerAction.LongBladeHit,
+        QudSkillClasses.LongBlade =>
+          attacker.HasSkill(QudSkillClasses.LongBlade)
+            ? PlayerAction.StanceHit
+            : PlayerAction.LongBladeHit,
         QudSkillClasses.ShortBlade => PlayerAction.ShortBladeHit,
         null => null,
         _ => throw new Exception($"Unknown melee weapon skill: [{skill}].")

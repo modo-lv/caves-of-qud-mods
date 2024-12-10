@@ -47,6 +47,7 @@ namespace ModoMods.Core.Data {
 
     // Long Blade tree
     public const String LongBlade = "LongBlades";
+    public const String DuelingStance = "LongBladesDuelingStance";
     
     // Persuasion tree
     public const String SnakeOiler = "Persuasion_SnakeOiler";

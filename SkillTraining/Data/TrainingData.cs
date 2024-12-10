@@ -49,10 +49,14 @@ namespace ModoMods.SkillTraining.Data {
         { Juicing,           new TrainingData(Juicer,              1.00m) }, // 150
         #endregion
 
+        #region Long blade
+        { LongBladeHit,      new TrainingData(LongBlade,           0.20m) }, // 100
+        { StanceHit,         new TrainingData(DuelingStance,       0.30m) }, // 200
+        #endregion
+        
         #region Melee weapons
         { AxeHit,            new TrainingData(Axe,                 0.10m) },
         { CudgelHit,         new TrainingData(Cudgel,              0.10m) },
-        { LongBladeHit,      new TrainingData(LongBlade,           0.20m) },
         { ShortBladeHit,     new TrainingData(ShortBlade,          0.20m) },
          
         { SingleWeaponHit,   new TrainingData(SingleWeaponFighting,0.10m) },

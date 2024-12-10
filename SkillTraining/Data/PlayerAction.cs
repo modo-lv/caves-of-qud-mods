@@ -33,10 +33,14 @@
     Juicing,
     #endregion
     
+    #region Long Blade
+    LongBladeHit,
+    StanceHit,
+    #endregion
+    
     #region Melee weapons
     AxeHit,
     CudgelHit,
-    LongBladeHit,
     ShortBladeHit,
     SingleWeaponHit,
     OffhandWeaponHit,
