@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using HarmonyLib;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Utils;
 using XRL;
@@ -18,7 +19,10 @@ namespace ModoMods.SkillTraining.Wiring {
 
     public static void UpdateCost(String skillClass, TrainingTracker training) {
       if (Disabled) return;
-      SkillFactory.GetSkills().FirstOrDefault(it => it.Class == skillClass)?.Also(skill => {
+      // At the moment we treat multiple instances of the same skill class as a single skill.
+      // There is only one such case at the moment (`Cudgel_ChargingStrike`),
+      // and the game treats them as a single skill.
+      SkillUtils.SkillsOrPowers(skillClass).Do(skill => {
         var reduction = Convert.ToInt32(Math.Floor(training.GetPoints(skillClass)));
         skill.Cost = RealCosts[skillClass] - reduction;
         Output.DebugLog($"Skill [{skillClass}] cost - {reduction} = {skill.Cost}.");

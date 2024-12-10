@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using XRL;
+using XRL.World.Parts.Skill;
 using XRL.World.Skills;
 
 namespace ModoMods.SkillTraining.Utils {
@@ -27,6 +29,18 @@ namespace ModoMods.SkillTraining.Utils {
     public static IBaseSkillEntry SkillOrPower(String className) {
       return SkillByClass(className)?.Generic?.Entry ?? PowerByClass(className)?.Generic?.Entry
         ?? throw new ArgumentException($"Could not find any skill by class name [{className}].");
+    }
+
+    /// <summary>Fetches all skill/power instances of a given class.</summary>
+    /// <remarks>
+    /// At the moment, the only such case is <see cref="Cudgel_ChargingStrike"/>,
+    /// which shows up in both Axe and Cudgel trees. But while all detections etc. treat it as a single skill
+    /// (including unlocking), it is actually two different instances, each with its own cost.
+    /// </remarks>
+    public static IEnumerable<IBaseSkillEntry> SkillsOrPowers(String className) {
+      return SkillFactory.Factory.SkillList.Values
+        .SelectMany(skill => new[] { (IBaseSkillEntry) skill }.Concat(skill.Powers.Values))
+        .Where(it => it.Class == className);
     }
   }
 }

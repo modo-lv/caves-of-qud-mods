@@ -4,7 +4,6 @@ using System.Linq;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
-using UnityEngine;
 using Skills = XRL.World.Parts.Skills;
 
 namespace ModoMods.SkillTraining.Wiring {
