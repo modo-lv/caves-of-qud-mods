@@ -54,13 +54,14 @@ namespace ModoMods.Core.Data {
     // Persuasion tree
     public const String SnakeOiler = "Persuasion_SnakeOiler";
 
-    // Pistol tree
-    public const String Pistol = "Pistol"; // 100
-    
     // Physic tree
     public const String Physic = "Physic"; // 50
     public const String Nostrums = "Physic_Nostrums"; // 100
     public const String Apothecary = "Physic_Apothecary"; // 100
+    
+    // Pistol tree
+    public const String Pistol = "Pistol"; // 100
+    public const String Akimbo = "Pistol_Akimbo"; // 150
     
     // Self-Discipline tree
     public const String FastingWay = "Discipline_FastingWay";

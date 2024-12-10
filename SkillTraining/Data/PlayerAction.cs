@@ -53,7 +53,6 @@
     
     #region Missile weapons
     BowOrRifleHit,
-    PistolHit,
     HeavyWeaponHit,
     CarryHeavyWeapon,
     #endregion
@@ -71,6 +70,11 @@
     Bandage,
     Recover,
     Inject,
+    #endregion
+    
+    #region Pistol
+    PistolHit,
+    AlternatePistolHit,
     #endregion
     
     #region Tinkering

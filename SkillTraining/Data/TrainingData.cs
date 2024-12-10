@@ -71,7 +71,6 @@ namespace ModoMods.SkillTraining.Data {
         
         #region Missile combat
         { BowOrRifleHit,     new TrainingData(BowAndRifle,         0.50m) },
-        { PistolHit,         new TrainingData(Pistol,              0.50m) },
         { HeavyWeaponHit,    new TrainingData(HeavyWeapon,         0.50m) },
         { CarryHeavyWeapon,  new TrainingData(Tank,                0.01m) },
         #endregion
@@ -84,11 +83,15 @@ namespace ModoMods.SkillTraining.Data {
         { CookIngredients,   new TrainingData(Spicer,              0.75m) }, // 50
         #endregion
         
- 
         #region Physic
         { Bandage,           new TrainingData(Physic,              1.00m) }, // 50
         { Recover,           new TrainingData(Nostrums,            1.00m) }, // 100
         { Inject,            new TrainingData(Apothecary,          1.00m) }, // 100
+        #endregion
+        
+        #region Pistol
+        { PistolHit,         new TrainingData(Pistol,              0.50m) }, // 100 
+        { AlternatePistolHit,new TrainingData(Akimbo,              0.50m) }, // 150
         #endregion
         
         #region Self-Discipline
