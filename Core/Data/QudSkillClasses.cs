@@ -59,6 +59,8 @@ namespace ModoMods.Core.Data {
     
     // Physic tree
     public const String Physic = "Physic"; // 50
+    public const String Nostrums = "Physic_Nostrums"; // 100
+    public const String Apothecary = "Physic_Apothecary"; // 100
     
     // Self-Discipline tree
     public const String FastingWay = "Discipline_FastingWay";

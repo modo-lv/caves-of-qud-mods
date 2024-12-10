@@ -86,9 +86,9 @@ namespace ModoMods.SkillTraining.Data {
         
  
         #region Physic
-        { Bandage,           new TrainingData(Physic,              1.00m) },
-        { Recover,           new TrainingData(Physic,              1.00m) },
-        { Inject,            new TrainingData(Physic,              1.00m) },
+        { Bandage,           new TrainingData(Physic,              1.00m) }, // 50
+        { Recover,           new TrainingData(Nostrums,            1.00m) }, // 100
+        { Inject,            new TrainingData(Apothecary,          1.00m) }, // 100
         #endregion
         
         #region Self-Discipline
