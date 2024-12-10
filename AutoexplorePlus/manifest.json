@@ -1,0 +1,9 @@
+{
+  "id": "AutoexplorePlus",
+  "version": "1.0.0",
+  "title": "Autoexplore+",
+  "description": "Characters with Heightened Hearing mutation will not interrupt autoexploring if they hear an enemy that isn't targetting them.",
+  "tags": "Stable,Beta,UX,Script",
+  "author": "modo_lv",
+  "previewImage": "manifest.png"
+}
