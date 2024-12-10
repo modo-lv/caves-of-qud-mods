@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillGone", "SkillGone\Skil
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParasangRegion", "ParasangRegion\ParasangRegion.csproj", "{C16A7121-A0F4-44AE-A2CE-30E3BE5725DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoexplorePlus", "AutoexplorePlus\AutoexplorePlus.csproj", "{CC66A758-F7E8-4DDC-BFA7-8E2236EB51A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{C16A7121-A0F4-44AE-A2CE-30E3BE5725DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C16A7121-A0F4-44AE-A2CE-30E3BE5725DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C16A7121-A0F4-44AE-A2CE-30E3BE5725DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC66A758-F7E8-4DDC-BFA7-8E2236EB51A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC66A758-F7E8-4DDC-BFA7-8E2236EB51A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC66A758-F7E8-4DDC-BFA7-8E2236EB51A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC66A758-F7E8-4DDC-BFA7-8E2236EB51A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
