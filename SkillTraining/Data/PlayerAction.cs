@@ -27,8 +27,9 @@
     SufferStun,
     SufferDaze,
     SufferPoison,
-    EndurePoison,
     Swim,
+    EndurePoison,
+    ExtremeTemp,
     #endregion
     
     #region Melee weapons

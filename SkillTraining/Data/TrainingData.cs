@@ -43,8 +43,9 @@ namespace ModoMods.SkillTraining.Data {
         { SufferDaze,        new TrainingData(Endurance,           1.00m) }, // 100
         { SufferStun,        new TrainingData(Endurance,           1.00m) }, // 100
         { SufferPoison,      new TrainingData(Endurance,           0.25m) }, // 100
-        { EndurePoison,      new TrainingData(PoisonTolerance,     0.25m) }, // 100
         { Swim,              new TrainingData(Swimming,            0.15m) }, // 100
+        { EndurePoison,      new TrainingData(PoisonTolerance,     0.25m) }, // 100
+        { ExtremeTemp,       new TrainingData(Weathered,           1.00m) }, // 200
         #endregion
 
         #region Melee weapons

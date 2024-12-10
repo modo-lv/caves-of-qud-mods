@@ -35,6 +35,8 @@ namespace ModoMods.SkillTraining.Trainers {
             : PlayerAction.SufferPoison
         );
       }
+      if (this.ParentObject.HasEffect<Burning>() || this.ParentObject.HasEffect<Frozen>())
+        this.ParentObject.Training()?.HandleTrainingAction(PlayerAction.ExtremeTemp);
       return base.HandleEvent(ev);
     }
   }
