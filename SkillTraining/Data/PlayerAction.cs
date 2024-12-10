@@ -11,6 +11,10 @@
     ChargedCleave,
     #endregion
     
+    #region Cudgel
+    ChargedStrike,
+    #endregion
+    
     #region Endurance
     EnduranceSprint,
     SufferStun,

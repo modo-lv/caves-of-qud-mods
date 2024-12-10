@@ -40,7 +40,7 @@ namespace ModoMods.SkillTraining {
       gameObject.RequirePart<MeleeWeaponTrainer>();
       gameObject.RequirePart<MissileAttackTrainer>();
 
-      gameObject.RequirePart<AxeTrainer>();
+      gameObject.RequirePart<ChargedStrikeTrainer>();
       gameObject.RequirePart<CookingTrainer>();
       gameObject.RequirePart<CustomsTrainer>();
       gameObject.RequirePart<ThrowingTrainer>();
@@ -64,7 +64,7 @@ namespace ModoMods.SkillTraining {
       gameObject?.RemovePart<MeleeWeaponTrainer>();
       gameObject?.RemovePart<MissileAttackTrainer>();
 
-      gameObject?.RemovePart<AxeTrainer>();
+      gameObject?.RemovePart<ChargedStrikeTrainer>();
       gameObject?.RemovePart<CookingTrainer>();
       gameObject?.RemovePart<CustomsTrainer>();
       gameObject?.RemovePart<ThrowingTrainer>();

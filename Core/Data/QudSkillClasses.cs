@@ -3,6 +3,9 @@
 namespace ModoMods.Core.Data {
   /// <summary>Known skill class names.</summary>
   public static class QudSkillClasses {
+    // Special case: same skill in both axe and cudgel trees.
+    public const String ChargingStrike = "Cudgel_ChargingStrike";
+    
     // Acrobatics tree
     public const String Acrobatics = "Acrobatics";
     public const String SwiftReflexes = "Acrobatics_SwiftReflexes";
@@ -11,7 +14,6 @@ namespace ModoMods.Core.Data {
     // Axe tree
     public const String Axe = "Axe";
     public const String AxeCleave = "Axe_Cleave";
-    public const String AxeChargingStrike = "Cudgel_ChargingStrike";
 
     // Bow and rifle tree
     public const String BowAndRifle = "Rifles"; // 100
