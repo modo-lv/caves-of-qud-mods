@@ -14,7 +14,10 @@ namespace ModoMods.Core.Data {
     public const String AttackerAfterAttack = "AttackerAfterAttack";
 
     /// <summary>Earliest event fired on the attacker during melee attack calculations.</summary>
-    public const String AttackerGetDefenderDV = "AttackerGetDefenderDV"; 
+    public const String AttackerGetDefenderDV = "AttackerGetDefenderDV";
+
+    /// <summary>Fired on GameObject when calculating cooldowns after activating an ability.</summary>
+    public const String BeforeCooldownActivatedAbility = "BeforeCooldownActivatedAbility";
 
     /// <summary>Fired on the player when dropping an item to the ground.</summary>
     public const String CommandDropObject = "CommandDropObject";

@@ -20,6 +20,7 @@ namespace ModoMods.SkillTraining.Data {
         #region Acrobatics
         { DodgeMelee,        new TrainingData(Spry,                0.10m) }, // 100
         { DodgeMissile,      new TrainingData(Acrobatics,          1.00m) }, // 75
+        { Juked,             new TrainingData(Tumble,              0.25m) }, // 150
         #endregion
         
         #region Axe

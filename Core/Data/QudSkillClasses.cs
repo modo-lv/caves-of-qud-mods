@@ -10,6 +10,7 @@ namespace ModoMods.Core.Data {
     public const String Acrobatics = "Acrobatics";
     public const String SwiftReflexes = "Acrobatics_SwiftReflexes";
     public const String Spry = "Acrobatics_Dodge";
+    public const String Tumble = "Acrobatics_Tumble";
     
     // Axe tree
     public const String Axe = "Axe";
@@ -90,6 +91,7 @@ namespace ModoMods.Core.Data {
     // Tactics tree
     public const String Tactics = "Tactics";
     public const String DeftThrowing = "Tactics_Throwing";
+    public const String Juke = "Tactics_Juke";
     
     // Tinkering tree
     public const String Tinkering = "Tinkering"; // 100

@@ -109,6 +109,7 @@
     #region Tactics
     DangerSprint,
     ThrownWeaponHit,
+    Juked,
     #endregion
     
     TradeItem,
