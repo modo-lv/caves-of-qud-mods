@@ -23,11 +23,13 @@ namespace ModoMods.SkillTraining.Data {
         #endregion
         
         #region Axe
+        { AxeHit,            new TrainingData(Axe,                 0.10m) },
         { Cleave,            new TrainingData(AxeCleave,           1.00m) }, // 150
         { ChargedCleave,     new TrainingData(ChargingStrike,      0.50m) }, // 100
         #endregion
         
         #region Cudgel
+        { CudgelHit,         new TrainingData(Cudgel,              0.10m) },
         { ChargedStrike,     new TrainingData(ChargingStrike,      0.50m) }, // 100
         #endregion
         
@@ -62,9 +64,6 @@ namespace ModoMods.SkillTraining.Data {
         #endregion
         
         #region Melee weapons
-        { AxeHit,            new TrainingData(Axe,                 0.10m) },
-        { CudgelHit,         new TrainingData(Cudgel,              0.10m) },
-        { ShortBladeHit,     new TrainingData(ShortBlade,          0.20m) },
          
         { SingleWeaponHit,   new TrainingData(SingleWeaponFighting,0.10m) },
         #endregion
@@ -99,6 +98,12 @@ namespace ModoMods.SkillTraining.Data {
         { PistolFastertHit,   new TrainingData(FastestGun,          0.25m) }, // 400
         #endregion
         
+        #region Self-Discipline
+        { DisciplineSprint,   new TrainingData(Conatus,             0.25m) }, // 150
+        { SufferTerror,       new TrainingData(Lionheart,           0.35m) }, // 100
+        { SufferConfusion,    new TrainingData(IronMind,            0.75m) }, // 100
+        #endregion
+         
         #region Shield
         { NativeBlock,        new TrainingData(Shield,              0.25m) }, // 100
         { SkilledBlock,       new TrainingData(SwiftBlocking,       0.20m) }, // 200
@@ -106,25 +111,24 @@ namespace ModoMods.SkillTraining.Data {
         { DeftBlock,          new TrainingData(ShieldWall,          0.10m) }, // 200
         #endregion
         
-        #region Self-Discipline
-        { DisciplineSprint,  new TrainingData(Conatus,             0.25m) }, // 150
-        { SufferTerror,      new TrainingData(Lionheart,           0.35m) }, // 100
-        { SufferConfusion,   new TrainingData(IronMind,            0.75m) }, // 100
+        #region Short blade
+        { ShortHit,           new TrainingData(ShortBlade,          0.10m) }, // 50
+        { ShortOffhandHit,    new TrainingData(Jab,                 1.00m) }, // 100
         #endregion
-         
+        
         #region Tactics
-        { DangerSprint,      new TrainingData(Tactics,             0.75m) }, // 100
-        { ThrownWeaponHit,   new TrainingData(DeftThrowing,        0.75m) },
-        #endregion
-         
-        #region Tinkering 
-        { ExamineSuccess,    new TrainingData(Tinkering,           1.00m) },
-        { RifleTrashSuccess, new TrainingData(Tinkering,           0.25m) },
-        { DisassembleBit,    new TrainingData(Tinkering,           0.25m) },
+        { DangerSprint,       new TrainingData(Tactics,             0.75m) }, // 100
+        { ThrownWeaponHit,    new TrainingData(DeftThrowing,        0.75m) },
         #endregion 
-         
-         
-        { TradeItem,          new TrainingData(SnakeOiler,          0.01m) },
+          
+        #region Tinkering  
+        { ExamineSuccess,     new TrainingData(Tinkering,           1.00m) },
+        { RifleTrashSuccess,  new TrainingData(Tinkering,           0.25m) },
+        { DisassembleBit,     new TrainingData(Tinkering,           0.25m) },
+        #endregion  
+          
+          
+        { TradeItem,           new TrainingData(SnakeOiler,          0.01m) },
          
         #region Wayfaring
         { SufferLost,        new TrainingData(Wayfaring,           0.25m) },

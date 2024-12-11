@@ -47,7 +47,7 @@
     #region Melee weapons
     AxeHit,
     CudgelHit,
-    ShortBladeHit,
+    ShortHit,
     SingleWeaponHit,
     #endregion
     
@@ -100,6 +100,10 @@
     SkilledBlock,
     SwiftBlock,
     DeftBlock,
+    #endregion
+    
+    #region Short blade
+    ShortOffhandHit,
     #endregion
     
     #region Tactics

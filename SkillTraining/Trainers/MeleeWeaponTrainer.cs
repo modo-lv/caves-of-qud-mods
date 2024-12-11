@@ -6,6 +6,8 @@ using ModoMods.SkillTraining.Utils;
 using XRL;
 using XRL.World;
 using XRL.World.Parts.Skill;
+using static ModoMods.Core.Data.QudEventProperties;
+using static ModoMods.Core.Data.QudSkillClasses;
 
 namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains melee weapon skills.</summary>
@@ -25,7 +27,7 @@ namespace ModoMods.SkillTraining.Trainers {
         return base.FireEvent(ev);
 
       var isCritical = ev.HasFlag("Critical");
-      var skill = SkillUtils.SkillOrPower(weapon.GetWeaponSkill()).Class;
+      var skill = weapon.GetWeaponSkill();
 
       if (skill == null
           || !attacker.CanTrainSkills()
@@ -39,11 +41,11 @@ namespace ModoMods.SkillTraining.Trainers {
       PlayerAction? action = skill switch {
         QudSkillClasses.Axe => PlayerAction.AxeHit,
         QudSkillClasses.Cudgel => PlayerAction.CudgelHit,
-        QudSkillClasses.LongBlade =>
-          attacker.HasSkill(QudSkillClasses.LongBlade)
+        LongBlade =>
+          attacker.HasSkill(LongBlade)
             ? PlayerAction.StanceHit
             : PlayerAction.LongBladeHit,
-        QudSkillClasses.ShortBlade => PlayerAction.ShortBladeHit,
+        ShortBlade => PlayerAction.ShortHit,
         null => null,
         _ => throw new Exception($"Unknown melee weapon skill: [{skill}].")
       };
@@ -70,12 +72,15 @@ namespace ModoMods.SkillTraining.Trainers {
         attacker.Training()?.HandleTrainingAction(PlayerAction.SingleWeaponHit);
       else if (isOffhand) {
         action =
-          attacker.HasSkill(QudSkillClasses.MultiweaponExpertise)
+          attacker.HasSkill(MultiweaponExpertise)
             ? PlayerAction.ExpertOffhand
-            : attacker.HasSkill(QudSkillClasses.MultiweaponFighting)
+            : attacker.HasSkill(MultiweaponFighting)
               ? PlayerAction.ProficientOffhand
               : PlayerAction.Offhand;
         attacker.Training()?.HandleTrainingAction((PlayerAction) action);
+        // Jab
+        if (skill == ShortBlade && !ev.HasProperty(Flurrying) && attacker.HasSkill(ShortBlade))
+          attacker.Training()?.HandleTrainingAction(PlayerAction.ShortOffhandHit);
       }
 
       return base.FireEvent(ev);
