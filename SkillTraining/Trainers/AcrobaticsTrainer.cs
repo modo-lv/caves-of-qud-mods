@@ -7,7 +7,7 @@ using XRL;
 using XRL.World;
 
 namespace ModoMods.SkillTraining.Trainers {
-  public class DodgeTrainer : ModPart {
+  public class AcrobaticsTrainer : ModPart {
     public override void Register(GameObject obj, IEventRegistrar reg) {
       // Melee
       obj.RegisterPartEvent(this, QudEventNames.DefenderAfterAttackMissed);
@@ -17,9 +17,11 @@ namespace ModoMods.SkillTraining.Trainers {
     }
 
     public override Boolean FireEvent(Event ev) {
+      // Melee
       if (ev.ID == QudEventNames.DefenderAfterAttackMissed)
         ev.Defender().Training()?.HandleTrainingAction(PlayerAction.DodgeMelee);
 
+      // Missiles
       // Technically the defender DV detection event gets sent to the projectile after defender,
       // but at least in the vanilla game projectiles don't seem to be using it do modify the DV,
       // so this should work well enough.
