@@ -55,14 +55,19 @@ namespace ModoMods.SkillTraining.Wiring {
           );
         CostModifier.UpdateCost(skillClass, this);
         this.UnlockCompletedSkills();
+        if (this.GetPoints(skillClass) >= CostModifier.RealCosts[skillClass]
+            && !this.ParentObject.HasSkill(skillClass)
+           ) {
+          Output.Alert("{{O|" + skillClass.SkillName() + "}} skill has been fully trained, " +
+                       "but unlocking requirements for it aren't met yet.");
+        }
       }
     }
 
     public Boolean SetPoints(String skillClass, Decimal newValue, Boolean postProcess = true) {
-      var current = this.GetPoints(skillClass);
-      newValue = Math.Min(newValue, CostModifier.RealCosts[skillClass]);
-      if (newValue == current || this.ParentObject.HasSkill(skillClass))
+      if (this.ParentObject.HasSkill(skillClass))
         return false;
+      newValue = Math.Min(newValue, CostModifier.RealCosts[skillClass]);
       this.Points[skillClass] = newValue;
       if (postProcess) {
         CostModifier.UpdateCost(skillClass, this);
