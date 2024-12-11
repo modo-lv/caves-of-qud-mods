@@ -27,6 +27,11 @@ namespace ModoMods.SkillTraining.Utils {
       }
       return gameObject.RequirePart<TrainingTracker>();
     }
+
+    /// <summary>
+    /// Shorthand for accessing <paramref name="part"/>'s sibling <see cref="TrainingTracker"/>.
+    /// </summary>
+    public static TrainingTracker? ParentTraining(this IPart part) => part.ParentObject.Training();
     
     /// <summary>Determines if this game object is one that is capable of skill training.</summary>
     public static Boolean CanTrainSkills(this GameObject? gameObject) =>
