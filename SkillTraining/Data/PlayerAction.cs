@@ -75,8 +75,11 @@
     #region Pistol
     PistolHit,
     AlternatePistolHit,
-    CriticalPistolHit,
+    PistolNativeCrit,
     SprintingPistolHit,
+    PistolSkilledCrit,
+    PistolFastHit,
+    PistolFastertHit,
     #endregion
     
     #region Tinkering

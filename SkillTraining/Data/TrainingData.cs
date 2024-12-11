@@ -90,10 +90,13 @@ namespace ModoMods.SkillTraining.Data {
         #endregion
         
         #region Pistol
-        { PistolHit,          new TrainingData(Pistol,              0.50m) }, // 100 
+        { PistolHit,          new TrainingData(Pistol,              0.50m) }, // 100
         { AlternatePistolHit, new TrainingData(Akimbo,              0.50m) }, // 150
-        { CriticalPistolHit,  new TrainingData(WeakSpotter,         1.00m) }, // 150
+        { PistolNativeCrit,   new TrainingData(WeakSpotter,         1.00m) }, // 150
         { SprintingPistolHit, new TrainingData(SlingAndRun,         1.00m) }, // 50
+        { PistolSkilledCrit,  new TrainingData(DeadShot,            0.75m) }, // 200
+        { PistolFastHit,      new TrainingData(EmptyClips,          0.25m) }, // 300
+        { PistolFastertHit,   new TrainingData(FastestGun,          0.25m) }, // 400
         #endregion
         
         #region Self-Discipline

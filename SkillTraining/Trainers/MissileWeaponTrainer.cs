@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using ModoMods.Core.Data;
 using ModoMods.Core.Utils;
-using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
 using XRL;
 using XRL.World;
 using XRL.World.Effects;
 using XRL.World.Parts;
+using static ModoMods.Core.Data.QudSkillClasses;
+using static ModoMods.SkillTraining.Data.PlayerAction;
 
 namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains missile weapon skills.</summary>
@@ -37,7 +38,7 @@ namespace ModoMods.SkillTraining.Trainers {
         if (ev.Actor.HasEffect<Running>())
           this.SprintedSinceShot = true;
         if (ev.Actor.HasHeavyWeaponEquipped())
-          ev.Actor.Training()?.HandleTrainingAction(PlayerAction.CarryHeavyWeapon);
+          ev.Actor.Training()?.HandleTrainingAction(CarryHeavyWeapon);
       }
       return base.HandleEvent(ev);
     }
@@ -76,10 +77,10 @@ namespace ModoMods.SkillTraining.Trainers {
 
       var action = skillClass switch {
         // AFAICT there are no weapons using "Bow" skill anymore, but the game has checks for it.
-        "Bow" => PlayerAction.BowOrRifleHit,
-        QudSkillClasses.Pistol => PlayerAction.PistolHit,
-        "Rifle" => PlayerAction.BowOrRifleHit,
-        QudSkillClasses.HeavyWeapon => PlayerAction.HeavyWeaponHit,
+        "Bow" => BowOrRifleHit,
+        Pistol => PistolHit,
+        "Rifle" => BowOrRifleHit,
+        HeavyWeapon => HeavyWeaponHit,
         _ => throw new Exception($"Unknown missile weapon skill: [{skillClass}].")
       };
 
@@ -89,16 +90,25 @@ namespace ModoMods.SkillTraining.Trainers {
          ) {
         var multiplier = 1m / launcher.GetPart<MissileWeapon>()?.ShotsPerAction ?? 1m;
 
-        if (action == PlayerAction.PistolHit) {
+        if (action == PistolHit) {
           // Sprinting
           if (attacker.HasEffect<Running>() && attacker.GetPart<MissileWeaponTrainer>().SprintedSinceShot)
-            attacker.Training()?.HandleTrainingAction(PlayerAction.SprintingPistolHit);
+            attacker.Training()?.HandleTrainingAction(SprintingPistolHit);
           // Critical
-          if (ev.HasFlag("Critical"))
-            attacker.Training()?.HandleTrainingAction(PlayerAction.CriticalPistolHit);
+          if (ev.HasFlag("Critical")) {
+            attacker.Training()?.HandleTrainingAction(PistolNativeCrit);
+          }
           // Multiple one-handed weapons (pistols) equipped
-          if (attacker.GetMissileWeapons(w => !w.GetPart<Physics>().UsesTwoSlots)?.Count > 1)
-            action = PlayerAction.AlternatePistolHit;
+          Boolean advanced; 
+          if (attacker.GetMissileWeapons(w => !w.GetPart<Physics>().UsesTwoSlots)?.Count > 1) {
+            advanced = attacker.HasSkill(Akimbo);
+            action = AlternatePistolHit;
+          } else {
+            advanced = attacker.HasSkill(Pistol);
+          }
+
+          if (advanced)
+            action = attacker.HasSkill(EmptyClips) ? PistolFastertHit : PistolFastHit;
         }
         
         if (ev.HasFlag("Critical")) {
