@@ -6,6 +6,7 @@ using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
 using XRL;
 using XRL.World;
+using XRL.World.Effects;
 using XRL.World.Parts;
 
 namespace ModoMods.SkillTraining.Trainers {
@@ -14,23 +15,42 @@ namespace ModoMods.SkillTraining.Trainers {
   /// Attached to the player to listen for missile attack start, and attach the hit tracker to the target.
   /// </remarks>
   public class MissileWeaponTrainer : ModPart {
+    public Boolean SprintedSinceShot;
+    
     public override ISet<Int32> WantEventIds => new HashSet<Int32> {
-      BeforeFireMissileWeaponsEvent.ID,
       EnteredCellEvent.ID,
+      BeforeFireMissileWeaponsEvent.ID,
     };
 
     /// <summary>Missile weapon attack training.</summary>
     public override Boolean HandleEvent(BeforeFireMissileWeaponsEvent ev) {
-      if (ev.ApparentTarget.IsCombatant() && ev.Actor.CanTrainSkills())
+      if (ev.ApparentTarget.IsCombatant() && ev.Actor.CanTrainSkills()) {
         ev.ApparentTarget.RequirePart<MissileHitTracker>();
+        ev.MissileWeapons.ForEach(mw => mw.ParentObject.RequirePart<ShotCompleteTracker>());
+      }
       return base.HandleEvent(ev);
     }
 
     /// <summary>Carrying a heavy weapon.</summary>
     public override Boolean HandleEvent(EnteredCellEvent ev) {
-      if (ev.Actor == this.ParentObject && ev.Actor.HasHeavyWeaponEquipped()) {
-        ev.Actor.Training()?.HandleTrainingAction(PlayerAction.CarryHeavyWeapon);
+      if (ev.Actor == this.ParentObject) {
+        if (ev.Actor.HasEffect<Running>())
+          this.SprintedSinceShot = true;
+        if (ev.Actor.HasHeavyWeaponEquipped())
+          ev.Actor.Training()?.HandleTrainingAction(PlayerAction.CarryHeavyWeapon);
       }
+      return base.HandleEvent(ev);
+    }
+  }
+
+  public class ShotCompleteTracker : ModPart {
+    public override ISet<Int32> WantEventIds => new HashSet<Int32> {
+      ShotCompleteEvent.ID
+    };
+
+    public override Boolean HandleEvent(ShotCompleteEvent ev) {
+      if (ev.Actor.CanTrainSkills())
+        ev.Actor.GetPart<MissileWeaponTrainer>().SprintedSinceShot = false;
       return base.HandleEvent(ev);
     }
   }
@@ -70,13 +90,15 @@ namespace ModoMods.SkillTraining.Trainers {
         var multiplier = 1m / launcher.GetPart<MissileWeapon>()?.ShotsPerAction ?? 1m;
 
         if (action == PlayerAction.PistolHit) {
-          if (ev.HasFlag("Critical")) {
+          // Sprinting
+          if (attacker.HasEffect<Running>() && attacker.GetPart<MissileWeaponTrainer>().SprintedSinceShot)
+            attacker.Training()?.HandleTrainingAction(PlayerAction.SprintingPistolHit);
+          // Critical
+          if (ev.HasFlag("Critical"))
             attacker.Training()?.HandleTrainingAction(PlayerAction.CriticalPistolHit);
-          }
           // Multiple one-handed weapons (pistols) equipped
-          if (attacker.GetMissileWeapons(w => !w.GetPart<Physics>().UsesTwoSlots)?.Count > 1) {
+          if (attacker.GetMissileWeapons(w => !w.GetPart<Physics>().UsesTwoSlots)?.Count > 1)
             action = PlayerAction.AlternatePistolHit;
-          }
         }
         
         if (ev.HasFlag("Critical")) {

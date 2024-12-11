@@ -93,6 +93,7 @@ namespace ModoMods.SkillTraining.Data {
         { PistolHit,          new TrainingData(Pistol,              0.50m) }, // 100 
         { AlternatePistolHit, new TrainingData(Akimbo,              0.50m) }, // 150
         { CriticalPistolHit,  new TrainingData(WeakSpotter,         1.00m) }, // 150
+        { SprintingPistolHit, new TrainingData(SlingAndRun,         1.00m) }, // 50
         #endregion
         
         #region Self-Discipline

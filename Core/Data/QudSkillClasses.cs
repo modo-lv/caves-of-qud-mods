@@ -63,6 +63,7 @@ namespace ModoMods.Core.Data {
     public const String Pistol = "Pistol"; // 100
     public const String Akimbo = "Pistol_Akimbo"; // 150
     public const String WeakSpotter = "Pistol_WeakSpotter"; // 150
+    public const String SlingAndRun = "Pistol_SlingAndRun"; // 50
     
     // Self-Discipline tree
     public const String FastingWay = "Discipline_FastingWay";
