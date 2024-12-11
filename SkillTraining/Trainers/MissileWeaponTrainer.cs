@@ -7,7 +7,6 @@ using ModoMods.SkillTraining.Utils;
 using XRL;
 using XRL.World;
 using XRL.World.Parts;
-using XRL.World.Parts.Skill;
 
 namespace ModoMods.SkillTraining.Trainers {
   /// <summary>Trains missile weapon skills.</summary>
@@ -70,11 +69,18 @@ namespace ModoMods.SkillTraining.Trainers {
          ) {
         var multiplier = 1m / launcher.GetPart<MissileWeapon>()?.ShotsPerAction ?? 1m;
 
-        // Multiple one-handed weapons (pistols) equipped
-        if (action == PlayerAction.PistolHit
-            && attacker.GetMissileWeapons(w => !w.GetPart<Physics>().UsesTwoSlots)?.Count > 1
-           ) {
-          action = PlayerAction.AlternatePistolHit;
+        if (action == PlayerAction.PistolHit) {
+          if (ev.HasFlag("Critical")) {
+            attacker.Training()?.HandleTrainingAction(PlayerAction.CriticalPistolHit);
+          }
+          // Multiple one-handed weapons (pistols) equipped
+          if (attacker.GetMissileWeapons(w => !w.GetPart<Physics>().UsesTwoSlots)?.Count > 1) {
+            action = PlayerAction.AlternatePistolHit;
+          }
+        }
+        
+        if (ev.HasFlag("Critical")) {
+          multiplier *= 2;
         }
 
         attacker.Training()?.HandleTrainingAction(action, multiplier);

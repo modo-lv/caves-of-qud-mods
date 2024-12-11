@@ -90,8 +90,9 @@ namespace ModoMods.SkillTraining.Data {
         #endregion
         
         #region Pistol
-        { PistolHit,         new TrainingData(Pistol,              0.50m) }, // 100 
-        { AlternatePistolHit,new TrainingData(Akimbo,              0.50m) }, // 150
+        { PistolHit,          new TrainingData(Pistol,              0.50m) }, // 100 
+        { AlternatePistolHit, new TrainingData(Akimbo,              0.50m) }, // 150
+        { CriticalPistolHit,  new TrainingData(WeakSpotter,         1.00m) }, // 150
         #endregion
         
         #region Self-Discipline
@@ -111,9 +112,9 @@ namespace ModoMods.SkillTraining.Data {
         { DisassembleBit,    new TrainingData(Tinkering,           0.25m) },
         #endregion 
          
-        { ShieldBlock,       new TrainingData(Shield,              0.25m) },
+        { ShieldBlock,        new TrainingData(Shield,              0.25m) },
          
-        { TradeItem,         new TrainingData(SnakeOiler,          0.01m) },
+        { TradeItem,          new TrainingData(SnakeOiler,          0.01m) },
          
         #region Wayfaring
         { SufferLost,        new TrainingData(Wayfaring,           0.25m) },
