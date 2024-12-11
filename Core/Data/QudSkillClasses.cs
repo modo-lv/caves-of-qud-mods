@@ -68,6 +68,11 @@ namespace ModoMods.Core.Data {
     public const String EmptyClips = "Pistol_EmptyTheClips"; // 300
     public const String FastestGun = "Pistol_FastestGun"; // 400
     
+    // Shield tree
+    public const String Shield = "Shield";
+    public const String SwiftBlocking = "Shield_SwiftBlocking";
+    public const String DeftBlocking = "Shield_DeftBlocking";
+    public const String ShieldWall = "Shield_ShieldWall";
     
     // Self-Discipline tree
     public const String FastingWay = "Discipline_FastingWay";
@@ -75,8 +80,6 @@ namespace ModoMods.Core.Data {
     public const String IronMind = "Discipline_IronMind";
     public const String Conatus = "Discipline_Conatus";
 
-    // Shield tree
-    public const String Shield = "Shield";
 
     // Short Blade tree
     public const String ShortBlade = "ShortBlades";

@@ -95,7 +95,12 @@
     SufferConfusion,
     #endregion
     
-    ShieldBlock,
+    #region Shield
+    NativeBlock,
+    SkilledBlock,
+    SwiftBlock,
+    DeftBlock,
+    #endregion
     
     #region Tactics
     DangerSprint,

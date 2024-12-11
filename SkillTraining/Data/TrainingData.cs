@@ -99,6 +99,13 @@ namespace ModoMods.SkillTraining.Data {
         { PistolFastertHit,   new TrainingData(FastestGun,          0.25m) }, // 400
         #endregion
         
+        #region Shield
+        { NativeBlock,        new TrainingData(Shield,              0.25m) }, // 100
+        { SkilledBlock,       new TrainingData(SwiftBlocking,       0.20m) }, // 200
+        { SwiftBlock,         new TrainingData(DeftBlocking,        0.15m) }, // 200
+        { DeftBlock,          new TrainingData(ShieldWall,          0.10m) }, // 200
+        #endregion
+        
         #region Self-Discipline
         { DisciplineSprint,  new TrainingData(Conatus,             0.25m) }, // 150
         { SufferTerror,      new TrainingData(Lionheart,           0.35m) }, // 100
@@ -116,7 +123,6 @@ namespace ModoMods.SkillTraining.Data {
         { DisassembleBit,    new TrainingData(Tinkering,           0.25m) },
         #endregion 
          
-        { ShieldBlock,        new TrainingData(Shield,              0.25m) },
          
         { TradeItem,          new TrainingData(SnakeOiler,          0.01m) },
          
