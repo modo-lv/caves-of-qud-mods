@@ -18,6 +18,8 @@ namespace ModoMods.Core.Data {
 
     // Bow and rifle tree
     public const String BowAndRifle = "Rifles"; // 100
+    public const String SureFire = "Rifle_SureFire"; // 150
+    public const String WoundingFire = "Rifle_WoundingFire"; // 150
 
     // Cooking tree
     public const String CookingAndGathering = "CookingAndGathering";

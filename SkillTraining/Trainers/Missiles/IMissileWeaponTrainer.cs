@@ -12,7 +12,7 @@ namespace ModoMods.SkillTraining.Trainers.Missiles {
       GameObject attacker,
       GameObject defender,
       GameObject weapon,
-      Decimal multiplier,
+      Decimal modifier,
       Boolean isCritical
     );
     

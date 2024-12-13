@@ -11,6 +11,12 @@
     ChargedCleave,
     #endregion
     
+    #region Bow and Rifle
+    BowOrRifleHit,
+    MarkedHit,
+    MarkedCriticalHit,
+    #endregion
+    
     #region Cudgel
     ChargedStrike,
     #endregion
@@ -52,7 +58,6 @@
     #endregion
     
     #region Missile weapons
-    BowOrRifleHit,
     HeavyWeaponHit,
     CarryHeavyWeapon,
     #endregion

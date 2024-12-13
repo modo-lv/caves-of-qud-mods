@@ -45,10 +45,10 @@ namespace ModoMods.SkillTraining.Trainers.Missiles {
       GameObject attacker,
       GameObject defender,
       GameObject weapon,
-      Decimal multiplier,
+      Decimal modifier,
       Boolean isCritical
     ) {
-      var critMultiplier = multiplier * (isCritical ? 2 : 1);
+      var critMultiplier = modifier * (isCritical ? 2 : 1);
 
       // Sprinting
       if (attacker.HasEffect<Running>() && this.SprintMoved)
@@ -56,7 +56,7 @@ namespace ModoMods.SkillTraining.Trainers.Missiles {
 
       // Critical
       if (isCritical)
-        attacker.Training()?.HandleTrainingAction(PistolNativeCrit, multiplier);
+        attacker.Training()?.HandleTrainingAction(PistolNativeCrit, modifier);
 
       // Multiple one-handed weapons (pistols) equipped
       Boolean skilled;

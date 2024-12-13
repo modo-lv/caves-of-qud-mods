@@ -2,6 +2,7 @@
 using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
 using XRL.World;
+using XRL.World.Effects;
 
 namespace ModoMods.SkillTraining.Trainers.Missiles {
   /// <remarks>Trains Bow and Rifle skills.</remarks>
@@ -10,11 +11,18 @@ namespace ModoMods.SkillTraining.Trainers.Missiles {
       GameObject attacker,
       GameObject defender,
       GameObject weapon,
-      Decimal multiplier,
+      Decimal modifier,
       Boolean isCritical
     ) {
-     attacker.Training()?
-       .HandleTrainingAction(PlayerAction.BowOrRifleHit, multiplier * (isCritical ? 2 : 1));
+      var critModifier = modifier * (isCritical ? 2 : 1);
+      if (defender.HasEffect<RifleMark>()) {
+        attacker.Training()?.HandleTrainingAction(
+          action: isCritical ? PlayerAction.MarkedCriticalHit : PlayerAction.MarkedHit,
+          amountModifier: modifier
+        );
+      } else {
+        attacker.Training()?.HandleTrainingAction(PlayerAction.BowOrRifleHit, critModifier);
+      }
     }
   }
 }

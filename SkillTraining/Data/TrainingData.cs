@@ -29,6 +29,12 @@ namespace ModoMods.SkillTraining.Data {
         { ChargedCleave,     new TrainingData(ChargingStrike,      0.50m) }, // 100
         #endregion
         
+        #region Bow and Rifle
+        { BowOrRifleHit,     new TrainingData(BowAndRifle,         0.50m) }, // 100
+        { MarkedHit,         new TrainingData(SureFire,            0.50m) }, // 150
+        { MarkedCriticalHit, new TrainingData(WoundingFire,        1.00m) }, // 150
+        #endregion
+        
         #region Cudgel
         { CudgelHit,         new TrainingData(Cudgel,              0.10m) },
         { ChargedStrike,     new TrainingData(ChargingStrike,      0.50m) }, // 100
@@ -70,7 +76,6 @@ namespace ModoMods.SkillTraining.Data {
         #endregion
         
         #region Missile combat
-        { BowOrRifleHit,     new TrainingData(BowAndRifle,         0.50m) },
         { HeavyWeaponHit,    new TrainingData(HeavyWeapon,         0.50m) },
         { CarryHeavyWeapon,  new TrainingData(Tank,                0.01m) },
         #endregion

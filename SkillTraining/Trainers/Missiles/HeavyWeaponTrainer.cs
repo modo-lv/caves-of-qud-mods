@@ -15,11 +15,11 @@ namespace ModoMods.SkillTraining.Trainers.Missiles {
       GameObject attacker,
       GameObject defender,
       GameObject weapon,
-      Decimal multiplier,
+      Decimal modifier,
       Boolean isCritical
     ) {
       attacker.Training()
-        ?.HandleTrainingAction(HeavyWeaponHit, multiplier * (isCritical ? 2 : 1));
+        ?.HandleTrainingAction(HeavyWeaponHit, modifier * (isCritical ? 2 : 1));
     }
 
     /// <summary>Carrying a heavy weapon.</summary>
