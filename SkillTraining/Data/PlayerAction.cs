@@ -7,8 +7,11 @@
     #endregion
     
     #region Axe
-    Cleave,
-    ChargedCleave,
+    CleaveHit,
+    ChargedCleaveHit,
+    DismemberHit,
+    SkilledDismemberHit,
+    DecapitateHit,
     #endregion
     
     #region Bow and Rifle

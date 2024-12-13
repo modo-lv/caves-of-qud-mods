@@ -23,7 +23,7 @@ namespace ModoMods.SkillTraining.Trainers {
     };
 
     public override Boolean HandleEvent(AfterAddSkillEvent ev) {
-      if (ev.Skill is Axe_Cleave or Cudgel_Bludgeon) {
+      if (ev.Skill is Cudgel_Bludgeon) {
         Output.DebugLog($"Gained [{ev.Skill}], re-applying [{this}] to ensure correct event order.");
         this.ParentObject.Also(player => {
           player.RemovePart<ChargedStrikeTrainer>();
@@ -33,24 +33,15 @@ namespace ModoMods.SkillTraining.Trainers {
       return base.HandleEvent(ev);
     }
 
-    private Int32 _cleavedBeforeAttack;
     private Boolean _dazedBeforeAttack;
     private Boolean _stunnedBeforeAttack;
     public override Boolean FireEvent(Event ev) {
       if (ev.ID == QudEventNames.AttackerGetDefenderDV) {
-        // Axe
-        this._cleavedBeforeAttack =
-          ev.Defender()!.GetEffectDescendedFrom<IShatterEffect>()?.GetPenalty() ?? 0;
         // Cudgel
         this._dazedBeforeAttack = ev.Defender()?.HasEffect<Dazed>() == true;
         this._stunnedBeforeAttack = ev.Defender()?.HasEffect<Stun>() == true;
       }
       if (ev.ID == QudEventNames.AttackerAfterAttack && ev.IsChargeAttack()) {
-        // Axe
-        var cleavedAfterAttack = ev.Defender()!.GetEffectDescendedFrom<IShatterEffect>()?.GetPenalty() ?? 0;
-        if (cleavedAfterAttack > this._cleavedBeforeAttack)
-          ev.Attacker().Training()?.HandleTrainingAction(PlayerAction.ChargedCleave);
-        
         // Cudgel
         var defenderGotDazed =
           !this._dazedBeforeAttack && ev.Defender()?.HasEffect<Dazed>() == true;

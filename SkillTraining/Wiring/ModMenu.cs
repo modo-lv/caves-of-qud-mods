@@ -129,7 +129,7 @@ namespace ModoMods.SkillTraining.Wiring {
       }
     }
 
-    public static void SkillMenu(KeyValuePair<String, Decimal> entry) {
+    public static void SkillMenu(KeyValuePair<String?, Decimal> entry) {
       var selectedIndex = 0;
       while (selectedIndex != -1) {
         var options = new[] {
@@ -175,7 +175,7 @@ namespace ModoMods.SkillTraining.Wiring {
       }
     }
 
-    public static String SkillToggleStatus(String skillClass) {
+    public static String SkillToggleStatus(String? skillClass) {
       Tracker.Enabled.TryAdd(skillClass, null);
       var isSet = true;
       var value = Tracker.Enabled[skillClass]

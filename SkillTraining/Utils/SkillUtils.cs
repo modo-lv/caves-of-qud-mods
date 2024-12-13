@@ -14,7 +14,7 @@ namespace ModoMods.SkillTraining.Utils {
     /// Weirdly, <see cref="SkillFactory.SkillList"/> is also indexed by the display name,
     /// rather than skill class.
     /// </remarks>
-    public static String SkillName(this String skillClass) =>
+    public static String SkillName(this String? skillClass) =>
       SkillFactory.GetSkillOrPowerName(skillClass);
 
     /// <summary>Fetches data for a skill.</summary>
@@ -37,7 +37,7 @@ namespace ModoMods.SkillTraining.Utils {
     /// which shows up in both Axe and Cudgel trees. But while all detections etc. treat it as a single skill
     /// (including unlocking), it is actually two different instances, each with its own cost.
     /// </remarks>
-    public static IEnumerable<IBaseSkillEntry> SkillsOrPowers(String className) {
+    public static IEnumerable<IBaseSkillEntry> SkillsOrPowers(String? className) {
       return SkillFactory.Factory.SkillList.Values
         .SelectMany(skill => new[] { (IBaseSkillEntry) skill }.Concat(skill.Powers.Values))
         .Where(it => it.Class == className);

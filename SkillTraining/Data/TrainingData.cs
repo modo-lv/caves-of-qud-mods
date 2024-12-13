@@ -6,10 +6,10 @@ using static ModoMods.Core.Data.QudSkillClasses;
 
 namespace ModoMods.SkillTraining.Data {
   public struct TrainingData {
-    public readonly String SkillClass;
+    public readonly String? SkillClass;
     public readonly Decimal DefaultAmount;
 
-    public TrainingData(String skillClass, Decimal defaultAmount) {
+    public TrainingData(String? skillClass, Decimal defaultAmount) {
       this.SkillClass = skillClass;
       this.DefaultAmount = defaultAmount;
     }
@@ -24,9 +24,12 @@ namespace ModoMods.SkillTraining.Data {
         #endregion
         
         #region Axe
-        { AxeHit,            new TrainingData(Axe,                 0.10m) },
-        { Cleave,            new TrainingData(AxeCleave,           1.00m) }, // 150
-        { ChargedCleave,     new TrainingData(ChargingStrike,      0.50m) }, // 100
+        { AxeHit,              new TrainingData(Axe,                 0.10m) },
+        { CleaveHit,           new TrainingData(Cleave,              1.00m) }, // 150
+        { ChargedCleaveHit,    new TrainingData(ChargingStrike,      0.50m) }, // 100
+        { DismemberHit,        new TrainingData(Dismember,           1.00m) }, // 150
+        { SkilledDismemberHit, new TrainingData(Decapitate,          0.50m) }, // 150
+        { DecapitateHit,       new TrainingData(Berserk,             1.00m) }, // 300
         #endregion
         
         #region Bow and Rifle
@@ -44,9 +47,9 @@ namespace ModoMods.SkillTraining.Data {
         #endregion
         
         #region Cudgel
-        { CudgelHit,         new TrainingData(Cudgel,              0.10m) },
-        { CudgelSkilledCrit, new TrainingData(Bludgeon,            1.00m) }, // 150
-        { ChargedStrike,     new TrainingData(ChargingStrike,      0.50m) }, // 100
+        { CudgelHit,           new TrainingData(Cudgel,              0.10m) },
+        { CudgelSkilledCrit,   new TrainingData(Bludgeon,            1.00m) }, // 150
+        { ChargedStrike,       new TrainingData(ChargingStrike,      0.50m) }, // 100
         #endregion
         
         #region Customs and Folklore

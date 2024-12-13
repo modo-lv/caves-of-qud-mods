@@ -9,11 +9,11 @@ using Skills = XRL.World.Parts.Skills;
 namespace ModoMods.SkillTraining.Wiring {
   /// <summary>Main component that tracks training points for trainable skills.</summary>
   [Serializable] public class TrainingTracker : ModPart {
-    public IDictionary<String, Decimal> Points = new Dictionary<String, Decimal>();
+    public IDictionary<String?, Decimal> Points = new Dictionary<String?, Decimal>();
     /// <summary>
     /// Tracks on/off toggles for each skill. 
     /// </summary>
-    public IDictionary<String, Boolean?> Enabled = new Dictionary<String, Boolean?>();
+    public IDictionary<String?, Boolean?> Enabled = new Dictionary<String?, Boolean?>();
 
     public Boolean? ModifyCostsOverride;
     public LevelUpSkillPoints? LevelUpSkillPointsOverride;
@@ -34,13 +34,13 @@ namespace ModoMods.SkillTraining.Wiring {
       this.AddPoints(trainingData.SkillClass, amount);
     }
 
-    public Decimal GetPoints(String skillClass) {
+    public Decimal GetPoints(String? skillClass) {
       this.Points.TryAdd(skillClass, 0);
       return this.Points[skillClass];
     }
 
     /// <summary>Increases training point value for a skill (if applicable).</summary>
-    public void AddPoints(String skillClass, Decimal amount) {
+    public void AddPoints(String? skillClass, Decimal amount) {
       amount = Math.Round(amount, 2);
       if (this.SetPoints(skillClass, this.GetPoints(skillClass) + amount, false)) {
         if (ModOptions.ShowTraining)
@@ -64,7 +64,7 @@ namespace ModoMods.SkillTraining.Wiring {
       }
     }
 
-    public Boolean SetPoints(String skillClass, Decimal newValue, Boolean postProcess = true) {
+    public Boolean SetPoints(String? skillClass, Decimal newValue, Boolean postProcess = true) {
       if (this.ParentObject.HasSkill(skillClass))
         return false;
       newValue = Math.Min(newValue, CostModifier.RealCosts[skillClass]);
@@ -94,7 +94,7 @@ namespace ModoMods.SkillTraining.Wiring {
     }
 
     /// <summary>Resets training points back to 0.</summary>
-    public void ResetPoints(String skillClass) {
+    public void ResetPoints(String? skillClass) {
       this.Points[skillClass] = 0;
       Output.DebugLog($"[{skillClass}] training reset to 0.");
     }

@@ -1,28 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
 using ModoMods.Core.Utils;
-using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Utils;
 using XRL.World;
 using static ModoMods.Core.Data.QudEventNames;
-using static ModoMods.Core.Data.QudEventProperties;
 using static ModoMods.Core.Data.QudSkillClasses;
 using static ModoMods.SkillTraining.Data.PlayerAction;
 
 namespace ModoMods.SkillTraining.Trainers.Melee {
   /// <summary>Trains melee weapon skills.</summary>
   public abstract class IMeleeWeaponTrainer : ModPart {
-    public abstract void HandleAfterAttack(
+    public abstract String WeaponSkill { get; }
+    
+    public virtual void HandleAfterAttack(
       GameObject attacker,
       GameObject defender,
       GameObject weapon,
       Boolean isCritical,
       Boolean isOffhand,
       Boolean isSingle
-    );
+    ) {
+      // Single/multi fighting.
+      if (isSingle)
+        attacker.Training()?.HandleTrainingAction(SingleWeaponHit);
+      else if (isOffhand) {
+        var action =
+          attacker.HasSkill(MultiweaponExpertise)
+            ? ExpertOffhand
+            : attacker.HasSkill(MultiweaponFighting)
+              ? SkilledOffhand
+              : Offhand;
+        attacker.Training()?.HandleTrainingAction(action);
+      }
+    }
 
     public override ISet<String> RegisterEventIds => new HashSet<String> {
-      AttackerAfterAttack
+      AttackerHit
     };
 
     public override Boolean FireEvent(Event ev) {
@@ -31,7 +44,7 @@ namespace ModoMods.SkillTraining.Trainers.Melee {
       var defender = ev.Defender();
       var isCritical = ev.HasFlag("Critical");
       var skill = weapon?.GetWeaponSkill();
-      if (ev.ID == AttackerAfterAttack) {
+      if (ev.ID == AttackerHit) {
         if (ev.GetIntParameter("Penetrations") == 0
             || weapon == null || attacker == null || defender == null || skill == null
             || !attacker.CanTrainSkills()
@@ -41,14 +54,6 @@ namespace ModoMods.SkillTraining.Trainers.Melee {
           return base.FireEvent(ev);
         }
 
-        IMeleeWeaponTrainer? handler = skill switch {
-          Axe => attacker.RequirePart<AxeTrainer>(),
-          Cudgel => attacker.RequirePart<CudgelTrainer>(),
-          LongBlade => attacker.RequirePart<LongBladeTrainer>(),
-          ShortBlade => attacker.RequirePart<ShortBladeTrainer>(),
-          null => null,
-          _ => throw new Exception($"Unknown melee weapon skill: [{skill}].")
-        };
         var isOffhand = attacker.GetPrimaryWeapon() != weapon;
         var isSingle = true;
         attacker.ForeachEquippedObject(obj => {
@@ -56,20 +61,8 @@ namespace ModoMods.SkillTraining.Trainers.Melee {
             isSingle = false;
         });
 
-        handler?.HandleAfterAttack(attacker, defender, weapon, isCritical, isOffhand, isSingle);
-        
-        // Single/multi fighting.
-        if (isSingle)
-          attacker.Training()?.HandleTrainingAction(SingleWeaponHit);
-        else if (isOffhand) {
-          var action =
-            attacker.HasSkill(MultiweaponExpertise)
-              ? ExpertOffhand
-              : attacker.HasSkill(MultiweaponFighting)
-                ? SkilledOffhand
-                : Offhand;
-          attacker.Training()?.HandleTrainingAction(action);
-        }
+        if (skill == this.WeaponSkill)
+          this.HandleAfterAttack(attacker, defender, weapon, isCritical, isOffhand, isSingle);
       }
       return base.FireEvent(ev);
 

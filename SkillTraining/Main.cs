@@ -26,7 +26,7 @@ namespace ModoMods.SkillTraining {
     /// <summary>
     /// All trainable skills and their current training points (or -1 if called without a current player).
     /// </summary>
-    public static IDictionary<String, Decimal> AllTrainableSkills =>
+    public static IDictionary<String?, Decimal> AllTrainableSkills =>
       TrainingData.Data.Values
         .Select(it => it.SkillClass)
         .Distinct()
@@ -59,6 +59,8 @@ namespace ModoMods.SkillTraining {
       gameObject.RequirePart<ThrowingTrainer>();
       gameObject.RequirePart<TinkeringTrainer>();
       gameObject.RequirePart<WayfaringTrainer>();
+      
+      gameObject.RequirePart<NoSkillWeaponTrainer>();
     }
 
     /// <summary>Remove all training-related parts form a game object.</summary>
@@ -87,6 +89,8 @@ namespace ModoMods.SkillTraining {
       gameObject?.RemovePart<ThrowingTrainer>();
       gameObject?.RemovePart<TinkeringTrainer>();
       gameObject?.RemovePart<WayfaringTrainer>();
+      
+      gameObject?.RemovePart<NoSkillWeaponTrainer>();
     }
 
     public void mutate(GameObject player) {
