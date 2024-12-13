@@ -1,6 +1,6 @@
 ﻿# Overview
 
-Characters with [Heightened Hearing](https://wiki.cavesofqud.com/wiki/Heightened_Hearing) mutation will not interrupt autoexploring if they hear an enemy that isn't targeting them.
+Characters with [Heightened Hearing](https://wiki.cavesofqud.com/wiki/Heightened_Hearing) or [Heightened Smell](https://wiki.cavesofqud.com/wiki/Heightened_Smell) mutations will not interrupt autoexploring if they detect an enemy that isn't targeting them.
 
 # Uninstall
 
