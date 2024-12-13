@@ -47,7 +47,7 @@
     
     #region Multiweapon Fighting
     Offhand,
-    ProficientOffhand,
+    SkilledOffhand,
     ExpertOffhand,
     #endregion
     

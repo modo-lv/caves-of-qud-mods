@@ -5,6 +5,7 @@ using System.Reflection;
 using ModoMods.Core.Utils;
 using ModoMods.SkillTraining.Data;
 using ModoMods.SkillTraining.Trainers;
+using ModoMods.SkillTraining.Trainers.Melee;
 using ModoMods.SkillTraining.Trainers.Missiles;
 using ModoMods.SkillTraining.Utils;
 using ModoMods.SkillTraining.Wiring;
@@ -38,19 +39,21 @@ namespace ModoMods.SkillTraining {
       gameObject.RequirePart<ModCommands>();
       gameObject.RequirePart<LevelUpModifier>();
 
-      gameObject.RequirePart<MeleeWeaponTrainer>();
-
+      gameObject.RequirePart<AcrobaticsTrainer>();
+      gameObject.RequirePart<AxeTrainer>();
       gameObject.RequirePart<BowAndRifleTrainer>();
       gameObject.RequirePart<ChargedStrikeTrainer>();
       gameObject.RequirePart<CookingTrainer>();
+      gameObject.RequirePart<CudgelTrainer>();
       gameObject.RequirePart<CustomsTrainer>();
       gameObject.RequirePart<HeavyWeaponTrainer>();
-      gameObject.RequirePart<AcrobaticsTrainer>();
       gameObject.RequirePart<EnduranceTrainer>();
+      gameObject.RequirePart<LongBladeTrainer>();
       gameObject.RequirePart<PhysicTrainer>();
       gameObject.RequirePart<PistolTrainer>();
       gameObject.RequirePart<SelfDisciplineTrainer>();
       gameObject.RequirePart<ShieldTrainer>();
+      gameObject.RequirePart<ShortBladeTrainer>();
       gameObject.RequirePart<SnakeOilerTrainer>();
       gameObject.RequirePart<TacticsTrainer>();
       gameObject.RequirePart<ThrowingTrainer>();
@@ -64,19 +67,21 @@ namespace ModoMods.SkillTraining {
       gameObject?.RemovePart<ModCommands>();
       gameObject?.RequirePart<LevelUpModifier>();
 
-      gameObject?.RemovePart<MeleeWeaponTrainer>();
-
+      gameObject?.RemovePart<AcrobaticsTrainer>();
+      gameObject?.RemovePart<AxeTrainer>();
       gameObject?.RemovePart<BowAndRifleTrainer>();
       gameObject?.RemovePart<ChargedStrikeTrainer>();
       gameObject?.RemovePart<CookingTrainer>();
+      gameObject?.RemovePart<CudgelTrainer>();
       gameObject?.RemovePart<CustomsTrainer>();
-      gameObject?.RemovePart<AcrobaticsTrainer>();
       gameObject?.RemovePart<EnduranceTrainer>();
       gameObject?.RemovePart<HeavyWeaponTrainer>();
+      gameObject?.RemovePart<LongBladeTrainer>();
       gameObject?.RemovePart<PhysicTrainer>();
       gameObject?.RemovePart<PistolTrainer>();
       gameObject?.RemovePart<SelfDisciplineTrainer>();
       gameObject?.RemovePart<ShieldTrainer>();
+      gameObject?.RemovePart<ShortBladeTrainer>();
       gameObject?.RemovePart<SnakeOilerTrainer>();
       gameObject?.RemovePart<TacticsTrainer>();
       gameObject?.RemovePart<ThrowingTrainer>();

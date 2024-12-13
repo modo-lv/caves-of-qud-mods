@@ -74,7 +74,7 @@ namespace ModoMods.SkillTraining.Data {
 
         #region Multiweapon Fighting
         { Offhand,           new TrainingData(MultiweaponFighting, 1.00m) }, // 150
-        { ProficientOffhand, new TrainingData(MultiweaponExpertise,0.75m) }, // 150
+        { SkilledOffhand,    new TrainingData(MultiweaponExpertise,0.75m) }, // 150
         { ExpertOffhand,     new TrainingData(MultiweaponMastery,  0.50m) }, // 200
         
         #endregion
