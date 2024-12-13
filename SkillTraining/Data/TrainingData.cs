@@ -35,6 +35,14 @@ namespace ModoMods.SkillTraining.Data {
         { MarkedCriticalHit, new TrainingData(WoundingFire,        1.00m) }, // 150
         #endregion
         
+        #region Cooking and Gathering
+        { Cook,              new TrainingData(CookingAndGathering, 0.25m) }, // 100
+        { CookTasty,         new TrainingData(CookingAndGathering, 1.00m) }, 
+        { Harvest,           new TrainingData(CookingAndGathering, 0.15m) },
+        { Butcher,           new TrainingData(CookingAndGathering, 0.75m) },
+        { CookIngredients,   new TrainingData(Spicer,              0.75m) }, // 50
+        #endregion
+        
         #region Cudgel
         { CudgelHit,         new TrainingData(Cudgel,              0.10m) },
         { ChargedStrike,     new TrainingData(ChargingStrike,      0.50m) }, // 100
@@ -78,14 +86,6 @@ namespace ModoMods.SkillTraining.Data {
         #region Missile combat
         { HeavyWeaponHit,    new TrainingData(HeavyWeapon,         0.50m) },
         { CarryHeavyWeapon,  new TrainingData(Tank,                0.01m) },
-        #endregion
-        
-        #region Cooking and Gathering
-        { Cook,              new TrainingData(CookingAndGathering, 0.25m) }, // 100
-        { CookTasty,         new TrainingData(CookingAndGathering, 1.00m) }, 
-        { Harvest,           new TrainingData(CookingAndGathering, 0.15m) },
-        { Butcher,           new TrainingData(CookingAndGathering, 0.75m) },
-        { CookIngredients,   new TrainingData(Spicer,              0.75m) }, // 50
         #endregion
         
         #region Physic

@@ -58,8 +58,8 @@ namespace ModoMods.SkillTraining.Trainers {
     }
 
     [HarmonyPostfix][HarmonyPatch(typeof(Campfire), nameof(Campfire.CookFromIngredients))]
-    private static void AfterIngredients(ref Boolean random) {
-      if (!random)
+    private static void AfterIngredients(ref Boolean __result, ref Boolean random) {
+      if (__result && !random)
         The.Player.Training()?.HandleTrainingAction(PlayerAction.CookIngredients);
     }
   }
