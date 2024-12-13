@@ -45,6 +45,7 @@ namespace ModoMods.SkillTraining.Data {
         
         #region Cudgel
         { CudgelHit,         new TrainingData(Cudgel,              0.10m) },
+        { CudgelSkilledCrit, new TrainingData(Bludgeon,            1.00m) }, // 150
         { ChargedStrike,     new TrainingData(ChargingStrike,      0.50m) }, // 100
         #endregion
         

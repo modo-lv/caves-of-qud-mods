@@ -25,13 +25,14 @@ namespace ModoMods.Core.Data {
     public const String CookingAndGathering = "CookingAndGathering";
     public const String Spicer = "CookingAndGathering_Spicer";
 
+    // Cudgel tree
+    public const String Cudgel = "Cudgel";
+    public const String Bludgeon = "Cudgel_Bludgeon"; // 150
+
     // Customs and folklore tree
     public const String CustomsAndFolklore = "Customs"; // 150
     public const String Tactful = "Customs_Tactful";
     public const String TrashDivining = "Customs_TrashDivining"; // 150
-
-    // Cudgel tree
-    public const String Cudgel = "Cudgel";
     
     // Endurance tree
     public const String Endurance = "Endurance";

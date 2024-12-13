@@ -54,7 +54,11 @@ namespace ModoMods.SkillTraining.Trainers {
       if (action is not null) {
         var modifier = 1m;
         if (isOffhand) modifier /= 2;
-        if (isCritical) modifier *= 2;
+        if (isCritical) {
+          if (action == PlayerAction.CudgelHit && attacker.HasSkill(QudSkillClasses.Cudgel))
+            action = PlayerAction.CudgelSkilledCrit;
+          modifier *= 2;
+        }
         attacker.Training()?.HandleTrainingAction(
           (PlayerAction) action,
           amountModifier: modifier

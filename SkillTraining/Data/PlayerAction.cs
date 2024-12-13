@@ -19,6 +19,7 @@
     
     #region Cudgel
     ChargedStrike,
+    CudgelSkilledCrit,
     #endregion
     
     #region Customs and Folklore
