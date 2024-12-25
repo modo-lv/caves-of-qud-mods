@@ -1,7 +1,7 @@
 {
   "WorkshopId": 3381719962,
   "Title": "Autoexplore+",
-  "Description": "[h1]Overview[/h1]\r\n\r\nCharacters with [url=https://wiki.cavesofqud.com/wiki/Heightened_Hearing]Heightened Hearing[/url] or [url=https://wiki.cavesofqud.com/wiki/Heightened_Smell]Heightened Smell[/url] mutations will not interrupt autoexploring if they detect an enemy that isn't targeting them.\r\n\r\n[h1]Uninstall[/h1]\r\n\r\nThe mod is safe to add or remove at any point.\r\n\r\n[h1]License and source code[/h1]\r\n\r\nThis work © 2024 is licensed under [url=https://creativecommons.org/licenses/by-nc-sa/4.0/]Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International[/url].\r\n\r\nSource code is hosted on [url=https://github.com/modo-lv/caves-of-qud-mods/tree/main/AutoexplorePlus]GitHub[/url].",
+  "Description": "[h1]Overview[/h1]\r\n\r\nCharacters with [url=https://wiki.cavesofqud.com/wiki/Heightened_Hearing]Heightened Hearing[/url] or [url=https://wiki.cavesofqud.com/wiki/Heightened_Smell]Heightened Smell[/url] mutations will not interrupt autoexploring if they detect an enemy that isn't targeting them. They will, however, stop just short of melee range.\r\n\r\n[h1]Uninstall[/h1]\r\n\r\nThe mod is safe to add or remove at any point.\r\n\r\n[h1]License and source code[/h1]\r\n\r\nThis work © 2024 is licensed under [url=https://creativecommons.org/licenses/by-nc-sa/4.0/]Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International[/url].\r\n\r\nSource code is hosted on [url=https://github.com/modo-lv/caves-of-qud-mods/tree/main/AutoexplorePlus]GitHub[/url].",
   "Tags": "Stable,Beta,UX,Script",
   "Visibility": "2",
   "ImagePath": "preview.png"

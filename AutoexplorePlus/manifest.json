@@ -1,6 +1,6 @@
 {
   "id": "AutoexplorePlus",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "title": "Autoexplore+",
   "description": "Characters with Heightened Hearing or Heightened Smell mutations will not interrupt autoexploring if they detect an enemy that isn't targetting them.",
   "tags": "Stable,Beta,UX,Script",

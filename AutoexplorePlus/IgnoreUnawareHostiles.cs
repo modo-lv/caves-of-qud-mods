@@ -17,8 +17,11 @@ namespace ModoMods.AutoexplorePlus {
           && ev.Actor.IsPlayer()
           && ev is { Hostile: not null, PerceiveVerb: "hear" or "smell" }
           && ev.Hostile.Brain.Target != ev.Actor
+          && ev.Hostile.DistanceTo(this.ParentObject) > 2 
          ) {
-        Output.DebugLog($"Hostile [{ev.Hostile.DisplayName}] detected, but is not targeting player, ignoring.");
+        Output.DebugLog(
+          $"Hostile [{ev.Hostile.DisplayName}] detected, but is not targeting player, ignoring."
+        );
         ev.Hostile = null;
         ev.PerceiveVerb = null;
       }
