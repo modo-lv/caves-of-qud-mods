@@ -1,4 +1,5 @@
-﻿using XRL;
+﻿#nullable enable
+using XRL;
 using XRL.World;
 using XRL.World.Parts.Mutation;
 

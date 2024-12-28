@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 
 namespace ModoMods.Core.Data {
   /// <summary>Known skill class names.</summary>
