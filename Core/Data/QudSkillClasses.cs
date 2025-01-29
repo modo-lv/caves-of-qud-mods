@@ -105,5 +105,6 @@ namespace ModoMods.Core.Data {
     
     // Wayfaring tree
     public const String? Wayfaring = "Survival"; // 100
+    public const String MindsCompass = "Survival_Trailblazer"; // 0
   }
 }

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<options>
+    
+    <!-- Require Mind's Compass -->
+    <option ID="Option_ModoMods_ParasangRegion_RequireMindsCompass"
+            DisplayText="Require Mind's Compass"
+            Type="Checkbox"
+            Default="No"
+            Category="Mod: Parasang Region">
+        <helptext>
+            If enabled, parasang region marker will only appear to characters who have learned the {{Y|Mind's Compass}} skill.  
+        </helptext>
+    </option>
+    
+</options>
