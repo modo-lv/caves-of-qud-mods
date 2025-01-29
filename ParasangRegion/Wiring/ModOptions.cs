@@ -9,5 +9,9 @@ namespace ModoMods.ParasangRegion.Wiring {
     public static Boolean RequireMindsCompass =>
       Options.GetOption("Option_ModoMods_ParasangRegion_RequireMindsCompass")
         ?.EqualsNoCase("yes") == true;
+    
+    public static Boolean HideWhenLost =>
+      Options.GetOption("Option_ModoMods_ParasangRegion_HideWhenLost")
+        ?.EqualsNoCase("yes") == true;
   }
 }

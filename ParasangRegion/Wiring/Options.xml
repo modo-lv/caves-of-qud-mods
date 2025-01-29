@@ -1,6 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <options>
     
+    <!-- Hide when lost -->
+    <option ID="Option_ModoMods_ParasangRegion_HideWhenLost"
+            DisplayText="Hide when lost"
+            Type="Checkbox"
+            Default="Yes"
+            Category="Mod: Parasang Region">
+        <helptext>
+            If enabled (default), parasang region will not be visible while the player character is lost.
+        </helptext>
+    </option>
+    
     <!-- Require Mind's Compass -->
     <option ID="Option_ModoMods_ParasangRegion_RequireMindsCompass"
             DisplayText="Require Mind's Compass"
