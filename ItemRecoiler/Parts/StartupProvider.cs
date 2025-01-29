@@ -7,9 +7,8 @@ using XRL.World;
 using XRL.World.Parts;
 
 namespace ModoMods.ItemRecoiler.Parts {
-  /// <summary>
-  /// Provide palyer 
-  /// </summary>
+  /// <summary>Provide player with an item recoiler on game start.</summary>
+  /// <remarks>"Game start" also includes loading a saved game that doesn't have the mod installed.</remarks>
   [Serializable] public class StartupProvider : ModPart {
     public Boolean Provided;
 
