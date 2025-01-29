@@ -6,6 +6,9 @@ Adds a letter to parasang names to indicate which of the 9 regions (zones) the p
 
 This is an alternative to "Show Parasang" mod. "ParasangRegion" works correctly with game version 1.0, and the zone name changes are not permanent.
 
+* Not visible while the character is lost (can be disabled in mod options).
+* Can be locked behind Mind's Compass skill (in mod options).
+
 The markers are:
 
 ```
