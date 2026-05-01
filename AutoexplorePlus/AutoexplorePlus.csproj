@@ -50,22 +50,17 @@
         <Reference Include="$(QudLibPath)/System.Drawing.Design.dll" />
         <Reference Include="$(QudLibPath)/System.Drawing.dll" />
         <Reference Include="$(QudLibPath)/System.EnterpriseServices.dll" />
-        <!--		<Reference Include="$(QudLibPath)/System.IO.Compression.dll" />-->
         <Reference Include="$(QudLibPath)/System.IO.Compression.FileSystem.dll" />
         <Reference Include="$(QudLibPath)/System.Net.Http.dll" />
         <Reference Include="$(QudLibPath)/System.Numerics.dll" />
-        <!--		<Reference Include="$(QudLibPath)/System.Runtime.dll" />-->
         <Reference Include="$(QudLibPath)/System.Runtime.Serialization.dll" />
         <Reference Include="$(QudLibPath)/System.Runtime.Serialization.Formatters.Soap.dll" />
         <Reference Include="$(QudLibPath)/System.Security.dll" />
         <Reference Include="$(QudLibPath)/System.ServiceModel.Internals.dll" />
-        <!--		<Reference Include="$(QudLibPath)/System.Text.Encoding.CodePages.dll" />-->
-        <!--		<Reference Include="$(QudLibPath)/System.Threading.Tasks.Extensions.dll" />-->
         <Reference Include="$(QudLibPath)/System.Transactions.dll" />
         <Reference Include="$(QudLibPath)/System.Web.ApplicationServices.dll" />
         <Reference Include="$(QudLibPath)/System.Web.dll" />
         <Reference Include="$(QudLibPath)/System.Web.Services.dll" />
-        <!--		<Reference Include="$(QudLibPath)/System.Windows.Forms.dll" />-->
         <Reference Include="$(QudLibPath)/System.Xml.dll" />
         <Reference Include="$(QudLibPath)/System.Xml.Linq.dll" />
         <Reference Include="$(QudLibPath)/Trivial.CodeSecurity.dll" />
@@ -99,7 +94,6 @@
         <Reference Include="$(QudLibPath)/UnityEngine.PerformanceReportingModule.dll" />
         <Reference Include="$(QudLibPath)/UnityEngine.Physics2DModule.dll" />
         <Reference Include="$(QudLibPath)/UnityEngine.PhysicsModule.dll" />
-        <Reference Include="$(QudLibPath)/UnityEngine.ProfilerModule.dll" />
         <Reference Include="$(QudLibPath)/UnityEngine.Purchasing.dll" />
         <Reference Include="$(QudLibPath)/UnityEngine.ScreenCaptureModule.dll" />
         <Reference Include="$(QudLibPath)/UnityEngine.SharedInternalsModule.dll" />
@@ -111,7 +105,6 @@
         <Reference Include="$(QudLibPath)/UnityEngine.SubsystemsModule.dll" />
         <Reference Include="$(QudLibPath)/UnityEngine.TerrainModule.dll" />
         <Reference Include="$(QudLibPath)/UnityEngine.TerrainPhysicsModule.dll" />
-        <Reference Include="$(QudLibPath)/UnityEngine.TestRunner.dll" />
         <Reference Include="$(QudLibPath)/UnityEngine.TextRenderingModule.dll" />
         <Reference Include="$(QudLibPath)/UnityEngine.TilemapModule.dll" />
         <Reference Include="$(QudLibPath)/UnityEngine.TLSModule.dll" />
@@ -134,7 +127,6 @@
         <Reference Include="$(QudLibPath)/UnityEngine.WindModule.dll" />
         <Reference Include="$(QudLibPath)/UnityEngine.XR.LegacyInputHelpers.dll" />
         <Reference Include="$(QudLibPath)/UnityEngine.XRModule.dll" />
-        <Reference Include="$(QudLibPath)/Unity.MemoryProfiler.dll" />
         <Reference Include="$(QudLibPath)/UnityMultiSelectDropdown.dll" />
         <Reference Include="$(QudLibPath)/Unity.Timeline.dll" />
     </ItemGroup>
